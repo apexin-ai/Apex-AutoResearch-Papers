@@ -16,7 +16,7 @@
   "submission_count": 0,
   "license_count": 0,
   "paper_pdf": "paper.pdf",
-  "paper_sha256": "419358f00bedf96e25767e5c5c01a3b0dc8642ba64699366ebc0f3033210536a",
+  "paper_sha256": "9df7e51094887de7d76b00436f0d9964564e3e5b9e852186aaa2fe2b70b5c3dd",
   "title": "Spectral Optimization Across Vision Architecture Families: A Controlled Empirical Study",
   "pages": 29,
   "status_marker": "Anonymous Author(s)",
@@ -127,5 +127,7 @@
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }
-  ]
+  ],
+  "selected_pdf_original_sha256": "419358f00bedf96e25767e5c5c01a3b0dc8642ba64699366ebc0f3033210536a",
+  "selected_pdf_note": "The showcased paper.pdf omits the NeurIPS 2026 submission notice on page 1. Archived source PDFs are unchanged."
 }

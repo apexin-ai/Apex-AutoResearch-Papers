@@ -16,7 +16,7 @@
   "submission_count": 0,
   "license_count": 0,
   "paper_pdf": "paper.pdf",
-  "paper_sha256": "9d1f755d443813dc525d45e2e21903d81fd0b6d3a65c29903c25e1ab1b45dcb6",
+  "paper_sha256": "384b45cbd8e7c7cbb4346f07acdf745c4fbdc4464ce820592800409b3731245c",
   "title": "When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems",
   "pages": 55,
   "status_marker": "Anonymous Author(s)",
@@ -120,5 +120,7 @@
       "gap": "A project license file applies only within its stated scope.",
       "path": "06-maintenance/"
     }
-  ]
+  ],
+  "selected_pdf_original_sha256": "9d1f755d443813dc525d45e2e21903d81fd0b6d3a65c29903c25e1ab1b45dcb6",
+  "selected_pdf_note": "The showcased paper.pdf omits the NeurIPS 2026 submission notice on page 1. Archived source PDFs are unchanged."
 }
