@@ -1,6 +1,0 @@
-tau=0.5: mean_b*=0.3923, mean_alpha_eff=0.4988
-tau=0.6: mean_b*=0.5899, mean_alpha_eff=0.5543
-tau=0.7: mean_b*=0.8943, mean_alpha_eff=0.6082
-tau=0.8: mean_b*=1.3978, mean_alpha_eff=0.6525
-tau=0.9: mean_b*=2.3576, mean_alpha_eff=0.6807
-tau=0.95: mean_b*=3.0775, mean_alpha_eff=0.6869

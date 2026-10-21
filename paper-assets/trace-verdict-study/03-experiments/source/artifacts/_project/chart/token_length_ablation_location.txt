@@ -1,1 +1,0 @@
-Remote path: westd-11235:/root/trace-verdict-study/analysis/figures/token_length_ablation.{pdf,png}

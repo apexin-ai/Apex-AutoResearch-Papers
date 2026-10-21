@@ -1,3 +1,0 @@
-Remote path: westd-47453:/root/provenance_weight_training/output/figures/tau_sensitivity.pdf and tau_sensitivity.png
-Generated: 2026-05-16
-PDF: 37K, PNG: 273K

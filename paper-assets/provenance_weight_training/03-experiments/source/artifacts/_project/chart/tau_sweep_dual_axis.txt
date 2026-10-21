@@ -1,4 +1,0 @@
-Remote path: westd-47453:/root/provenance_weight_training/figures/tau_sweep.{pdf,png}
-Script: westd-47453:/root/provenance_weight_training/figures/plot_tau_sweep.py
-PDF: 21K, PNG: 86K (300 dpi)
-Generated: 2026-05-16

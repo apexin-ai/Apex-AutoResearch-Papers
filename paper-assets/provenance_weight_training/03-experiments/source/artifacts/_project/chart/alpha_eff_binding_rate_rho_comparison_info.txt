@@ -1,3 +1,0 @@
-Remote path: westd-47453:/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate_rho_comparison.{pdf,png}
-PDF: 22,540 bytes | PNG: 198,033 bytes
-Overall binding rate (α_eff=0.8): ρ=0.4 = 38.2%, ρ=0.6 = 33.4%

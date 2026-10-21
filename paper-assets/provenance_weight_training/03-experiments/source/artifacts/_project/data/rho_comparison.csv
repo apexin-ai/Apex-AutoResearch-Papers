@@ -1,6 +1,0 @@
-rho,method,eval_ppl,eval_loss
-0.2,uniform,17.336,2.853
-0.4,uniform,17.694,2.874
-0.6,uniform,17.766,2.878
-0.4,adaptive,17.653,2.871
-0.6,adaptive,17.740,2.876

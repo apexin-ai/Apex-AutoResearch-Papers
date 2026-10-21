@@ -1,4 +1,0 @@
-Remote files on westd-20861:
-- PDF: /root/turn_residual_gating/figures/paper/fig4_attention_heatmap.pdf (37KB)
-- PNG: /root/turn_residual_gating/figures/paper/fig4_attention_heatmap.png (234KB)
-- Script: /root/turn_residual_gating/figures/paper/gen_fig4.py

@@ -1,9 +1,0 @@
-{
-  "baselines": {
-    "argmin": 0.34,
-    "vla_only": 0.3,
-    "vla_mean": 0.32
-  },
-  "perdof": {},
-  "obs_only": {}
-}

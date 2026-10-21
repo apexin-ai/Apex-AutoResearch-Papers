@@ -1,6 +1,0 @@
-Remote files on westd-20861:
-- PDF: /root/turn_residual_gating/artifacts/fig_gate_profile_crossmodel.pdf (27K)
-- PNG: /root/turn_residual_gating/artifacts/fig_gate_profile_crossmodel.png (131K, 3006x1048, 300DPI)
-
-Qwen-2.5-7B (28 layers): mean=0.949±0.048, dips at L1(0.793), L5(0.797)
-Llama-3.1-8B (32 layers): mean=0.917±0.063, V-valley at L25(0.719), L26(0.762), L24(0.809)

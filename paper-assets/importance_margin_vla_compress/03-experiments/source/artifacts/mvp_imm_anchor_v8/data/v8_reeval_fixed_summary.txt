@@ -1,1 +1,0 @@
-D028 fix re-eval summary. Files: eval_results/eval_imm_v8_fixed.json, eval_results/eval_imm_v8_bypass_fixed.json, eval_results/eval_baseline_v5_fixed.json. Gate: G1=50.2x PASS, G2=+58.8pp PASS, G3=1.344x FAIL, G4=0.087 PASS. Overall FAIL.

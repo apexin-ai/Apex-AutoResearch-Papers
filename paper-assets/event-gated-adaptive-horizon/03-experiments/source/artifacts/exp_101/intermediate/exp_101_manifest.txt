@@ -1,4 +1,0 @@
-Scripts: scripts/analyze_rssm_exp101.py, scripts/run_exp101_all.sh
-Dry-run: PASSED (exp_008d, 5ep, 200 transitions, 49.1s on cuda:1)
-dt2/dt1 ratio: obs=1.84x, reward=1.32x
-All 6 checkpoints available. Run: bash scripts/run_exp101_all.sh cuda:1

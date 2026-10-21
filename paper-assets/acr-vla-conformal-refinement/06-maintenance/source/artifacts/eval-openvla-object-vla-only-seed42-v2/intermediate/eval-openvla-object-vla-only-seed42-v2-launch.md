@@ -1,1 +1,0 @@
-Experiment: eval-openvla-object-vla-only-seed42-v2\nServer: bjb1-18228, cuda:1\nModel: /root/autodl-tmp/models/openvla-libero-object (OpenVLA 7B finetuned)\nTask: libero_object, 10 tasks x 10 trials, seed 42\nTmux: eval-openvla-object-vla-only-seed42-v2\nLog: /root/autodl-tmp/openvla/eval-openvla-object-vla-only-seed42-v2.log\nStarted: 2026-05-18 04:57 UTC+8

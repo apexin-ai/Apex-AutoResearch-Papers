@@ -1,6 +1,0 @@
-n_min,eval_ppl,b_star_mean,b_star_median,note
-1,17.789,7.197,1.746,
-2,17.6527,1.399,0.871,main result
-3,17.644,,,
-4,17.6947,0,0,degrades to uniform
-ref_uniform,17.6939,,,

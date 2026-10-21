@@ -1,4 +1,0 @@
-Remote files on westd-20861:
-- PDF: /root/turn_residual_gating/figures/paper/fig2_training_pcgrad.pdf (47KB)
-- PNG: /root/turn_residual_gating/figures/paper/fig2_training_pcgrad.png (238KB, 300 DPI)
-- Data: v7 micro-step log + v9 PCGrad global step log

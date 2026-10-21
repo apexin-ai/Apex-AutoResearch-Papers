@@ -1,3 +1,0 @@
-2026-05-15 02:06:16,598 INFO    core.tools.feishu  create_chat: name='审稿-provenance_weight_training' → chat_id=oc_069d56747de0423c793156b069500cb3
-2026-05-15 02:06:16,601 INFO    core.tools.dream  [dream] auto-created Group C for project=provenance_weight_training: oc_069d56747de0423c793156b069500cb3
-2026-05-15 02:06:16,727 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_10/config/mcp_config_dream_review_director.json

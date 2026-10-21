@@ -1,1 +1,0 @@
-Figure located on server westd-11235: /root/trace-verdict-study/artifacts/fig_trace_ablation.pdf and fig_trace_ablation.png

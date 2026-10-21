@@ -1,1 +1,0 @@
-Generated on westd-20861:/root/turn_residual_gating/artifacts/fig_gate_profile_heatmap.pdf (.png also available). Qwen 5 conditions + Llama TG. PCGrad data from step 2500 (not final).

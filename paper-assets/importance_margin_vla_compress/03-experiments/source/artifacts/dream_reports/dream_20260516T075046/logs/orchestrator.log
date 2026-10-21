@@ -1,3 +1,0 @@
-2026-05-16 08:25:18,289 INFO    core.tools.feishu  create_chat: name='审稿-importance_margin_vla_compress' → chat_id=oc_83179cdc26b856fbbaf531d145edb3bd
-2026-05-16 08:25:18,297 INFO    core.tools.dream  [dream] auto-created Group C for project=importance_margin_vla_compress: oc_83179cdc26b856fbbaf531d145edb3bd
-2026-05-16 08:25:18,517 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/mcp_config_dream_review_director.json

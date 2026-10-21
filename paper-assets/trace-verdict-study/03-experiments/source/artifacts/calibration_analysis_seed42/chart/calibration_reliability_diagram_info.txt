@@ -1,6 +1,0 @@
-Reliability diagram saved on westd-11235 at:
-- PDF: /root/autodl-tmp/trace-verdict-study-checkpoints/calibration/reliability_diagram.pdf
-- PNG: /root/autodl-tmp/trace-verdict-study-checkpoints/calibration/reliability_diagram.png
-
-4 conditions plotted: No Trace (red), Full Trace (blue), Exception Only (orange), VOTA (green).
-X-axis: mean confidence (0.5-1.0), Y-axis: accuracy (0-1.05), diagonal = perfect calibration.

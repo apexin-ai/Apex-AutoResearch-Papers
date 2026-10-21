@@ -1,9 +1,0 @@
-exp_id,ground_truth,peak_step_s1,peak_nve_s1,peak_step_4seed,peak_nve_4seed,peak_ve_ratio,class_s1,class_4seed,flip,method
-exp_006_fixed_dt2,CIVO,65000,4.836189,65000,4.522167,2.7224,CIVO,CIVO,False,direct
-exp_008d_subsample_on_h8,CIVO,55000,4.129242,55000,3.544652,1.6663,CIVO,CIVO,False,direct
-exp_008e_v3_walker_s2,no-CIVO,105000,3.780128,105000,3.681979,2.4813,CIVO,CIVO,False,rescaled
-exp_009b_008d_walker_s2,CIVO,45000,1.619005,45000,1.229276,0.5359,CIVO,no-CIVO,True,direct
-exp_001_baseline,no-CIVO,35000,1.0,75000,1.208832,0.7194,no-CIVO,no-CIVO,False,direct
-exp_008f_no_dt_embed_subsample_on_h8,no-CIVO,55000,0.970092,55000,0.832822,0.3915,no-CIVO,no-CIVO,False,direct
-exp_008e_v3_walker_s1,no-CIVO,35000,0.941125,75000,0.879575,0.2270,no-CIVO,no-CIVO,False,rescaled
-exp_008a_no_subsample_dt2,no-CIVO,55000,0.932205,75000,0.900323,0.5358,no-CIVO,no-CIVO,False,direct

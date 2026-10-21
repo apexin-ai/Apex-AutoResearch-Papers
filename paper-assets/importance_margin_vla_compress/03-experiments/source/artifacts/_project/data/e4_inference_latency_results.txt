@@ -1,1 +1,0 @@
-SmolVLA (128 tokens, 1264MB): baseline=164.77ms, k0.95=162.25ms, k0.90=164.46ms, k0.70=163.01ms, k0.50=162.98ms\nPi0.5 (768 tokens, 9500MB): baseline=67.02ms, k0.95=71.95ms, k0.90=71.55ms, k0.70=68.59ms, k0.50=64.31ms\nRemote: westd-41074:/root/autodl-tmp/importance_margin_vla_compress/eval_results/inference_latency_all_models.{csv,json}

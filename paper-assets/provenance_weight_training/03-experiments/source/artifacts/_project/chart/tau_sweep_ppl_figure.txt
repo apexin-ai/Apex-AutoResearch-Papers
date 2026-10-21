@@ -1,5 +1,0 @@
-Remote server: westd-47453
-Files: /root/provenance_weight_training/output/figures/tau_sweep_ppl.pdf
-       /root/provenance_weight_training/output/figures/tau_sweep_ppl.png
-Format: 300dpi, Nature/ICML style, Okabe-Ito colors
-Content: τ (0.5-0.95) vs eval_ppl_holdout, with uniform baseline (gray dashed) and grid-best b=0.5 (blue dashed), safe range [0.5,0.8] green band, τ=0.8 optimum annotated

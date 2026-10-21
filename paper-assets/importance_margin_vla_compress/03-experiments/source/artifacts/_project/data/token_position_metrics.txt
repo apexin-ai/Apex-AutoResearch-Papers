@@ -1,8 +1,0 @@
-Model: X-VLA, Grid: 7x7, Total tokens: 50, Spatial: 49
-Norm CV: 0.0011 (mean=31.91, std=0.04)
-
-k=0.3: L2 clusters=3, largest=86% | Random clusters=6.4, largest=36%
-k=0.5: L2 clusters=1, largest=100% | Random clusters=4.6, largest=55%
-k=0.7: L2 clusters=2, largest=97% | Random clusters=1.8, largest=95%
-
-Remote JSON: /root/autodl-tmp/importance_margin_vla_compress/artifacts/token_position_metrics.json (cqa1-33015)

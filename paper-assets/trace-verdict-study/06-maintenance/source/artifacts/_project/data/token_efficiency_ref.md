@@ -1,1 +1,0 @@
-Remote file: /root/trace-verdict-study/docs/paper/token_efficiency_table.md

@@ -1,5 +1,0 @@
-method,rho_04_ppl,rho_06_ppl,delta
-uniform,17.6939,17.766,0.0721
-grid_b0_5,17.651,17.704,0.053
-adaptive,17.6527,17.74,0.0873
-ess_only,17.73,17.77,0.04

@@ -1,4 +1,0 @@
-Remote files on westd-20861:
-- PDF: /root/turn_residual_gating/figures/paper/fig3_gate_shift.pdf
-- PNG: /root/turn_residual_gating/figures/paper/fig3_gate_shift.png
-- Script: /root/turn_residual_gating/figures/paper/gen_fig3_gate_shift.py

@@ -1,4 +1,0 @@
-Remote path: westd-47453:/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_distribution_rho_comparison.{pdf,png}
-PDF: 22,187 bytes | PNG: 73,426 bytes
-Filtered: removed 25,922 eval records (b=0.0) from ρ=0.4, 325 from ρ=0.6
-b* mean: ρ=0.4 = 1.425 (std=1.941), ρ=0.6 = 1.402 (std=1.964)

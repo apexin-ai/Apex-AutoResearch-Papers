@@ -1,4 +1,0 @@
-Remote server: westd-47453
-PDF: /root/provenance_weight_training/output/figures/tau_sweep_rho04.pdf (21K)
-PNG: /root/provenance_weight_training/output/figures/tau_sweep_rho04.png (124K)
-Script: /root/provenance_weight_training/scripts/plot_tau_sweep.py

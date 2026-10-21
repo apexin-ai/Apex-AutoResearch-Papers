@@ -1,5 +1,0 @@
-\section{Conclusion}
-\label{sec:conclusion}
-
-We set out to understand why identical token pruning produces dramatically different outcomes across VLA architectures. The vision-language connector emerges as the strongest predictor: its coefficient of variation (CV), computable from a single forward pass, partitions architectures into compressibility regimes. Token-independent connectors degrade gracefully while entangling connectors exhibit catastrophic cliffs amplified by task complexity. No scoring method is universally safe: the importance margin follows an inverted-U curve that reverses at aggressive ratios, and position disruption, not information loss, is the binding constraint. For connectors where all deletion fails, VTR recovers baseline performance at 75\% compression.
-

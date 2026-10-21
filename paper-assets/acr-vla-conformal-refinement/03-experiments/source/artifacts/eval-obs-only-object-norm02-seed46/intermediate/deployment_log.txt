@@ -1,8 +1,0 @@
-Server: bjb1-18228
-GPU: cuda:3
-PID: 510896
-tmux: eval-obs-only-object-norm02-seed46
-Command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_seed46.json
-Hypothesis: obs_only CRM v3-norm norm=0.2 seed=46 on LIBERO object. 5th seed for Fisher test statistical power.
-Deployed: 2026-05-17 00:01
-Killed PID 507989 (misdeployed obs-only-norm03-seed45, duplicate of bjb2-28827 r2) before deployment.

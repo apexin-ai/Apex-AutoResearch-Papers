@@ -1,3 +1,0 @@
-Remote files on westd-47453:
-- PDF: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf (29KB)
-- PNG: /root/provenance_weight_training/artifacts/figures/tau_sweep.png (109KB)

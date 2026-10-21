@@ -1,9 +1,0 @@
-# Contamination Robustness Table (rho=0.4 vs rho=0.6, seed42 only)
-# Source: provenance_weight_training registry, 2026-05-16
-# Metric: eval_ppl_holdout
-# Degradation = rho0.6_PPL - rho0.4_PPL (positive means worse)
-Method,rho0.4_PPL,rho0.6_PPL,Degradation
-uniform,17.694,17.766,+0.072
-grid b=0.5,17.651,17.704,+0.053
-adaptive (tau=0.8 n_min=2),17.653,17.740,+0.087
-ESS-only,17.730,17.770,+0.040

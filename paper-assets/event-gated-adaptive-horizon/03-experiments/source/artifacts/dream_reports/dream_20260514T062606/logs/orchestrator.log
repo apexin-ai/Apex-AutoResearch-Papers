@@ -1,3 +1,0 @@
-2026-05-14 06:55:06,990 INFO    core.tools.feishu  create_chat: name='event-gated-adaptive-horizon-审稿群' → chat_id=oc_dd4a07a509df7e5f9a31d65f776059bc
-2026-05-14 06:55:06,992 INFO    core.tools.dream  [dream] auto-created Group C for project=event-gated-adaptive-horizon: oc_dd4a07a509df7e5f9a31d65f776059bc
-2026-05-14 06:55:07,128 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_9/config/mcp_config_dream_review_director.json

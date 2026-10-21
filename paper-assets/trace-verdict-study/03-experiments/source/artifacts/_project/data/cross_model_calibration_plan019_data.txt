@@ -1,6 +1,0 @@
-Qwen2.5-7B: acc=0.9983 ece=0.002717 mce=0.835484 brier=0.001311 conf=0.998006
-DeepSeek-6.7B: acc=0.9933 ece=0.004890 mce=0.469227 brier=0.005887 conf=0.997062
-CodeLlama-13B: acc=0.9983 ece=0.001971 mce=0.041056 brier=0.001310 conf=0.996348
-Qwen2.5-1.5B: acc=0.9983 ece=0.001976 mce=0.754915 brier=0.001255 conf=0.998203
-
-Full JSON with reliability bins at remote: /root/trace-verdict-study/artifacts/cross_model_calibration_plan019.json

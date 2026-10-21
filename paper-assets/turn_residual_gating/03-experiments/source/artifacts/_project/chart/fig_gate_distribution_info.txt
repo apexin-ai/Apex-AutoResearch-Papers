@@ -1,1 +1,0 @@
-Generated on westd-20861:/root/turn_residual_gating/artifacts/fig_gate_distribution.pdf. TG std=0.052, UG std=0.055, PCGrad std=0.063.

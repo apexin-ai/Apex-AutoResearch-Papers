@@ -1,2 +1,0 @@
-Remote path: /root/autodl-tmp/importance_margin_vla_compress/artifacts/token_norm_heatmap.pdf
-Server: cqa1-33015

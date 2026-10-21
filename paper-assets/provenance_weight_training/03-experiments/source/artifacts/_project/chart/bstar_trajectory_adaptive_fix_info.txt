@@ -1,4 +1,0 @@
-Remote path: westd-47453:/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory_adaptive_fix.{pdf,png}
-PDF: 248,653 bytes | PNG: 407,383 bytes
-Previously 0-byte PDF, now regenerated with eval records (b=0.0) filtered
-Training records: 25,991 (from 51,913 total)

@@ -1,5 +1,0 @@
-Remote files on westd-20861:
-- PDF: /root/turn_residual_gating/results/v7_training_dynamics.pdf (39.5KB)
-- PNG: /root/turn_residual_gating/results/v7_training_dynamics.png (318.8KB)
-- Script: /root/turn_residual_gating/plot_training_dynamics.py
-Data source: v7 training log (480 loss lines, 61 GATE records, 31 GATE-PROFILE records)

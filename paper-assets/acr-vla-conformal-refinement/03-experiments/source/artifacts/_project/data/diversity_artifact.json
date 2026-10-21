@@ -1,1 +1,0 @@
-{"mean": 0.00436, "std": 0.00334, "median": 0.00392, "max": 0.02674, "min": 1.62e-05, "pct_below_1e4": 0.33, "pct_below_1e3": 7.33, "pct_below_1e2": 97.33, "n_samples": 300, "model": "openvla_oft", "K": 2}

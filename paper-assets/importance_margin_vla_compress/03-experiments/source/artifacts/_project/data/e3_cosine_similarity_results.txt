@@ -1,1 +1,0 @@
-pi05: CV=0.055, tokens=512, mean_cos_sim=0.9545, std=0.0174, min=0.8511, max=0.9992\nsmolvla: CV=0.314, tokens=128, mean_cos_sim=0.7224, std=0.1413, min=0.1482, max=0.9710\nRemote: westd-41074:/root/autodl-tmp/importance_margin_vla_compress/artifacts/token_cosine_similarity.{pdf,png,json,npz}

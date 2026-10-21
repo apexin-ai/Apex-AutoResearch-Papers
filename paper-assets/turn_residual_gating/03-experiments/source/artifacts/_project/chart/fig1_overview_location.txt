@@ -1,4 +1,0 @@
-Remote files on westd-20861:
-- PDF: /root/turn_residual_gating/figures/paper/fig1_overview.pdf (48K)
-- PNG: /root/turn_residual_gating/figures/paper/fig1_overview.png (189K, 1599x591px)
-- Script: /root/turn_residual_gating/figures/fig1_overview.py
