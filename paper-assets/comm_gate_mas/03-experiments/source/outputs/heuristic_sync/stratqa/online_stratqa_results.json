@@ -1,0 +1,19 @@
+{
+  "experiment": "online_stratqa_validation",
+  "domain": "strategyqa",
+  "backbone": "qwen",
+  "topology": "round_robin",
+  "n_tasks": 250,
+  "baseline_acc": 0.704,
+  "online_ack_acc": 0.68,
+  "delta_pp": -2.4,
+  "suppress_pct": 60.32,
+  "mcnemar_p": 0.429591,
+  "mcnemar": {
+    "baseline_only_correct": 23,
+    "ack_only_correct": 17,
+    "n_discordant": 40,
+    "p_value": 0.429591,
+    "significant_005": false
+  }
+}

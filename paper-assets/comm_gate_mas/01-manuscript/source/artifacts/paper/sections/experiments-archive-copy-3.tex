@@ -1,0 +1,20 @@
+\subsection{Implementation and Evaluation}
+\label{sec:implementation}
+
+\paragraph{Models and infrastructure.}
+Two primary backbones, Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, exhibit contrasting communication styles: terse acknowledgments (Qwen: median 4 tokens) versus verbose ones (Llama: mean 59.8 tokens; \S\ref{sec:impact_gradient}).
+Scale probes at 14B and 72B test generalization beyond the 7B regime; Gemma-2-9B-it serves as a boundary condition (\S\ref{sec:boundary}).
+Each agent team (solver + checker) is served via vLLM v0.6.6~\cite{kwon_vllm_2023} with greedy decoding on 4$\times$~NVIDIA RTX PRO 6000 GPUs (96\,GB each).
+The $3 \times 3$ factorial design (\S\ref{sec:cross_domain_design}) combined with oracle, heuristic, and learned pruning strategies spans approximately 120 GPU-hours.
+
+\paragraph{Datasets and correctness criterion.}
+Primary evaluation uses GSM8K~\cite{cobbe_gsm8k_2021} ($N{=}200$--$1{,}000$ tasks per run per configuration, with multi-seed aggregates reported separately) and StrategyQA~\cite{geva_strategyqa_2021} ($N{=}200$--$238$).
+ARC-Challenge~\cite{clark_arc_2018} ($N{=}250$) and MATH~\cite{hendrycks_math_2021} ($N{=}200$, 102 valid after filtering tasks where the baseline produced unparseable answers) serve as cross-domain and boundary-condition probes.
+Correctness is exact match: extracted numerical answer (GSM8K), yes/no (StrategyQA), or letter (ARC).
+
+\paragraph{Evaluation metrics.}
+Pruning effectiveness is quantified via accuracy delta ($\Delta = \mathrm{acc}_{\text{pruned}} - \mathrm{acc}_{\text{baseline}}$, in pp; safe at $\Delta \geq -3$\,pp) and suppress rate ($r_{\text{sup}} = n_{\text{suppressed}} / n_{\text{total}}$).
+Statistical significance uses McNemar's exact test for single-seed and paired $t$-tests with TOST equivalence for multi-seed configurations (\S\ref{sec:statistical_framework}).
+
+\paragraph{Replication strategy.}
+Each seed controls problem sampling order; generation is deterministic under greedy decoding. The flagship configuration (Qwen oracle, GSM8K) uses 10 seeds ($2{,}000$ tasks); secondary configurations use 5--8 seeds; scale probes are single-seed and labeled exploratory. Code and data are available at \url{[anonymized]}.

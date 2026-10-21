@@ -1,0 +1,27 @@
+\enlargethispage{\baselineskip}
+\vspace{-0.5em}
+\section{Discussion}
+\label{sec:discussion}
+\vspace{-0.3em}
+
+\paragraph{Why does the spectral advantage vary with architecture?}
+Our results point to normalization type as the primary mediator on ResNet-50.
+Batch normalization smooths the loss landscape~\cite{santurkar2018how}, reducing the need for spectral gradient conditioning; hence ResNet-50 shows the smallest gap ($+5.9$--$+11.5$\,pp).
+Layer normalization lacks this smoothing; on ConvNeXt-T, where depthwise separable convolutions create block-diagonal gradient structure, the gap reaches $+24$\,pp.
+
+\paragraph{Intra-class structure.}
+Intra-class rankings are architecture-dependent (Shampoo leads on ResNet-50, SOAP on DeiT-S, Muon on ConvNeXt-T), yet the class-level advantage over AdamW ($+9$--$+16$\,pp) dwarfs intra-class differences.
+
+\paragraph{Newton--Schulz ablation.}
+Removing Newton--Schulz normalization from Muon degrades accuracy from $76.9\pm0.3\%$ to $60.1\pm0.2\%$ ($n{=}3$) on CIFAR-100/ResNet-50/20ep, confirming spectral preconditioning drives the advantage on convolutional architectures.
+
+\paragraph{Gap convergence.}
+The gap narrows on CNNs (Table~\ref{tab:gap_narrowing}), suggesting convergence speed rather than solution quality; on layer-normalized architectures, Muon at 20 epochs surpasses AdamW at 50, implying $\geq$2$\times$ wall-clock savings.
+
+\paragraph{Toward a predictive diagnostic.}
+ResNet-50 shows $\rho = +0.58$ ($p = 3.6 \times 10^{-6}$).
+On DeiT-S, spectral rank divergence is comparable but does not correlate with accuracy impact ($\rho \approx 0$, n.s.), suggesting transformers benefit through a different mechanism to be characterized via per-layer gradient analysis (Appendix~\ref{app:spectral-divergence}).
+
+\paragraph{Practical Implications.}
+SOAP and Muon achieve $+$10--16\,pp over AdamW on LayerNorm architectures ($+$9\,pp on BatchNorm, narrowing with training) and maintain stable performance, making them preferable over Shampoo (Appendix~\ref{sec:lr_sweep}).
+Corruption robustness results are in Appendix~\ref{sec:corruption_robustness}.

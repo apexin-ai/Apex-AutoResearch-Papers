@@ -1,6 +1,6 @@
 # Research results
 
-This branch presents 34 research projects. Each project contains a manuscript and the supporting materials in the same seven-category layout.
+This branch presents 36 research projects. Each project contains a manuscript and the supporting materials in the same seven-category layout.
 
 Browse the [searchable project catalogue](CONTENTS.md), or open a project directly:
 
@@ -11,6 +11,7 @@ Browse the [searchable project catalogue](CONTENTS.md), or open a project direct
 | [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) |
 | [clkc_mech_interp](paper-assets/clkc_mech_interp/README.md) | [PDF](paper-assets/clkc_mech_interp/01-manuscript/paper.pdf) |
 | [contamcal-irt-calibration](paper-assets/contamcal-irt-calibration/README.md) | [PDF](paper-assets/contamcal-irt-calibration/01-manuscript/paper.pdf) |
+| [comm_gate_mas](paper-assets/comm_gate_mas/README.md) | [PDF](paper-assets/comm_gate_mas/01-manuscript/paper.pdf) |
 | [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) |
 | [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) |
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) |
@@ -37,6 +38,7 @@ Browse the [searchable project catalogue](CONTENTS.md), or open a project direct
 | [simgate-modular-routing](paper-assets/simgate-modular-routing/README.md) | [PDF](paper-assets/simgate-modular-routing/01-manuscript/paper.pdf) |
 | [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | [PDF](paper-assets/solver-trace-ablation/01-manuscript/paper.pdf) |
 | [spectral_collapse_ews](paper-assets/spectral_collapse_ews/README.md) | [PDF](paper-assets/spectral_collapse_ews/01-manuscript/paper.pdf) |
+| [spectral_optim_vision_geometry](paper-assets/spectral_optim_vision_geometry/README.md) | [PDF](paper-assets/spectral_optim_vision_geometry/01-manuscript/paper.pdf) |
 | [struct_self_consist_ie](paper-assets/struct_self_consist_ie/README.md) | [PDF](paper-assets/struct_self_consist_ie/01-manuscript/paper.pdf) |
 | [symb_invariant_consensus](paper-assets/symb_invariant_consensus/README.md) | [PDF](paper-assets/symb_invariant_consensus/01-manuscript/paper.pdf) |
 | [vla-ssd](paper-assets/vla-ssd/README.md) | [PDF](paper-assets/vla-ssd/01-manuscript/paper.pdf) |

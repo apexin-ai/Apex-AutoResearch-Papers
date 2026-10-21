@@ -1,0 +1,150 @@
+========== SGD lr=0.003 ==========
+ImageNet-100 loaded: train=55218, val=10000, classes=100
+model=convnext_tiny (convnext_tiny), params=27.9M, optimizer=sgd, device=cuda:0, batches/epoch=431
+  batch 50/431, loss=4.6259, elapsed=16.5s
+  batch 100/431, loss=4.5748, elapsed=29.1s
+  batch 150/431, loss=4.6567, elapsed=41.8s
+  batch 200/431, loss=4.5133, elapsed=54.5s
+  batch 250/431, loss=4.6050, elapsed=67.3s
+  batch 300/431, loss=4.5175, elapsed=80.0s
+  batch 350/431, loss=4.5659, elapsed=92.7s
+  batch 400/431, loss=4.4926, elapsed=105.4s
+epoch=1, train_loss=4.5596, val_acc=2.80%, time=126.8s
+  batch 50/431, loss=4.5445, elapsed=13.5s
+  batch 100/431, loss=4.5702, elapsed=26.2s
+  batch 150/431, loss=4.5437, elapsed=38.7s
+  batch 200/431, loss=4.5446, elapsed=51.3s
+  batch 250/431, loss=4.5337, elapsed=64.0s
+  batch 300/431, loss=4.4984, elapsed=76.8s
+  batch 350/431, loss=4.6433, elapsed=89.6s
+  batch 400/431, loss=4.4336, elapsed=102.4s
+epoch=2, train_loss=4.5260, val_acc=2.99%, time=122.0s
+  batch 50/431, loss=4.4782, elapsed=13.3s
+  batch 100/431, loss=4.5053, elapsed=26.0s
+  batch 150/431, loss=4.4666, elapsed=38.7s
+  batch 200/431, loss=4.5192, elapsed=51.4s
+  batch 250/431, loss=4.4325, elapsed=64.1s
+  batch 300/431, loss=4.4776, elapsed=77.0s
+  batch 350/431, loss=4.4477, elapsed=89.8s
+  batch 400/431, loss=4.4555, elapsed=102.6s
+epoch=3, train_loss=4.5077, val_acc=3.17%, time=122.4s
+  batch 50/431, loss=4.5375, elapsed=13.4s
+  batch 100/431, loss=4.4394, elapsed=26.1s
+  batch 150/431, loss=4.4467, elapsed=38.9s
+  batch 200/431, loss=4.4766, elapsed=51.7s
+  batch 250/431, loss=4.4827, elapsed=64.4s
+  batch 300/431, loss=4.4459, elapsed=77.2s
+  batch 350/431, loss=4.4613, elapsed=90.0s
+  batch 400/431, loss=4.5114, elapsed=102.7s
+epoch=4, train_loss=4.4821, val_acc=3.54%, time=122.5s
+  batch 50/431, loss=4.4849, elapsed=13.4s
+  batch 100/431, loss=4.4835, elapsed=26.2s
+  batch 150/431, loss=4.5559, elapsed=39.0s
+  batch 200/431, loss=4.4630, elapsed=51.9s
+  batch 250/431, loss=4.3781, elapsed=64.7s
+  batch 300/431, loss=4.4532, elapsed=77.3s
+  batch 350/431, loss=4.5021, elapsed=90.3s
+  batch 400/431, loss=4.3775, elapsed=103.3s
+epoch=5, train_loss=4.4656, val_acc=3.76%, time=123.0s
+TRAINING_COMPLETE val_acc=3.76%
+========== Done lr=0.003 ==========
+========== SGD lr=0.01 ==========
+ImageNet-100 loaded: train=55218, val=10000, classes=100
+model=convnext_tiny (convnext_tiny), params=27.9M, optimizer=sgd, device=cuda:0, batches/epoch=431
+  batch 50/431, loss=4.7453, elapsed=16.6s
+  batch 100/431, loss=4.6487, elapsed=29.3s
+  batch 150/431, loss=4.8009, elapsed=42.0s
+  batch 200/431, loss=4.6584, elapsed=54.8s
+  batch 250/431, loss=4.7360, elapsed=67.5s
+  batch 300/431, loss=4.6160, elapsed=80.2s
+  batch 350/431, loss=4.8057, elapsed=92.9s
+  batch 400/431, loss=4.4891, elapsed=105.6s
+epoch=1, train_loss=4.6603, val_acc=2.08%, time=127.0s
+  batch 50/431, loss=4.5847, elapsed=13.3s
+  batch 100/431, loss=4.6461, elapsed=26.1s
+  batch 150/431, loss=4.6147, elapsed=38.9s
+  batch 200/431, loss=4.6236, elapsed=51.7s
+  batch 250/431, loss=4.6201, elapsed=64.4s
+  batch 300/431, loss=4.6268, elapsed=77.1s
+  batch 350/431, loss=4.6751, elapsed=89.9s
+  batch 400/431, loss=4.5452, elapsed=102.7s
+epoch=2, train_loss=4.5987, val_acc=2.85%, time=122.2s
+  batch 50/431, loss=4.5448, elapsed=13.3s
+  batch 100/431, loss=4.5692, elapsed=26.1s
+  batch 150/431, loss=4.5266, elapsed=38.7s
+  batch 200/431, loss=4.5688, elapsed=51.5s
+  batch 250/431, loss=4.4640, elapsed=64.3s
+  batch 300/431, loss=4.4828, elapsed=77.2s
+  batch 350/431, loss=4.4914, elapsed=90.0s
+  batch 400/431, loss=4.4680, elapsed=102.8s
+epoch=3, train_loss=4.5327, val_acc=2.84%, time=122.3s
+  batch 50/431, loss=4.5330, elapsed=13.5s
+  batch 100/431, loss=4.4447, elapsed=26.1s
+  batch 150/431, loss=4.4392, elapsed=38.8s
+  batch 200/431, loss=4.4807, elapsed=51.5s
+  batch 250/431, loss=4.4968, elapsed=64.3s
+  batch 300/431, loss=4.4476, elapsed=77.0s
+  batch 350/431, loss=4.4238, elapsed=89.8s
+  batch 400/431, loss=4.4972, elapsed=102.6s
+epoch=4, train_loss=4.4799, val_acc=3.83%, time=122.2s
+  batch 50/431, loss=4.4714, elapsed=13.5s
+  batch 100/431, loss=4.4830, elapsed=26.3s
+  batch 150/431, loss=4.5378, elapsed=39.0s
+  batch 200/431, loss=4.4495, elapsed=51.8s
+  batch 250/431, loss=4.3751, elapsed=64.5s
+  batch 300/431, loss=4.4514, elapsed=77.2s
+  batch 350/431, loss=4.4983, elapsed=89.8s
+  batch 400/431, loss=4.3653, elapsed=102.6s
+epoch=5, train_loss=4.4559, val_acc=3.88%, time=122.1s
+TRAINING_COMPLETE val_acc=3.88%
+========== Done lr=0.01 ==========
+========== SGD lr=0.05 ==========
+ImageNet-100 loaded: train=55218, val=10000, classes=100
+model=convnext_tiny (convnext_tiny), params=27.9M, optimizer=sgd, device=cuda:0, batches/epoch=431
+  batch 50/431, loss=5.4516, elapsed=16.7s
+  batch 100/431, loss=4.7729, elapsed=29.4s
+  batch 150/431, loss=4.6673, elapsed=42.1s
+  batch 200/431, loss=4.5932, elapsed=54.7s
+  batch 250/431, loss=4.5818, elapsed=67.5s
+  batch 300/431, loss=4.6193, elapsed=80.3s
+  batch 350/431, loss=4.5538, elapsed=93.0s
+  batch 400/431, loss=4.5353, elapsed=105.7s
+epoch=1, train_loss=4.7112, val_acc=2.32%, time=126.7s
+  batch 50/431, loss=4.5255, elapsed=13.3s
+  batch 100/431, loss=4.5406, elapsed=26.1s
+  batch 150/431, loss=4.5046, elapsed=38.8s
+  batch 200/431, loss=4.4780, elapsed=51.5s
+  batch 250/431, loss=4.4988, elapsed=64.4s
+  batch 300/431, loss=4.4857, elapsed=77.1s
+  batch 350/431, loss=4.6050, elapsed=89.8s
+  batch 400/431, loss=4.4353, elapsed=102.6s
+epoch=2, train_loss=4.5123, val_acc=3.20%, time=122.3s
+  batch 50/431, loss=4.4496, elapsed=13.3s
+  batch 100/431, loss=4.4959, elapsed=25.9s
+  batch 150/431, loss=4.4577, elapsed=38.4s
+  batch 200/431, loss=4.4654, elapsed=50.9s
+  batch 250/431, loss=4.4437, elapsed=63.5s
+  batch 300/431, loss=4.4391, elapsed=76.3s
+  batch 350/431, loss=4.4383, elapsed=89.0s
+  batch 400/431, loss=4.4594, elapsed=101.9s
+epoch=3, train_loss=4.4790, val_acc=3.57%, time=121.5s
+  batch 50/431, loss=4.4828, elapsed=13.4s
+  batch 100/431, loss=4.4015, elapsed=26.1s
+  batch 150/431, loss=4.4257, elapsed=38.8s
+  batch 200/431, loss=4.4320, elapsed=51.6s
+  batch 250/431, loss=4.5015, elapsed=64.3s
+  batch 300/431, loss=4.4039, elapsed=76.9s
+  batch 350/431, loss=4.4326, elapsed=89.6s
+  batch 400/431, loss=4.4439, elapsed=102.1s
+epoch=4, train_loss=4.4458, val_acc=4.12%, time=121.9s
+  batch 50/431, loss=4.4657, elapsed=13.3s
+  batch 100/431, loss=4.4482, elapsed=26.1s
+  batch 150/431, loss=4.4822, elapsed=38.9s
+  batch 200/431, loss=4.3973, elapsed=51.7s
+  batch 250/431, loss=4.3770, elapsed=64.4s
+  batch 300/431, loss=4.4324, elapsed=77.2s
+  batch 350/431, loss=4.4264, elapsed=90.1s
+  batch 400/431, loss=4.3472, elapsed=102.9s
+epoch=5, train_loss=4.4261, val_acc=4.44%, time=122.8s
+TRAINING_COMPLETE val_acc=4.44%
+========== Done lr=0.05 ==========

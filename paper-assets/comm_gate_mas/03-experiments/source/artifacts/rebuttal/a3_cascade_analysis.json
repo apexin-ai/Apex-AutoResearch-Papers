@@ -1,0 +1,179 @@
+{
+  "cascade_length_analysis": [
+    {
+      "backbone": "qwen",
+      "total_records": 1999,
+      "unique_tasks": 200,
+      "n_seeds": 10,
+      "buckets": {
+        "0": {
+          "n_tasks": 9,
+          "n_safe": 9,
+          "n_improved": 0,
+          "n_degraded": 0,
+          "safe_rate": 100.0,
+          "improved_rate": 0.0,
+          "degraded_rate": 0.0
+        },
+        "1": {
+          "n_tasks": 507,
+          "n_safe": 499,
+          "n_improved": 5,
+          "n_degraded": 3,
+          "safe_rate": 98.4,
+          "improved_rate": 1.0,
+          "degraded_rate": 0.6
+        },
+        "2": {
+          "n_tasks": 1188,
+          "n_safe": 1175,
+          "n_improved": 11,
+          "n_degraded": 2,
+          "safe_rate": 98.9,
+          "improved_rate": 0.9,
+          "degraded_rate": 0.2
+        },
+        "3": {
+          "n_tasks": 23,
+          "n_safe": 23,
+          "n_improved": 0,
+          "n_degraded": 0,
+          "safe_rate": 100.0,
+          "improved_rate": 0.0,
+          "degraded_rate": 0.0
+        },
+        "4+": {
+          "n_tasks": 272,
+          "n_safe": 267,
+          "n_improved": 1,
+          "n_degraded": 4,
+          "safe_rate": 98.2,
+          "improved_rate": 0.4,
+          "degraded_rate": 1.5
+        }
+      },
+      "stats": {
+        "point_biserial_r": -0.0071,
+        "point_biserial_p": 0.7525,
+        "mann_whitney_U": 25791.0,
+        "mann_whitney_p": 0.9561,
+        "cochran_armitage_z": 1.7674,
+        "cochran_armitage_p": 0.0772
+      },
+      "descriptive": {
+        "mean_chain_safe": 2.02,
+        "mean_chain_changed": 2.08,
+        "median_chain_safe": 2.0,
+        "median_chain_changed": 2.0
+      }
+    },
+    {
+      "backbone": "llama",
+      "total_records": 1939,
+      "unique_tasks": 200,
+      "n_seeds": 10,
+      "buckets": {
+        "0": {
+          "n_tasks": 90,
+          "n_safe": 78,
+          "n_improved": 1,
+          "n_degraded": 11,
+          "safe_rate": 86.7,
+          "improved_rate": 1.1,
+          "degraded_rate": 12.2
+        },
+        "1": {
+          "n_tasks": 1167,
+          "n_safe": 1075,
+          "n_improved": 65,
+          "n_degraded": 27,
+          "safe_rate": 92.1,
+          "improved_rate": 5.6,
+          "degraded_rate": 2.3
+        },
+        "2": {
+          "n_tasks": 463,
+          "n_safe": 447,
+          "n_improved": 8,
+          "n_degraded": 8,
+          "safe_rate": 96.5,
+          "improved_rate": 1.7,
+          "degraded_rate": 1.7
+        },
+        "3": {
+          "n_tasks": 50,
+          "n_safe": 42,
+          "n_improved": 8,
+          "n_degraded": 0,
+          "safe_rate": 84.0,
+          "improved_rate": 16.0,
+          "degraded_rate": 0.0
+        },
+        "4+": {
+          "n_tasks": 169,
+          "n_safe": 163,
+          "n_improved": 5,
+          "n_degraded": 1,
+          "safe_rate": 96.4,
+          "improved_rate": 3.0,
+          "degraded_rate": 0.6
+        }
+      },
+      "stats": {
+        "point_biserial_r": 0.0631,
+        "point_biserial_p": 0.0054,
+        "mann_whitney_U": 139443.0,
+        "mann_whitney_p": 0.0007,
+        "cochran_armitage_z": -3.6624,
+        "cochran_armitage_p": 0.0002
+      },
+      "descriptive": {
+        "mean_chain_safe": 1.52,
+        "mean_chain_changed": 1.28,
+        "median_chain_safe": 1.0,
+        "median_chain_changed": 1.0
+      }
+    }
+  ],
+  "cascade_position_control": {
+    "analysis": "Logistic regression: P(ack_t | ack_{t-1}, position_t) to test cascade as sequential dependency vs position effect",
+    "qwen": {
+      "n_observations": 1200,
+      "ack_rate": 0.5991666666666666,
+      "prev_ack_odds_ratio": 6.4252,
+      "prev_ack_ci_95": [
+        4.377,
+        9.4319
+      ],
+      "prev_ack_p_value": 2.141481228859335e-21,
+      "prev_ack_coefficient": 1.8602,
+      "position_odds_ratio": 1.9502,
+      "position_p_value": 1.215901297662554e-19,
+      "aic_full": 1212.61,
+      "aic_position_only": 1315.45,
+      "bic_full": 1227.88,
+      "bic_position_only": 1325.63,
+      "n_tasks": 300,
+      "conclusion": "prev_ack is highly significant (p=2.14e-21, OR=6.4252) after controlling for position; full model fits better (delta AIC=-102.8)"
+    },
+    "llama": {
+      "n_observations": 1176,
+      "ack_rate": 0.5875850340136054,
+      "prev_ack_odds_ratio": 2.0223,
+      "prev_ack_ci_95": [
+        1.4891,
+        2.7465
+      ],
+      "prev_ack_p_value": 6.489932615622706e-06,
+      "prev_ack_coefficient": 0.7042,
+      "position_odds_ratio": 0.7338,
+      "position_p_value": 8.278917219782782e-06,
+      "aic_full": 1574.75,
+      "aic_position_only": 1593.63,
+      "bic_full": 1589.96,
+      "bic_position_only": 1603.77,
+      "n_tasks": 294,
+      "conclusion": "prev_ack is highly significant (p=6.49e-06, OR=2.0223) after controlling for position; full model fits better (delta AIC=-18.9)"
+    }
+  }
+}

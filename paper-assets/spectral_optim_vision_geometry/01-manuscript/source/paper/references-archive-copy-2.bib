@@ -1,0 +1,374 @@
+% =============================================================================
+% References for spectral_optim_vision_geometry paper
+% Audited 2026-05-07 — all entries re-verified; fixes applied to chen2024lion,
+% anil2021scalable, pethick2025training, dahl2025benchmarking, noci2022signal
+% =============================================================================
+
+% --- Datasets ---
+
+@techreport{krizhevsky2009learning,
+  title={Learning Multiple Layers of Features from Tiny Images},
+  author={Krizhevsky, Alex and Hinton, Geoffrey},
+  institution={University of Toronto},
+  year={2009}
+}
+
+@inproceedings{deng2009imagenet,
+  title={ImageNet: A Large-Scale Hierarchical Image Database},
+  author={Deng, Jia and Dong, Wei and Socher, Richard and Li, Li-Jia and Li, Kai and Fei-Fei, Li},
+  booktitle={Proc. CVPR},
+  pages={248--255},
+  year={2009}
+}
+
+@techreport{le2015tiny,
+  title={Tiny {ImageNet} Visual Recognition Challenge},
+  author={Le, Ya and Yang, Xin},
+  institution={Stanford University},
+  year={2015}
+}
+
+% --- Optimizers (classical) ---
+
+@inproceedings{sutskever2013importance,
+  title={On the Importance of Initialization and Momentum in Deep Learning},
+  author={Sutskever, Ilya and Martens, James and Dahl, George and Hinton, Geoffrey},
+  booktitle={Proc. ICML},
+  pages={1139--1147},
+  volume={28},
+  series={Proceedings of Machine Learning Research},
+  publisher={PMLR},
+  year={2013}
+}
+
+% --- Libraries ---
+
+@misc{rw2019timm,
+  author = {Ross Wightman},
+  title = {PyTorch Image Models},
+  year = {2019},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/rwightman/pytorch-image-models}}
+}
+
+% --- Backbone architectures ---
+
+@inproceedings{he2016deep,
+  title={Deep Residual Learning for Image Recognition},
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={Proc. CVPR},
+  pages={770--778},
+  year={2016}
+}
+
+@inproceedings{liu2022convnet,
+  title={A ConvNet for the 2020s},
+  author={Liu, Zhuang and Mao, Hanzi and Wu, Chao-Yuan and Feichtenhofer, Christoph and Darrell, Trevor and Xie, Saining},
+  booktitle={Proc. CVPR},
+  pages={11976--11986},
+  year={2022}
+}
+
+@inproceedings{touvron2021training,
+  title={Training Data-Efficient Image Transformers \& Distillation through Attention},
+  author={Touvron, Hugo and Cord, Matthieu and Douze, Matthijs and Massa, Francisco and Sablayrolles, Alexandre and J{\'e}gou, Herv{\'e}},
+  booktitle={Proc. ICML},
+  pages={10347--10357},
+  volume={139},
+  series={Proceedings of Machine Learning Research},
+  publisher={PMLR},
+  year={2021}
+}
+
+% --- Normalization ---
+
+@inproceedings{santurkar2018how,
+  title={How Does Batch Normalization Help Optimization?},
+  author={Santurkar, Shibani and Tsipras, Dimitris and Ilyas, Andrew and Madry, Aleksander},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  volume={31},
+  year={2018}
+}
+
+% --- Optimizers ---
+
+@inproceedings{loshchilov2019decoupled,
+  title={Decoupled Weight Decay Regularization},
+  author={Loshchilov, Ilya and Hutter, Frank},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2019}
+}
+
+@misc{jordan2024muon,
+  title={Muon: An Optimizer for Hidden Layers in Neural Networks},
+  author={Jordan, Keller and Jin, Yuchen and Boza, Vlado and You, Jiacheng and Cesista, Franz and Newhouse, Laker and Bernstein, Jeremy},
+  year={2024},
+  url={https://kellerjordan.github.io/posts/muon/},
+  note={Blog post}
+}
+
+% --- SGD vs adaptive optimizers on modern architectures ---
+
+@inproceedings{kumar2024how,
+  title={How to Fine-Tune Vision Models with {SGD}},
+  author={Kumar, Ananya and Shen, Ruoqi and Bubeck, S{\'e}bastien and Gunasekar, Suriya},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2024}
+}
+
+% --- Optimizer comparison studies ---
+
+@article{choi2020optimizers,
+  title={On Empirical Comparisons of Optimizers for Deep Learning},
+  author={Choi, Dami and Shallue, Christopher J. and Nado, Zachary and Lee, Jaehoon and Maddison, Chris J. and Dahl, George E.},
+  journal={arXiv preprint arXiv:1910.05446},
+  year={2020}
+}
+
+@inproceedings{schmidt2021crowdedvalley,
+  title={Descending through a Crowded Valley --- Benchmarking Deep Learning Optimizers},
+  author={Schmidt, Robin M. and Schneider, Frank and Hennig, Philipp},
+  booktitle={Proc. ICML},
+  pages={9367--9376},
+  volume={139},
+  series={Proceedings of Machine Learning Research},
+  publisher={PMLR},
+  year={2021}
+}
+
+% --- CNN vs ViT training dynamics ---
+
+@inproceedings{chen2022vit,
+  title={When Vision Transformers Outperform {ResNets} without Pre-training or Strong Data Augmentations},
+  author={Chen, Xiangning and Hsieh, Cho-Jui and Gong, Boqing},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2022}
+}
+
+% --- Second-order and spectral methods ---
+
+% Alias key used in related_work_background.tex
+@article{anil2021scalable,
+  title={Scalable Second Order Optimization for Deep Learning},
+  author={Anil, Rohan and Gupta, Vineet and Koren, Tomer and Regan, Kevin and Singer, Yoram},
+  journal={arXiv preprint arXiv:2002.09018},
+  year={2021}
+}
+
+@inproceedings{vyas2025soap,
+  title={{SOAP}: Improving and Stabilizing Shampoo using Adam},
+  author={Vyas, Nikhil and Morwani, Depen and Zhao, Rosie and Kwun, Mujin and Shapira, Itai and Brandfonbrener, David and Janson, Lucas and Kakade, Sham},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2025}
+}
+
+@inproceedings{martens2015kfac,
+  title={Optimizing Neural Networks with {Kronecker}-Factored Approximate Curvature},
+  author={Martens, James and Grosse, Roger},
+  booktitle={Proc. ICML},
+  pages={2408--2417},
+  volume={37},
+  series={Proceedings of Machine Learning Research},
+  publisher={PMLR},
+  year={2015}
+}
+
+@inproceedings{gupta2018shampoo,
+  title={Shampoo: Preconditioned Stochastic Tensor Optimization},
+  author={Gupta, Vineet and Koren, Tomer and Singer, Yoram},
+  booktitle={Proc. ICML},
+  pages={1842--1850},
+  volume={80},
+  series={Proceedings of Machine Learning Research},
+  publisher={PMLR},
+  year={2018}
+}
+
+% --- Backbone--optimizer coupling ---
+
+@article{li2024bocb,
+  title={Unveiling the Backbone-Optimizer Coupling Bias in Visual Representation Learning},
+  author={Li, Siyuan and Tian, Juanxi and Wang, Zedong and Zhang, Luyuan and Liu, Zicheng and Jin, Weiyang and Liu, Yang and Sun, Baigui and Li, Stan Z.},
+  journal={arXiv preprint arXiv:2410.06373},
+  year={2024}
+}
+
+% --- Other optimizer directions ---
+
+@inproceedings{chen2024lion,
+  title={Symbolic Discovery of Optimization Algorithms},
+  author={Chen, Xiangning and Liang, Chen and Huang, Da and Real, Esteban and Wang, Kaiyuan and Pham, Hieu and Dong, Xuanyi and Luong, Thang and Hsieh, Cho-Jui and Lu, Yifeng and Le, Quoc V.},
+  booktitle={NeurIPS},
+  year={2023}
+}
+
+@inproceedings{liu2024sophia,
+  title={Sophia: A Scalable Stochastic Second-order Optimizer for Language Model Pre-training},
+  author={Liu, Hong and Li, Zhiyuan and Hall, David and Liang, Percy and Ma, Tengyu},
+  booktitle={ICLR},
+  year={2024}
+}
+
+@inproceedings{mishchenko2024prodigy,
+  title={Prodigy: An Expeditiously Adaptive Parameter-Free Learner},
+  author={Mishchenko, Konstantin and Defazio, Aaron},
+  booktitle={ICML},
+  year={2024}
+}
+
+% --- Norm-based optimizer unification ---
+
+@article{bernstein2024old,
+  title={Old Optimizer, New Norm: An Anthology},
+  author={Bernstein, Jeremy and Newhouse, Laker},
+  journal={arXiv preprint arXiv:2409.20325},
+  year={2024}
+}
+
+@inproceedings{pethick2025training,
+  title={Training Deep Learning Models with Norm-Constrained {LMO}s},
+  author={Pethick, Thomas and Xie, Wanyun and Antonakopoulos, Kimon and Zhu, Zhenyu and Silveti-Falls, Antonio and Cevher, Volkan},
+  booktitle={Proc. ICML},
+  year={2025}
+}
+
+@inproceedings{zhao2024galore,
+  title={{GaLore}: Memory-Efficient {LLM} Training by Gradient Low-Rank Projection},
+  author={Zhao, Jiawei and Zhang, Zhenyu and Chen, Beidi and Wang, Zhangyang and Anandkumar, Anima and Tian, Yuandong},
+  booktitle={Proc. ICML},
+  year={2024}
+}
+
+% --- Theory / analysis ---
+
+@inproceedings{he2015delving,
+  title={Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification},
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={Proc. ICCV},
+  pages={1026--1034},
+  year={2015}
+}
+
+% --- Training methods / augmentation ---
+
+@inproceedings{zhang2018mixup,
+  title={mixup: Beyond Empirical Risk Minimization},
+  author={Zhang, Hongyi and Cisse, Moustapha and Dauphin, Yann N. and Lopez-Paz, David},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2018}
+}
+
+@inproceedings{yun2019cutmix,
+  title={CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features},
+  author={Yun, Sangdoo and Han, Dongyoon and Oh, Seong Joon and Chun, Sanghyuk and Choe, Junsuk and Yoo, Youngjoon},
+  booktitle={Proc. ICCV},
+  pages={6023--6032},
+  year={2019}
+}
+
+@inproceedings{cubuk2020randaugment,
+  title={Randaugment: Practical Automated Data Augmentation with a Reduced Search Space},
+  author={Cubuk, Ekin D. and Zoph, Barret and Shlens, Jonathon and Le, Quoc V.},
+  booktitle={Proc. CVPR Workshops},
+  pages={702--703},
+  year={2020}
+}
+
+@inproceedings{szegedy2016rethinking,
+  title={Rethinking the Inception Architecture for Computer Vision},
+  author={Szegedy, Christian and Vanhoucke, Vincent and Ioffe, Sergey and Shlens, Jon and Wojna, Zbigniew},
+  booktitle={Proc. CVPR},
+  pages={2818--2826},
+  year={2016}
+}
+
+% --- Normalization ---
+
+@inproceedings{wu2018group,
+  title={Group Normalization},
+  author={Wu, Yuxin and He, Kaiming},
+  booktitle={Proc. ECCV},
+  pages={3--19},
+  year={2018}
+}
+
+% --- Additional references ---
+
+@inproceedings{kunstner2024noise,
+  title={Noise Is Not the Main Factor Behind the Gap Between {SGD} and {Adam} on Transformers, but Sign Descent Might Be},
+  author={Kunstner, Frederik and Chen, Jacques and Lavington, Jonathan Wilder and Schmidt, Mark},
+  booktitle={ICLR},
+  year={2024}
+}
+
+@inproceedings{kingma2015adam,
+  title={Adam: A Method for Stochastic Optimization},
+  author={Kingma, Diederik P and Ba, Jimmy},
+  booktitle={ICLR},
+  year={2015}
+}
+
+@inproceedings{zhang2020adaptive,
+  title={Why Are Adaptive Methods Good for Attention Models?},
+  author={Zhang, Jingzhao and Karimireddy, Sai Praneeth and Veit, Andreas and Kim, Seungyeon and Reddi, Sashank and Kumar, Sanjiv and Sra, Suvrit},
+  booktitle={NeurIPS},
+  year={2020}
+}
+
+@inproceedings{xiong2020layer,
+  title={On Layer Normalization in the Transformer Architecture},
+  author={Xiong, Ruibin and Yang, Yunchang and He, Di and Zheng, Kai and Zheng, Shuxin and Xing, Chen and Zhang, Huishuai and Lan, Yanyan and Wang, Liwei and Liu, Tie-Yan},
+  booktitle={ICML},
+  year={2020}
+}
+
+@inproceedings{dahl2025benchmarking,
+  title={Benchmarking Neural Network Training Algorithms},
+  author={Dahl, George E. and Schneider, Frank and Nado, Zachary and Agarwal, Naman and Sastry, Chandramouli Shama and Hennig, Philipp and Medapati, Sourabh and Eschenhagen, Runa and Kasimbeg, Priya and Suo, Daniel and others},
+  booktitle={ICLR},
+  year={2025}
+}
+
+@article{liu2025muon,
+  title={Muon is Scalable for {LLM} Training},
+  author={Liu, Jingyuan and Su, Jianlin and Yao, Xingcheng and Jiang, Zhejun and Lai, Guokun and Du, Yulun and Qin, Yidao and Xu, Weixin and Lu, Enzhe and Yan, Junjie and others},
+  journal={arXiv preprint arXiv:2502.16982},
+  year={2025}
+}
+
+@inproceedings{defazio2024road,
+  title={The Road Less Scheduled},
+  author={Defazio, Aaron and Yang, Xingyu and Khaled, Ahmed and Mishchenko, Konstantin and Mehta, Harsh and Cutkosky, Ashok},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2024}
+}
+
+@inproceedings{noci2022signal,
+  title={Signal Propagation in Transformers: Theoretical Perspectives and the Role of Rank Collapse},
+  author={Noci, Lorenzo and Anagnostidis, Sotiris and Biggio, Luca and Orvieto, Antonio and Singh, Sidak Pal and Lucchi, Aurelien},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  volume={35},
+  year={2022}
+}
+
+@article{shi2023distributed,
+  title={A Distributed Data-Parallel {PyTorch} Implementation of the Distributed Shampoo Optimizer for Training Neural Networks At-Scale},
+  author={Shi, Hao-Jun Michael and Lee, Tsung-Hsien and Iwasaki, Shintaro and Gallego-Posada, Jose and Li, Zhijing and Rangadurai, Kaushik and Mudigere, Dheevatsa and Rabbat, Michael},
+  journal={arXiv preprint arXiv:2309.06497},
+  year={2023}
+}
+
+@inproceedings{hendrycks2019benchmarking,
+  title={Benchmarking Neural Network Robustness to Common Corruptions and Perturbations},
+  author={Hendrycks, Dan and Dietterich, Thomas},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2019}
+}
+
+@article{frans2025whitening,
+  title={A Stable Whitening Optimizer for Efficient Neural Network Training},
+  author={Frans, Kevin and Levine, Sergey and Abbeel, Pieter},
+  journal={arXiv preprint arXiv:2506.07254},
+  year={2025}
+}

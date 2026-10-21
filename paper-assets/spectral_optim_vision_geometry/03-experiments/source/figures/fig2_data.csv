@@ -1,0 +1,6 @@
+setting,gap_20ep,gap_50ep,narrowing_pct
+C100_ResNet-50,9.03,6.76,-25
+C100_DeiT-S,10.34,10.37,0
+C100_ConvNeXt-T,16.08,12.60,-22
+IN100_ResNet-50,11.47,3.56,-69
+IN100_ConvNeXt-T,24.30,11.37,-53

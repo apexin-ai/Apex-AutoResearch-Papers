@@ -1,0 +1,93 @@
+# Full-scale experiment: 3 topologies × 3 backbones × 300 tasks
+# Backbone-specific configs inherit from this base and override model section.
+# Usage: python src/trace_collection.py --config configs/full_scale.yaml --topology round_robin
+
+model:
+  name: "/root/autodl-tmp/models/Qwen2.5-7B-Instruct"
+  api_base: "http://localhost:8000/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+model_b:
+  name: "meta-llama/Llama-3.1-8B-Instruct"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+
+model_c:
+  name: "google/gemma-2-9b-it"
+  api_base: "http://localhost:8002/v1"
+  api_key: "[REDACTED]"
+
+agents:
+  solver:
+    name: "MathSolver"
+    system_message: |
+      You are a mathematical problem solver. Solve the given math problem step by step.
+      Show your work clearly and provide the final numerical answer on the last line
+      in the format: "The answer is [NUMBER]."
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      You are a math answer checker. Review the solver's solution carefully.
+      Check each calculation step for correctness.
+      If correct, confirm the answer. If incorrect, show the correct solution.
+      End with: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 300
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+local_impact:
+  embedding_model: "/root/autodl-tmp/.hf_cache/sentence-transformers/all-MiniLM-L6-v2"
+  logprobs_top_k: 20
+  ldim_max_tokens: 5
+  neutralize_text:
+    solver: "Let me think about this problem."
+    checker: "I'll review the solution."
+    default: "Acknowledged."
+
+annotation:
+  function_types:
+    - information_provision
+    - reasoning_guidance
+    - verification
+    - coordination
+    - acknowledgment
+
+correctness:
+  categories:
+    - correct
+    - partially_correct
+    - incorrect
+    - not_applicable
+
+output:
+  trace_dir: "outputs/traces"
+  impact_dir: "outputs/local_impact"
+  annotation_dir: "outputs/annotations"
+  correctness_dir: "outputs/correctness"
+  figure_dir: "outputs/figures"
+  analysis_dir: "outputs"
+
+# --- Experiment matrix ---
+# Each combination produces its own output directory.
+# Run script: scripts/run_full_scale.sh generates all 9 configs and runs them.
+#
+# Topologies: round_robin, sequential, selector
+# Backbones: Qwen2.5-7B-Instruct (port 8000), Llama-3.1-8B-Instruct (port 8001), Gemma-2-9B-IT (port 8002)
+#
+# Resource estimate (per combination, 300 tasks):
+#   Trace collection: ~2h (depends on model speed)
+#   Local impact: ~6h (3 API calls per message × ~900 messages)
+#   Annotation: ~1h (single-pass) + ~1h (cross-model)
+#   Total per combo: ~10h GPU time
+#   Total 9 combos: ~90h GPU time
+#   With 4 GPUs parallel: ~23h wall clock

@@ -1,0 +1,119 @@
+  Auto-detected GroupNorm checkpoint (no running stats), num_groups=1
+Loaded /root/autodl-tmp/checkpoints/spectral_optim/resnet50_ln_sgd_s42_lr1e-1_best.pt (original val_acc=19.93)
+  gaussian_noise sev=1: 15.95% (6.3s)
+  gaussian_noise sev=2: 11.47% (6.0s)
+  gaussian_noise sev=3: 7.23% (6.1s)
+  gaussian_noise sev=4: 4.47% (6.0s)
+  gaussian_noise sev=5: 3.06% (6.0s)
+  gaussian_noise mean: 8.44%
+  shot_noise sev=1: 14.95% (6.0s)
+  shot_noise sev=2: 9.78% (6.0s)
+  shot_noise sev=3: 6.33% (6.0s)
+  shot_noise sev=4: 3.70% (6.0s)
+  shot_noise sev=5: 3.10% (6.0s)
+  shot_noise mean: 7.57%
+  impulse_noise sev=1: 10.64% (6.0s)
+  impulse_noise sev=2: 7.92% (6.0s)
+  impulse_noise sev=3: 6.30% (6.0s)
+  impulse_noise sev=4: 4.15% (6.0s)
+  impulse_noise sev=5: 3.14% (6.0s)
+  impulse_noise mean: 6.43%
+  defocus_blur sev=1: 16.02% (6.0s)
+  defocus_blur sev=2: 13.61% (6.0s)
+  defocus_blur sev=3: 10.48% (6.0s)
+  defocus_blur sev=4: 8.58% (5.9s)
+  defocus_blur sev=5: 7.03% (6.0s)
+  defocus_blur mean: 11.14%
+  glass_blur sev=1: 17.56% (6.0s)
+  glass_blur sev=2: 16.04% (6.0s)
+  glass_blur sev=3: 12.35% (6.0s)
+  glass_blur sev=4: 11.70% (6.0s)
+  glass_blur sev=5: 9.39% (6.0s)
+  glass_blur mean: 13.41%
+  motion_blur sev=1: 17.69% (6.0s)
+  motion_blur sev=2: 15.01% (6.0s)
+  motion_blur sev=3: 11.55% (6.0s)
+  motion_blur sev=4: 8.69% (6.0s)
+  motion_blur sev=5: 7.50% (6.1s)
+  motion_blur mean: 12.09%
+  zoom_blur sev=1: 19.22% (6.1s)
+  zoom_blur sev=2: 19.05% (6.1s)
+  zoom_blur sev=3: 18.92% (6.1s)
+  zoom_blur sev=4: 18.72% (6.1s)
+  zoom_blur sev=5: 18.37% (6.1s)
+  zoom_blur mean: 18.86%
+  snow sev=1: 15.43% (6.1s)
+  snow sev=2: 10.59% (6.1s)
+  snow sev=3: 10.20% (6.1s)
+  snow sev=4: 7.49% (6.1s)
+  snow sev=5: 5.51% (6.1s)
+  snow mean: 9.84%
+  frost sev=1: 13.97% (6.1s)
+  frost sev=2: 9.89% (6.1s)
+  frost sev=3: 6.96% (6.0s)
+  frost sev=4: 7.54% (6.1s)
+  frost sev=5: 6.01% (6.1s)
+  frost mean: 8.87%
+  fog sev=1: 6.77% (6.0s)
+  fog sev=2: 4.29% (6.0s)
+  fog sev=3: 3.48% (6.0s)
+  fog sev=4: 3.15% (6.0s)
+  fog sev=5: 2.54% (6.0s)
+  fog mean: 4.05%
+  brightness sev=1: 18.78% (6.0s)
+  brightness sev=2: 16.42% (6.0s)
+  brightness sev=3: 14.11% (6.0s)
+  brightness sev=4: 11.35% (6.0s)
+  brightness sev=5: 9.15% (5.9s)
+  brightness mean: 13.96%
+  contrast sev=1: 16.03% (6.0s)
+  contrast sev=2: 13.49% (6.0s)
+  contrast sev=3: 9.96% (6.0s)
+  contrast sev=4: 5.24% (6.0s)
+  contrast sev=5: 3.24% (6.0s)
+  contrast mean: 9.59%
+  elastic_transform sev=1: 18.47% (6.0s)
+  elastic_transform sev=2: 17.70% (6.0s)
+  elastic_transform sev=3: 15.99% (6.0s)
+  elastic_transform sev=4: 14.68% (6.0s)
+  elastic_transform sev=5: 13.73% (6.0s)
+  elastic_transform mean: 16.11%
+  pixelate sev=1: 19.66% (6.0s)
+  pixelate sev=2: 19.50% (6.0s)
+  pixelate sev=3: 18.19% (6.0s)
+  pixelate sev=4: 17.98% (6.0s)
+  pixelate sev=5: 15.87% (6.0s)
+  pixelate mean: 18.24%
+  jpeg_compression sev=1: 18.67% (6.0s)
+  jpeg_compression sev=2: 18.95% (6.0s)
+  jpeg_compression sev=3: 18.19% (6.0s)
+  jpeg_compression sev=4: 17.46% (6.0s)
+  jpeg_compression sev=5: 16.42% (6.0s)
+  jpeg_compression mean: 17.94%
+  speckle_noise sev=1: 15.90% (6.0s)
+  speckle_noise sev=2: 13.16% (6.0s)
+  speckle_noise sev=3: 6.28% (6.0s)
+  speckle_noise sev=4: 4.52% (6.0s)
+  speckle_noise sev=5: 3.67% (6.0s)
+  speckle_noise mean: 8.71%
+  gaussian_blur sev=1: 18.73% (6.0s)
+  gaussian_blur sev=2: 14.55% (6.0s)
+  gaussian_blur sev=3: 11.31% (6.0s)
+  gaussian_blur sev=4: 9.27% (6.0s)
+  gaussian_blur sev=5: 7.24% (5.9s)
+  gaussian_blur mean: 12.22%
+  saturate sev=1: 14.35% (6.0s)
+  saturate sev=2: 12.14% (6.0s)
+  saturate sev=3: 15.70% (6.0s)
+  saturate sev=4: 10.35% (6.1s)
+  saturate sev=5: 7.50% (6.1s)
+  saturate mean: 12.01%
+  spatter sev=1: 19.21% (6.0s)
+  spatter sev=2: 18.01% (6.0s)
+  spatter sev=3: 17.59% (6.0s)
+  spatter sev=4: 11.83% (6.0s)
+  spatter sev=5: 9.44% (6.0s)
+  spatter mean: 15.22%
+
+Overall mean corruption accuracy: 11.83%
+Results saved to /root/autodl-tmp/checkpoints/spectral_optim/cifar100c_results/resnet50_ln_sgd.csv

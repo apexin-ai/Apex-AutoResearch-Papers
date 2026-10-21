@@ -1,0 +1,2 @@
+python3: can't open file '/root/spectral_optim_vision_geometry/scripts/tinyimagenet/deit_sgd_tinyimagenet.py': [Errno 2] No such file or directory
+EXIT_CODE=2

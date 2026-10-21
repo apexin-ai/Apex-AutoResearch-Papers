@@ -1,0 +1,286 @@
+{
+  "qwen_heuristic_10seed": {
+    "seeds": {
+      "1024": {
+        "baseline_acc": 0.88,
+        "pruned_acc": 0.865,
+        "suppress_pct": 43.12,
+        "n_regressed": 6,
+        "n_improved": 3,
+        "discordant_rate": 0.045,
+        "regressed_task_ids": [
+          "gsm8k_0024",
+          "gsm8k_0137",
+          "gsm8k_0152",
+          "gsm8k_0154",
+          "gsm8k_0178",
+          "gsm8k_0195"
+        ],
+        "improved_task_ids": [
+          "gsm8k_0033",
+          "gsm8k_0094",
+          "gsm8k_0109"
+        ],
+        "regressed_suppression": [
+          2,
+          2,
+          0,
+          2,
+          2,
+          2
+        ],
+        "improved_suppression": [
+          2,
+          1,
+          1
+        ]
+      },
+      "123": {
+        "baseline_acc": 0.93,
+        "pruned_acc": 0.93,
+        "suppress_pct": 41.7,
+        "n_regressed": 0,
+        "n_improved": 0,
+        "discordant_rate": 0.0,
+        "regressed_task_ids": [],
+        "improved_task_ids": [],
+        "regressed_suppression": [],
+        "improved_suppression": []
+      },
+      "2048": {
+        "baseline_acc": 0.915,
+        "pruned_acc": 0.9,
+        "suppress_pct": 43.2,
+        "n_regressed": 4,
+        "n_improved": 1,
+        "discordant_rate": 0.025,
+        "regressed_task_ids": [
+          "gsm8k_0053",
+          "gsm8k_0091",
+          "gsm8k_0162",
+          "gsm8k_0176"
+        ],
+        "improved_task_ids": [
+          "gsm8k_0094"
+        ],
+        "regressed_suppression": [
+          2,
+          0,
+          2,
+          2
+        ],
+        "improved_suppression": [
+          4
+        ]
+      },
+      "3072": {
+        "baseline_acc": 0.91,
+        "pruned_acc": 0.915,
+        "suppress_pct": 41.11,
+        "n_regressed": 3,
+        "n_improved": 4,
+        "discordant_rate": 0.035,
+        "regressed_task_ids": [
+          "gsm8k_0118",
+          "gsm8k_0125",
+          "gsm8k_0194"
+        ],
+        "improved_task_ids": [
+          "gsm8k_0056",
+          "gsm8k_0108",
+          "gsm8k_0121",
+          "gsm8k_0172"
+        ],
+        "regressed_suppression": [
+          1,
+          0,
+          2
+        ],
+        "improved_suppression": [
+          2,
+          2,
+          2,
+          0
+        ]
+      },
+      "4096": {
+        "baseline_acc": 0.91,
+        "pruned_acc": 0.91,
+        "suppress_pct": 41.71,
+        "n_regressed": 2,
+        "n_improved": 2,
+        "discordant_rate": 0.02,
+        "regressed_task_ids": [
+          "gsm8k_0025",
+          "gsm8k_0099"
+        ],
+        "improved_task_ids": [
+          "gsm8k_0007",
+          "gsm8k_0075"
+        ],
+        "regressed_suppression": [
+          2,
+          2
+        ],
+        "improved_suppression": [
+          2,
+          2
+        ]
+      },
+      "42": {
+        "baseline_acc": 0.905,
+        "pruned_acc": 0.905,
+        "suppress_pct": 40.7,
+        "n_regressed": 0,
+        "n_improved": 0,
+        "discordant_rate": 0.0,
+        "regressed_task_ids": [],
+        "improved_task_ids": [],
+        "regressed_suppression": [],
+        "improved_suppression": []
+      },
+      "456": {
+        "baseline_acc": 0.865,
+        "pruned_acc": 0.865,
+        "suppress_pct": 42.6,
+        "n_regressed": 0,
+        "n_improved": 0,
+        "discordant_rate": 0.0,
+        "regressed_task_ids": [],
+        "improved_task_ids": [],
+        "regressed_suppression": [],
+        "improved_suppression": []
+      },
+      "5120": {
+        "baseline_acc": 0.9,
+        "pruned_acc": 0.91,
+        "suppress_pct": 40.7,
+        "n_regressed": 0,
+        "n_improved": 2,
+        "discordant_rate": 0.01,
+        "regressed_task_ids": [],
+        "improved_task_ids": [
+          "gsm8k_0014",
+          "gsm8k_0032"
+        ],
+        "regressed_suppression": [],
+        "improved_suppression": [
+          2,
+          2
+        ]
+      },
+      "6144": {
+        "baseline_acc": 0.875,
+        "pruned_acc": 0.875,
+        "suppress_pct": 39.7,
+        "n_regressed": 0,
+        "n_improved": 0,
+        "discordant_rate": 0.0,
+        "regressed_task_ids": [],
+        "improved_task_ids": [],
+        "regressed_suppression": [],
+        "improved_suppression": []
+      },
+      "789": {
+        "baseline_acc": 0.905,
+        "pruned_acc": 0.915,
+        "suppress_pct": 42.8,
+        "n_regressed": 0,
+        "n_improved": 2,
+        "discordant_rate": 0.01,
+        "regressed_task_ids": [],
+        "improved_task_ids": [
+          "gsm8k_0084",
+          "gsm8k_0156"
+        ],
+        "regressed_suppression": [],
+        "improved_suppression": [
+          1,
+          2
+        ]
+      }
+    },
+    "aggregate": {
+      "total_tasks": 2000,
+      "total_discordant": 29,
+      "total_regressed": 15,
+      "total_improved": 14,
+      "discordant_rate": 0.0145,
+      "suppression_stats": {
+        "concordant": {
+          "mean": 2.0887874175545407,
+          "median": 2.0,
+          "min": 0,
+          "max": 4,
+          "std": 0.8183995158088252
+        },
+        "discordant": {
+          "mean": 1.6551724137931034,
+          "median": 2.0,
+          "min": 0,
+          "max": 4,
+          "std": 0.8567322497625796
+        },
+        "regressed": {
+          "mean": 1.5333333333333334,
+          "median": 2.0,
+          "min": 0,
+          "max": 2,
+          "std": 0.833809387832792
+        },
+        "improved": {
+          "mean": 1.7857142857142858,
+          "median": 2.0,
+          "min": 0,
+          "max": 4,
+          "std": 0.892582375303981
+        }
+      },
+      "suppression_breakdown": {
+        "0": {
+          "regressed": 3,
+          "improved": 1,
+          "concordant": 29
+        },
+        "1": {
+          "regressed": 1,
+          "improved": 3,
+          "concordant": 254
+        },
+        "2": {
+          "regressed": 11,
+          "improved": 9,
+          "concordant": 1440
+        },
+        "3": {
+          "regressed": 0,
+          "improved": 0,
+          "concordant": 9
+        },
+        "4": {
+          "regressed": 0,
+          "improved": 1,
+          "concordant": 239
+        }
+      }
+    }
+  },
+  "llama_heuristic_1seed": {
+    "total": 300,
+    "n_regressed": 8,
+    "n_improved": 11,
+    "discordant_rate": 0.06333333333333334
+  },
+  "llama_oracle_10seed": {
+    "total": 2000,
+    "total_regressed": 47,
+    "total_improved": 87,
+    "discordant_rate": 0.067
+  },
+  "qwen_oracle_10seed": {
+    "total": 2000,
+    "total_regressed": 9,
+    "total_improved": 17,
+    "discordant_rate": 0.013
+  }
+}

@@ -1,0 +1,18 @@
+\subsection{Implementation and Evaluation}
+\label{sec:implementation}
+
+\paragraph{Models and infrastructure.}
+Two primary backbones, Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, exhibit contrasting communication styles: terse acknowledgments (Qwen: median 4 tokens) versus verbose ones (Llama: mean 59.8 tokens).
+Scale probes at 14B and 72B test generalization; Gemma-2-9B-it serves as a boundary condition.
+Agent teams are served via vLLM v0.6.6~\citep{kwon_vllm_2023} with greedy decoding on 4$\times$~RTX PRO 6000 GPUs (96\,GB each); total compute is approximately 120 GPU-hours.
+
+\paragraph{Datasets and correctness.}
+Primary evaluation uses GSM8K~\citep{cobbe_gsm8k_2021} ($N{=}200$--$1{,}000$) and StrategyQA~\citep{geva_strategyqa_2021} ($N{=}200$--$238$).
+ARC-Challenge~\citep{clark_arc_2018} ($N{=}250$) and MATH~\citep{hendrycks_math_2021} ($N{=}200$) serve as cross-domain and boundary probes.
+Correctness is exact match. The flagship configuration uses 10 seeds ($2{,}000$ tasks); secondary configurations 5--8 seeds; scale probes are single-seed. Code and data: \url{[anonymized]}.
+
+\paragraph{Dataset overview.}
+The annotation pipeline produces 21{,}661 labeled messages across 18 configurations (3 backbones $\times$ 4 domains $\times$ up to 3 topologies; MATH serves as a boundary-probe domain where pruning fails). Function distributions vary substantially by backbone (Table~\ref{tab:taxonomy}): Qwen and Llama are acknowledgment-heavy ($>$47\%), Gemma is dominated by information provision (56\%) with $<$5\% acknowledgments. The corpus and Croissant metadata are released as a community resource (Appendix~\ref{app:artifacts}).
+
+\paragraph{Protocol reusability.}
+The protocol deployed independently on all three backbones without code modification, requiring only a configuration change, which constitutes internal validation of reusability.

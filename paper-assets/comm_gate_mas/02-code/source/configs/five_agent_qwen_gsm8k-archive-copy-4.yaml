@@ -1,0 +1,82 @@
+# 5-agent scaling experiment: Qwen2.5-7B-Instruct on GSM8K
+# Validates ack pruning effectiveness with more agents (vs 2-agent baseline)
+
+model:
+  name: "Qwen2.5-7B-Instruct"
+  api_base: "http://localhost:8000/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  - name: "MathSolver"
+    system_message: |
+      You are a math problem solver. Show your work step by step and provide the final answer.
+      End with: "The answer is [NUMBER]."
+  - name: "AnswerChecker"
+    system_message: |
+      You verify mathematical solutions by checking each step for errors.
+      If you find an error, explain it clearly and provide the correct solution.
+      End with: "The answer is [NUMBER]."
+  - name: "StepReviewer"
+    system_message: |
+      You review the logical flow of mathematical arguments.
+      Focus on whether each step follows from the previous one.
+      If the logic is sound, confirm it. If not, point out the gap.
+      End with: "The answer is [NUMBER]."
+  - name: "AlternativeApproach"
+    system_message: |
+      You suggest alternative approaches to solving the problem.
+      If the current approach seems correct, try a different method to verify the answer.
+      End with: "The answer is [NUMBER]."
+  - name: "Synthesizer"
+    system_message: |
+      You synthesize the discussion and state the final consensus answer.
+      Identify where agents agree and disagree, then give the final answer.
+      End with: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 100
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 10
+
+local_impact:
+  embedding_model: "/root/autodl-tmp/.hf_cache/sentence-transformers/all-MiniLM-L6-v2"
+  logprobs_top_k: 20
+  ldim_max_tokens: 5
+  neutralize_text:
+    MathSolver: "Let me think about this problem."
+    AnswerChecker: "I'll review the solution."
+    StepReviewer: "I'll check the logical flow."
+    AlternativeApproach: "Let me try another approach."
+    Synthesizer: "Let me summarize the discussion."
+    default: "Acknowledged."
+
+annotation:
+  function_types:
+    - information_provision
+    - reasoning_guidance
+    - verification
+    - coordination
+    - acknowledgment
+
+correctness:
+  categories:
+    - correct
+    - partially_correct
+    - incorrect
+    - not_applicable
+
+output:
+  trace_dir: "outputs/traces_5agent"
+  impact_dir: "outputs/local_impact_5agent"
+  annotation_dir: "outputs/annotations_5agent"
+  correctness_dir: "outputs/correctness_5agent"
+  figure_dir: "outputs/figures"
+  analysis_dir: "outputs"

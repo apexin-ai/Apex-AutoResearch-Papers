@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/baseline_train.py", line 225, in <module>
+    train(args)
+  File "/root/spectral_optim_vision_geometry/baseline_train.py", line 130, in train
+    train_dl, val_dl = get_dataloaders(args.batch_size)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/spectral_optim_vision_geometry/baseline_train.py", line 73, in get_dataloaders
+    train_ds = datasets.CIFAR100(root="/root/spectral_optim_vision_geometry/data", train=True, download=True, transform=train_tf)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torchvision/datasets/cifar.py", line 66, in __init__
+    self.download()
+  File "/root/miniconda3/lib/python3.12/site-packages/torchvision/datasets/cifar.py", line 139, in download
+    download_and_extract_archive(self.url, self.root, filename=self.filename, md5=self.tgz_md5)
+  File "/root/miniconda3/lib/python3.12/site-packages/torchvision/datasets/utils.py", line 388, in download_and_extract_archive
+    download_url(url, download_root, filename, md5)
+  File "/root/miniconda3/lib/python3.12/site-packages/torchvision/datasets/utils.py", line 108, in download_url
+    os.makedirs(root, exist_ok=True)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [Errno 17] File exists: '/root/spectral_optim_vision_geometry/data'
+EXIT_CODE=1

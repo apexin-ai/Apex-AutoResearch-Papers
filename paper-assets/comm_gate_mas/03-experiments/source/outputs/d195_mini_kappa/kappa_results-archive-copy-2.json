@@ -1,0 +1,535 @@
+{
+  "task": "D195_mini_kappa",
+  "comparison": "GPT-4o vs GPT-4o-mini",
+  "n_sampled": 50,
+  "n_valid": 50,
+  "seed": 42,
+  "cohens_kappa": 0.8223,
+  "percent_agreement": 0.86,
+  "verdict": "mini_acceptable",
+  "threshold": 0.8,
+  "per_category": {
+    "acknowledgment": {
+      "both_agree": 6,
+      "either_labeled": 9,
+      "agreement": 0.6667
+    },
+    "coordination": {
+      "both_agree": 13,
+      "either_labeled": 14,
+      "agreement": 0.9286
+    },
+    "information_provision": {
+      "both_agree": 4,
+      "either_labeled": 8,
+      "agreement": 0.5
+    },
+    "reasoning_guidance": {
+      "both_agree": 9,
+      "either_labeled": 13,
+      "agreement": 0.6923
+    },
+    "verification": {
+      "both_agree": 11,
+      "either_labeled": 13,
+      "agreement": 0.8462
+    }
+  },
+  "confusion_matrix": {
+    "acknowledgment": {
+      "acknowledgment": 6,
+      "coordination": 0,
+      "information_provision": 1,
+      "reasoning_guidance": 0,
+      "verification": 1
+    },
+    "coordination": {
+      "acknowledgment": 1,
+      "coordination": 13,
+      "information_provision": 0,
+      "reasoning_guidance": 0,
+      "verification": 0
+    },
+    "information_provision": {
+      "acknowledgment": 0,
+      "coordination": 0,
+      "information_provision": 4,
+      "reasoning_guidance": 0,
+      "verification": 0
+    },
+    "reasoning_guidance": {
+      "acknowledgment": 0,
+      "coordination": 0,
+      "information_provision": 3,
+      "reasoning_guidance": 9,
+      "verification": 1
+    },
+    "verification": {
+      "acknowledgment": 0,
+      "coordination": 0,
+      "information_provision": 0,
+      "reasoning_guidance": 0,
+      "verification": 11
+    }
+  },
+  "token_usage": {
+    "prompt_tokens": 31764,
+    "completion_tokens": 2368,
+    "total_tokens": 34132,
+    "api_calls": 50,
+    "cost_usd": 0.0062,
+    "pricing_note": "GPT-4o-mini: $0.15/M input, $0.60/M output"
+  },
+  "per_message": [
+    {
+      "msg_id": "gemma_rr_gsm8k_0011_r3_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0011",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0200_r3_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0200",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides a detailed step-by-step breakdown of the solution process, guiding the reasoning and problem-solving approach."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0060_r1_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0060",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides detailed calculations and intermediate results related to the problem, specifically the combined length of the remoras and the percentage of the shark's body length they occupy."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0100_r4_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0100",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, as it is a request for classification."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0299_r5_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0299",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message simply confirms the correctness of the previous answer without providing any new information or reasoning."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0228_r2_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0228",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms that the problem is solved correctly and provides a detailed step-by-step rephrasing of the solution, which validates the previous work."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0220_r2_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0220",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous solution while also providing a detailed step-by-step breakdown of the reasoning, which aligns with the verification function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0123_r5_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0123",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous calculations and provides specific reasons for why the solution is accurate."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0100_r3_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0100",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0200_r1_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0200",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message outlines a step-by-step breakdown of the problem, providing a reasoning plan and equations to solve for the number of white fish Bob bought."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0126_r3_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0126",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0056_r1_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0056",
+      "gpt4o_label": "information_provision",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides calculated values for Alex's weight and the combined weight, advancing the solution with specific numerical results."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0211_r4_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0211",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 1.0,
+      "mini_reasoning": "The message simply repeats the previous answer without adding any new information or reasoning."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0102_r2_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0102",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides a structured step-by-step breakdown of the solution process, which guides the reasoning and problem-solving approach."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0004_r1_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0004",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message outlines a step-by-step approach to solving the problem, breaking it down into manageable parts and providing a clear reasoning process."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0117_r3_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0117",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous calculation and restates the results with a specific reason, which aligns with the verification function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0060_r3_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0060",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous solution and provides a substantive explanation of why it is correct, including validation of the steps and calculations."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0060_r2_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0060",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous solution and provides a detailed explanation of the calculations involved, which aligns with the verification function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0102_r3_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0102",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous work and provides a substantive explanation of why it is correct, validating the calculations and the final answer."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0236_r5_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0236",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message manages the flow of the conversation by introducing a new problem and requesting the solver to go through the steps, indicating a task assignment."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0220_r4_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0220",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message expresses satisfaction with the previous explanation and invites further questions without providing new information or reasoning."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0294_r4_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0294",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The current message repeats the answer provided in the previous message but adds 'hour' without introducing new information or reasoning."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0004_r4_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0004",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0056_r2_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0056",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous solution while also providing an alternative method to calculate the combined weight, which adds a substantive explanation."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0275_r3_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0275",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message checks the correctness of the previous solution by providing a detailed explanation of how the ages were calculated, confirming that the answer is indeed correct."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0244_r5_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0244",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the final answer and reiterates the correct solution, indicating that the previous conclusion about the final answer was incorrect."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0174_r3_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0174",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0027_r1_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0027",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides detailed calculations and results related to the probabilities of rolling a number greater than 3 and rolling two even numbers, which advances the solution."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0161_r4_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0161",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message likely manages the flow of the conversation or directs the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0287_r2_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0287",
+      "gpt4o_label": "information_provision",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides the final computed result of the problem, which is a new numerical result that advances the solution."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0117_r2_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0117",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides a summary of the amounts spent in both years and presents the final total, which advances the solution."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0220_r1_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0220",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message outlines a step-by-step approach to solving the problem by explaining how to calculate the number of apples Jenna picked and then how to find the total number of apples, which fits the reasoning guidance function."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0194_r4_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0194",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The current message repeats the answer provided in the previous message with slight elaboration, but does not add new information or reasoning."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0050_r5_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0050",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0081_r1_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0081",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message outlines a step-by-step approach to solving the problem, breaking it down into calculations for total cost, expired milk, and refund amount."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0031_r1_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0031",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message outlines a step-by-step plan to solve the problem, detailing the calculations needed to determine the number of elves left."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0192_r5_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0192",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the clarity and accuracy of the previous solution, validating the calculations and the final answer without introducing new information."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0161_r3_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0161",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0281_r4_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0281",
+      "gpt4o_label": "coordination",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message does not provide new information or reasoning; it simply acknowledges the start of the conversation."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0094_r2_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0094",
+      "gpt4o_label": "information_provision",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides detailed calculations and results regarding the number of pizzas left for both the glee club and the football team, which advances the solution."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0100_r5_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0100",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, as it is sent by AnswerChecker, which typically oversees the interaction."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0192_r4_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0192",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the clarity and correctness of the step-by-step solution, ensuring that each calculation is accurate and that the final answer is correct."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0289_r5_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0289",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0094_r1_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0094",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message outlines a step-by-step approach to solving the problem, breaking it down into calculations for both the glee club and the football team, which fits the reasoning guidance function."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0287_r5_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0287",
+      "gpt4o_label": "coordination",
+      "mini_label": "coordination",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message is likely managing the flow of the conversation or directing the problem-solving process, which aligns with the coordination function."
+    },
+    {
+      "msg_id": "gemma_rr_gsm8k_0281_r1_p0",
+      "backbone": "gemma",
+      "task_id": "gsm8k_0281",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides detailed calculations and results that advance the solution to the problem, specifically showing how much money Annika has left."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0131_r2_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0131",
+      "gpt4o_label": "information_provision",
+      "mini_label": "information_provision",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message provides detailed calculations and results regarding the bird's journey, including distances for each segment and the final net distance, which advances the solution."
+    },
+    {
+      "msg_id": "llama_rr_gsm8k_0102_r4_p0",
+      "backbone": "llama",
+      "task_id": "gsm8k_0102",
+      "gpt4o_label": "acknowledgment",
+      "mini_label": "acknowledgment",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message expresses gladness about the previous improvement and invites further questions, but does not provide new information or reasoning related to the math problem."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0035_r1_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0035",
+      "gpt4o_label": "reasoning_guidance",
+      "mini_label": "reasoning_guidance",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message breaks down the cost calculation into detailed steps, providing a clear reasoning process for how to arrive at the total cost, which aligns with the function of reasoning guidance."
+    },
+    {
+      "msg_id": "qwen_rr_gsm8k_0094_r3_p0",
+      "backbone": "qwen",
+      "task_id": "gsm8k_0094",
+      "gpt4o_label": "verification",
+      "mini_label": "verification",
+      "mini_confidence": 0.9,
+      "mini_reasoning": "The message confirms the correctness of the previous calculations and provides a detailed step-by-step verification of the results."
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+\begin{thebibliography}{42}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Touvron et~al.(2021)Touvron, Cord, Douze, Massa, Sablayrolles, and
+  J{\'e}gou]{touvron2021training}
+Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre
+  Sablayrolles, and Herv{\'e} J{\'e}gou.
+\newblock Training data-efficient image transformers \& distillation through
+  attention.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning (ICML)}, volume 139 of \emph{Proceedings of Machine Learning
+  Research}, pages 10347--10357. PMLR, 2021.
+
+\bibitem[Liu et~al.(2022)Liu, Mao, Wu, Feichtenhofer, Darrell, and
+  Xie]{liu2022convnet}
+Zhuang Liu, Hanzi Mao, Chao-Yuan Wu, Christoph Feichtenhofer, Trevor Darrell,
+  and Saining Xie.
+\newblock A convnet for the 2020s.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, pages 11976--11986, 2022.
+
+\bibitem[He et~al.(2016)He, Zhang, Ren, and Sun]{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, pages 770--778, 2016.
+
+\bibitem[Schmidt et~al.(2021)Schmidt, Schneider, and
+  Hennig]{schmidt2021crowdedvalley}
+Robin~M. Schmidt, Frank Schneider, and Philipp Hennig.
+\newblock Descending through a crowded valley --- benchmarking deep learning
+  optimizers.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning (ICML)}, volume 139 of \emph{Proceedings of Machine Learning
+  Research}, pages 9367--9376. PMLR, 2021.
+
+\bibitem[Choi et~al.(2020)Choi, Shallue, Nado, Lee, Maddison, and
+  Dahl]{choi2020optimizers}
+Dami Choi, Christopher~J. Shallue, Zachary Nado, Jaehoon Lee, Chris~J.
+  Maddison, and George~E. Dahl.
+\newblock On empirical comparisons of optimizers for deep learning.
+\newblock \emph{arXiv preprint arXiv:1910.05446}, 2020.
+
+\bibitem[Bernstein and Newhouse(2024)]{bernstein2024old}
+Jeremy Bernstein and Laker Newhouse.
+\newblock Old optimizer, new norm: An anthology.
+\newblock \emph{arXiv preprint arXiv:2409.20325}, 2024.
+
+\bibitem[Jordan et~al.(2024)Jordan, Jin, Boza, You, Cesista, Newhouse, and
+  Bernstein]{jordan2024muon}
+Keller Jordan, Yuchen Jin, Vlado Boza, Jiacheng You, Franz Cesista, Laker
+  Newhouse, and Jeremy Bernstein.
+\newblock Muon: An optimizer for hidden layers in neural networks, 2024.
+\newblock URL \url{https://kellerjordan.github.io/posts/muon/}.
+\newblock Blog post.
+
+\bibitem[Vyas et~al.(2024)Vyas, Morwani, Zhao, Shapira, Brandfonbrener, Kakade,
+  and Barak]{vyas2024soap}
+Nikhil Vyas, Depen Morwani, Rosie Zhao, Itai Shapira, David Brandfonbrener,
+  Sham Kakade, and Boaz Barak.
+\newblock {SOAP}: Improving and stabilizing shampoo using adam.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2024.
+
+\bibitem[Gupta et~al.(2018)Gupta, Koren, and Singer]{gupta2018shampoo}
+Vineet Gupta, Tomer Koren, and Yoram Singer.
+\newblock Shampoo: Preconditioned stochastic tensor optimization.
+\newblock In \emph{Proceedings of the 35th International Conference on Machine
+  Learning (ICML)}, volume~80 of \emph{Proceedings of Machine Learning
+  Research}, pages 1842--1850. PMLR, 2018.
+
+\bibitem[Loshchilov and Hutter(2019)]{loshchilov2019decoupled}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2019.
+
+\bibitem[Li et~al.(2024)Li, Tian, Wang, Zhang, Liu, Jin, Liu, Sun, and
+  Li]{li2024bocb}
+Siyuan Li, Juanxi Tian, Zedong Wang, Luyuan Zhang, Zicheng Liu, Weiyang Jin,
+  Yang Liu, Baigui Sun, and Stan~Z. Li.
+\newblock Unveiling the backbone-optimizer coupling bias in visual
+  representation learning.
+\newblock \emph{arXiv preprint arXiv:2410.06373}, 2024.
+
+\bibitem[Kunstner et~al.(2024)Kunstner, Chen, Lavington, and
+  Schmidt]{kunstner2024noise}
+Frederik Kunstner, Jacques Chen, Jonathan~Wilder Lavington, and Mark Schmidt.
+\newblock Noise is not the main factor behind the gap between {SGD} and {Adam}
+  on transformers, but sign descent might be.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Dahl et~al.(2024)Dahl, Schneider, Nado, Agarwal, Sastry, Hennig,
+  Medapati, Eschenhagen, Kasber, Adamber, et~al.]{dahl2024benchmarking}
+George~E Dahl, Frank Schneider, Zachary Nado, Naman Agarwal, Chandramouli~Shama
+  Sastry, Philipp Hennig, Sourabh Medapati, Runa Eschenhagen, Priya Kasber,
+  Sourabh Adamber, et~al.
+\newblock Benchmarking neural network training algorithms.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Santurkar et~al.(2018)Santurkar, Tsipras, Ilyas, and
+  Madry]{santurkar2018how}
+Shibani Santurkar, Dimitris Tsipras, Andrew Ilyas, and Aleksander Madry.
+\newblock How does batch normalization help optimization?
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, volume~31, 2018.
+
+\bibitem[Chen et~al.(2022)Chen, Hsieh, and Gong]{chen2022vit}
+Xiangning Chen, Cho-Jui Hsieh, and Boqing Gong.
+\newblock When vision transformers outperform {ResNets} without pre-training or
+  strong data augmentations.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+
+\bibitem[Martens and Grosse(2015)]{martens2015kfac}
+James Martens and Roger Grosse.
+\newblock Optimizing neural networks with {Kronecker}-factored approximate
+  curvature.
+\newblock In \emph{Proceedings of the 32nd International Conference on Machine
+  Learning (ICML)}, volume~37 of \emph{Proceedings of Machine Learning
+  Research}, pages 2408--2417. PMLR, 2015.
+
+\bibitem[Anil et~al.(2021)Anil, Gupta, Koren, Regan, and
+  Singer]{anil2020scalable}
+Rohan Anil, Vineet Gupta, Tomer Koren, Kevin Regan, and Yoram Singer.
+\newblock Scalable second order optimization for deep learning.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning (ICML)}, volume 139 of \emph{Proceedings of Machine Learning
+  Research}. PMLR, 2021.
+
+\bibitem[Shi et~al.(2023)Shi, Lee, Iwasaki, Gallego-Posada, Li, Kamath, Ravi,
+  and Mudigere]{shi2023distributed}
+Hao-Jun~Michael Shi, Tsung-Hsien Lee, Shintaro Iwasaki, Jose Gallego-Posada,
+  Zhijing Li, Dheevatsa Kamath, Srinivasan Ravi, and Dheeraj Mudigere.
+\newblock Distributed {Shampoo}: A large-scale preconditioned stochastic tensor
+  optimization.
+\newblock In \emph{NeurIPS Workshop on Optimization for Machine Learning},
+  2023.
+
+\bibitem[Pethick et~al.(2025)Pethick, Xie, Antonakopoulos, Li, and
+  Cevher]{pethick2025training}
+Thomas Pethick, Wanyun Xie, Kimon Antonakopoulos, Zhenyu Li, and Volkan Cevher.
+\newblock Training deep learning models with norm-constrained {LMO}s.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}, 2025.
+
+\bibitem[Chen et~al.(2023)Chen, Liang, Huang, Real, Wang, Liu, and
+  Le]{chen2024lion}
+Xiangning Chen, Chen Liang, Da~Huang, Esteban Real, Kaiyuan Wang, Hieu Liu, and
+  Quoc~V. Le.
+\newblock Symbolic discovery of optimization algorithms.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Liu et~al.(2024)Liu, Li, Hall, Liang, and Ma]{liu2024sophia}
+Hong Liu, Zhiyuan Li, David Hall, Percy Liang, and Tengyu Ma.
+\newblock Sophia: A scalable stochastic second-order optimizer for language
+  model pre-training.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Mishchenko and Defazio(2024)]{mishchenko2024prodigy}
+Konstantin Mishchenko and Aaron Defazio.
+\newblock Prodigy: An expeditiously adaptive parameter-free learner.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Zhao et~al.(2024)Zhao, Zhang, Chen, Wang, Anandkumar, and
+  Tian]{zhao2024galore}
+Jiawei Zhao, Zhenyu Zhang, Beidi Chen, Zhangyang Wang, Anima Anandkumar, and
+  Yuandong Tian.
+\newblock {GaLore}: Memory-efficient {LLM} training by gradient low-rank
+  projection.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, 2024.
+
+\bibitem[Defazio et~al.(2024)Defazio, Yang, Mehta, Mishchenko, Khaled, and
+  Cutkosky]{defazio2024road}
+Aaron Defazio, Xingyu Yang, Harsh Mehta, Konstantin Mishchenko, Ahmed Khaled,
+  and Ashok Cutkosky.
+\newblock The road less scheduled.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Liu and Su(2025)]{liu2025muon}
+Jingyuan Liu and Jianlin Su.
+\newblock Muon is scalable for {LLM} training.
+\newblock \emph{arXiv:2502.16982}, 2025.
+
+\bibitem[Krizhevsky and Hinton(2009)]{krizhevsky2009learning}
+Alex Krizhevsky and Geoffrey Hinton.
+\newblock Learning multiple layers of features from tiny images.
+\newblock Technical report, University of Toronto, 2009.
+
+\bibitem[Le and Yang(2015)]{le2015tiny}
+Ya~Le and Xin Yang.
+\newblock Tiny {ImageNet} visual recognition challenge.
+\newblock Technical report, Stanford University, 2015.
+
+\bibitem[Deng et~al.(2009)Deng, Dong, Socher, Li, Li, and
+  Fei-Fei]{deng2009imagenet}
+Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li~Fei-Fei.
+\newblock Imagenet: A large-scale hierarchical image database.
+\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, pages 248--255, 2009.
+
+\bibitem[He et~al.(2015)He, Zhang, Ren, and Sun]{he2015delving}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Delving deep into rectifiers: Surpassing human-level performance on
+  imagenet classification.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer
+  Vision (ICCV)}, pages 1026--1034, 2015.
+
+\bibitem[Wightman(2019)]{rw2019timm}
+Ross Wightman.
+\newblock Pytorch image models.
+\newblock \url{https://github.com/rwightman/pytorch-image-models}, 2019.
+
+\bibitem[Kingma and Ba(2015)]{kingma2015adam}
+Diederik~P Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock In \emph{ICLR}, 2015.
+
+\bibitem[Sutskever et~al.(2013)Sutskever, Martens, Dahl, and
+  Hinton]{sutskever2013importance}
+Ilya Sutskever, James Martens, George Dahl, and Geoffrey Hinton.
+\newblock On the importance of initialization and momentum in deep learning.
+\newblock In \emph{Proceedings of the 30th International Conference on Machine
+  Learning (ICML)}, volume~28 of \emph{Proceedings of Machine Learning
+  Research}, pages 1139--1147. PMLR, 2013.
+
+\bibitem[Noci et~al.(2024)Noci, Bachmann, Roth, Hofmann, and
+  Anandkumar]{noci2024signal}
+Lorenzo Noci, Gregor Bachmann, Kevin Roth, Thomas Hofmann, and Anima
+  Anandkumar.
+\newblock Signal propagation in transformers: Theoretical perspectives and the
+  role of rank collapse.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Zhang et~al.(2020)Zhang, Karimireddy, Veit, Kim, Reddi, Kumar, and
+  Sra]{zhang2020adaptive}
+Jingzhao Zhang, Sai~Praneeth Karimireddy, Andreas Veit, Seungyeon Kim, Sashank
+  Reddi, Sanjiv Kumar, and Suvrit Sra.
+\newblock Why are adaptive methods good for attention models?
+\newblock In \emph{NeurIPS}, 2020.
+
+\bibitem[Wu and He(2018)]{wu2018group}
+Yuxin Wu and Kaiming He.
+\newblock Group normalization.
+\newblock In \emph{Proceedings of the European Conference on Computer Vision
+  (ECCV)}, pages 3--19, 2018.
+
+\bibitem[Xiong et~al.(2020)Xiong, Yang, He, Zheng, Zheng, Xing, Zhang, Lan,
+  Wang, and Liu]{xiong2020layer}
+Ruibin Xiong, Yunchang Yang, Di~He, Kai Zheng, Shuxin Zheng, Chen Xing,
+  Huishuai Zhang, Yanyan Lan, Liwei Wang, and Tie-Yan Liu.
+\newblock On layer normalization in the transformer architecture.
+\newblock In \emph{ICML}, 2020.
+
+\bibitem[Zhang et~al.(2018)Zhang, Cisse, Dauphin, and
+  Lopez-Paz]{zhang2018mixup}
+Hongyi Zhang, Moustapha Cisse, Yann~N. Dauphin, and David Lopez-Paz.
+\newblock mixup: Beyond empirical risk minimization.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2018.
+
+\bibitem[Yun et~al.(2019)Yun, Han, Oh, Chun, Choe, and Yoo]{yun2019cutmix}
+Sangdoo Yun, Dongyoon Han, Seong~Joon Oh, Sanghyuk Chun, Junsuk Choe, and
+  Youngjoon Yoo.
+\newblock Cutmix: Regularization strategy to train strong classifiers with
+  localizable features.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision (ICCV)}, pages 6023--6032, 2019.
+
+\bibitem[Cubuk et~al.(2020)Cubuk, Zoph, Shlens, and Le]{cubuk2020randaugment}
+Ekin~D. Cubuk, Barret Zoph, Jonathon Shlens, and Quoc~V. Le.
+\newblock Randaugment: Practical automated data augmentation with a reduced
+  search space.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition Workshops (CVPRW)}, pages 702--703, 2020.
+
+\bibitem[Szegedy et~al.(2016)Szegedy, Vanhoucke, Ioffe, Shlens, and
+  Wojna]{szegedy2016rethinking}
+Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jon Shlens, and Zbigniew
+  Wojna.
+\newblock Rethinking the inception architecture for computer vision.
+\newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)}, pages 2818--2826, 2016.
+
+\bibitem[Kumar et~al.(2024)Kumar, Shen, Bubeck, and Gunasekar]{kumar2024how}
+Ananya Kumar, Ruoqi Shen, S{\'e}bastien Bubeck, and Suriya Gunasekar.
+\newblock How to fine-tune vision models with {SGD}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
+
+\bibitem[Hendrycks and Dietterich(2019)]{hendrycks2019benchmarking}
+Dan Hendrycks and Thomas Dietterich.
+\newblock Benchmarking neural network robustness to common corruptions and
+  perturbations.
+\newblock \emph{Proceedings of the International Conference on Learning
+  Representations}, 2019.
+
+\end{thebibliography}

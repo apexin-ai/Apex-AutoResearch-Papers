@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\usepackage{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{adjustbox}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\cf}{\textit{cf.}}
+\renewcommand{\answerYes}[1]{\textbf{Yes}: #1}
+\renewcommand{\answerNo}[1]{\textbf{No}: #1}
+\renewcommand{\answerNA}[1]{\textbf{N/A}: #1}
+\newcommand{\answerPartial}[1]{\textbf{Partial}: #1}
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\placeholder}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+% === ARC oracle results ===
+\newcommand{\arcN}{250}
+\newcommand{\arcQwenBaseline}{90.8}
+\newcommand{\arcQwenPruned}{91.6}
+\newcommand{\arcQwenDelta}{+0.8}
+\newcommand{\arcQwenPvalue}{.500}
+\newcommand{\arcQwenSupp}{14.6}
+% === ARC offline results (Llama, simulate mode; McNemar exact) ===
+\newcommand{\arcLlamaN}{250}
+\newcommand{\arcLlamaBaseline}{72.8}
+\newcommand{\arcLlamaPruned}{76.8}
+\newcommand{\arcLlamaDelta}{+4.0}
+\newcommand{\arcLlamaPvalue}{.013}
+\newcommand{\arcLlamaSupp}{37.1}
+\newcommand{\numValidatedDomains}{two}
+\newcommand{\numDomainCells}{2}  % GSM8K + StratQA (dual backbone); ARC is Qwen-only supplementary
+
+% === 72B oracle results (N=265, zero discordant flips) ===
+\newcommand{\qwenSevenTwoBBaseline}{92.1}
+\newcommand{\qwenSevenTwoBPruned}{92.1}
+\newcommand{\qwenSevenTwoBDelta}{+0.0}
+\newcommand{\qwenSevenTwoBPvalue}{1.000}
+\newcommand{\qwenSevenTwoBSupp}{66.8}
+\newcommand{\qwenSevenTwoBN}{265}
+% === 72B power analysis macros (overridden by 72b_power_macros.tex) ===
+\newcommand{\qwenSevenTwoBDiscordant}{0}
+\newcommand{\qwenSevenTwoBCohenH}{0.000}
+\newcommand{\qwenSevenTwoBPowerSummary}{the Rule of Three 95\% upper bound on the discordant rate is 1.13\%, excluding true accuracy differences above 1.13\,pp}
+\newcommand{\qwenSevenTwoBSummaryCohenH}{For the 72B zero-flip result, $h = 0$ exactly---the strongest possible ``no effect'' evidence.}
+\InputIfFileExists{72b_power_macros}{}{}
+
+\title{When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems}
+
+\author{
+  Anonymous Author(s)
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/introduction}
+
+\section{Related Work}
+\label{sec:related_work}
+\input{sections/related_work}
+
+\section{Taxonomy of Communication Functions}
+\label{sec:taxonomy}
+\input{sections/taxonomy}
+
+\section{Experimental Setup}
+\label{sec:methodology}
+\input{sections/methodology}
+\input{sections/experiments}
+
+\section{Results}
+\label{sec:results}
+\input{sections/results}
+
+\section{Discussion}
+\label{sec:discussion}
+\input{sections/discussion}
+
+\section{Conclusion}
+\label{sec:conclusion}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix_examples}
+\input{sections/appendix_neutralize}
+\input{sections/appendix_statistical}
+\input{sections/appendix_info_theory}
+\input{sections/appendix_scaling}
+\input{sections/appendix_summary}
+\input{sections/appendix_efficiency}
+\input{sections/appendix_multiagent}
+\input{sections/appendix_artifacts}
+
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \answerYes{All claims are supported by empirical evidence from our experiments. Ablation methodology is described as ``perturbation-based'' to accurately reflect its observational nature.}
+
+\item {\bf Limitations}
+    \answerYes{Section~6 discusses limitations including
+model scale (7B primary, substantive 14B oracle, 72B oracle $N{=}\qwenSevenTwoBN{}$), topology coverage (two-agent with exploratory three-agent pilot), LLM annotation scope ($\kappa$ variation), and greedy decoding sensitivity.}
+
+\item {\bf Theory Assumptions and Proofs}
+    \answerNA{Our work is empirical; no theoretical proofs are presented.}
+
+\item {\bf Experimental Result Reproducibility}
+    \answerYes{Section~4 specifies all models, hyperparameters, framework versions, and statistical tests. An anonymous code repository containing the complete experimental pipeline, configuration files, and sample data is provided at \url{[anonymized]}. GSM8K, ARC-Challenge, and StrategyQA are publicly available benchmark datasets.}
+
+\item {\bf Open access to data and code}
+    \answerYes{Code, traces, and annotations are provided in an anonymous repository at \url{[anonymized]} under the MIT License. GSM8K, ARC-Challenge, and StrategyQA are publicly available benchmark datasets.}
+
+\item {\bf Experimental Setting/Details}
+    \answerYes{Section~4 provides full experimental details including model names, parameter counts, generation settings, annotation protocol, and statistical framework.}
+
+\item {\bf Experiment Statistical Significance}
+    \answerYes{All experiments report exact $p$-values from McNemar exact tests, TOST equivalence tests, likelihood-ratio tests (LRT), and Fisher exact tests. The primary test family (9 LRT tests) receives Benjamini--Hochberg correction at $\alpha = 0.05$. Effect sizes, confidence intervals, minimum detectable effects, and statistical power are reported for all key comparisons. Ten-run online replication provides variance estimates and formal equivalence (Qwen $\Delta = -0.05 \pm 0.99$\,pp, TOST $p = 0.007$ at $\pm 1$\,pp; 95\% CI $[-0.75, +0.65]$\,pp). Full statistical details appear in Appendix~A.}
+
+\item {\bf Compute Resources}
+    \answerYes{Experiments were conducted on 4$\times$ NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (96\,GB each). Total compute including all replications, oracle validation, and ablations is approximately 120 GPU-hours.}
+
+\item {\bf Code Of Ethics}
+    \answerYes{This research studies existing open-weight models on a public benchmark. No new models are trained. Human annotation involved four research team members classifying LLM-generated messages; no external participants or sensitive data were involved.}
+
+\item {\bf Broader Impacts}
+    \answerYes{Our work characterizes communication in two-agent LLM systems to improve efficiency and interpretability. Our finding that structurally minimal messages (acknowledgments) are disproportionately impactful implies a potential adversarial vector: an attacker who can inject or suppress acknowledgment-like messages in a two-agent pipeline could cause outsized behavioral disruption with minimal detectable content. Defenses should monitor structural patterns, not just content, for integrity. Beyond this, we do not foresee negative societal impacts beyond those inherent to LLM deployment generally.}
+
+\item {\bf Safeguards}
+    \answerYes{The paper identifies acknowledgment injection as a potential adversarial vector (Section~6). This is a research finding, not a risk introduced by our methodology.}
+
+\item {\bf Licenses}
+    \answerYes{GSM8K is MIT-licensed. All three model backbones use permissive open-weight licenses. AG2/AutoGen is Apache 2.0.}
+
+\item {\bf New Assets}
+    \answerYes{We release interaction traces, function type annotations, and ablation results in the anonymous repository at \url{[anonymized]} under the MIT License. See Appendix~\ref{app:artifacts} for a complete artifact description.}
+
+\item {\bf Crowdsourcing and Research with Human Subjects}
+    \answerYes{Research team members classified 225 inter-agent messages into 5 communication function types for human validation of the LLM-derived taxonomy (Section~6). No external crowdsourcing was used. No personally identifiable or sensitive data were collected; annotators labeled only LLM-generated text.}
+
+\item {\bf Institutional Review Board (IRB) Approvals or Equivalent for Research with Human Subjects}
+    \answerNA{The human annotation task involved only research team members classifying LLM-generated text, with no collection of personal data. This does not constitute human subjects research under standard IRB definitions.}
+
+\item {\bf Declaration of LLM Usage}
+    \answerYes{GPT-4o is used for cross-model annotation of communication function types (Section~4.1). Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, and Gemma-2-9B-IT serve as both backbone models generating conversations and cross-annotators. The annotation protocol, prompts, and inter-annotator agreement are documented in Section~4.1 and Appendices~D, F. Human validation on 225 messages confirms taxonomy reliability ($\kappa = 0.76$). LLMs were not used for writing or editing the paper text.}
+
+\end{enumerate}
+
+\end{document}

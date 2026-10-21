@@ -1,0 +1,41 @@
+{
+  "analysis": "Logistic regression: P(ack_t | ack_{t-1}, position_t) to test cascade as sequential dependency vs position effect",
+  "qwen": {
+    "n_observations": 1200,
+    "n_tasks": 300,
+    "ack_rate": 0.5991666666666666,
+    "prev_ack_odds_ratio": 6.4252,
+    "prev_ack_ci_95": [
+      4.377,
+      9.4319
+    ],
+    "prev_ack_p_value": 2.141464423638741e-21,
+    "prev_ack_coefficient": 1.8602,
+    "position_odds_ratio": 1.9502,
+    "position_p_value": 1.215899852946233e-19,
+    "aic_full": 1212.61,
+    "aic_position_only": 1315.45,
+    "bic_full": -7280.21,
+    "bic_position_only": -7182.47,
+    "conclusion": "prev_ack is highly significant (p=2.14e-21, OR=6.43) after controlling for position; full model fits better (delta AIC=-102.8)"
+  },
+  "llama": {
+    "n_observations": 1176,
+    "n_tasks": 294,
+    "ack_rate": 0.5875850340136054,
+    "prev_ack_odds_ratio": 2.0223,
+    "prev_ack_ci_95": [
+      1.4891,
+      2.7465
+    ],
+    "prev_ack_p_value": 6.4899187639981604e-06,
+    "prev_ack_coefficient": 0.7042,
+    "position_odds_ratio": 0.7338,
+    "position_p_value": 8.278902492215216e-06,
+    "aic_full": 1574.75,
+    "aic_position_only": 1593.63,
+    "bic_full": -6724.21,
+    "bic_position_only": -6710.41,
+    "conclusion": "prev_ack is highly significant (p=6.49e-06, OR=2.02) after controlling for position; full model fits better (delta AIC=-18.9)"
+  }
+}

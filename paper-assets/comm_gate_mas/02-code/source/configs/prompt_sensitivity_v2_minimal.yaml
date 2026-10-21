@@ -1,0 +1,33 @@
+# Prompt sensitivity V2: minimal (stripped-down prompts)
+model:
+  name: "Llama-3.1-8B-Instruct"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "MathSolver"
+    system_message: |
+      Solve the math problem. Give the final answer as: "The answer is [NUMBER]."
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      Check the solution for errors. If wrong, fix it.
+      End with: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 100
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+output:
+  trace_dir: "outputs/prompt_sensitivity/v2_minimal/traces"
+  analysis_dir: "outputs/prompt_sensitivity/v2_minimal"

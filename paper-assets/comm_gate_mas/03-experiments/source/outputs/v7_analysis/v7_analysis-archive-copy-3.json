@@ -1,0 +1,514 @@
+{
+  "ack_purity": {
+    "label_source": "llm_label",
+    "total_ack": 67,
+    "pure": 19,
+    "contaminated": 48,
+    "purity_rate": 0.2836,
+    "contamination_types": {
+      "information_provision": 48,
+      "reasoning_guidance": 2
+    },
+    "per_backbone": {
+      "gemma": {
+        "total_ack": 4,
+        "contaminated": 0,
+        "purity": 1.0
+      },
+      "llama": {
+        "total_ack": 32,
+        "contaminated": 17,
+        "purity": 0.4688
+      },
+      "qwen": {
+        "total_ack": 31,
+        "contaminated": 31,
+        "purity": 0.0
+      }
+    },
+    "contaminated_details": [
+      {
+        "msg_id": "qwen_rr_gsm8k_0081_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $5600."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0081_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $5600."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0081_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $5600."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0014_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 105."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0003_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 5."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0003_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 5."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0003_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 5."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0094_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 14."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0035_r2_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 324."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0035_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 324."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0035_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 324."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0035_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 324."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0128_r2_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 8."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0128_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 8."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0128_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 8."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0128_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 8."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0194_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 20."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0194_r5_p0",
+        "backbone": "qwen",
+        "word_count": 5,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 20 minutes."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0113_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 104."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0113_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 104."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0113_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 104."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0286_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 45."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0294_r2_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 1."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0294_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 1."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0294_r5_p0",
+        "backbone": "qwen",
+        "word_count": 5,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 1 hour."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0269_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 13.00."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0269_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 13.00."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0269_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is 13.00."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0211_r3_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $300."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0211_r4_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $300."
+      },
+      {
+        "msg_id": "qwen_rr_gsm8k_0211_r5_p0",
+        "backbone": "qwen",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $300."
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0060_r2_p0",
+        "backbone": "llama",
+        "word_count": 145,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The solution is correct. \n\nTo find the combined length of the remoras, we need to convert their length to feet and then add them together.\n\nEach remora is 6 inches long. Since there are 12 inches in a"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0078_r2_p0",
+        "backbone": "llama",
+        "word_count": 129,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The solution is correct. \n\nTo find the price of carrots after three years, we need to calculate the price increase each year and add it to the original price.\n\nYear 1:\nOriginal price = $120\nPrice incr"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0038_r5_p0",
+        "backbone": "llama",
+        "word_count": 31,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "We're in agreement that the perimeter of the fence is the total length James needs to cover with the crepe paper. The calculation and explanation are correct.\n\nThe answer is 70."
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0102_r3_p0",
+        "backbone": "llama",
+        "word_count": 32,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "Your rephrased solution is indeed more formal and step-by-step, making it easier to follow and understand. The calculations are still correct, and the final answer remains the same.\n\nThe answer is 54."
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0200_r2_p0",
+        "backbone": "llama",
+        "word_count": 217,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The solution to the problem is correct. \n\nHowever, let's rephrase the solution in a more detailed step-by-step format:\n\nInitially, Bob had 7 fish in his pond: 3 orange and 4 white.\n\nLet's denote the n"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0200_r4_p0",
+        "backbone": "llama",
+        "word_count": 328,
+        "detected_functions": [
+          "reasoning_guidance",
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The detailed step-by-step format makes the solution easier to follow and understand. \n\nHere is the solution with the final answer:\n\nInitially, Bob had 7 fish in his pond: 3 orange and 4 white.\n\nLet's "
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0192_r2_p0",
+        "backbone": "llama",
+        "word_count": 125,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The solution is correct. \n\nHere's the step-by-step solution again for clarity:\n\n1. The tank top costs $10.\n2. The running shorts cost $5 more than the tank top, so they cost $10 + $5 = $15.\n3. The ten"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0192_r3_p0",
+        "backbone": "llama",
+        "word_count": 140,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "You've broken down the solution into smaller steps for clarity. The steps are correct, and the final answer remains the same.\n\nThe steps you provided are:\n\n1. The tank top costs $10.\n2. The running sh"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0192_r4_p0",
+        "backbone": "llama",
+        "word_count": 148,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The step-by-step solution is clear and easy to follow. Breaking down the problem into smaller steps helps to ensure that each calculation is accurate and that the final answer is correct.\n\nThe solutio"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0192_r5_p0",
+        "backbone": "llama",
+        "word_count": 149,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The step-by-step solution is clear, easy to follow, and accurate. Breaking down the problem into smaller steps helps to ensure that each calculation is accurate and that the final answer is correct.\n\n"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0244_r3_p0",
+        "backbone": "llama",
+        "word_count": 176,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "You're right, adding that step clarifies the total time Tom spent traveling. Here's the revised solution:\n\nTo find the time it takes Tom to get back, we need to first find the distance he traveled fro"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0236_r2_p0",
+        "backbone": "llama",
+        "word_count": 95,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "The steps you provided are clear and accurate. \n\nTo summarize, the solution is as follows:\n\n1. The pen costs $2.\n2. The piece of paper costs $1 less than three times the price of the pen. \n   Three ti"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0220_r3_p0",
+        "backbone": "llama",
+        "word_count": 115,
+        "detected_functions": [
+          "reasoning_guidance",
+          "information_provision"
+        ],
+        "is_long": true,
+        "preview": "You've provided a more detailed step-by-step solution, which is helpful for clarity. The solution remains the same, but the additional steps provide a clearer explanation of the process.\n\nStep 1: Find"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0228_r3_p0",
+        "backbone": "llama",
+        "word_count": 43,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "Your rephrased solution is a clear and step-by-step guide to solving the problem. It's a great way to present the solution in a more formal and structured format. The steps are well-defined, and the c"
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0299_r3_p0",
+        "backbone": "llama",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $8328."
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0299_r4_p0",
+        "backbone": "llama",
+        "word_count": 4,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "The answer is $8328."
+      },
+      {
+        "msg_id": "llama_rr_gsm8k_0299_r5_p0",
+        "backbone": "llama",
+        "word_count": 7,
+        "detected_functions": [
+          "information_provision"
+        ],
+        "is_long": false,
+        "preview": "That's correct, the answer is indeed $8328."
+      }
+    ]
+  }
+}

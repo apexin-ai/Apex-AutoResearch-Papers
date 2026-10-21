@@ -1,0 +1,49 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Why does the spectral advantage vary with architecture?}
+Our results point to normalization type as the primary mediator.
+Batch normalization smooths the loss landscape~\cite{santurkar2018how}, reducing the need for spectral gradient conditioning; hence ResNet-50 shows the smallest gap ($+5.9$--$+11.5$\,pp).
+Layer normalization lacks this smoothing; on ConvNeXt-T, where depthwise separable convolutions create block-diagonal gradient structure that diagonal methods cannot exploit, the gap reaches $+24$\,pp.
+
+\paragraph{Intra-family structure reveals mechanism--architecture interaction.}
+The spectral family is not monolithic: Shampoo leads on ResNet-50, SOAP on DeiT-S ($+2.78$\,pp over Muon, $p < 0.01$), and Muon on ConvNeXt-T ($+4.05$\,pp over Shampoo).
+Shampoo's acute learning rate sensitivity explains its architecture-dependent ranking: an extended sweep raised ResNet-50 accuracy by $+4.4$\,pp (last to first), yet a similar sweep on ConvNeXt-T still left it $4.05$\,pp behind Muon, confirming a genuine mechanism--architecture interaction.
+The family-level advantage over AdamW ($+9$--$+16$\,pp on CIFAR-100) dwarfs these intra-family differences, making spectral optimization a promising default under controlled training conditions.
+Lion (69.42\%) and SGD (69.50\%) perform comparably on ResNet-50, both slightly above AdamW (67.85\%); the spectral family maintains a +7.4--10.4\,pp advantage over all first-order methods tested.
+
+\paragraph{Gap convergence with longer training.}
+The gap narrows on CNNs (Table~\ref{tab:gap_narrowing}), suggesting convergence speed rather than solution quality; on layer-normalized architectures, Muon at 20 epochs surpasses AdamW at 50 epochs, implying ${\geq}2\times$ wall-clock savings.
+
+\paragraph{Toward a predictive diagnostic.}
+The sign reversal in $\Delta \mathrm{sr}$--benefit correlation (Section~\ref{sec:spectral_analysis}) suggests a candidate diagnostic for anticipating spectral optimizer gains on unseen architectures without full training comparisons.
+Given a pretrained AdamW checkpoint, computing the per-layer stable rank divergence profile and its correlation with per-layer accuracy contributions yields a predictive signature: positive $\rho$ (ResNet-50, $+0.45$) indicates broad spectral reshaping with moderate gains ($+6$--$+11$\,pp), while negative $\rho$ (DeiT-S, $-0.40$) signals selective amplification at attention bottlenecks with larger gains ($+10$--$+13$\,pp).
+ConvNeXt-T---combining layer normalization with $7.67\times$ stable rank amplification---represents the high-gain regime where both mechanisms compound ($+16$--$+24$\,pp).
+Preliminary evidence from three architectures suggests that normalization type and the resulting $\Delta \mathrm{sr}$ sign jointly predict the magnitude of spectral advantage; validation across a broader architecture set (e.g., Swin, Mamba, hybrid models) is needed before this heuristic can serve as a reliable pre-screening tool.
+
+\paragraph{Practical Implications.}
+Our results suggest concrete guidelines for optimizer selection based on normalization architecture:
+\textbf{(i)} For LayerNorm architectures (e.g., Vision Transformers), Muon and SOAP are strongly recommended: they achieve +10--16pp over AdamW while remaining largely norm-insensitive (Muon: $+1.3$pp, SOAP: $-1.8$pp, Shampoo: $-3.5$pp, compared to AdamW: $-12.1$pp and SGD: $-45.6$pp), with Muon offering the best plug-and-play experience due to minimal hyperparameter sensitivity.
+\textbf{(ii)} For BatchNorm architectures (e.g., ResNet), spectral optimizers still provide a meaningful +9pp advantage, though the gap narrows with extended training (50 epochs), suggesting practitioners should weigh wall-clock budget against final accuracy.
+\textbf{(iii)} The GN(32) dose-response pattern (§5.3) provides a predictive tool: the magnitude of spectral advantage scales with normalization smoothing, enabling practitioners to estimate expected gains before committing GPU resources.
+\textbf{(iv)} Shampoo exhibits poor learning-rate transferability across architectures (Appendix B), whereas SOAP and Muon maintain stable performance --- making the latter two preferable as drop-in replacements for AdamW in new projects.
+
+
+\paragraph{Corruption robustness.}
+Corruption robustness evaluation on CIFAR-100-C (Appendix~\ref{sec:corruption_robustness}) reveals that the spectral advantage extends beyond clean accuracy: Muon achieves the lowest mean corruption error on three of four architecture configurations (mCE 89--93\% vs.\ AdamW baseline of 100\%).
+The ResNet-50-LN result (Muon mCE 92.6\%) is particularly notable: Muon reduces corruption error by 7.4\% relative to the AdamW baseline, paralleling the clean-accuracy advantage under LayerNorm observed in Section~\ref{sec:spectral_analysis}.
+Shampoo exhibits mCE $>100\%$ on layer-normalized architectures (ConvNeXt-T: 103.9\%, DeiT-S: 102.6\%), while performing near-baseline on ResNet-50-BN (99.8\%), constituting a negative finding: not all second-order methods improve robustness, and Kronecker-factored preconditioning appears insufficient for corruption-robust optimization.
+The dose-response pattern extends to corruption robustness: under GN(32), spectral methods improve mean corruption accuracy by 5--7\,pp over their BN counterparts while AdamW remains flat ($+0.2$\,pp) and SGD degrades sharply (mCE 112.9\%, Appendix~\ref{sec:corruption_robustness}).
+This three-way divergence mirrors the clean-accuracy dose-response observed in Section~\ref{sec:norm_swap}, confirming that the normalization--optimizer interaction governs not only convergence speed but also out-of-distribution generalization.
+The corruption advantage of spectral optimizers scales with normalization smoothing, paralleling the clean-accuracy dose-response observed in Section~\ref{sec:norm_swap}.
+
+\paragraph{Limitations.}
+\label{sec:limitations}
+Deliberate scope choices enable controlled comparison: CIFAR-100 images are resized to $224{\times}224$, baseline experiments omit warmup and advanced augmentation, use batch size 128, single-GPU training, and learning rates from 5-epoch sweeps. The spectral intra-family comparison is limited to CIFAR-100.
+
+Genuine limitations include the following.
+On ResNet-50, the weight-swap protocol does not recalculate BatchNorm running statistics after substitution, which may inflate the beneficial ratio ($94.3\%$) and correlation ($\rho{=}{+}0.45$); however, the sign reversal with DeiT-S ($\rho{=}{-}0.40$) is preserved even under extreme correction, and 8 of 12 architecture--optimizer pairs use LayerNorm and are unaffected.
+For CNN architectures, the gap narrows with training duration (Table~\ref{tab:gap_narrowing}); longer schedules (100+ epochs) may further narrow it.
+Whether the DeiT-S gap, which shows zero narrowing at 50 epochs, would eventually narrow at longer horizons, and whether these patterns persist at ImageNet-1K scale~\cite{kumar2024how}, remain open questions.
+We deliberately chose CIFAR-100 at $224{\times}224$ resolution because it preserves full-resolution spatial structure while enabling our factorial design (5 optimizers $\times$ 3 architectures $\times$ 3 datasets $\times$ up to 4 seeds, $>$300 runs)---a protocol computationally prohibitive at ImageNet-1K scale.
+Li et al.~\cite{li2024bocb} similarly use CIFAR-level benchmarks for optimizer--backbone coupling analysis; the normalization-swap causal experiment (Section~\ref{sec:spectral_analysis}) further validates this choice, as isolating a single variable requires many controlled runs that small-scale benchmarks uniquely enable.

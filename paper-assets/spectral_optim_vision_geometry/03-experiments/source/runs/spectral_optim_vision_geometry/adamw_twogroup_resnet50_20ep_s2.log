@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/baseline_train.py", line 280, in <module>
+    check_disk_space(args.output_dir, min_gb=5.0)
+  File "/root/spectral_optim_vision_geometry/baseline_train.py", line 40, in check_disk_space
+    raise RuntimeError(f'Disk space critically low: {free_gb:.1f}G free on {path}. Need >= {min_gb}G.')
+RuntimeError: Disk space critically low: 4.8G free on /root/spectral_optim_vision_geometry/checkpoints. Need >= 5.0G.
+EXIT_CODE=1

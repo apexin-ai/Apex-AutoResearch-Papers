@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9df772aa2fd70a9407e",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "reviewer / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_12.md",
+    "occurrence": 4,
+    "bytes": 3351,
+    "sha256": "e9703bd6d5e9f7fb9b28708e19d1d987b40718f5fb477bdac9512d9960ad7112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-04-29T02:55:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目在 westb-4x6000-a 上历史一致使用 cuda:1，其余 GPU 未见分配记录。越界使用其他 GPU 需先确认 project config 的 gpu_ids 白名单。\n- SSH 服务器名是 `westb-4x6000-a`（不是 `westb-4x6000-a(comm_gate)`，后者会报 unknown server）。\n- ARC 实验（llama_heuristic_arc / qwen_heuristic_arc）已标记 INVALID（D226），extract_arc_answer() regex 在 round-robin 格式下失效，baseline 准确率在 floor（10-16%）。**不要引用这两个实验的数据**，等 v2 修复后重跑。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a，工作目录 `/root/autodl-tmp/comm_gate_mas`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境）\n- 模型：`/root/autodl-tmp/models/Llama-3.1-8B-Instruct`（8B），Qwen2.5-7B / 72B-AWQ 同目录\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃 vLLM：PID 519262（父）→ 519538（EngineCore），Llama-3.1-8B on port 8001, cuda:1, `--max-model-len 4096 --gpu-memory-utilization 0.90`\n- 活跃实验：`scripts/run_stratqa_3seed.sh` 正在跑 seed=0（截至 08:51 CST 已完成 42/200）\n- 输出目录：`outputs/llama_heuristic_stratqa_3seed/`（run.log + 未来 seed_0/1/2.json）\n\n### 3. 📊 当前状态\n我刚完成 worker_check_stratqa_3seed_status 的审查，已发送 WARNING 级报告给 Director。\n\n**核心发现**：\n- 实验实际在运行但 registry 状态卡在 PREPARING（retry_count=2），bookkeeping 未更新。\n- vLLM max-model-len=4096 导致 task 26（strategyqa_0025）400 Bad Request 被跳过，错误率 1/42=2.4%。\n- GPU1 88% util，无越界。\n\n**Registry RUNNING/PREPARING**：\n- `llama_heuristic_stratqa_3seed`（PREPARING）— 实际在跑 seed=0, ~42/200, ETA 每 seed ~53min\n- `oracle_qwen72b_seed123`（PREPARING）— 72B oracle 复现，未启动\n- 其余 PREPARING 实验（vllm_llama_8192_v2 等）长期搁置\n\n### 4. 📋 待办（条件触发式）\n- llama_heuristic_stratqa_3seed 完成 → 检查每 seed 的 infra_error 数。若任一 seed >10/200（>5%），severity 升级为 CRITICAL，建议增大 max-model-len 重跑。\n- llama_heuristic_stratqa_3seed 完成 → 交叉验证 3 seed 的 delta_pp 与原 seed=42（+6.5pp）的一致性。CI 是否排除 0 是核心 hypothesis。\n- ARC v2 实验出现 → 重点审查 extract_arc_answer() 修复是否解决 regex 问题，baseline acc 应 ~54%（非 10-16%）。\n- Agent 更新 registry 状态为 RUNNING → 确认 bookkeeping 已修复。\n\n### 5. 🎯 战略上下文\n- 项目核心：LLM 多智能体系统中通信功能的实证研究。heuristic ack pruning 是核心方法——去除 acknowledgment 消息不伤准确率（Llama GSM8K +2.2pp CI[0.41,3.99], Llama StratQA +6.5pp）。\n- 3-seed StratQA 是关键复现实验：如果 CI 不排除 0，+6.5pp 单 seed 结论不可信。\n- ARC 跨任务泛化目前 INVALID（D226 answer extraction bug），是已知缺口。\n- 易错点：vLLM `--gpu-memory-utilization 0.90` 导致 8B 模型占 88GB 显存，**这不是模型错配**，是 vLLM 预分配行为。不要因此误判。\n- 易错点：pipeline.log 最后记录了 72B-AWQ 在 port 8000，但该进程已被 kill，当前仅 Llama-8B 在 port 8001。不要假设 72B 仍在运行。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-8.md"
+}

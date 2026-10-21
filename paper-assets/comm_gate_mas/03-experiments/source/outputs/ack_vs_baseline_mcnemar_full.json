@@ -1,0 +1,58 @@
+{
+  "settings": {
+    "qwen_gsm8k": {
+      "n": 100,
+      "both_correct": 91,
+      "b": 0,
+      "c": 1,
+      "both_wrong": 8,
+      "p": 1.0,
+      "sig": false,
+      "method": "exact",
+      "baseline_correct": 91,
+      "ack_correct": 92
+    },
+    "llama_gsm8k": {
+      "n": 100,
+      "both_correct": 74,
+      "b": 3,
+      "c": 10,
+      "both_wrong": 13,
+      "p": 0.092285,
+      "sig": false,
+      "method": "exact",
+      "baseline_correct": 77,
+      "ack_correct": 84
+    },
+    "gemma_gsm8k": {
+      "n": 96,
+      "both_correct": 73,
+      "b": 1,
+      "c": 0,
+      "both_wrong": 22,
+      "p": 1.0,
+      "sig": false,
+      "method": "exact",
+      "baseline_correct": 74,
+      "ack_correct": 73
+    },
+    "qwen_stratqa": {
+      "n": 250,
+      "both_correct": 149,
+      "b": 18,
+      "c": 29,
+      "both_wrong": 54,
+      "p": 0.143865,
+      "sig": false,
+      "method": "exact",
+      "baseline_correct": 167,
+      "ack_correct": 178
+    }
+  },
+  "qwen_gsm8k_ack_vs_random": {
+    "per_seed_p": [0.125, 0.0625, 0.125, 0.375, 0.0625, 0.03125, 0.0625, 0.0625, 0.125, 0.125],
+    "median_p": 0.09375,
+    "sig_count": "1/10",
+    "note": "Table 3 correction: median p=0.094, not 0.144"
+  }
+}

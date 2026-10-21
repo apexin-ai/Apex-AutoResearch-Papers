@@ -1,0 +1,17 @@
+========== Shampoo LR=3e-3 ==========
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: unrecognized arguments: --wd 0.01
+========== Shampoo LR=1e-2 ==========
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: unrecognized arguments: --wd 0.01
+EXIT_CODE=2

@@ -1,0 +1,116 @@
+{
+  "data_available": true,
+  "matching_method": "task_id",
+  "n_matched_tasks": 195,
+  "n_tasks_with_suppression": 181,
+  "n_tasks_without_suppression": 14,
+  "note": "Pre-suppression binary (ack vs non-ack) concordance is degenerate: online is_ack is always False before first suppression by definition. Use 5-class function_type concordance instead.",
+  "global_binary_ack": {
+    "description": "Across all positions: offline annotation_a.type=='acknowledgment' vs online is_ack",
+    "n_messages": 955,
+    "agreement_pct": 57.38,
+    "cohens_kappa": 0.1316,
+    "confusion_matrix": {
+      "both_non_ack": 351,
+      "offline_nonack_online_ack": 162,
+      "offline_ack_online_nonack": 245,
+      "both_ack": 197
+    }
+  },
+  "pre_suppression": {
+    "description": "Messages before the first online suppression. Dialogue trajectory is identical to baseline.",
+    "n_messages": 398,
+    "five_class_type": {
+      "agreement_pct": 38.69,
+      "cohens_kappa": 0.176
+    },
+    "binary_ack": {
+      "note": "Degenerate: online is_ack is always False pre-suppression by construction",
+      "agreement_pct": 70.85,
+      "online_all_false": true
+    },
+    "by_position": [
+      {
+        "position": 0,
+        "n": 191,
+        "agreement_pct": 60.73,
+        "cohens_kappa": 0.134
+      },
+      {
+        "position": 1,
+        "n": 105,
+        "agreement_pct": 19.05,
+        "cohens_kappa": 0.0405
+      },
+      {
+        "position": 2,
+        "n": 79,
+        "agreement_pct": 18.99,
+        "cohens_kappa": 0.0022
+      },
+      {
+        "position": 3,
+        "n": 13,
+        "agreement_pct": 15.38,
+        "cohens_kappa": -0.0362
+      },
+      {
+        "position": 4,
+        "n": 10,
+        "agreement_pct": 10.0,
+        "cohens_kappa": 0.0
+      }
+    ]
+  },
+  "post_suppression": {
+    "description": "Messages at or after the first online suppression. Dialogue trajectories diverge.",
+    "n_messages": 557,
+    "five_class_type": {
+      "agreement_pct": 39.5,
+      "cohens_kappa": -0.0272
+    },
+    "by_position": [
+      {
+        "position": 1,
+        "n": 86,
+        "agreement_pct": 38.37,
+        "cohens_kappa": 0.0
+      },
+      {
+        "position": 2,
+        "n": 112,
+        "agreement_pct": 44.64,
+        "cohens_kappa": 0.0012
+      },
+      {
+        "position": 3,
+        "n": 178,
+        "agreement_pct": 52.81,
+        "cohens_kappa": -0.0364
+      },
+      {
+        "position": 4,
+        "n": 181,
+        "agreement_pct": 23.76,
+        "cohens_kappa": -0.0195
+      }
+    ]
+  },
+  "cross_tabulation": {
+    "offline_ack_to_online_type": {
+      "acknowledgment": 197,
+      "verification": 167,
+      "information_provision": 39,
+      "reasoning_guidance": 24,
+      "coordination": 15
+    },
+    "online_ack_to_offline_type": {
+      "acknowledgment": 197,
+      "reasoning_guidance": 62,
+      "coordination": 44,
+      "verification": 32,
+      "information_provision": 24
+    }
+  },
+  "conclusion": "195 tasks matched by task_id between offline annotations and online oracle (seed_42). DEFINITIONAL NOTE: Pre-suppression binary concordance is degenerate (\u03ba=0.0) because online is_ack is always False before the first suppression point by construction. The meaningful pre-suppression metric is 5-class function_type concordance. Pre-suppression 5-class concordance: 38.7% agreement, \u03ba=0.176 (fair). Position 0 shows strong agreement (116/191), but later positions diverge. Post-suppression 5-class concordance: 39.5% agreement, \u03ba=-0.027. As expected, concordance is lower after trajectory divergence. Global binary concordance (offline type==ack vs online is_ack): 57.4% agreement, \u03ba=0.132. When offline labels a message 'acknowledgment', online agrees only 197/442 times (44.6%). Online often classifies these as 'verification' (167/442) \u2014 a systematic offline\u2192online label shift. When online labels is_ack=True, offline agrees 197/359 times (54.9%). Overall: offline annotations provide moderate-to-fair concordance with online oracle decisions for 5-class types, with a notable systematic disagreement on the acknowledgment/verification boundary."
+}

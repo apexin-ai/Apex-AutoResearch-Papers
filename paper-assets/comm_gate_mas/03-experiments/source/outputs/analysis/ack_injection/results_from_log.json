@@ -1,0 +1,15 @@
+{
+  "n_completed": 299,
+  "control_correct": 267,
+  "control_accuracy": 0.893,
+  "inject_correct": 269,
+  "inject_accuracy": 0.8997,
+  "delta_pp": 0.67,
+  "mcnemar_b": 2,
+  "mcnemar_c": 4,
+  "mcnemar_p": 0.6875,
+  "cohens_h": 0.0219,
+  "total_injected_acks": 1196,
+  "avg_injected_per_task": 4.0,
+  "concordance": 0.9799
+}

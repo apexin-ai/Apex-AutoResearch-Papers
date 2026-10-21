@@ -1,0 +1,514 @@
+\begin{thebibliography}{69}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Austin(1962)]{austin_how_1962}
+John~L. Austin.
+\newblock \emph{How to Do Things with Words}.
+\newblock Oxford University Press, 1962.
+
+\bibitem[Bunt et~al.(2012)Bunt, Alexandersson, Choe, Fang, Hasida, Petukhova,
+  Popescu-Belis, and Traum]{bunt_iso_2012}
+Harry Bunt, Jan Alexandersson, Jae-Woong Choe, Alex~Chengyu Fang, Koiti Hasida,
+  Volha Petukhova, Andrei Popescu-Belis, and David~R. Traum.
+\newblock Towards an {ISO} standard for dialogue act annotation.
+\newblock In \emph{LREC}, 2012.
+
+\bibitem[Cemri et~al.(2025)Cemri, Pan, Yang, Agrawal, Chopra, Tiwari, Keutzer,
+  Parameswaran, Klein, Ramchandran, Zaharia, Gonzalez, and
+  Stoica]{cemri_mast_2025}
+Mert Cemri, Melissa~Z. Pan, Shuyi Yang, Lakshya~A. Agrawal, Bhavya Chopra,
+  Rishabh Tiwari, Kurt Keutzer, Aditya Parameswaran, Dan Klein, Kannan
+  Ramchandran, Matei Zaharia, Joseph~E. Gonzalez, and Ion Stoica.
+\newblock Why do multi-agent {LLM} systems fail?
+\newblock \emph{arXiv preprint arXiv:2503.13657}, 2025.
+
+\bibitem[Chen et~al.(2026{\natexlab{a}})Chen, Zheng, Liu, Jiao, Li, Liu, Zhao,
+  Xu, Khalil, and Pan]{chen_goagent_2026}
+Hongjiang Chen, Xin Zheng, Yixin Liu, Pengfei Jiao, Shiyuan Li, Huan Liu,
+  Zhidong Zhao, Ziqi Xu, Ibrahim Khalil, and Shirui Pan.
+\newblock {GoAgent}: Group-of-agents communication topology generation for
+  {LLM}-based multi-agent systems.
+\newblock \emph{arXiv preprint arXiv:2603.19677}, 2026{\natexlab{a}}.
+
+\bibitem[Chen et~al.(2026{\natexlab{b}})Chen, Yang, Liu, and
+  Joe-Wong]{chen_five_ws_2026}
+Jingdi Chen, Hanqing Yang, Zongjun Liu, and Carlee Joe-Wong.
+\newblock The five ws of multi-agent communication: Who talks to whom, when,
+  what, and why---a survey from {MARL} to emergent language and {LLMs}.
+\newblock \emph{Transactions on Machine Learning Research (TMLR)},
+  2026{\natexlab{b}}.
+\newblock arXiv:2602.11583.
+
+\bibitem[Chen et~al.(2021)Chen, Tworek, Jun, Yuan, Pinto, Kaplan, Edwards,
+  Burda, Joseph, Brockman, Ray, Puri, Krueger, Petrov, Khlaaf, Sastry, Mishkin,
+  Chan, Gray, Ryder, Pavlov, Power, Kaiser, Bavarian, Winter, Tillet, Such,
+  Cummings, Plappert, Chantzis, Barnes, Herbert-Voss, Guss, Nichol, Paino,
+  Tezak, Tang, Babuschkin, Balaji, Jain, Saunders, Hesse, Carr, Leike, Achiam,
+  Misra, Morikawa, Radford, Knight, Brundage, Murati, Mayer, Welinder, McGrew,
+  Amodei, McCandlish, Sutskever, and Zaremba]{chen_humaneval_2021}
+Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde de~Oliveira
+  Pinto, Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph, Greg
+  Brockman, Alex Ray, Raul Puri, Gretchen Krueger, Michael Petrov, Heidy
+  Khlaaf, Girish Sastry, Pamela Mishkin, Brooke Chan, Scott Gray, Nick Ryder,
+  Mikhail Pavlov, Alethea Power, Lukasz Kaiser, Mohammad Bavarian, Clemens
+  Winter, Philippe Tillet, Felipe~Petroski Such, Dave Cummings, Matthias
+  Plappert, Fotios Chantzis, Elizabeth Barnes, Ariel Herbert-Voss,
+  William~Hebgen Guss, Alex Nichol, Alex Paino, Nikolas Tezak, Jie Tang, Igor
+  Babuschkin, Suchir Balaji, Shantanu Jain, William Saunders, Christopher
+  Hesse, Andrew~N. Carr, Jan Leike, Josh Achiam, Vedant Misra, Evan Morikawa,
+  Alec Radford, Matthew Knight, Miles Brundage, Mira Murati, Katie Mayer, Peter
+  Welinder, Bob McGrew, Dario Amodei, Sam McCandlish, Ilya Sutskever, and
+  Wojciech Zaremba.
+\newblock Evaluating large language models trained on code.
+\newblock \emph{arXiv preprint arXiv:2107.03374}, 2021.
+
+\bibitem[Chen et~al.(2024)Chen, Su, Zuo, Yang, Yuan, Chan, Yu, Lu, Hung, Qian,
+  Qin, Cong, Xie, Liu, Sun, and Zhou]{chen_agentverse_2024}
+Weize Chen, Yusheng Su, Jingwei Zuo, Cheng Yang, Chenfei Yuan, Chi-Min Chan,
+  Heyang Yu, Yaxi Lu, Yi-Hsin Hung, Chen Qian, Yujia Qin, Xin Cong, Ruobing
+  Xie, Zhiyuan Liu, Maosong Sun, and Jie Zhou.
+\newblock {AgentVerse}: Facilitating multi-agent collaboration and exploring
+  emergent behaviors.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Chen et~al.(2025)Chen, Yuan, Qian, Yang, Liu, and
+  Sun]{chen_optima_2025}
+Weize Chen, Jiarui Yuan, Chen Qian, Cheng Yang, Zhiyuan Liu, and Maosong Sun.
+\newblock {OPTIMA}: Optimizing effectiveness and efficiency for {LLM}-based
+  multi-agent system.
+\newblock In \emph{Findings of ACL}, 2025.
+\newblock arXiv:2410.08115.
+
+\bibitem[Chevalier et~al.(2023)Chevalier, Wettig, Ajith, and
+  Chen]{chevalier_autocompressors_2023}
+Alexis Chevalier, Alexander Wettig, Anirudh Ajith, and Danqi Chen.
+\newblock Adapting language models to compress contexts.
+\newblock In \emph{EMNLP}, pages 3829--3846, 2023.
+
+\bibitem[Clark and Schaefer(1989)]{clark_contributing_1989}
+Herbert~H. Clark and Edward~F. Schaefer.
+\newblock Contributing to discourse.
+\newblock \emph{Cognitive Science}, 13:\penalty0 259--294, 1989.
+
+\bibitem[Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
+  and Tafjord]{clark_arc_2018}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
+  Schoenick, and Oyvind Tafjord.
+\newblock Think you have solved question answering? try {ARC}, the {AI2}
+  reasoning challenge.
+\newblock \emph{arXiv preprint arXiv:1803.05457}, 2018.
+
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe_gsm8k_2021}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem[Cohen(1960)]{cohen_1960}
+Jacob Cohen.
+\newblock A coefficient of agreement for nominal scales.
+\newblock \emph{Educational and Psychological Measurement}, 20\penalty0
+  (1):\penalty0 37--46, 1960.
+
+\bibitem[Cohen(1988)]{cohen_statistical_1988}
+Jacob Cohen.
+\newblock \emph{Statistical Power Analysis for the Behavioral Sciences}.
+\newblock Lawrence Erlbaum Associates, 2nd edition, 1988.
+
+\bibitem[Core and Allen(1997)]{core_damsl_1997}
+Mark~G. Core and James~F. Allen.
+\newblock Coding dialogs with the {DAMSL} annotation scheme.
+\newblock In \emph{AAAI Fall Symposium on Communicative Action in Humans and
+  Machines}, 1997.
+
+\bibitem[Cram\'{e}r(1946)]{cramer_1946}
+Harald Cram\'{e}r.
+\newblock \emph{Mathematical Methods of Statistics}.
+\newblock Princeton University Press, 1946.
+
+\bibitem[Du et~al.(2025{\natexlab{a}})Du, Su, Li, Ding, Yang, Han, Tang, Zhu,
+  and You]{du_protocolbench_2025}
+Hongyi Du, Jiaqi Su, Jisen Li, Lijie Ding, Yingxuan Yang, Peixuan Han, Xiangru
+  Tang, Kunlun Zhu, and Jiaxuan You.
+\newblock Which {LLM} multi-agent protocol to choose? {ProtocolBench}
+  benchmarks communication protocols.
+\newblock \emph{arXiv preprint arXiv:2510.17149}, 2025{\natexlab{a}}.
+
+\bibitem[Du et~al.(2024)Du, Li, Torralba, Tenenbaum, and
+  Mordatch]{du_debate_2024}
+Yilun Du, Shuang Li, Antonio Torralba, Joshua~B. Tenenbaum, and Igor Mordatch.
+\newblock Improving factuality and reasoning in language models through
+  multiagent debate.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Du et~al.(2025{\natexlab{b}})Du, Wang, Bai, Cao, Zhu, Cheng, Zheng,
+  Chen, and Ying]{du_interlat_2025}
+Zhuoyun Du, Runze Wang, Huiyu Bai, Zouying Cao, Xiaoyong Zhu, Yu~Cheng,
+  Bo~Zheng, Wei Chen, and Haochao Ying.
+\newblock Enabling agents to communicate entirely in latent space.
+\newblock \emph{arXiv preprint arXiv:2511.09149}, 2025{\natexlab{b}}.
+
+\bibitem[Finin et~al.(1994)Finin, Fritzson, McKay, and
+  McEntire]{finin_kqml_1994}
+Tim Finin, Richard Fritzson, Don McKay, and Robin McEntire.
+\newblock {KQML} as an agent communication language.
+\newblock In \emph{CIKM}, pages 456--463. ACM, 1994.
+
+\bibitem[Foerster et~al.(2016)Foerster, Assael, de~Freitas, and
+  Whiteson]{foerster_dial_2016}
+Jakob Foerster, Ioannis~Alexandros Assael, Nando de~Freitas, and Shimon
+  Whiteson.
+\newblock Learning to communicate with deep multi-agent reinforcement learning.
+\newblock In \emph{NeurIPS}, 2016.
+
+\bibitem[{Foundation for Intelligent Physical Agents}(2002)]{fipa_acl_2002}
+{Foundation for Intelligent Physical Agents}.
+\newblock {FIPA} communicative act library specification.
+\newblock Technical report, FIPA, 2002.
+\newblock Document SC00037J.
+
+\bibitem[Geva et~al.(2021)Geva, Khashabi, Segal, Khot, Roth, and
+  Berant]{geva_strategyqa_2021}
+Mor Geva, Daniel Khashabi, Elad Segal, Tushar Khot, Dan Roth, and Jonathan
+  Berant.
+\newblock Did aristotle use a laptop? a question answering benchmark with
+  implicit reasoning strategies.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  9:\penalty0 346--361, 2021.
+
+\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart, Tang,
+  Song, and Steinhardt]{hendrycks_math_2021}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock In \emph{NeurIPS}, 2021.
+
+\bibitem[Hong et~al.(2024)Hong, Zhuge, Chen, Zheng, Cheng, Zhang, Wang, Wang,
+  Yau, Lin, Zhou, Ran, Xiao, Wu, and Schmidhuber]{hong_metagpt_2024}
+Sirui Hong, Mingchen Zhuge, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao
+  Zhang, Jinlin Wang, Zili Wang, Steven Ka~Shing Yau, Zijuan Lin, Liyang Zhou,
+  Chenyu Ran, Lingfeng Xiao, Chenglin Wu, and J{\"u}rgen Schmidhuber.
+\newblock {MetaGPT}: Meta programming for a multi-agent collaborative
+  framework.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Horovicz(2025)]{horovicz_agentshap_2025}
+Miriam Horovicz.
+\newblock {AgentSHAP}: Interpreting {LLM} agent tool importance with monte
+  carlo shapley value estimation.
+\newblock \emph{arXiv preprint arXiv:2512.12597}, 2025.
+
+\bibitem[Inoue et~al.(2025)Inoue, Lala, Skantze, and
+  Kawahara]{inoue_backchannel_2025}
+Koji Inoue, Divesh Lala, Gabriel Skantze, and Tatsuya Kawahara.
+\newblock Yeah, un, oh: Continuous and real-time backchannel prediction with
+  fine-tuning of voice activity projection.
+\newblock In \emph{NAACL}, 2025.
+
+\bibitem[Jefferson(1984)]{jefferson_acknowledgment_1984}
+Gail Jefferson.
+\newblock Notes on a systematic deployment of the acknowledgement tokens
+  ``yeah'' and ``mm hm''.
+\newblock \emph{Papers in Linguistics}, 17\penalty0 (2):\penalty0 197--216,
+  1984.
+
+\bibitem[Jiang et~al.(2023)Jiang, Wu, Lin, Yang, and Qiu]{jiang_llmlingua_2023}
+Huiqiang Jiang, Qianhui Wu, Chin-Yew Lin, Yuqing Yang, and Lili Qiu.
+\newblock {LLMLingua}: Compressing prompts for accelerated inference of large
+  language models.
+\newblock In \emph{EMNLP}, 2023.
+
+\bibitem[Jiang et~al.(2026)Jiang, Feng, Guo, Wen, and
+  Jin]{jiang_agentcomm_2026}
+Peiwen Jiang, Yushuo Feng, Jiajia Guo, Chao-Kai Wen, and Shi Jin.
+\newblock {AgentComm}: Semantic communication for embodied agents.
+\newblock \emph{arXiv preprint arXiv:2604.13558}, 2026.
+
+\bibitem[Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica]{kwon_vllm_2023}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph~E. Gonzalez, Hao Zhang, and Ion Stoica.
+\newblock Efficient memory management for large language model serving with
+  {PagedAttention}.
+\newblock In \emph{SOSP}, 2023.
+
+\bibitem[Lakens(2017)]{lakens_equivalence_2017}
+Dani{\"e}l Lakens.
+\newblock Equivalence tests: A practical primer for $t$ tests, correlations,
+  and meta-analyses.
+\newblock \emph{Social Psychological and Personality Science}, 8\penalty0
+  (4):\penalty0 355--362, 2017.
+
+\bibitem[Landis and Koch(1977)]{landis_koch_1977}
+J.~Richard Landis and Gary~G. Koch.
+\newblock The measurement of observer agreement for categorical data.
+\newblock \emph{Biometrics}, 33\penalty0 (1):\penalty0 159--174, 1977.
+
+\bibitem[LeCun et~al.(1990)LeCun, Denker, and Solla]{lecun_obd_1990}
+Yann LeCun, John~S. Denker, and Sara~A. Solla.
+\newblock Optimal brain damage.
+\newblock In \emph{NeurIPS}, pages 598--605, 1990.
+
+\bibitem[Li et~al.(2025{\natexlab{a}})Li, Zhao, Lee, and Wang]{li_agp_2025}
+Boyi Li, Zhonghan Zhao, Der-Horng Lee, and Gaoang Wang.
+\newblock Adaptive graph pruning for multi-agent communication.
+\newblock In \emph{ECAI}, 2025{\natexlab{a}}.
+\newblock arXiv:2506.02951.
+
+\bibitem[Li et~al.(2023)Li, Hammoud, Itani, Khizbullin, and
+  Ghanem]{li_camel_2023}
+Guohao Li, Hasan Abed Al~Kader Hammoud, Hani Itani, Dmitrii Khizbullin, and
+  Bernard Ghanem.
+\newblock {CAMEL}: Communicative agents for ``mind'' exploration of large
+  language model society.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Li et~al.(2025{\natexlab{b}})Li, Hasson, and Ghosh]{li_omac_2025}
+Shijun Li, Hilaf Hasson, and Joydeep Ghosh.
+\newblock {OMAC}: A holistic optimization framework for {LLM}-based multi-agent
+  collaboration.
+\newblock \emph{arXiv preprint arXiv:2505.11765}, 2025{\natexlab{b}}.
+
+\bibitem[Li et~al.(2025{\natexlab{c}})Li, Liu, and Yuen]{li_lacp_2025}
+Xin Li, Mengbing Liu, and Chau Yuen.
+\newblock {LLM} agent communication protocol ({LACP}) requires urgent
+  standardization: A telecom-inspired protocol is necessary.
+\newblock In \emph{NeurIPS 2025 AI4NextG Workshop}, 2025{\natexlab{c}}.
+\newblock arXiv:2510.13821.
+
+\bibitem[Lin et~al.(2026)Lin, Chen, Fang, Wang, and
+  Lin]{lin_supervisoragent_2026}
+Fulin Lin, Shaowen Chen, Ruishan Fang, Hongwei Wang, and Tao Lin.
+\newblock Stop wasting your tokens: Towards efficient runtime multi-agent
+  systems.
+\newblock In \emph{ICLR}, 2026.
+\newblock arXiv:2510.26585.
+
+\bibitem[Lin et~al.(2024)Lin, Tang, Tang, Yang, Chen, Wang, Xiao, Dang, Gan,
+  and Han]{lin_awq_2024}
+Ji~Lin, Jiaming Tang, Haotian Tang, Shang Yang, Wei-Ming Chen, Wei-Chen Wang,
+  Guangxuan Xiao, Xingyu Dang, Chuang Gan, and Song Han.
+\newblock {AWQ}: Activation-aware weight quantization for on-device {LLM}
+  compression and acceleration.
+\newblock In \emph{Proceedings of Machine Learning and Systems (MLSys)}, 2024.
+
+\bibitem[McNemar(1947)]{mcnemar_1947}
+Quinn McNemar.
+\newblock Note on the sampling error of the difference between correlated
+  proportions or percentages.
+\newblock \emph{Psychometrika}, 12\penalty0 (2):\penalty0 153--157, 1947.
+
+\bibitem[Qamar et~al.(2025)Qamar, Tong, and Huang]{qamar_dialogue_acts_2025}
+Ayesha Qamar, Jonathan Tong, and Ruihong Huang.
+\newblock Do {LLMs} understand dialogues? {A} case study on dialogue acts.
+\newblock In \emph{ACL}, pages 26219--26237, 2025.
+
+\bibitem[Qian and Skantze(2026)]{qian_backchannel_2026}
+Livia Qian and Gabriel Skantze.
+\newblock Aligning backchannel and dialogue context representations via
+  contrastive {LLM} fine-tuning.
+\newblock \emph{arXiv preprint arXiv:2604.16622}, 2026.
+
+\bibitem[Reimers and Gurevych(2019)]{reimers_sentence_bert_2019}
+Nils Reimers and Iryna Gurevych.
+\newblock Sentence-{BERT}: Sentence embeddings using siamese {BERT}-networks.
+\newblock In \emph{EMNLP}, 2019.
+
+\bibitem[Rizvi-Martel et~al.(2026)Rizvi-Martel, Bhattamishra, Rathi, Rabusseau,
+  and Hahn]{rizvi_martel_communication_2026}
+Michael Rizvi-Martel, Satwik Bhattamishra, Neil Rathi, Guillaume Rabusseau, and
+  Michael Hahn.
+\newblock Benefits and limitations of communication in multi-agent reasoning.
+\newblock In \emph{ICLR}, 2026.
+\newblock arXiv:2510.13903.
+
+\bibitem[Sanh et~al.(2019)Sanh, Debut, Chaumond, and
+  Wolf]{sanh_distilbert_2019}
+Victor Sanh, Lysandre Debut, Julien Chaumond, and Thomas Wolf.
+\newblock {DistilBERT}, a distilled version of {BERT}: smaller, faster, cheaper
+  and lighter.
+\newblock \emph{arXiv preprint arXiv:1910.01108}, 2019.
+\newblock NeurIPS 2019 EMC$^2$ Workshop.
+
+\bibitem[Schegloff(1982)]{schegloff_discourse_1982}
+Emanuel~A. Schegloff.
+\newblock Discourse as an interactional achievement: Some uses of ``uh huh''
+  and other things that come between sentences.
+\newblock In Deborah Tannen, editor, \emph{Analyzing Discourse: Text and Talk},
+  pages 71--93. Georgetown University Press, 1982.
+
+\bibitem[Schuirmann(1987)]{schuirmann_tost_1987}
+Donald~J. Schuirmann.
+\newblock A comparison of the two one-sided tests procedure and the power
+  approach for assessing the equivalence of average bioavailability.
+\newblock \emph{Journal of Pharmacokinetics and Biopharmaceutics}, 15\penalty0
+  (6):\penalty0 657--680, 1987.
+
+\bibitem[Searle(1969)]{searle_speech_acts_1969}
+John~R. Searle.
+\newblock \emph{Speech Acts: An Essay in the Philosophy of Language}.
+\newblock Cambridge University Press, 1969.
+
+\bibitem[Stolcke et~al.(2000)Stolcke, Ries, Coccaro, Shriberg, Bates, Jurafsky,
+  Taylor, Martin, Van Ess-Dykema, and Meteer]{stolcke_dialogue_acts_2000}
+Andreas Stolcke, Klaus Ries, Noah Coccaro, Elizabeth Shriberg, Rebecca Bates,
+  Daniel Jurafsky, Paul Taylor, Rachel Martin, Carol Van Ess-Dykema, and Marie
+  Meteer.
+\newblock Dialogue act modeling for automatic tagging and recognition of
+  conversational speech.
+\newblock volume~26, pages 339--373, 2000.
+
+\bibitem[Sukhbaatar et~al.(2016)Sukhbaatar, Szlam, and
+  Fergus]{sukhbaatar_commnet_2016}
+Sainbayar Sukhbaatar, Arthur Szlam, and Rob Fergus.
+\newblock Learning multiagent communication with backpropagation.
+\newblock In \emph{NeurIPS}, 2016.
+
+\bibitem[Wang et~al.(2025{\natexlab{a}})Wang, Wang, Tang, Li, Chen, Liang, and
+  He]{wang_megaagent_2025}
+Qian Wang, Tianyu Wang, Zhenheng Tang, Qinbin Li, Nuo Chen, Jingsheng Liang,
+  and Bingsheng He.
+\newblock {MegaAgent}: A large-scale autonomous {LLM}-based multi-agent system
+  without predefined {SOPs}.
+\newblock In \emph{Findings of ACL}, 2025{\natexlab{a}}.
+\newblock arXiv:2408.09955.
+
+\bibitem[Wang and Tong(2025)]{wang_dagp_2025}
+Siqi Wang and Guangmo Tong.
+\newblock {DAGP}: Difficulty-aware graph pruning for {LLM}-based multi-agent
+  system.
+\newblock In \emph{CIKM}, 2025.
+
+\bibitem[Wang et~al.(2025{\natexlab{b}})Wang, Tan, Chen, Zhou, Chen, and
+  Li]{wang_anymac_2025}
+Song Wang, Zhen Tan, Zihan Chen, Shuang Zhou, Tianlong Chen, and Jundong Li.
+\newblock {AnyMAC}: Cascading flexible multi-agent collaboration via next-agent
+  prediction.
+\newblock In \emph{EMNLP}, pages 11555--11567, 2025{\natexlab{b}}.
+
+\bibitem[Wang et~al.(2026)Wang, Xiong, Liu, Zhou, Ding, Zhang, and
+  Zhang]{wang_agentdropout_v2_2026}
+Yutong Wang, Siyuan Xiong, Xuebo Liu, Wenkang Zhou, Liang Ding, Miao Zhang, and
+  Min Zhang.
+\newblock {AgentDropoutV2}: Optimizing information flow in multi-agent systems
+  via test-time rectify-or-reject pruning.
+\newblock \emph{arXiv preprint arXiv:2602.23258}, 2026.
+
+\bibitem[Wang et~al.(2025{\natexlab{c}})Wang, Wang, Liu, Ding, Zhang, Liu, and
+  Zhang]{wang_agentdropout_2025}
+Zhexuan Wang, Yutong Wang, Xuebo Liu, Liang Ding, Miao Zhang, Jie Liu, and Min
+  Zhang.
+\newblock {AgentDropout}: Dynamic agent elimination for token-efficient and
+  high-performance {LLM}-based multi-agent collaboration.
+\newblock In \emph{ACL}, pages 24013--24035, 2025{\natexlab{c}}.
+
+\bibitem[Wu et~al.(2024)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang,
+  Liu, Awadallah, White, Burger, and Wang]{wu_autogen_2024}
+Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu,
+  Li~Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed~Hassan Awadallah,
+  Ryen~W. White, Doug Burger, and Chi Wang.
+\newblock {AutoGen}: Enabling next-gen {LLM} applications via multi-agent
+  conversation.
+\newblock In \emph{COLM}, 2024.
+
+\bibitem[Xia et~al.(2026)Xia, Wang, Zhang, Weng, Cao, and
+  Liew]{xia_hivemind_2026}
+Yihan Xia, Taotao Wang, Shengli Zhang, Zhangyuhua Weng, Bin Cao, and
+  Soung~Chang Liew.
+\newblock {HiveMind}: Contribution-guided online prompt optimization of {LLM}
+  multi-agent systems.
+\newblock In \emph{AAAI}, 2026.
+\newblock arXiv:2512.06432.
+
+\bibitem[Xiao et~al.(2026)Xiao, Gao, Peng, and Xiong]{xiao_agentdiet_2026}
+Yuan-An Xiao, Pengfei Gao, Chao Peng, and Yingfei Xiong.
+\newblock Reducing cost of {LLM} agents with trajectory reduction.
+\newblock In \emph{FSE}, 2026.
+\newblock arXiv:2509.23586.
+
+\bibitem[Yan et~al.(2025)Yan, Zhou, Zhang, Zhang, Zhou, Miao, Li, Li, and
+  Zhang]{yan_beyond_self_talk_2025}
+Bingyu Yan, Zhibo Zhou, Litian Zhang, Lian Zhang, Ziyi Zhou, Dezhuang Miao,
+  Zhoujun Li, Chaozhuo Li, and Xiaoming Zhang.
+\newblock Beyond self-talk: A communication-centric survey of {LLM}-based
+  multi-agent systems.
+\newblock \emph{arXiv preprint arXiv:2502.14321}, 2025.
+
+\bibitem[Ye et~al.(2025)Ye, Gao, Ma, Wang, Fu, Chung, Lin, Liu, Zhang, Zhuo,
+  and Chen]{ye_kvcomm_2025}
+Hancheng Ye, Zhengqi Gao, Mingyuan Ma, Qinsi Wang, Yuzhe Fu, Ming-Yu Chung,
+  Yueqian Lin, Zhijian Liu, Jianyi Zhang, Danyang Zhuo, and Yiran Chen.
+\newblock {KVCOMM}: Online cross-context {KV}-cache communication for efficient
+  {LLM}-based multi-agent systems.
+\newblock In \emph{NeurIPS}, 2025.
+
+\bibitem[Yngve(1970)]{yngve_getting_1970}
+Victor~H. Yngve.
+\newblock On getting a word in edgewise.
+\newblock In \emph{Papers from the Sixth Regional Meeting of the Chicago
+  Linguistic Society}, pages 567--578, 1970.
+
+\bibitem[Zeng et~al.(2025)Zeng, Huang, Jiang, Liu, Jin, Tiana, Li, and
+  Xu]{zeng_s2mad_2025}
+Yuting Zeng, Weizhe Huang, Lei Jiang, Tongxuan Liu, Xitai Jin, Chen~Tianying
+  Tiana, Jing Li, and Xiaohua Xu.
+\newblock {S$^2$-MAD}: Breaking the token barrier to enhance multi-agent debate
+  efficiency.
+\newblock In \emph{NAACL}, 2025.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Yue, Li, Yun, Wan, Wang, Cheng,
+  Yu, and Chen]{zhang_agentprune_2025}
+Guibin Zhang, Yanwei Yue, Zhixun Li, Sukwon Yun, Guancheng Wan, Kun Wang, Dawei
+  Cheng, Jeffrey~Xu Yu, and Tianlong Chen.
+\newblock Cut the crap: An economical communication pipeline for {LLM}-based
+  multi-agent systems.
+\newblock In \emph{ICLR}, 2025{\natexlab{a}}.
+\newblock arXiv:2410.02506.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Zhai, Lin, Kleiman,
+  Zapata-Rivera, Forsyth, Jiang, Hu, and
+  Graesser]{zhang_communication_strategies_2025}
+Liang Zhang, Xiaoming Zhai, Jionghao Lin, Jennifer Kleiman, Diego
+  Zapata-Rivera, Carol Forsyth, Yang Jiang, Xiangen Hu, and Arthur~C. Graesser.
+\newblock Exploring communication strategies for collaborative {LLM} agents in
+  mathematical problem-solving.
+\newblock In \emph{AIED}, 2025{\natexlab{b}}.
+\newblock arXiv:2507.17753.
+
+\bibitem[Zhang et~al.(2025{\natexlab{c}})Zhang, Zhao, Wang, Chen, Zhang, Zhang,
+  Wang, and Wen]{safesieve_2025}
+Ruijia Zhang, Xinyan Zhao, Ruixiang Wang, Sigen Chen, Guibin Zhang, An~Zhang,
+  Kun Wang, and Qingsong Wen.
+\newblock {SafeSieve}: From heuristics to experience in progressive pruning for
+  {LLM}-based multi-agent communication.
+\newblock \emph{arXiv preprint arXiv:2508.11733}, 2025{\natexlab{c}}.
+
+\bibitem[Zhou et~al.(2025)Zhou, Feng, Julaiti, and
+  Yang]{zhou_why_agents_communicate_2025}
+Pengcheng Zhou, Yinglun Feng, Halimulati Julaiti, and Zhongliang Yang.
+\newblock Why do {AI} agents communicate in human language?
+\newblock \emph{arXiv preprint arXiv:2506.02739}, 2025.
+
+\bibitem[Zhu et~al.(2025)Zhu, Du, Hong, Yang, Guo, Wang, Wang, Qian, Tang, Ji,
+  and You]{zhu_multiagentbench_2025}
+Kunlun Zhu, Hongyi Du, Zhaochen Hong, Xiaocheng Yang, Shuyi Guo, Zhe Wang,
+  Zhenhailong Wang, Cheng Qian, Xiangru Tang, Heng Ji, and Jiaxuan You.
+\newblock {MultiAgentBench}: Evaluating the collaboration and competition of
+  {LLM} agents.
+\newblock In \emph{ACL}, 2025.
+
+\bibitem[Zou et~al.(2025)Zou, Yang, Qiu, Li, Tieu, Lu, Shen, Tong, Choi, He,
+  Zou, Wang, and Yang]{zou_latentmas_2025}
+Jiaru Zou, Xiyuan Yang, Ruizhong Qiu, Gaotang Li, Katherine Tieu, Pan Lu,
+  Ke~Shen, Hanghang Tong, Yejin Choi, Jingrui He, James Zou, Mengdi Wang, and
+  Ling Yang.
+\newblock Latent collaboration in multi-agent systems.
+\newblock \emph{arXiv preprint arXiv:2511.20639}, 2025.
+
+\end{thebibliography}

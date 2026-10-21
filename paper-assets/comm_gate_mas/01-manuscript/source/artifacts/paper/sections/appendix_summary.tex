@@ -1,0 +1,79 @@
+\section{Cross-Experiment Summary}
+\label{app:summary}
+
+Table~\ref{app:tab:full_matrix} consolidates all oracle and pruning experiments across backbones, scales, domains, and temperatures.
+Cohen's~$h$ quantifies effect size on the arcsine-difference scale; all non-boundary $|h| < 0.20$, falling in the ``negligible'' range by conventional thresholds \citep{cohen_statistical_1988}.
+The 72B 5-seed result ($h = +0.012$) confirms negligible effect size at the largest scale tested.
+
+\begin{table}[ht]
+\centering
+\caption{Full cross-experiment pruning matrix. $\Delta$: pruned $-$ baseline accuracy (pp). $p$: McNemar $\chi^2$ with continuity correction (single-run) or paired $t$ (multi-seed); exact binomial $p$-values agree within 0.001 for all entries. TOST: equivalence $p$ at stated margin. $h$: Cohen's arcsine effect size. Non-boundary $|h| < 0.20$ (negligible); Qwen3-8B reaches ``small'' ($|h| = 0.38$); MATH at $N{=}200$ is negligible ($|h| = 0.048$). $^\dagger$Fisher combined across two independent $N{=}500$ runs. $^\ddagger$Heuristic detector, not oracle. $^\S$Simulate pruning (offline with oracle labels). $^\|$\,Single-seed; TOST requires multi-seed variance estimate. NI: one-sided non-inferiority (symmetric TOST fails due to positive outliers, not degradation).}
+\label{app:tab:full_matrix}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccrccccc}
+\toprule
+\textbf{Backbone} & \textbf{Domain} & \textbf{Temp} & $N$ & \textbf{Seeds} & \textbf{Protocol} & $\Delta$ \textbf{(pp)} & $p$ & \textbf{TOST} & $h$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Oracle pruning (GPT-4o 5-class labels)}} \\
+\midrule
+Qwen-7B & GSM8K & 0 & 500 & 1 & Oracle & $+0.8$ & .343 & --- & $+.026$ \\
+Qwen-7B & GSM8K & 0.7 & 500 & 1 & Oracle & $+0.6$ & .710 & --- & $+.018$ \\
+Qwen-7B & StratQA & 0 & 500 & 1 & Oracle & $+0.2$ & 1.000 & --- & $+.005$ \\
+Llama-8B & GSM8K & 0 & 500 & 1 & Oracle & $-0.6$ & .710 & --- & $-.016$ \\
+Llama-8B & GSM8K & 0.7 & 1{,}000 & 2$^\dagger$ & Oracle & $-2.2$ & .291 & --- & $-.054$ \\
+Llama-8B & StratQA & 0 & 238 & 1 & Oracle & $+5.0$ & .180 & --- & $+.111$ \\
+Qwen-72B & GSM8K & 0 & 265$\times$5 & 5 & Oracle & $\qwenSevenTwoBDelta{}$ & --- & $\pm$1\,pp: \qwenSevenTwoBPvalue{}$^*$ & $+.012$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Multi-seed replication}} \\
+\midrule
+Qwen-7B & GSM8K & 0 & 200$\times$10 & 10 & Oracle & $+0.40$ & --- & $\pm$1\,pp: .048$^*$ & $+.013$ \\
+Qwen-7B & GSM8K & 0 & 200$\times$10 & 10 & Heuristic$^\ddagger$ & $-0.05$ & .876 & $\pm$1\,pp: .007$^{**}$ & $-.002$ \\
+Llama-8B & GSM8K & 0 & ${\sim}$194$\times$10 & 10 & Oracle & $+2.08$ & .023$^*$ & $\pm$3\,pp: ${<}.001^{***}$ & $+.057$ \\
+Llama-8B & StratQA & 0 & 200$\times$8 & 8 & Heuristic$^\ddagger$ & $+2.81$ & .084 & $\pm$3\,pp: .002$^{**}$ & $+.060$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Temperature robustness (heuristic detector)}} \\
+\midrule
+Qwen-7B & GSM8K & 0.7 & 500 & 1 & Heuristic$^\ddagger$ & $-0.6$ & .728 & --- & $-.019$ \\
+Llama-8B & GSM8K & 0.7 & 500 & 1 & Heuristic$^\ddagger$ & $-3.4$ & .100 & --- & $-.084$ \\
+Gemma-9B & GSM8K & 0.7 & 100 & 1 & Offline & $+3.0$ & .453 & --- & $+.076$ \\
+Qwen-7B & GSM8K & 0.3 & 200$\times$5 & 5 & Heuristic$^\ddagger$ & $+0.10$ & .870 & $\pm$3\,pp: .003$^{**}$ & $+.003$ \\
+Qwen-7B & GSM8K & 0.5 & 200$\times$4 & 4 & Heuristic$^\ddagger$ & $+0.25$ & .663 & $\pm$3\,pp: .004$^{**}$ & $+.008$ \\
+Qwen-7B & GSM8K & 0.7 & 200$\times$5 & 5 & Heuristic$^\ddagger$ & $-1.20$ & .328 & $\pm$3\,pp: .085 & $-.042$ \\
+Qwen-7B & StratQA & 0.3 & 200$\times$5 & 5 & Heuristic$^\ddagger$ & $+0.70$ & .699 & $-$3\,pp NI: .036$^*$ & $+.016$ \\
+Qwen-7B & StratQA & 0.5 & 200$\times$5 & 5 & Heuristic$^\ddagger$ & $+1.60$ & .278 & $-$3\,pp NI: .012$^*$ & $+.037$ \\
+Qwen-7B & StratQA & 0.7 & 200$\times$5 & 5 & Heuristic$^\ddagger$ & $-0.20$ & .906 & $\pm$3\,pp: .075 & $-.005$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Scale validation (Qwen2.5 family)}} \\
+\midrule
+Qwen-14B & GSM8K & 0 & 100 & 1 & Simulate$^\S$ & $0.0$ & --- & --- & $.000$ \\
+Qwen-72B & GSM8K & 0 & 100 & 1 & Heuristic$^\ddagger$ & $0.0$ & --- & --- & $.000$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Cross-domain offline (ack-only vs.\ baseline)}} \\
+\midrule
+Qwen-7B & ARC & 0 & 250 & 1 & Offline & $+0.8$ & --- & --- & $+.019$ \\
+Llama-8B & ARC & 0 & 250 & 1 & Simulate$^\S$ & $+4.0$ & .013$^*$ & --- & $+.088$ \\
+Gemma-9B & GSM8K & 0 & 96 & 1 & Offline & $-1.0$ & --- & --- & $-.023$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Online heuristic pruning (from-scratch)}} \\
+\midrule
+Llama-8B & GSM8K & 0 & 1{,}000 & 1 & Online & $+2.1$ & .004$^{**}$ & --- & $+.055$ \\
+Qwen-7B & StratQA & 0 & 200$\times$5 & 5 & Heuristic$^\ddagger$ & $+0.70$ & .160 & $\pm$3\,pp: ${<}.001^{**}$ & $+.015$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Random baseline}} \\
+\midrule
+Qwen-7B & GSM8K & 0 & 500 & 1 & Token-matched & $+0.8$ & .343 & --- & $+.026$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Topology / agent count}} \\
+\midrule
+Qwen-7B (3-agent) & GSM8K & 0 & 100 & 1 & Online & $-1.0$ & 1.000 & ---$^\|$ & $-.036$ \\
+Qwen-7B (3-agent) & GSM8K & 0 & 100$\times$3 & 3 & Online & $-0.67$ & .057 & $\pm$3\,pp: .003$^{**}$ & $-.022$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Boundary conditions (expected degradation)}} \\
+\midrule
+Qwen3-8B & GSM8K & 0 & 100 & 1 & Heuristic$^\ddagger$ (char$<$80) & $-14.0$ & ${<}.03^{*}$ & --- & $-.380$ \\
+Qwen-7B & MATH & 0 & 200 (102\,v) & 1 & Online & $-2.0$ & .625 & --- & $-.048$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

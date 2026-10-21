@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcf5d06a1d2ffb8bcc08",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4054,
+    "sha256": "7746a6dd2a2d13db7c70b03fa9caed66f0977d4eb47caad5bb361687d454cd62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-04-27T01:54:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 **只能用 cuda:1**（gpu_ids=[1]）。cuda:0/2/3 属于其他项目，D172 因 cuda:0 违规被终止过\n- oracle 实验 **必须用 GPT-4o** 做标注（D171），不能换 72B AWQ 或其他本地模型替代\n- AutoDL 服务器 **无法直接访问 OpenAI API**（DNS 污染 + proxy 仅支持 HF/GitHub），这是 oracle_online 实验的根本阻塞\n- 实验结果必须附 `cat result.json | head` + `ls -la` 原始文件输出（D149 数据诚信事件教训，不接受没有文件证据的 metrics）\n- 论文中不得出现 \"detector-dependent\" 归因（memory.md 已修正为 backbone-specific）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westb-4x6000-a` (connect.westb.seetacloud.com)，账户 root\n- 工作目录：`/root/autodl-tmp/comm_gate_mas`\n- Python 环境：待新 session 探测确认（上轮用 conda base）\n- 模型：vLLM 部署 Llama 用 cuda:1（上轮已验证可启动，但 D173 orchestrator launch failed）\n- 数据：GSM8K / StratQA / ARC 数据在 outputs/ 下（18 files, 13270 lines synced）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：**无**（两个 Worker 均 failed，无 RUNNING 实验）\n- 无活跃 tmux session / cron 任务\n\n### 3. 📊 当前状态\n**刚做完**：R12 全部修复 + submit_paper_to_review（6 大类修复全部到位：claim 矛盾 ✅、TOST 降级 ✅、单智能体说明 ✅、Gemma 降级 ✅、token 压缩 ✅、匿名仓库 ✅）。Provenance 73/73 完整。\n\n**刚失败**：\n- `worker_gpu_oracle_online_llama_v2_launch` — D173 架构（本地 vLLM + orchestrator 避免调 OpenAI API）launch 立即 failed，根因未定位\n- `worker_code_page_compression` — 也 failed\n\n**Registry**：88 实验（success 65 / negative 9 / failed 3）。无 RUNNING / PREPARING。\n**等待**：R12 审稿反馈（Review 团队 Group C 在处理）。NeurIPS 投稿审批卡片待用户确认。\n\n### 4. 📋 待办\n- Agent 新 session 启动 → 立即派诊断任务：SSH 到服务器检查 (a) vLLM 能否在 cuda:1 单独启动 (b) orchestrator 配置文件是否正确 (c) 确认 D173 架构具体失败点\n- vLLM 诊断 PASS → 修复 orchestrator 配置，重启 oracle_online_llama_v2（cuda:1）\n- vLLM 诊断 FAIL 或修复 > 1h → fallback 到 P2 (e2e_llama_gsm8k_n300_clean)，cuda:1 不能空\n- GPU 实验启动后 → 并行派非 GPU 任务：NeurIPS 提交材料检查（编译/页数/宏一致性/匿名化）+ 匿名仓库清单\n- R12 审稿反馈返回 → 按 review-report-action skill 处理（Holistic Pass → Per-Comment Action Matrix）\n- oracle_online 如果最终无法解决 API 访问 → 考虑预计算方案（本地跑 GPT-4o annotation batch，scp 上传标注文件到服务器）或向用户申请服务器端 API 代理\n\n### 5. 🎯 战略上下文\n**核心结论**：ack 消息展现\"高扰动敏感性 + 可安全剪枝\"的悖离，且该效应在 7B→72B 范围内 scale-stable。双 backbone (Llama + Qwen) 均 non-inferior。\n\n**决策链关键节点**：\n- D170: 审批 oracle_online 3-seed Llama（科学目的：分离 heuristic over-suppression vs true ack pruning effect）\n- D171: 必须用 GPT-4o → D172: cuda:0 违规终止 → D173: 本地 orchestrator → D174: launch failed, RESET BOTH\n\n**最容易判断错的事**：\n- oracle_online_llama 的科学意义：heuristic pruning +2.1pp 可能是 over-suppression artifact（74.4% suppression vs ~45% true ack rate）。如果 oracle pruning 也 ≥+2pp → ack pruning 本身有效；如果 ~0pp → +2.1pp 是假阳性。这决定论文 Llama 那半边的 claim 强度\n- R12 审稿反馈处理 ≠ 我方执行缺口。6 大类修复已全部做完提交，当前等的是 Review 团队返回新意见\n- NeurIPS DDL 极近（abstract 5/3-4, paper 5/5-6），非 GPU 任务（提交检查、匿名仓库）不能再拖\n- AutoDL 服务器的 OpenAI API 访问问题是结构性阻塞，不是临时网络故障，简单重试不会解决\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

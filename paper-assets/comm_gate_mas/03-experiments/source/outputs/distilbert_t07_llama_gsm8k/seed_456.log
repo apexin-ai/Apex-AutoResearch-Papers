@@ -1,0 +1,13 @@
+2026-05-04 13:27:02,875 INFO Raised fd limit from 1024 to 65535
+Traceback (most recent call last):
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 2703, in <module>
+    main()
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 2685, in main
+    online_main(args)
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 1468, in online_main
+    cfg = load_config(args.config)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/comm_gate_mas/src/trace_collection.py", line 38, in load_config
+    with open(path) as f:
+         ^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'configs/_tmp_t07_port8002.yaml'

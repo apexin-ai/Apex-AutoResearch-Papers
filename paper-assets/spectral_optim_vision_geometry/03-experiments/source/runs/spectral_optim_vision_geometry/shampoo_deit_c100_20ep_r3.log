@@ -1,0 +1,12 @@
+/root/miniconda3/lib/python3.12/site-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+model=deit_small (deit_small_patch16_224), params=21.7M, optimizer=shampoo, lr=0.001, wd=0.01, device=cuda:0
+epoch=1, train_loss=3.3597, val_acc=33.87%, time=127.0s
+/root/miniconda3/lib/python3.12/site-packages/heavyball/utils.py:3656: UserWarning: Learning rate changed between steps. This is an experimental feature and only supported with multi_tensor=True (currently multi_tensor=True).
+  warnings.warn(msg)
+epoch=2, train_loss=2.1996, val_acc=47.26%, time=125.4s
+epoch=3, train_loss=1.6269, val_acc=54.00%, time=126.1s
+epoch=4, train_loss=1.2035, val_acc=57.06%, time=200.4s
+epoch=5, train_loss=0.8281, val_acc=58.22%, time=125.7s
+bash: line 1: 526208 Killed                  timeout 86400 env bash -c '/root/miniconda3/bin/python /root/spectral_optim_vision_geometry/baseline_train.py --model deit_small --optimizer shampoo --lr 1e-3 --epochs 20 --gpu 0 --weight-decay 0.01 --seed 42 2>&1 | tee ~/runs/spectral_optim_vision_geometry/shampoo_deit_c100_20ep_r3.log'
+EXIT_CODE=137

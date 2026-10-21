@@ -1,0 +1,120 @@
+{
+  "task1_me_quad": {
+    "gemma_rr": {
+      "n": 895,
+      "n_func_types": 4,
+      "func_types": [
+        "information_provision",
+        "coordination",
+        "acknowledgment",
+        "reasoning_guidance"
+      ],
+      "linear_lrt_chi2": 23.8,
+      "linear_lrt_p": 2.7e-05,
+      "quad_lrt_chi2": 1.47,
+      "quad_lrt_p": 0.689263,
+      "r2m_linear": 0.1122,
+      "r2m_quad": 0.3407,
+      "icc_quad": 0.1236,
+      "pos2_lrt_chi2": 278.75,
+      "pos2_p": 0.0
+    },
+    "llama_rr": {
+      "n": 868,
+      "n_func_types": 4,
+      "func_types": [
+        "acknowledgment",
+        "reasoning_guidance",
+        "verification",
+        "information_provision"
+      ],
+      "linear_lrt_chi2": 16.31,
+      "linear_lrt_p": 0.000978,
+      "quad_lrt_chi2": 14.94,
+      "quad_lrt_p": 0.001872,
+      "r2m_linear": 0.0233,
+      "r2m_quad": 0.0235,
+      "icc_quad": 0.2964,
+      "pos2_lrt_chi2": 0.46,
+      "pos2_p": 0.496303
+    }
+  },
+  "task2_llama_cv": {
+    "full": {
+      "f1": 0.8045,
+      "precision": 0.7421,
+      "recall": 0.8784,
+      "tp": 607,
+      "fp": 211,
+      "fn": 84,
+      "tn": 568
+    },
+    "cv_mean": {
+      "f1": 0.804,
+      "precision": 0.743,
+      "recall": 0.878
+    },
+    "cv_std": {
+      "f1": 0.016,
+      "precision": 0.017,
+      "recall": 0.04
+    },
+    "folds": [
+      {
+        "fold": 1,
+        "f1": 0.8157894736842105,
+        "precision": 0.7469879518072289,
+        "recall": 0.8985507246376812,
+        "n": 294
+      },
+      {
+        "fold": 2,
+        "f1": 0.8080808080808081,
+        "precision": 0.7547169811320755,
+        "recall": 0.8695652173913043,
+        "n": 294
+      },
+      {
+        "fold": 3,
+        "f1": 0.8054607508532423,
+        "precision": 0.7612903225806451,
+        "recall": 0.855072463768116,
+        "n": 294
+      },
+      {
+        "fold": 4,
+        "f1": 0.777027027027027,
+        "precision": 0.7278481012658228,
+        "recall": 0.8333333333333334,
+        "n": 294
+      },
+      {
+        "fold": 5,
+        "f1": 0.8150470219435737,
+        "precision": 0.7222222222222222,
+        "recall": 0.935251798561151,
+        "n": 294
+      }
+    ]
+  },
+  "task3_binomial_ci": {
+    "Qwen": {
+      "N": 719,
+      "k": 0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.005117
+    },
+    "Gemma": {
+      "N": 73,
+      "k": 0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.049277
+    },
+    "Llama": {
+      "N": 691,
+      "k": 0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.005324
+    }
+  }
+}

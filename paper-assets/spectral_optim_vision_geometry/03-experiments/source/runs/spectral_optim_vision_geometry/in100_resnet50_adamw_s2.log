@@ -1,0 +1,184 @@
+ImageNet-100 loaded: train=55218, val=10000, classes=100
+model=resnet50 (resnet50), params=23.7M, optimizer=adamw, device=cuda:0, batches/epoch=431
+  batch 50/431, loss=4.6088, elapsed=7.7s
+  batch 100/431, loss=4.4955, elapsed=14.2s
+  batch 150/431, loss=4.2944, elapsed=20.3s
+  batch 200/431, loss=4.4011, elapsed=26.5s
+  batch 250/431, loss=4.1736, elapsed=32.7s
+  batch 300/431, loss=4.1780, elapsed=38.8s
+  batch 350/431, loss=4.1958, elapsed=45.1s
+  batch 400/431, loss=4.2550, elapsed=51.1s
+epoch=1, train_loss=4.3748, val_acc=7.22%, time=66.9s
+  batch 50/431, loss=4.0662, elapsed=6.6s
+  batch 100/431, loss=4.0298, elapsed=12.6s
+  batch 150/431, loss=4.1167, elapsed=18.5s
+  batch 200/431, loss=4.1174, elapsed=24.4s
+  batch 250/431, loss=3.9442, elapsed=30.4s
+  batch 300/431, loss=3.8327, elapsed=36.4s
+  batch 350/431, loss=3.8979, elapsed=42.5s
+  batch 400/431, loss=3.8990, elapsed=48.4s
+epoch=2, train_loss=4.0508, val_acc=9.86%, time=64.0s
+  batch 50/431, loss=3.9403, elapsed=6.9s
+  batch 100/431, loss=3.8768, elapsed=12.8s
+  batch 150/431, loss=3.8613, elapsed=18.9s
+  batch 200/431, loss=3.7725, elapsed=25.0s
+  batch 250/431, loss=3.9259, elapsed=31.2s
+  batch 300/431, loss=3.7364, elapsed=37.3s
+  batch 350/431, loss=3.7141, elapsed=43.2s
+  batch 400/431, loss=3.9256, elapsed=49.2s
+epoch=3, train_loss=3.8145, val_acc=15.36%, time=64.7s
+  batch 50/431, loss=3.8453, elapsed=6.7s
+  batch 100/431, loss=3.7254, elapsed=13.1s
+  batch 150/431, loss=3.7178, elapsed=19.0s
+  batch 200/431, loss=3.5120, elapsed=24.9s
+  batch 250/431, loss=3.7529, elapsed=30.8s
+  batch 300/431, loss=3.6148, elapsed=36.8s
+  batch 350/431, loss=3.4622, elapsed=42.7s
+  batch 400/431, loss=3.7756, elapsed=48.9s
+epoch=4, train_loss=3.6001, val_acc=18.70%, time=64.5s
+  batch 50/431, loss=3.3991, elapsed=6.8s
+  batch 100/431, loss=3.4027, elapsed=13.0s
+  batch 150/431, loss=3.4404, elapsed=19.1s
+  batch 200/431, loss=3.6222, elapsed=25.0s
+  batch 250/431, loss=3.2784, elapsed=31.0s
+  batch 300/431, loss=3.6796, elapsed=36.9s
+  batch 350/431, loss=3.4923, elapsed=42.8s
+  batch 400/431, loss=3.3035, elapsed=48.9s
+epoch=5, train_loss=3.3979, val_acc=24.07%, time=64.3s
+  batch 50/431, loss=3.3864, elapsed=6.7s
+  batch 100/431, loss=3.2916, elapsed=12.8s
+  batch 150/431, loss=3.2702, elapsed=18.9s
+  batch 200/431, loss=3.3870, elapsed=25.0s
+  batch 250/431, loss=3.1170, elapsed=31.0s
+  batch 300/431, loss=3.0810, elapsed=37.4s
+  batch 350/431, loss=3.2399, elapsed=43.4s
+  batch 400/431, loss=3.4098, elapsed=49.5s
+epoch=6, train_loss=3.2249, val_acc=26.91%, time=65.3s
+  batch 50/431, loss=3.3576, elapsed=6.9s
+  batch 100/431, loss=3.2396, elapsed=12.9s
+  batch 150/431, loss=3.0578, elapsed=18.9s
+  batch 200/431, loss=3.1470, elapsed=24.8s
+  batch 250/431, loss=3.0307, elapsed=30.8s
+  batch 300/431, loss=3.0415, elapsed=36.8s
+  batch 350/431, loss=3.1485, elapsed=42.8s
+  batch 400/431, loss=3.0587, elapsed=48.7s
+epoch=7, train_loss=3.0717, val_acc=30.50%, time=64.1s
+  batch 50/431, loss=2.9339, elapsed=6.8s
+  batch 100/431, loss=3.2540, elapsed=12.9s
+  batch 150/431, loss=2.8342, elapsed=18.9s
+  batch 200/431, loss=2.7888, elapsed=24.9s
+  batch 250/431, loss=2.8567, elapsed=31.0s
+  batch 300/431, loss=2.8417, elapsed=37.2s
+  batch 350/431, loss=2.7266, elapsed=43.4s
+  batch 400/431, loss=2.8826, elapsed=49.4s
+epoch=8, train_loss=2.9268, val_acc=31.38%, time=64.9s
+  batch 50/431, loss=2.9189, elapsed=6.8s
+  batch 100/431, loss=2.6483, elapsed=12.8s
+  batch 150/431, loss=2.8023, elapsed=18.7s
+  batch 200/431, loss=2.8143, elapsed=24.8s
+  batch 250/431, loss=2.8081, elapsed=30.7s
+  batch 300/431, loss=2.9932, elapsed=36.7s
+  batch 350/431, loss=2.6108, elapsed=42.7s
+  batch 400/431, loss=2.6643, elapsed=48.6s
+epoch=9, train_loss=2.8041, val_acc=35.65%, time=64.0s
+  batch 50/431, loss=2.5261, elapsed=6.9s
+  batch 100/431, loss=2.7286, elapsed=13.0s
+  batch 150/431, loss=2.6691, elapsed=18.9s
+  batch 200/431, loss=2.5174, elapsed=25.0s
+  batch 250/431, loss=2.5635, elapsed=30.9s
+  batch 300/431, loss=2.3991, elapsed=36.9s
+  batch 350/431, loss=2.6071, elapsed=43.0s
+  batch 400/431, loss=2.8744, elapsed=49.0s
+epoch=10, train_loss=2.6818, val_acc=37.85%, time=64.8s
+  batch 50/431, loss=2.3896, elapsed=6.9s
+  batch 100/431, loss=2.2863, elapsed=13.0s
+  batch 150/431, loss=2.3151, elapsed=19.1s
+  batch 200/431, loss=2.5277, elapsed=25.1s
+  batch 250/431, loss=2.5043, elapsed=31.4s
+  batch 300/431, loss=2.6865, elapsed=37.4s
+  batch 350/431, loss=2.3305, elapsed=43.6s
+  batch 400/431, loss=2.5248, elapsed=49.7s
+epoch=11, train_loss=2.5749, val_acc=36.74%, time=65.4s
+  batch 50/431, loss=2.4548, elapsed=6.7s
+  batch 100/431, loss=2.4721, elapsed=12.6s
+  batch 150/431, loss=2.3591, elapsed=18.6s
+  batch 200/431, loss=2.5806, elapsed=24.6s
+  batch 250/431, loss=2.6542, elapsed=30.7s
+  batch 300/431, loss=2.6259, elapsed=36.6s
+  batch 350/431, loss=2.2059, elapsed=42.8s
+  batch 400/431, loss=2.3097, elapsed=48.7s
+epoch=12, train_loss=2.4711, val_acc=41.95%, time=64.2s
+  batch 50/431, loss=2.4179, elapsed=6.8s
+  batch 100/431, loss=2.3876, elapsed=12.8s
+  batch 150/431, loss=2.2756, elapsed=18.7s
+  batch 200/431, loss=2.1376, elapsed=24.9s
+  batch 250/431, loss=2.3301, elapsed=31.0s
+  batch 300/431, loss=2.3256, elapsed=36.9s
+  batch 350/431, loss=2.4331, elapsed=43.0s
+  batch 400/431, loss=2.1671, elapsed=48.9s
+epoch=13, train_loss=2.3654, val_acc=44.23%, time=64.6s
+  batch 50/431, loss=2.5198, elapsed=6.9s
+  batch 100/431, loss=2.3398, elapsed=13.0s
+  batch 150/431, loss=2.2815, elapsed=19.4s
+  batch 200/431, loss=2.1101, elapsed=25.5s
+  batch 250/431, loss=2.3003, elapsed=31.5s
+  batch 300/431, loss=2.2880, elapsed=37.4s
+  batch 350/431, loss=2.4430, elapsed=43.4s
+  batch 400/431, loss=2.4578, elapsed=49.5s
+epoch=14, train_loss=2.2601, val_acc=45.26%, time=64.8s
+  batch 50/431, loss=2.3706, elapsed=6.7s
+  batch 100/431, loss=2.0591, elapsed=12.6s
+  batch 150/431, loss=2.2695, elapsed=18.5s
+  batch 200/431, loss=2.5178, elapsed=24.6s
+  batch 250/431, loss=2.4754, elapsed=30.5s
+  batch 300/431, loss=2.1520, elapsed=36.5s
+  batch 350/431, loss=2.0391, elapsed=42.6s
+  batch 400/431, loss=2.3459, elapsed=48.7s
+epoch=15, train_loss=2.1747, val_acc=45.51%, time=64.3s
+  batch 50/431, loss=2.1414, elapsed=6.7s
+  batch 100/431, loss=2.2572, elapsed=12.9s
+  batch 150/431, loss=1.8755, elapsed=19.1s
+  batch 200/431, loss=1.8173, elapsed=25.2s
+  batch 250/431, loss=2.0927, elapsed=31.3s
+  batch 300/431, loss=2.0778, elapsed=37.2s
+  batch 350/431, loss=2.1414, elapsed=43.2s
+  batch 400/431, loss=2.3733, elapsed=49.1s
+epoch=16, train_loss=2.1022, val_acc=48.54%, time=64.9s
+  batch 50/431, loss=2.3115, elapsed=6.8s
+  batch 100/431, loss=2.1087, elapsed=12.9s
+  batch 150/431, loss=1.9046, elapsed=19.1s
+  batch 200/431, loss=1.9306, elapsed=25.0s
+  batch 250/431, loss=2.1034, elapsed=31.0s
+  batch 300/431, loss=2.0119, elapsed=37.1s
+  batch 350/431, loss=2.1566, elapsed=43.1s
+  batch 400/431, loss=2.2581, elapsed=49.2s
+epoch=17, train_loss=2.0248, val_acc=48.96%, time=64.6s
+  batch 50/431, loss=1.7185, elapsed=6.7s
+  batch 100/431, loss=2.1455, elapsed=12.7s
+  batch 150/431, loss=1.9093, elapsed=18.9s
+  batch 200/431, loss=2.0827, elapsed=25.0s
+  batch 250/431, loss=1.9237, elapsed=31.1s
+  batch 300/431, loss=2.0329, elapsed=37.1s
+  batch 350/431, loss=2.0929, elapsed=43.0s
+  batch 400/431, loss=2.1430, elapsed=48.9s
+epoch=18, train_loss=1.9725, val_acc=49.96%, time=64.5s
+  batch 50/431, loss=1.6975, elapsed=6.7s
+  batch 100/431, loss=1.7179, elapsed=12.8s
+  batch 150/431, loss=1.8579, elapsed=19.0s
+  batch 200/431, loss=1.9796, elapsed=25.1s
+  batch 250/431, loss=2.0230, elapsed=31.2s
+  batch 300/431, loss=1.8377, elapsed=37.3s
+  batch 350/431, loss=1.5512, elapsed=43.3s
+  batch 400/431, loss=1.9349, elapsed=49.2s
+epoch=19, train_loss=1.9457, val_acc=50.73%, time=65.0s
+  batch 50/431, loss=1.8415, elapsed=6.9s
+  batch 100/431, loss=1.8622, elapsed=12.9s
+  batch 150/431, loss=1.9592, elapsed=19.0s
+  batch 200/431, loss=1.8825, elapsed=24.9s
+  batch 250/431, loss=1.9475, elapsed=31.0s
+  batch 300/431, loss=1.7620, elapsed=37.1s
+  batch 350/431, loss=2.3536, elapsed=43.1s
+  batch 400/431, loss=1.8745, elapsed=49.4s
+epoch=20, train_loss=1.9211, val_acc=50.87%, time=64.8s
+TRAINING_COMPLETE val_acc=50.87%
+EXIT_CODE=0

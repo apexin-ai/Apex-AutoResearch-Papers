@@ -1,0 +1,112 @@
+{
+  "overall": {
+    "cohens_kappa": 0.4908,
+    "percent_agreement": 0.5911,
+    "n_total": 225,
+    "n_unknown": 0
+  },
+  "per_backbone": {
+    "gemma": {
+      "kappa": 0.281,
+      "agreement": 0.4133,
+      "n": 75
+    },
+    "llama": {
+      "kappa": 0.4783,
+      "agreement": 0.5867,
+      "n": 75
+    },
+    "qwen": {
+      "kappa": 0.6526,
+      "agreement": 0.7733,
+      "n": 75
+    }
+  },
+  "per_category": {
+    "acknowledgment": {
+      "precision": 0.7313,
+      "recall": 0.7313,
+      "f1": 0.7313,
+      "support_llm": 67,
+      "support_gpt4o": 67
+    },
+    "coordination": {
+      "precision": 0.2632,
+      "recall": 1.0,
+      "f1": 0.4167,
+      "support_llm": 15,
+      "support_gpt4o": 57
+    },
+    "information_provision": {
+      "precision": 0.7778,
+      "recall": 0.2121,
+      "f1": 0.3333,
+      "support_llm": 66,
+      "support_gpt4o": 18
+    },
+    "reasoning_guidance": {
+      "precision": 0.76,
+      "recall": 0.717,
+      "f1": 0.7379,
+      "support_llm": 53,
+      "support_gpt4o": 50
+    },
+    "verification": {
+      "precision": 0.5152,
+      "recall": 0.7083,
+      "f1": 0.5965,
+      "support_llm": 24,
+      "support_gpt4o": 33
+    }
+  },
+  "confusion_matrix": {
+    "acknowledgment": {
+      "acknowledgment": 49,
+      "coordination": 3,
+      "information_provision": 0,
+      "reasoning_guidance": 3,
+      "verification": 12
+    },
+    "coordination": {
+      "acknowledgment": 0,
+      "coordination": 15,
+      "information_provision": 0,
+      "reasoning_guidance": 0,
+      "verification": 0
+    },
+    "information_provision": {
+      "acknowledgment": 11,
+      "coordination": 31,
+      "information_provision": 14,
+      "reasoning_guidance": 9,
+      "verification": 1
+    },
+    "reasoning_guidance": {
+      "acknowledgment": 5,
+      "coordination": 4,
+      "information_provision": 3,
+      "reasoning_guidance": 38,
+      "verification": 3
+    },
+    "verification": {
+      "acknowledgment": 2,
+      "coordination": 4,
+      "information_provision": 1,
+      "reasoning_guidance": 0,
+      "verification": 17
+    }
+  },
+  "token_usage": {
+    "prompt_tokens": 87063,
+    "completion_tokens": 8224,
+    "total_tokens": 95287,
+    "api_calls": 154,
+    "avg_tokens_per_message": 618.7,
+    "cost_usd": {
+      "input": 0.2177,
+      "output": 0.0822,
+      "total": 0.2999
+    },
+    "pricing_note": "GPT-4o: $2.50/M input, $10.00/M output"
+  }
+}

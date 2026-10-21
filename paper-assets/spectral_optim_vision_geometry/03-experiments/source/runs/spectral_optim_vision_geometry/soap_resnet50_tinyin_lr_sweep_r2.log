@@ -1,0 +1,62 @@
+PATCH_OK
+=== SOAP ResNet50 TinyIN lr=3e-3 ===
+Using SOAP class: KLSOAP
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 337, in <module>
+    parser.add_argument("--lr", type=float, default=None,
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1495, in add_argument
+    return self._add_action(action)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1877, in _add_action
+    self._optionals._add_action(action)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1697, in _add_action
+    action = super(_ArgumentGroup, self)._add_action(action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1509, in _add_action
+    self._check_conflict(action)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1646, in _check_conflict
+    conflict_handler(action, confl_optionals)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1655, in _handle_conflict_error
+    raise ArgumentError(action, message % conflict_string)
+argparse.ArgumentError: argument --lr: conflicting option string: --lr
+=== SOAP ResNet50 TinyIN lr=1e-2 ===
+Using SOAP class: KLSOAP
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 337, in <module>
+    parser.add_argument("--lr", type=float, default=None,
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1495, in add_argument
+    return self._add_action(action)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1877, in _add_action
+    self._optionals._add_action(action)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1697, in _add_action
+    action = super(_ArgumentGroup, self)._add_action(action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1509, in _add_action
+    self._check_conflict(action)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1646, in _check_conflict
+    conflict_handler(action, confl_optionals)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1655, in _handle_conflict_error
+    raise ArgumentError(action, message % conflict_string)
+argparse.ArgumentError: argument --lr: conflicting option string: --lr
+=== SOAP ResNet50 TinyIN lr=3e-2 ===
+Using SOAP class: KLSOAP
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 337, in <module>
+    parser.add_argument("--lr", type=float, default=None,
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1495, in add_argument
+    return self._add_action(action)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1877, in _add_action
+    self._optionals._add_action(action)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1697, in _add_action
+    action = super(_ArgumentGroup, self)._add_action(action)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1509, in _add_action
+    self._check_conflict(action)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1646, in _check_conflict
+    conflict_handler(action, confl_optionals)
+  File "/root/miniconda3/lib/python3.12/argparse.py", line 1655, in _handle_conflict_error
+    raise ArgumentError(action, message % conflict_string)
+argparse.ArgumentError: argument --lr: conflicting option string: --lr
+EXIT_CODE=1

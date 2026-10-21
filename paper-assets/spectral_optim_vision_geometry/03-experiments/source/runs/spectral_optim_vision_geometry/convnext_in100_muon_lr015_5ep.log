@@ -1,0 +1,51 @@
+========== Muon lr=0.15 ==========
+Param split: 57 Muon, 125 AdamW
+ImageNet-100 loaded: train=55218, val=10000, classes=100
+model=convnext_tiny (convnext_tiny), params=27.9M, optimizer=muon, device=cuda:0, batches/epoch=431
+  batch 50/431, loss=4.5897, elapsed=17.9s
+  batch 100/431, loss=4.5077, elapsed=31.6s
+  batch 150/431, loss=4.4647, elapsed=45.3s
+  batch 200/431, loss=4.1589, elapsed=59.0s
+  batch 250/431, loss=3.9555, elapsed=72.7s
+  batch 300/431, loss=3.9062, elapsed=86.3s
+  batch 350/431, loss=3.9913, elapsed=100.0s
+  batch 400/431, loss=3.6362, elapsed=113.9s
+epoch=1, train_loss=4.2148, val_acc=17.31%, time=135.7s
+  batch 50/431, loss=3.5764, elapsed=14.3s
+  batch 100/431, loss=3.5897, elapsed=28.1s
+  batch 150/431, loss=3.4472, elapsed=41.9s
+  batch 200/431, loss=3.3831, elapsed=55.5s
+  batch 250/431, loss=3.2394, elapsed=69.0s
+  batch 300/431, loss=3.3651, elapsed=82.7s
+  batch 350/431, loss=3.2757, elapsed=96.3s
+  batch 400/431, loss=3.2605, elapsed=109.9s
+epoch=2, train_loss=3.4538, val_acc=29.47%, time=129.9s
+  batch 50/431, loss=3.3422, elapsed=14.3s
+  batch 100/431, loss=2.9987, elapsed=28.2s
+  batch 150/431, loss=2.9359, elapsed=41.9s
+  batch 200/431, loss=2.8519, elapsed=55.7s
+  batch 250/431, loss=2.9889, elapsed=69.5s
+  batch 300/431, loss=2.6931, elapsed=83.3s
+  batch 350/431, loss=2.7446, elapsed=97.0s
+  batch 400/431, loss=3.0616, elapsed=110.6s
+epoch=3, train_loss=2.9848, val_acc=37.10%, time=130.7s
+  batch 50/431, loss=2.8162, elapsed=14.6s
+  batch 100/431, loss=2.6309, elapsed=28.2s
+  batch 150/431, loss=2.5990, elapsed=42.0s
+  batch 200/431, loss=2.3837, elapsed=55.7s
+  batch 250/431, loss=2.7971, elapsed=69.4s
+  batch 300/431, loss=2.6605, elapsed=83.1s
+  batch 350/431, loss=2.4450, elapsed=96.8s
+  batch 400/431, loss=3.0173, elapsed=110.6s
+epoch=4, train_loss=2.6100, val_acc=42.70%, time=130.7s
+  batch 50/431, loss=2.4669, elapsed=14.3s
+  batch 100/431, loss=2.1848, elapsed=27.9s
+  batch 150/431, loss=2.3561, elapsed=41.7s
+  batch 200/431, loss=2.6095, elapsed=55.3s
+  batch 250/431, loss=2.4220, elapsed=68.8s
+  batch 300/431, loss=2.3663, elapsed=82.6s
+  batch 350/431, loss=2.2987, elapsed=96.4s
+  batch 400/431, loss=2.0334, elapsed=110.0s
+epoch=5, train_loss=2.3227, val_acc=46.97%, time=130.1s
+TRAINING_COMPLETE val_acc=46.97%
+========== Done ==========

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e8d4ad4bf18d2e38b93",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 2557,
+    "sha256": "ae92bef3cbc9ff24a7b43fda92b4f859d00fd75ebbabe086940ca09eb13972e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-04-27T17:36:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目是纯分析项目（message-level communication analysis），不需要 GPU 训练——所有实验都是在本地跑 Python 分析脚本\n- 论文模板已确认是 `neurips_2026.sty`（January 2026 revision），模板和投稿材料由 Review Director 团队（Group C）负责，不要越界\n- 项目处于 MVP 验证阶段，不要在 MVP 完成前启动完整研究规划\n- 审稿阶段已启动（review_chat_id: `oc_53def6c58a0a70c8ff89abe9282cee51`），研究实验继续推进但不参与投稿材料准备\n\n### 2. 🖥️ 基础设施快照\n- 本地项目目录：`/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/`\n- 论文目录：`artifacts/paper/`（main.tex + sections/*.tex + figures/）\n- 源码目录：`src/`（analysis.py, arc_utils.py, heuristic_ack_detector.py 等）\n- 配置目录：`configs/`（多个 YAML 实验配置）\n- 无远程服务器、无 GPU 分配、无活跃进程/cron\n- 无 wandb/HF cache 配置（纯分析项目）\n\n### 3. 📊 当前状态\n- 本轮 session 主要处理了 Manager 的 NeurIPS 2026 模板提醒，确认模板已正确\n- 没有 RUNNING/PREPARING 的实验\n- 没有等待中的 Worker 回调或 Cron\n- Research Reviewer 同时被 reset（4h15m 到期）\n- 论文各 section 已有 R12 revisions（见 git log: `b802161 paper: update all sections — R12 revisions`）\n\n### 4. 📋 待办\n- 启动时 → `get_project_status` + `director_get_project_overview` + `read_roadmap` 全面了解项目当前阶段和 MVP 进展\n- MVP 尚未完成 → 读 `IDEA_BRIEF.md` 提取核心假设，设计最小验证实验\n- MVP 通过 → `complete_mvp()` 进入 research 阶段，用 `experiment-matrix` skill 规划实验矩阵\n- 收到审稿报告（`[审稿报告]` 前缀）→ Read `review-report-action.skill.md`，按协议逐条处理\n\n### 5. 🎯 战略上下文\n- 项目核心：首个 message-level 的 LLM 多智能体通信功能实证研究，桥接理论通信 bounds 和实际 MAS 行为\n- 论文已有实质内容（abstract/intro/methodology/results/discussion/conclusion/appendices 均已写），但 git status 显示大量未提交修改\n- 代码和论文都有大量 modified 但未 commit 的文件——这些可能是正在进行的工作，不要随意丢弃\n- 易错点：项目同时处于 MVP 阶段和审稿阶段，需要先确认 MVP 是否实际上已经通过但没有调 `complete_mvp()`——论文内容量暗示可能已经远超 MVP 阶段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

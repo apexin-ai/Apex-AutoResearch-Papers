@@ -1,0 +1,32 @@
+% Efficiency analysis of acknowledgment pruning
+% Data: oracle experiments on Qwen2.5-7B-Instruct (10 seeds, N=2000) and Llama-3.1-8B-Instruct (10 seeds, N=1939) with GSM8K
+
+\paragraph{Computational efficiency.}
+The primary efficiency gain from acknowledgment pruning is \emph{inference call reduction}: each suppressed message eliminates one full LLM generation call.
+Oracle-guided pruning suppresses \textbf{56.0\%} of inter-agent messages on Qwen2.5-7B (aggregated over ten seeds, $N{=}2{,}000$; \textbf{2.80 per task}) and \textbf{36.5\%} on Llama-3.1-8B (ten seeds, $N{=}1{,}939$; \textbf{1.84 per task}), translating directly to proportional wall-time savings under roughly uniform per-round latency (Table~\ref{tab:efficiency}).
+Token savings are substantially lower, approximately \textbf{10.1\%} on Qwen and \textbf{27.5\%} on Llama, because acknowledgments are much shorter than substantive messages (Qwen ack median: 4 tokens vs.\ verification/reasoning: 53--117 tokens).
+The disparity is itself informative: \emph{ack pruning's value lies in eliminating redundant inference calls, not in reducing token volume}.
+In deployment, backbone-specific heuristic detectors (F1\textsubscript{GSM8K} $= 0.845$ for Qwen, $0.805$ for Llama; \S\ref{sec:heuristic}) achieve these savings at zero marginal cost, requiring no LLM annotation.
+
+\paragraph{Oracle cost and upper-bound positioning.}
+The GPT-4o oracle classifier used for pruning validation incurs \textbf{\$13.90--\$14.42 per 1{,}000 tasks} (3{,}475--3{,}605 classification tokens per task at current API pricing), with per-message classification adding latency overhead.
+This positions oracle pruning as a \emph{research upper bound}: it isolates true acknowledgments with high precision and enables controlled measurement of pruning safety (\S\ref{sec:e2e_pruning}), but its cost and latency make it impractical for deployment.
+The heuristic detectors (\S\ref{sec:heuristic}) replace the oracle at zero cost. These simple deterministic rules (Qwen: character length $< 30$; Llama: keyword + length + repetition) execute in microseconds with no API dependency.
+For open-weight models on local infrastructure (the setting of this paper), savings manifest as reduced GPU-seconds and lower round-trip latency; for API-served models, each suppressed message eliminates a full API call whose cost includes per-call overhead beyond raw token pricing.
+
+\begin{table}[t]
+\centering
+\caption{Efficiency of oracle-guided ack pruning on GSM8K. Calls saved = suppression rate; token savings are lower because acks are short (median 4 tokens). Oracle cost is for GPT-4o 5-class classification; heuristic detectors achieve comparable savings at zero cost (\S\ref{sec:heuristic}).}
+\label{tab:efficiency}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Backbone} & \textbf{$N$} & \textbf{Calls Saved} & \textbf{Msgs / Task} & \textbf{Est.\ Token Saved} & \textbf{Oracle / Task} & \textbf{Oracle Cost / 1K} \\
+\midrule
+Qwen2.5-7B    & 2{,}000 & 56.0\% & 2.80 / 5.0 & $\sim$10.1\% & 3{,}475 tok & \$13.90 \\
+Llama-3.1-8B  & 1{,}939 & 36.5\% & 1.84 / 5.0 & $\sim$27.5\% & 3{,}605 tok & \$14.42 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

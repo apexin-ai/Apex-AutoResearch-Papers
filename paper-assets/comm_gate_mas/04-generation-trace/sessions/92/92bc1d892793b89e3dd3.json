@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92bc1d892793b89e3dd3",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 3,
+    "bytes": 2826,
+    "sha256": "6367bc6e813968ee2d65db055fce502f3e572859ada63acad6c90ff21ada53e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-04-27T21:25:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用项目配置 `execution.gpu_ids` 白名单内的卡（当前 cuda:1），严禁占用其他项目 GPU\n- Oracle 标注全部使用 GPT-4o（不是 GPT-4o-mini），P1 mini precompute 从未成功执行\n- 72B 数据全部是 single-seed preliminary，全文必须保持 hedging，不能声称 scale-stability\n- TOST ±1pp 只有 Qwen 通过（Llama Δ=+2.08pp 不通过），全文已改为 Qwen-specific，不能回退\n\n### 2. 🖥️ 基础设施快照\n- 本项目无固定远程服务器，实验通过 AutoDL 租卡执行\n- 代码仓库：`/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/`\n- 论文源码：`artifacts/paper/sections/*.tex`\n- stochastic 10-seed 实验在 cuda:1 上运行（检查是否已完成）\n- P1 oracle precompute 因 Claude Code 额度耗尽 failed 两次，额度应已重置\n\n### 3. 📊 当前状态\n刚完成一轮大规模论文写作修复（4 项并行写作 + Reviewer 3 轮审查迭代）：\n- Discussion: length-only vs heuristic 段落、cross-domain gap 段落（已合并去重）\n- 72B preliminary qualification 全文弱化\n- Oracle pipeline 明确化（GPT-4o for both pipelines）\n- Methodology/Introduction/Abstract TOST 限定 Qwen-specific\n- Appendix scale table 14B 行加 heuristic 标注\n- Qwen heuristic 描述统一为 char<30 + keyword patterns\n- 14B low-suppression caveat 补到 main text\n\nReviewer 最终结论：WARNING（数据全部验证通过，无 critical）\n\n待确认：stochastic 10-seed（cuda:1）是否完成；P1 oracle precompute 是否可重试\n\n### 4. 📋 待办\n- 接手后检查 stochastic 10-seed 状态 → 完成则分析结果更新 ROADMAP\n- P1 oracle precompute 额度已重置 → 重派 worker 执行 GPT-4o-mini precompute for Llama\n- P1 完成 → 启动 P2 oracle_online_llama（P1 是前置依赖）\n- 写作修复全部完成 → 可考虑提交 Review Director 做整体审稿（`submit_paper_to_review`）\n- 项目处于审稿阶段（review_chat_id 已配置），Review Director 团队在并行工作\n\n### 5. 🎯 战略上下文\n项目核心结论：LLM multi-agent 系统中 acknowledgment 消息可安全剪枝（non-inferiority δ=-3pp, p<0.001 两个 backbone 均成立），heuristic detector 在 GSM8K 有效但跨域迁移差，oracle 提供 domain-robust upper bound。\n\n易错点：\n- Llama 等价性证据来自 oracle 10-seed（不是 heuristic），heuristic over-suppresses 74.4%——Discussion 已修正但容易写新段落时再犯\n- \"domain-agnostic\" 已弱化为 \"robust across two domains tested\"，MATH 缺 oracle 验证是已知 limitation\n- Agent 上轮崩溃过一次（exit -9），追加的 oracle pipeline GPT-4o-mini 修复是崩溃后重派完成的，确认修改落地\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-5.md"
+}

@@ -1,0 +1,28 @@
+\section{Experimental Setup}
+\label{sec:experimental_setup}
+
+\subsection{Datasets and Architectures}
+\label{sec:datasets_archs}
+
+We evaluate on three benchmarks: CIFAR-100~\cite{krizhevsky2009learning} (60K images, 100 classes, $32{\times}32$ resized to $224{\times}224$), Tiny-ImageNet~\cite{le2015tiny} (100K images, 200 classes, $64{\times}64$), and ImageNet-100~\cite{deng2009imagenet} (a 100-class subset at native $224{\times}224$). Training augmentation uses \texttt{Resize(256)}, \texttt{RandomCrop(224)}, and random horizontal flip.
+
+We select three architectures with comparable parameter counts (22--29M) spanning the major design paradigms: ResNet-50~\cite{he2016deep} (batch normalization, $\sim$25.6M), DeiT-S~\cite{touvron2021training} (layer normalization, multi-head attention, $\sim$22M), and ConvNeXt-T~\cite{liu2022convnet} (layer normalization, depthwise separable convolutions, $\sim$28.6M). All models are trained from scratch with He initialization~\cite{he2015delving} using \texttt{timm}~\cite{rw2019timm} without pretrained weights.
+
+\subsection{Optimization Protocol}
+\label{sec:optim_protocol}
+
+We compare five optimizers: Muon~\cite{jordan2024muon} (spectral-norm orthogonalization via Newton--Schulz iteration, Nesterov $\beta{=}0.95$, applied to 2D weight matrices with a companion AdamW for remaining parameters), SOAP~\cite{vyas2024soap} (Kronecker-factored eigenbasis preconditioning), Shampoo~\cite{gupta2018shampoo} (full-matrix preconditioning)\footnote{SOAP and Shampoo use the \texttt{heavyball} library implementation: \url{https://github.com/ClashLuke/HeavyBall}.}, AdamW~\cite{loshchilov2019decoupled,kingma2015adam} ($\beta_1{=}0.9$, $\beta_2{=}0.999$, wd $0.05$), and SGD~\cite{sutskever2013importance} (Nesterov momentum $0.9$, wd $10^{-4}$). All configurations use batch size 128, cosine annealing, and 20 epochs for the main comparison with 50-epoch extensions for convergence analysis.
+
+To ensure fair comparison, each optimizer--architecture--dataset combination receives an independent learning rate selection:
+\begin{enumerate}[label=(\alph*),nosep,leftmargin=*]
+\item \textbf{Sweep:} A 5-epoch sweep over 3--7 log-spaced rates~\cite{schmidt2021crowdedvalley}; 18 of 27 configurations confirmed a clear peak (accuracy declining at adjacent rates).
+\item \textbf{Special cases:} 7 monotonic configurations (all spectral optimizers) were validated via 20-epoch saturation runs confirming no further gain; 2 used literature defaults (Muon on R50 CIFAR-100, $\text{lr}{=}0.02$; SGD on R50, $\text{lr}{=}0.1$).
+\end{enumerate}
+The 7/9 monotonic rate (all spectral) suggests 20-epoch gaps are a conservative proxy, since optimal learning rates may lie beyond the swept range (Appendix Tables~\ref{tab:lr_sweep}--\ref{tab:lr_sweep_in100}).
+Selected rates and full configurations are in Appendix~\ref{sec:hyperparams}.
+
+\subsection{Evaluation and Reproducibility}
+\label{sec:eval_protocol}
+
+We report best validation accuracy across all epochs (i.e., the early-stopping checkpoint) and quantify optimizer gaps in percentage points (pp). Key experiments are replicated with 3 seeds, reporting mean $\pm$ std. Independent 50-epoch runs verify whether gaps persist at longer horizons. All results are obtained on a single NVIDIA RTX 5090 GPU with PyTorch and \texttt{timm}; code and training logs will be released upon publication.
+\label{sec:hardware}

@@ -1,0 +1,183 @@
+% main.tex — NeurIPS 2026 submission (official template)
+\documentclass{article}
+\usepackage{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\title{Spectral Optimization Across Vision Architecture Families:\\A Controlled Empirical Study}
+
+\author{
+  Anonymous Author(s)
+}
+
+\begin{document}
+
+\maketitle
+
+\input{abstract}
+
+\input{introduction}
+
+\input{related_work_background}
+
+\input{method}
+
+\input{experimental_setup}
+
+\input{results}
+
+\input{discussion}
+
+\input{conclusion}
+\input{limitations}
+
+
+\input{broader_impact}
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \begin{itemize}
+        \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: All three claims stated in the introduction (Section~\ref{sec:introduction}) are directly supported by the experimental results in Section~\ref{sec:results}. The abstract reflects these findings without overclaiming.
+    \end{itemize}
+
+\item {\bf Limitations}
+    \begin{itemize}
+        \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Section~\ref{sec:limitations} discusses seed coverage, dataset scope of the intra-family comparison, input resolution artifacts, scale limitations, warmup omission, learning rate selection scope, gap convergence trends, data augmentation, batch size, and single-GPU training.
+    \end{itemize}
+
+\item {\bf Theory assumptions and proofs}
+    \begin{itemize}
+        \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (or correct) proof?
+        \item[] Answer: \answerNA{}
+        \item[] Justification: This is a controlled empirical study with no theoretical results or proofs.
+    \end{itemize}
+
+\item {\bf Experimental result reproducibility}
+    \begin{itemize}
+        \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Section~\ref{sec:experimental_setup} specifies all hyperparameters, learning rate selection protocol, augmentation pipeline, and evaluation methodology. Appendix~\ref{sec:hyperparams} provides complete optimizer configurations for all 27 experiments. Code will be released upon publication.
+    \end{itemize}
+
+\item {\bf Open access to data and code}
+    \begin{itemize}
+        \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: All datasets used (CIFAR-100, Tiny-ImageNet, ImageNet-100) are publicly available. Code is available at the anonymous repository linked in the paper. Training scripts are described in Appendix~\ref{sec:hyperparams}.
+    \end{itemize}
+
+\item {\bf Experimental setting/details}
+    \begin{itemize}
+        \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer, etc.) necessary to understand the results?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Section~\ref{sec:experimental_setup} details data splits, augmentation, batch size, schedule, learning rate selection protocol, and evaluation metrics. Appendix~\ref{sec:hyperparams} provides the complete configuration table for all 27 experiments.
+    \end{itemize}
+
+\item {\bf Experiment statistical significance}
+    \begin{itemize}
+        \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Core 20-epoch CIFAR-100 comparisons use 3--4 seeds with standard deviations. Welch's $t$-tests with $p$-values (including Bonferroni correction) are provided for intra-family comparisons. All other configurations are single-seed; Section~\ref{sec:limitations} notes this explicitly.
+    \end{itemize}
+
+\item {\bf Experiments compute resources}
+    \begin{itemize}
+        \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Section~\ref{sec:hardware} specifies the GPU (single NVIDIA RTX 5090). Appendix~\ref{sec:wallclock} reports per-epoch wall-clock times for all configurations.
+    \end{itemize}
+
+\item {\bf Code of ethics}
+    \begin{itemize}
+        \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: This work is a controlled empirical study of optimizer performance on standard vision benchmarks. It involves no human subjects, no private data, and raises no ethical concerns.
+    \end{itemize}
+
+\item {\bf Broader impacts}
+    \begin{itemize}
+        \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Faster convergence reduces training energy consumption and carbon footprint. Improved optimizer selection guidance may democratize model training by reducing hyperparameter search cost. We see no direct negative societal impacts from this methodological work.
+    \end{itemize}
+
+\item {\bf Safeguards}
+    \begin{itemize}
+        \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse?
+        \item[] Answer: \answerNA{}
+        \item[] Justification: No models or data with misuse risk are released. The work uses publicly available datasets and standard architectures.
+    \end{itemize}
+
+\item {\bf Licenses for existing assets}
+    \begin{itemize}
+        \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: All datasets (CIFAR-100, Tiny-ImageNet, ImageNet-100), architectures (ResNet-50, DeiT-S, ConvNeXt-T), optimizers (Muon, SOAP, Shampoo), and the timm library are cited with their original publications.
+    \end{itemize}
+
+\item {\bf New assets}
+    \begin{itemize}
+        \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: Code and training logs will be released with documentation upon publication.
+    \end{itemize}
+
+\item {\bf Crowdsourcing and research with human subjects}
+    \begin{itemize}
+        \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation?
+        \item[] Answer: \answerNA{}
+        \item[] Justification: No crowdsourcing or human subjects research was conducted.
+    \end{itemize}
+
+\item {\bf Institutional Review Board (IRB) approvals or equivalent for research with human subjects}
+    \begin{itemize}
+        \item[] Question: Does the paper describe potential risks incurred by study participants, whether combated or not?
+        \item[] Answer: \answerNA{}
+        \item[] Justification: No human subjects research was conducted.
+    \end{itemize}
+
+\item {\bf Use of AI assistants}
+    \begin{itemize}
+        \item[] Question: Did the authors use AI assistants (e.g., ChatGPT, Copilot, Claude) in the research process?
+        \item[] Answer: \answerYes{}
+        \item[] Justification: AI assistants were used for editing, formatting, and basic code assistance; all experimental results, figures, and claims were verified by the authors.
+    \end{itemize}
+
+\end{enumerate}
+
+\newpage
+\appendix
+
+\input{appendix_optimizer_config}
+
+\input{appendix_tables}
+
+\input{appendix_convnext_sgd_analysis}
+
+\input{appendix_muon_background}
+
+\input{appendix_supplement}
+
+\end{document}

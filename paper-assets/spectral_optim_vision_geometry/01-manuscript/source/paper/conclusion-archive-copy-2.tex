@@ -1,0 +1,9 @@
+\vspace{-1.0em}
+\section{Conclusion}
+\label{sec:conclusion}
+\vspace{-0.3em}
+
+We conducted a controlled factorial study comparing spectral optimizers (Muon, SOAP, Shampoo) against AdamW across three architecture families (CNN, transformer, hybrid) and three vision datasets, totaling over 300 training runs.
+Spectral optimizers consistently outperform AdamW by $+5.9$ to $+24.3$\,pp, with the Newton-Schulz family (Muon) exhibiting the strongest robustness; stable rank divergence correlates positively with the spectral advantage on CNNs ($\rho{=}{+}0.58$, $p = 3.6 \times 10^{-6}$), and normalization-swap experiments provide controlled evidence that normalization type mediates this effect.
+For practitioners, spectral optimizers are beneficial across all tested paradigms, reaching near-ceiling accuracy within 20 epochs and converging 2--15$\times$ faster in wall-clock time (configuration-dependent).
+Our study is limited to CIFAR-100, Tiny-ImageNet, and ImageNet-100 at $224{\times}224$ resolution; full 90-epoch ImageNet-1K validation and characterizing the architecture-dependent transformer correlation pattern remain key open directions.

@@ -1,0 +1,13 @@
+\section*{Broader Impact}
+
+This work is an empirical comparative study of existing optimization algorithms on standard vision benchmarks; it does not introduce new models, datasets, or training paradigms.
+The principal practical benefit lies in computational efficiency: spectral optimizers reach near-ceiling accuracy within 20 epochs, matching or surpassing the accuracy that AdamW attains at 50 epochs.
+Adopting spectral methods in place of longer AdamW schedules can reduce GPU hours by $2\times$ or more, directly lowering energy consumption and carbon emissions associated with model training.
+
+Beyond efficiency, the fair hyperparameter tuning protocol developed here (independent per-pair learning rate sweeps with transparent reporting of sweep outcomes) provides a reusable methodology for optimizer evaluation.
+Standardized comparison protocols reduce the risk of misleading benchmark results and help practitioners make informed optimizer choices without redundant experimentation.
+
+The primary limitation of this study is dataset scale: all experiments use CIFAR-100, Tiny-ImageNet, and ImageNet-100.
+Whether the observed spectral advantage and architecture-dependent patterns persist at ImageNet-1K scale or on larger models remains an open question.
+Practitioners should validate these findings on their target tasks before making deployment decisions.
+We identify no direct negative societal impacts from this methodological research.

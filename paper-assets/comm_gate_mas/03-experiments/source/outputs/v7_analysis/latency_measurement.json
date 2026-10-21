@@ -1,0 +1,730 @@
+{
+  "baseline": {
+    "strategy": "baseline",
+    "per_task": [
+      {
+        "task_id": "gsm8k_0000",
+        "elapsed": 7.972,
+        "correct": true,
+        "answer": "109.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0001",
+        "elapsed": 5.803,
+        "correct": false,
+        "answer": "147.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0002",
+        "elapsed": 2.417,
+        "correct": true,
+        "answer": "13.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0003",
+        "elapsed": 2.749,
+        "correct": true,
+        "answer": "5.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0004",
+        "elapsed": 2.647,
+        "correct": true,
+        "answer": "25.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0005",
+        "elapsed": 4.445,
+        "correct": false,
+        "answer": "232",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0006",
+        "elapsed": 11.229,
+        "correct": true,
+        "answer": "43.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0007",
+        "elapsed": 2.895,
+        "correct": true,
+        "answer": "34.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0008",
+        "elapsed": 2.414,
+        "correct": true,
+        "answer": "120",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0009",
+        "elapsed": 2.832,
+        "correct": true,
+        "answer": "11.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0010",
+        "elapsed": 3.58,
+        "correct": true,
+        "answer": "34.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0011",
+        "elapsed": 1.857,
+        "correct": true,
+        "answer": "12.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0012",
+        "elapsed": 3.599,
+        "correct": true,
+        "answer": "15",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0013",
+        "elapsed": 2.353,
+        "correct": true,
+        "answer": "24.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0014",
+        "elapsed": 13.942,
+        "correct": true,
+        "answer": "105.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0015",
+        "elapsed": 1.828,
+        "correct": true,
+        "answer": "120.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0016",
+        "elapsed": 2.79,
+        "correct": true,
+        "answer": "17.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0017",
+        "elapsed": 2.178,
+        "correct": true,
+        "answer": "36.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0018",
+        "elapsed": 2.271,
+        "correct": true,
+        "answer": "12.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0019",
+        "elapsed": 5.651,
+        "correct": true,
+        "answer": "45.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0020",
+        "elapsed": 2.703,
+        "correct": true,
+        "answer": "45.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0021",
+        "elapsed": 5.757,
+        "correct": true,
+        "answer": "8.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0022",
+        "elapsed": 3.5,
+        "correct": true,
+        "answer": "36.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0023",
+        "elapsed": 2.675,
+        "correct": true,
+        "answer": "1.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0024",
+        "elapsed": 5.951,
+        "correct": false,
+        "answer": "10.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0025",
+        "elapsed": 10.049,
+        "correct": false,
+        "answer": "33.00.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0026",
+        "elapsed": 4.287,
+        "correct": false,
+        "answer": "3.60.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0027",
+        "elapsed": 10.161,
+        "correct": true,
+        "answer": "25",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0028",
+        "elapsed": 3.05,
+        "correct": true,
+        "answer": "1.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0029",
+        "elapsed": 3.879,
+        "correct": true,
+        "answer": "32.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0030",
+        "elapsed": 2.625,
+        "correct": true,
+        "answer": "2.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0031",
+        "elapsed": 2.383,
+        "correct": true,
+        "answer": "30.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0032",
+        "elapsed": 2.12,
+        "correct": true,
+        "answer": "4.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0033",
+        "elapsed": 2.534,
+        "correct": true,
+        "answer": "54",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0034",
+        "elapsed": 3.488,
+        "correct": true,
+        "answer": "250.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0035",
+        "elapsed": 4.018,
+        "correct": true,
+        "answer": "324.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0036",
+        "elapsed": 7.108,
+        "correct": true,
+        "answer": "129200.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0037",
+        "elapsed": 4.09,
+        "correct": true,
+        "answer": "4400.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0038",
+        "elapsed": 3.467,
+        "correct": true,
+        "answer": "70.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0039",
+        "elapsed": 13.585,
+        "correct": true,
+        "answer": "276000.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0040",
+        "elapsed": 2.778,
+        "correct": false,
+        "answer": "12.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0041",
+        "elapsed": 2.943,
+        "correct": true,
+        "answer": "160.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0042",
+        "elapsed": 4.697,
+        "correct": true,
+        "answer": "90.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0043",
+        "elapsed": 2.887,
+        "correct": true,
+        "answer": "20.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0044",
+        "elapsed": 2.846,
+        "correct": true,
+        "answer": "296.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0045",
+        "elapsed": 3.582,
+        "correct": true,
+        "answer": "4800.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0046",
+        "elapsed": 2.63,
+        "correct": true,
+        "answer": "30.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0047",
+        "elapsed": 1.877,
+        "correct": true,
+        "answer": "8",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0048",
+        "elapsed": 3.269,
+        "correct": true,
+        "answer": "1920.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0049",
+        "elapsed": 3.795,
+        "correct": true,
+        "answer": "6.",
+        "pruned_rounds": 0
+      }
+    ],
+    "mean_latency": 4.284,
+    "median_latency": 3.269,
+    "total_time": 214.186,
+    "accuracy": 0.88,
+    "n_tasks": 50
+  },
+  "ack_only": {
+    "strategy": "ack_only",
+    "per_task": [
+      {
+        "task_id": "gsm8k_0000",
+        "elapsed": 7.942,
+        "correct": true,
+        "answer": "109.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0001",
+        "elapsed": 12.879,
+        "correct": false,
+        "answer": "107.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0002",
+        "elapsed": 2.115,
+        "correct": true,
+        "answer": "13.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0003",
+        "elapsed": 2.471,
+        "correct": true,
+        "answer": "5.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0004",
+        "elapsed": 4.042,
+        "correct": true,
+        "answer": "25.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0005",
+        "elapsed": 4.687,
+        "correct": true,
+        "answer": "452.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0006",
+        "elapsed": 11.319,
+        "correct": true,
+        "answer": "43.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0007",
+        "elapsed": 2.593,
+        "correct": true,
+        "answer": "34.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0008",
+        "elapsed": 2.068,
+        "correct": true,
+        "answer": "120.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0009",
+        "elapsed": 2.624,
+        "correct": true,
+        "answer": "11.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0010",
+        "elapsed": 3.075,
+        "correct": true,
+        "answer": "34.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0011",
+        "elapsed": 1.562,
+        "correct": true,
+        "answer": "12.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0012",
+        "elapsed": 3.779,
+        "correct": true,
+        "answer": "15.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0013",
+        "elapsed": 2.058,
+        "correct": true,
+        "answer": "24.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0014",
+        "elapsed": 9.255,
+        "correct": true,
+        "answer": "105.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0015",
+        "elapsed": 1.835,
+        "correct": true,
+        "answer": "120.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0016",
+        "elapsed": 2.492,
+        "correct": true,
+        "answer": "17.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0017",
+        "elapsed": 2.163,
+        "correct": true,
+        "answer": "36.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0018",
+        "elapsed": 2.381,
+        "correct": true,
+        "answer": "12.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0019",
+        "elapsed": 3.549,
+        "correct": true,
+        "answer": "45.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0020",
+        "elapsed": 8.059,
+        "correct": true,
+        "answer": "45.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0021",
+        "elapsed": 4.542,
+        "correct": true,
+        "answer": "8.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0022",
+        "elapsed": 3.145,
+        "correct": true,
+        "answer": "36.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0023",
+        "elapsed": 2.316,
+        "correct": true,
+        "answer": "1.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0024",
+        "elapsed": 4.133,
+        "correct": false,
+        "answer": "10.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0025",
+        "elapsed": 10.075,
+        "correct": false,
+        "answer": "33.00.",
+        "pruned_rounds": 0
+      },
+      {
+        "task_id": "gsm8k_0026",
+        "elapsed": 9.12,
+        "correct": false,
+        "answer": "3.60.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0027",
+        "elapsed": 10.026,
+        "correct": true,
+        "answer": "25",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0028",
+        "elapsed": 2.686,
+        "correct": true,
+        "answer": "1.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0029",
+        "elapsed": 3.668,
+        "correct": true,
+        "answer": "32.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0030",
+        "elapsed": 2.266,
+        "correct": true,
+        "answer": "2.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0031",
+        "elapsed": 2.07,
+        "correct": true,
+        "answer": "30.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0032",
+        "elapsed": 1.765,
+        "correct": true,
+        "answer": "4.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0033",
+        "elapsed": 2.145,
+        "correct": true,
+        "answer": "54.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0034",
+        "elapsed": 3.064,
+        "correct": true,
+        "answer": "250.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0035",
+        "elapsed": 3.722,
+        "correct": false,
+        "answer": "324.00.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0036",
+        "elapsed": 6.943,
+        "correct": true,
+        "answer": "129200.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0037",
+        "elapsed": 3.772,
+        "correct": true,
+        "answer": "4400.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0038",
+        "elapsed": 3.128,
+        "correct": true,
+        "answer": "70.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0039",
+        "elapsed": 9.119,
+        "correct": true,
+        "answer": "276000.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0040",
+        "elapsed": 2.311,
+        "correct": false,
+        "answer": "12.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0041",
+        "elapsed": 2.622,
+        "correct": true,
+        "answer": "160.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0042",
+        "elapsed": 3.08,
+        "correct": true,
+        "answer": "90.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0043",
+        "elapsed": 2.429,
+        "correct": true,
+        "answer": "20.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0044",
+        "elapsed": 2.499,
+        "correct": true,
+        "answer": "296.",
+        "pruned_rounds": 3
+      },
+      {
+        "task_id": "gsm8k_0045",
+        "elapsed": 3.083,
+        "correct": true,
+        "answer": "4800.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0046",
+        "elapsed": 2.232,
+        "correct": true,
+        "answer": "30.",
+        "pruned_rounds": 4
+      },
+      {
+        "task_id": "gsm8k_0047",
+        "elapsed": 1.848,
+        "correct": true,
+        "answer": "8.",
+        "pruned_rounds": 2
+      },
+      {
+        "task_id": "gsm8k_0048",
+        "elapsed": 3.122,
+        "correct": true,
+        "answer": "1920.",
+        "pruned_rounds": 1
+      },
+      {
+        "task_id": "gsm8k_0049",
+        "elapsed": 3.701,
+        "correct": true,
+        "answer": "6.",
+        "pruned_rounds": 3
+      }
+    ],
+    "mean_latency": 4.152,
+    "median_latency": 3.08,
+    "total_time": 207.58,
+    "accuracy": 0.88,
+    "n_tasks": 50
+  },
+  "speedup_ratio": 1.032,
+  "latency_reduction_pct": 3.1,
+  "n_tasks": 50,
+  "config": {
+    "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+    "api_base": "http://localhost:8001/v1",
+    "max_rounds": 6
+  }
+}

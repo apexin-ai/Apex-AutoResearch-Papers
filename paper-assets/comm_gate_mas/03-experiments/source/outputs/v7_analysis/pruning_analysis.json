@@ -1,0 +1,1968 @@
+{
+  "per_backbone": {
+    "qwen_round_robin": {
+      "total_messages": 1500,
+      "total_tokens": 106083,
+      "total_tasks": 300,
+      "total_correct_tasks": 269,
+      "baseline_accuracy": 89.67,
+      "per_function": {
+        "acknowledgment": {
+          "msg_count": 719,
+          "msg_share_pct": 47.93,
+          "avg_tokens": 28.9,
+          "total_tokens": 20780,
+          "token_share_pct": 19.59,
+          "action_change_rate": 0.9978,
+          "final_answer_change_rate": 0.02,
+          "avg_semantic_similarity": 0.1532,
+          "median_semantic_similarity": 0.1146,
+          "tasks_with_final_change": 9,
+          "accuracy_risk_pct": 2.6
+        },
+        "information_provision": {
+          "msg_count": 185,
+          "msg_share_pct": 12.33,
+          "avg_tokens": 149.7,
+          "total_tokens": 27691,
+          "token_share_pct": 26.1,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0467,
+          "median_semantic_similarity": 0.0234,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "reasoning_guidance": {
+          "msg_count": 447,
+          "msg_share_pct": 29.8,
+          "avg_tokens": 91.0,
+          "total_tokens": 40690,
+          "token_share_pct": 38.36,
+          "action_change_rate": 0.9937,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.1431,
+          "median_semantic_similarity": 0.1305,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "verification": {
+          "msg_count": 142,
+          "msg_share_pct": 9.47,
+          "avg_tokens": 115.2,
+          "total_tokens": 16364,
+          "token_share_pct": 15.43,
+          "action_change_rate": 0.9455,
+          "final_answer_change_rate": 0.0364,
+          "avg_semantic_similarity": 0.2249,
+          "median_semantic_similarity": 0.1108,
+          "tasks_with_final_change": 4,
+          "accuracy_risk_pct": 0.0
+        },
+        "coordination": {
+          "msg_count": 6,
+          "msg_share_pct": 0.4,
+          "avg_tokens": 82.0,
+          "total_tokens": 492,
+          "token_share_pct": 0.46,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0254,
+          "median_semantic_similarity": 0.0319,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        }
+      },
+      "pruning_scenarios": [
+        {
+          "pruned_types": [
+            "acknowledgment"
+          ],
+          "token_savings_pct": 19.59,
+          "msgs_pruned": 719,
+          "final_answer_change_rate": 0.02,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1532
+        },
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 26.1,
+          "msgs_pruned": 185,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0467
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 38.36,
+          "msgs_pruned": 447,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1431
+        },
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 15.43,
+          "msgs_pruned": 142,
+          "final_answer_change_rate": 0.0364,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2249
+        },
+        {
+          "pruned_types": [
+            "coordination"
+          ],
+          "token_savings_pct": 0.46,
+          "msgs_pruned": 6,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0254
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision"
+          ],
+          "token_savings_pct": 45.69,
+          "msgs_pruned": 904,
+          "final_answer_change_rate": 0.0144,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1231
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 57.95,
+          "msgs_pruned": 1166,
+          "final_answer_change_rate": 0.0148,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1506
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification"
+          ],
+          "token_savings_pct": 35.02,
+          "msgs_pruned": 861,
+          "final_answer_change_rate": 0.0232,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1673
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "coordination"
+          ],
+          "token_savings_pct": 20.05,
+          "msgs_pruned": 725,
+          "final_answer_change_rate": 0.0198,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1518
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 64.46,
+          "msgs_pruned": 632,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0922
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 41.53,
+          "msgs_pruned": 327,
+          "final_answer_change_rate": 0.0139,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.115
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 26.56,
+          "msgs_pruned": 191,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0461
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 53.79,
+          "msgs_pruned": 589,
+          "final_answer_change_rate": 0.0149,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1767
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 38.82,
+          "msgs_pruned": 453,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1395
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 15.89,
+          "msgs_pruned": 148,
+          "final_answer_change_rate": 0.0348,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2162
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 84.05,
+          "msgs_pruned": 1351,
+          "final_answer_change_rate": 0.0115,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1271
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 61.12,
+          "msgs_pruned": 1046,
+          "final_answer_change_rate": 0.0176,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1383
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 46.15,
+          "msgs_pruned": 910,
+          "final_answer_change_rate": 0.0142,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1223
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 73.38,
+          "msgs_pruned": 1308,
+          "final_answer_change_rate": 0.0181,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.162
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 58.41,
+          "msgs_pruned": 1172,
+          "final_answer_change_rate": 0.0147,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1495
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 35.48,
+          "msgs_pruned": 867,
+          "final_answer_change_rate": 0.023,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.166
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 79.89,
+          "msgs_pruned": 774,
+          "final_answer_change_rate": 0.009,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.125
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 64.92,
+          "msgs_pruned": 638,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0912
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 41.99,
+          "msgs_pruned": 333,
+          "final_answer_change_rate": 0.0137,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1135
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 54.25,
+          "msgs_pruned": 595,
+          "final_answer_change_rate": 0.0147,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1739
+        }
+      ],
+      "pruning_cumulative_greedy": [
+        {
+          "pruned_types": [
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 38.36,
+          "msgs_pruned": 447,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1431
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "information_provision"
+          ],
+          "token_savings_pct": 64.46,
+          "msgs_pruned": 632,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0922
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 79.89,
+          "msgs_pruned": 774,
+          "final_answer_change_rate": 0.009,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.125
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 80.35,
+          "msgs_pruned": 780,
+          "final_answer_change_rate": 0.0089,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1239
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "information_provision",
+            "verification",
+            "coordination",
+            "acknowledgment"
+          ],
+          "token_savings_pct": 99.94,
+          "msgs_pruned": 1499,
+          "final_answer_change_rate": 0.0144,
+          "task_accuracy_retention_pct": 97.4,
+          "avg_semantic_similarity": 0.1385
+        }
+      ],
+      "pareto_front": [
+        {
+          "pruned_types": [
+            "coordination"
+          ],
+          "token_savings_pct": 0.46,
+          "msgs_pruned": 6,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0254
+        },
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 15.43,
+          "msgs_pruned": 142,
+          "final_answer_change_rate": 0.0364,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2249
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 15.89,
+          "msgs_pruned": 148,
+          "final_answer_change_rate": 0.0348,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2162
+        },
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 26.1,
+          "msgs_pruned": 185,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0467
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 26.56,
+          "msgs_pruned": 191,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0461
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 38.36,
+          "msgs_pruned": 447,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1431
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 38.82,
+          "msgs_pruned": 453,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1395
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 41.53,
+          "msgs_pruned": 327,
+          "final_answer_change_rate": 0.0139,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.115
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 41.99,
+          "msgs_pruned": 333,
+          "final_answer_change_rate": 0.0137,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1135
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 53.79,
+          "msgs_pruned": 589,
+          "final_answer_change_rate": 0.0149,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1767
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 54.25,
+          "msgs_pruned": 595,
+          "final_answer_change_rate": 0.0147,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1739
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 64.46,
+          "msgs_pruned": 632,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0922
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 64.92,
+          "msgs_pruned": 638,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0912
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 79.89,
+          "msgs_pruned": 774,
+          "final_answer_change_rate": 0.009,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.125
+        }
+      ],
+      "greedy_pruning_order": [
+        "reasoning_guidance",
+        "information_provision",
+        "verification",
+        "coordination",
+        "acknowledgment"
+      ],
+      "recommendation": "Prune acknowledgment+information_provision+reasoning_guidance for 84.0% token savings with 97.4% task accuracy retention (final_answer change rate: 1.15%)"
+    },
+    "llama_round_robin": {
+      "total_messages": 1470,
+      "total_tokens": 147708,
+      "total_tasks": 294,
+      "total_correct_tasks": 220,
+      "baseline_accuracy": 74.83,
+      "per_function": {
+        "acknowledgment": {
+          "msg_count": 691,
+          "msg_share_pct": 47.01,
+          "avg_tokens": 112.1,
+          "total_tokens": 77456,
+          "token_share_pct": 52.44,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0654,
+          "avg_semantic_similarity": 0.2411,
+          "median_semantic_similarity": 0.2035,
+          "tasks_with_final_change": 39,
+          "accuracy_risk_pct": 1.82
+        },
+        "information_provision": {
+          "msg_count": 194,
+          "msg_share_pct": 13.2,
+          "avg_tokens": 82.8,
+          "total_tokens": 16066,
+          "token_share_pct": 10.88,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0941,
+          "median_semantic_similarity": 0.0819,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "reasoning_guidance": {
+          "msg_count": 350,
+          "msg_share_pct": 23.81,
+          "avg_tokens": 85.5,
+          "total_tokens": 29932,
+          "token_share_pct": 20.26,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0081,
+          "avg_semantic_similarity": 0.1082,
+          "median_semantic_similarity": 0.0921,
+          "tasks_with_final_change": 1,
+          "accuracy_risk_pct": 0.45
+        },
+        "verification": {
+          "msg_count": 121,
+          "msg_share_pct": 8.23,
+          "avg_tokens": 159.8,
+          "total_tokens": 19335,
+          "token_share_pct": 13.09,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.3245,
+          "median_semantic_similarity": 0.3628,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "coordination": {
+          "msg_count": 114,
+          "msg_share_pct": 7.76,
+          "avg_tokens": 43.1,
+          "total_tokens": 4919,
+          "token_share_pct": 3.33,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0788,
+          "median_semantic_similarity": 0.0482,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        }
+      },
+      "pruning_scenarios": [
+        {
+          "pruned_types": [
+            "acknowledgment"
+          ],
+          "token_savings_pct": 52.44,
+          "msgs_pruned": 691,
+          "final_answer_change_rate": 0.0654,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.2411
+        },
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 10.88,
+          "msgs_pruned": 194,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0941
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 20.26,
+          "msgs_pruned": 350,
+          "final_answer_change_rate": 0.0081,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.1082
+        },
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 13.09,
+          "msgs_pruned": 121,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.3245
+        },
+        {
+          "pruned_types": [
+            "coordination"
+          ],
+          "token_savings_pct": 3.33,
+          "msgs_pruned": 114,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0788
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision"
+          ],
+          "token_savings_pct": 63.32,
+          "msgs_pruned": 885,
+          "final_answer_change_rate": 0.0613,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.2319
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 72.7,
+          "msgs_pruned": 1041,
+          "final_answer_change_rate": 0.0556,
+          "task_accuracy_retention_pct": 97.73,
+          "avg_semantic_similarity": 0.2184
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification"
+          ],
+          "token_savings_pct": 65.53,
+          "msgs_pruned": 812,
+          "final_answer_change_rate": 0.0553,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.254
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "coordination"
+          ],
+          "token_savings_pct": 55.77,
+          "msgs_pruned": 805,
+          "final_answer_change_rate": 0.0639,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.2374
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 31.14,
+          "msgs_pruned": 544,
+          "final_answer_change_rate": 0.0061,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.1048
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 23.97,
+          "msgs_pruned": 315,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2627
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 14.21,
+          "msgs_pruned": 308,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0901
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 33.35,
+          "msgs_pruned": 471,
+          "final_answer_change_rate": 0.0043,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.2099
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 23.59,
+          "msgs_pruned": 464,
+          "final_answer_change_rate": 0.0073,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.1052
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 16.42,
+          "msgs_pruned": 235,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2966
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 83.58,
+          "msgs_pruned": 1235,
+          "final_answer_change_rate": 0.0527,
+          "task_accuracy_retention_pct": 97.73,
+          "avg_semantic_similarity": 0.2118
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 76.41,
+          "msgs_pruned": 1006,
+          "final_answer_change_rate": 0.0523,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.2454
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 66.65,
+          "msgs_pruned": 999,
+          "final_answer_change_rate": 0.06,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.2286
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 85.79,
+          "msgs_pruned": 1162,
+          "final_answer_change_rate": 0.0483,
+          "task_accuracy_retention_pct": 97.73,
+          "avg_semantic_similarity": 0.2324
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 76.03,
+          "msgs_pruned": 1155,
+          "final_answer_change_rate": 0.0546,
+          "task_accuracy_retention_pct": 97.73,
+          "avg_semantic_similarity": 0.2157
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 68.86,
+          "msgs_pruned": 926,
+          "final_answer_change_rate": 0.0542,
+          "task_accuracy_retention_pct": 98.18,
+          "avg_semantic_similarity": 0.2506
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 44.23,
+          "msgs_pruned": 665,
+          "final_answer_change_rate": 0.0037,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.1928
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 34.47,
+          "msgs_pruned": 658,
+          "final_answer_change_rate": 0.0056,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.1027
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 27.3,
+          "msgs_pruned": 429,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2469
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 36.68,
+          "msgs_pruned": 585,
+          "final_answer_change_rate": 0.0041,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.2024
+        }
+      ],
+      "pruning_cumulative_greedy": [
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 13.09,
+          "msgs_pruned": 121,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.3245
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "information_provision"
+          ],
+          "token_savings_pct": 23.97,
+          "msgs_pruned": 315,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2627
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 27.3,
+          "msgs_pruned": 429,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2469
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "information_provision",
+            "coordination",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 47.56,
+          "msgs_pruned": 779,
+          "final_answer_change_rate": 0.0035,
+          "task_accuracy_retention_pct": 99.55,
+          "avg_semantic_similarity": 0.1872
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "information_provision",
+            "coordination",
+            "reasoning_guidance",
+            "acknowledgment"
+          ],
+          "token_savings_pct": 100.0,
+          "msgs_pruned": 1470,
+          "final_answer_change_rate": 0.0454,
+          "task_accuracy_retention_pct": 97.73,
+          "avg_semantic_similarity": 0.2237
+        }
+      ],
+      "pareto_front": [
+        {
+          "pruned_types": [
+            "coordination"
+          ],
+          "token_savings_pct": 3.33,
+          "msgs_pruned": 114,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0788
+        },
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 10.88,
+          "msgs_pruned": 194,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0941
+        },
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 13.09,
+          "msgs_pruned": 121,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.3245
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 14.21,
+          "msgs_pruned": 308,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0901
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 16.42,
+          "msgs_pruned": 235,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2966
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 23.97,
+          "msgs_pruned": 315,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2627
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 27.3,
+          "msgs_pruned": 429,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2469
+        }
+      ],
+      "greedy_pruning_order": [
+        "verification",
+        "information_provision",
+        "coordination",
+        "reasoning_guidance",
+        "acknowledgment"
+      ],
+      "recommendation": "Prune acknowledgment+reasoning_guidance+verification for 85.8% token savings with 97.7% task accuracy retention (final_answer change rate: 4.83%)"
+    },
+    "gemma_round_robin": {
+      "total_messages": 1500,
+      "total_tokens": 46746,
+      "total_tasks": 300,
+      "total_correct_tasks": 242,
+      "baseline_accuracy": 80.67,
+      "per_function": {
+        "acknowledgment": {
+          "msg_count": 72,
+          "msg_share_pct": 4.8,
+          "avg_tokens": 31.2,
+          "total_tokens": 2248,
+          "token_share_pct": 4.81,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0597,
+          "median_semantic_similarity": 0.0454,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "information_provision": {
+          "msg_count": 846,
+          "msg_share_pct": 56.4,
+          "avg_tokens": 37.4,
+          "total_tokens": 31671,
+          "token_share_pct": 67.75,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0352,
+          "median_semantic_similarity": 0.0278,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "reasoning_guidance": {
+          "msg_count": 232,
+          "msg_share_pct": 15.47,
+          "avg_tokens": 47.9,
+          "total_tokens": 11111,
+          "token_share_pct": 23.77,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.0387,
+          "median_semantic_similarity": 0.0454,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "verification": {
+          "msg_count": 66,
+          "msg_share_pct": 4.4,
+          "avg_tokens": 22.9,
+          "total_tokens": 1513,
+          "token_share_pct": 3.24,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.108,
+          "median_semantic_similarity": 0.0182,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        },
+        "coordination": {
+          "msg_count": 284,
+          "msg_share_pct": 18.93,
+          "avg_tokens": 0.7,
+          "total_tokens": 203,
+          "token_share_pct": 0.43,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "avg_semantic_similarity": 0.2537,
+          "median_semantic_similarity": 0.2955,
+          "tasks_with_final_change": 0,
+          "accuracy_risk_pct": 0.0
+        }
+      },
+      "pruning_scenarios": [
+        {
+          "pruned_types": [
+            "acknowledgment"
+          ],
+          "token_savings_pct": 4.81,
+          "msgs_pruned": 72,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0597
+        },
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 67.75,
+          "msgs_pruned": 846,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0352
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 23.77,
+          "msgs_pruned": 232,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0387
+        },
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 3.24,
+          "msgs_pruned": 66,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.108
+        },
+        {
+          "pruned_types": [
+            "coordination"
+          ],
+          "token_savings_pct": 0.43,
+          "msgs_pruned": 284,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2537
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision"
+          ],
+          "token_savings_pct": 72.56,
+          "msgs_pruned": 918,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0377
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 28.58,
+          "msgs_pruned": 304,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0527
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification"
+          ],
+          "token_savings_pct": 8.05,
+          "msgs_pruned": 138,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.069
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "coordination"
+          ],
+          "token_savings_pct": 5.24,
+          "msgs_pruned": 356,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.189
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 91.52,
+          "msgs_pruned": 1078,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0354
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 70.99,
+          "msgs_pruned": 912,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0371
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 68.18,
+          "msgs_pruned": 1130,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0751
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 27.01,
+          "msgs_pruned": 298,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0613
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 24.2,
+          "msgs_pruned": 516,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2111
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 3.67,
+          "msgs_pruned": 350,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2381
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 96.33,
+          "msgs_pruned": 1150,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0377
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 75.8,
+          "msgs_pruned": 984,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0393
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 72.99,
+          "msgs_pruned": 1202,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0738
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 31.82,
+          "msgs_pruned": 370,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0604
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 29.01,
+          "msgs_pruned": 588,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1678
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 8.48,
+          "msgs_pruned": 422,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.183
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 94.76,
+          "msgs_pruned": 1144,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0372
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 91.95,
+          "msgs_pruned": 1362,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0735
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 71.42,
+          "msgs_pruned": 1196,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0758
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 27.44,
+          "msgs_pruned": 582,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2021
+        }
+      ],
+      "pruning_cumulative_greedy": [
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 67.75,
+          "msgs_pruned": 846,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0352
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 91.52,
+          "msgs_pruned": 1078,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0354
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "acknowledgment"
+          ],
+          "token_savings_pct": 96.33,
+          "msgs_pruned": 1150,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0377
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "acknowledgment",
+            "verification"
+          ],
+          "token_savings_pct": 99.57,
+          "msgs_pruned": 1216,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0393
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "acknowledgment",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 100.0,
+          "msgs_pruned": 1500,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0731
+        }
+      ],
+      "pareto_front": [
+        {
+          "pruned_types": [
+            "coordination"
+          ],
+          "token_savings_pct": 0.43,
+          "msgs_pruned": 284,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2537
+        },
+        {
+          "pruned_types": [
+            "verification"
+          ],
+          "token_savings_pct": 3.24,
+          "msgs_pruned": 66,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.108
+        },
+        {
+          "pruned_types": [
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 3.67,
+          "msgs_pruned": 350,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2381
+        },
+        {
+          "pruned_types": [
+            "acknowledgment"
+          ],
+          "token_savings_pct": 4.81,
+          "msgs_pruned": 72,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0597
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "coordination"
+          ],
+          "token_savings_pct": 5.24,
+          "msgs_pruned": 356,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.189
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification"
+          ],
+          "token_savings_pct": 8.05,
+          "msgs_pruned": 138,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.069
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 8.48,
+          "msgs_pruned": 422,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.183
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 23.77,
+          "msgs_pruned": 232,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0387
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 24.2,
+          "msgs_pruned": 516,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2111
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 27.01,
+          "msgs_pruned": 298,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0613
+        },
+        {
+          "pruned_types": [
+            "reasoning_guidance",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 27.44,
+          "msgs_pruned": 582,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.2021
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 28.58,
+          "msgs_pruned": 304,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0527
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 29.01,
+          "msgs_pruned": 588,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.1678
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 31.82,
+          "msgs_pruned": 370,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0604
+        },
+        {
+          "pruned_types": [
+            "information_provision"
+          ],
+          "token_savings_pct": 67.75,
+          "msgs_pruned": 846,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0352
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 68.18,
+          "msgs_pruned": 1130,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0751
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 70.99,
+          "msgs_pruned": 912,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0371
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "verification",
+            "coordination"
+          ],
+          "token_savings_pct": 71.42,
+          "msgs_pruned": 1196,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0758
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision"
+          ],
+          "token_savings_pct": 72.56,
+          "msgs_pruned": 918,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0377
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "coordination"
+          ],
+          "token_savings_pct": 72.99,
+          "msgs_pruned": 1202,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0738
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "verification"
+          ],
+          "token_savings_pct": 75.8,
+          "msgs_pruned": 984,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0393
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 91.52,
+          "msgs_pruned": 1078,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0354
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "coordination"
+          ],
+          "token_savings_pct": 91.95,
+          "msgs_pruned": 1362,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0735
+        },
+        {
+          "pruned_types": [
+            "information_provision",
+            "reasoning_guidance",
+            "verification"
+          ],
+          "token_savings_pct": 94.76,
+          "msgs_pruned": 1144,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0372
+        },
+        {
+          "pruned_types": [
+            "acknowledgment",
+            "information_provision",
+            "reasoning_guidance"
+          ],
+          "token_savings_pct": 96.33,
+          "msgs_pruned": 1150,
+          "final_answer_change_rate": 0.0,
+          "task_accuracy_retention_pct": 100.0,
+          "avg_semantic_similarity": 0.0377
+        }
+      ],
+      "greedy_pruning_order": [
+        "information_provision",
+        "reasoning_guidance",
+        "acknowledgment",
+        "verification",
+        "coordination"
+      ],
+      "recommendation": "Prune acknowledgment+information_provision+reasoning_guidance for 96.3% token savings with 100.0% task accuracy retention (final_answer change rate: 0.00%)"
+    }
+  },
+  "cross_backbone_summary": {
+    "per_function_across_backbones": {
+      "acknowledgment": {
+        "qwen_round_robin": {
+          "msg_count": 719,
+          "token_share_pct": 19.59,
+          "action_change_rate": 0.9978,
+          "final_answer_change_rate": 0.02,
+          "accuracy_risk_pct": 2.6,
+          "avg_semantic_similarity": 0.1532
+        },
+        "llama_round_robin": {
+          "msg_count": 691,
+          "token_share_pct": 52.44,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0654,
+          "accuracy_risk_pct": 1.82,
+          "avg_semantic_similarity": 0.2411
+        },
+        "gemma_round_robin": {
+          "msg_count": 72,
+          "token_share_pct": 4.81,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0597
+        }
+      },
+      "information_provision": {
+        "qwen_round_robin": {
+          "msg_count": 185,
+          "token_share_pct": 26.1,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0467
+        },
+        "llama_round_robin": {
+          "msg_count": 194,
+          "token_share_pct": 10.88,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0941
+        },
+        "gemma_round_robin": {
+          "msg_count": 846,
+          "token_share_pct": 67.75,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0352
+        }
+      },
+      "reasoning_guidance": {
+        "qwen_round_robin": {
+          "msg_count": 447,
+          "token_share_pct": 38.36,
+          "action_change_rate": 0.9937,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.1431
+        },
+        "llama_round_robin": {
+          "msg_count": 350,
+          "token_share_pct": 20.26,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0081,
+          "accuracy_risk_pct": 0.45,
+          "avg_semantic_similarity": 0.1082
+        },
+        "gemma_round_robin": {
+          "msg_count": 232,
+          "token_share_pct": 23.77,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0387
+        }
+      },
+      "verification": {
+        "qwen_round_robin": {
+          "msg_count": 142,
+          "token_share_pct": 15.43,
+          "action_change_rate": 0.9455,
+          "final_answer_change_rate": 0.0364,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.2249
+        },
+        "llama_round_robin": {
+          "msg_count": 121,
+          "token_share_pct": 13.09,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.3245
+        },
+        "gemma_round_robin": {
+          "msg_count": 66,
+          "token_share_pct": 3.24,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.108
+        }
+      },
+      "coordination": {
+        "qwen_round_robin": {
+          "msg_count": 6,
+          "token_share_pct": 0.46,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0254
+        },
+        "llama_round_robin": {
+          "msg_count": 114,
+          "token_share_pct": 3.33,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.0788
+        },
+        "gemma_round_robin": {
+          "msg_count": 284,
+          "token_share_pct": 0.43,
+          "action_change_rate": 1.0,
+          "final_answer_change_rate": 0.0,
+          "accuracy_risk_pct": 0.0,
+          "avg_semantic_similarity": 0.2537
+        }
+      }
+    },
+    "pruning_priority": [
+      {
+        "type": "information_provision",
+        "max_accuracy_risk_pct": 0,
+        "avg_token_share_pct": 34.91,
+        "avg_semantic_similarity": 0.0587
+      },
+      {
+        "type": "verification",
+        "max_accuracy_risk_pct": 0,
+        "avg_token_share_pct": 10.59,
+        "avg_semantic_similarity": 0.2191
+      },
+      {
+        "type": "coordination",
+        "max_accuracy_risk_pct": 0,
+        "avg_token_share_pct": 1.41,
+        "avg_semantic_similarity": 0.1193
+      },
+      {
+        "type": "reasoning_guidance",
+        "max_accuracy_risk_pct": 0.45,
+        "avg_token_share_pct": 27.46,
+        "avg_semantic_similarity": 0.0967
+      },
+      {
+        "type": "acknowledgment",
+        "max_accuracy_risk_pct": 2.6,
+        "avg_token_share_pct": 25.61,
+        "avg_semantic_similarity": 0.1513
+      }
+    ],
+    "backbones_analyzed": [
+      "qwen_round_robin",
+      "llama_round_robin",
+      "gemma_round_robin"
+    ]
+  }
+}

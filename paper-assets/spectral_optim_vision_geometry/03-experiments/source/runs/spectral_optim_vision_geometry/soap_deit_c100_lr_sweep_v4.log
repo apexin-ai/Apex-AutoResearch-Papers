@@ -1,0 +1,57 @@
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+=== SOAP DeiT-S lr= ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --lr: expected one argument
+EXIT_CODE=2

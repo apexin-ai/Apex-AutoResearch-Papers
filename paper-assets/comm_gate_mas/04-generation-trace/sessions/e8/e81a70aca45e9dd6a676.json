@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e81a70aca45e9dd6a676",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "agent / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5.md",
+    "occurrence": 3,
+    "bytes": 3843,
+    "sha256": "71eb01ca37a41501d3a8a8bb277f7c570ab257ff5ba82ee573e2f63292a8bcd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-04-28T00:39:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目**只能用 cuda:1**，cuda:0/2/3 分配给其他项目，严禁使用\n- 服务器 SSH 账户是 `root`（不是项目配置里的 `comm_gate`，之前 P1 oracle 因此卡在 PREPARING）\n- P1 oracle precompute 是**本地 API 调用任务**，不要提交到服务器\n- Heuristic 版本冻结为 v1（无 verbose_ack_pattern），所有论文实验必须用 v1（D198）\n- 72B 结果只能标注为 \"preliminary evidence of scale consistency\"，不能说 \"scale-stable\"（D205）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a（4× RTX PRO 6000 Blackwell 96GB）\n- 工作目录：`/root/comm_gate_mas/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：Qwen2.5-7B-Instruct via vLLM（PID 856695，运行 ~3h）\n- 数据：`outputs/oracle_labels/llama_n300_traces.jsonl`（297 tasks, 1782 msgs）\n- GPT-4o oracle 已完成：`outputs/oracle_labels/llama_n300_oracle.json`（1760/1782 entries）\n- GPT-4o-mini checkpoint：`outputs/oracle_labels/llama_n300_oracle_gpt4omini.json.ckpt`（510/1782, 28.6%）\n- 活跃进程：stochastic 10-seed（PID 859482, cuda:1），vLLM 服务（PID 856695, cuda:1）\n- Cron：`stochastic_10seed_qwen_t07` 监控中\n\n### 3. 📊 当前状态\n刚处理了两个 Worker 回调：\n1. **监控 Worker**：stochastic 10-seed 5/10 seeds 完成（seed_42/123/456/789/1024），seed_2048 进行中，ETA ~00:00-00:30 UTC（比原估 03:00 UTC 提前 ~2.5h）\n2. **P1 诊断 Worker**：诊断出 P1 三次失败根因（旧 key 过期 + SSH 账户不匹配 + 服务器无 API key），发现本地已有完整 GPT-4o oracle\n\n**Registry RUNNING**：`stochastic_10seed_qwen_t07` — Qwen2.5-7B t=0.7 10-seed 复现，验证 stochastic decoding 不降低 pruning safety\n\n**等待中**：\n- stochastic_10seed_qwen_t07 cron 完成回调（ETA ~00:00-00:30 UTC）\n- **Director 决策**：P1 是用现有 GPT-4o oracle（免跑）还是继续 GPT-4o-mini precompute（需 API key，~53 min）——已通过 `main_agent_post_to_director` 提交，等回复\n\n### 4. 📋 待办（条件触发式）\n- stochastic cron 回调到达 → spawn worker 分析 10-seed 结果（TOST non-inferiority δ=-3pp）→ 更新 registry → 汇报 Director\n- stochastic TOST 通过 → 立即启动 `llama_length_only_gsm8k_5seed`（cuda:1，已有 3-seed 数据扩到 5-seed）\n- stochastic TOST 失败 → 走 red-section framing 调整提案流程，禁止默默跑下一个\n- Director 回复 P1 决策 = 选项 A（用 GPT-4o oracle）→ 跳过 P1，stochastic 完成后直接排 P2 `oracle_online_llama`\n- Director 回复 P1 决策 = 选项 B（GPT-4o-mini）→ `request_secret(\"comm_gate_mas\", \"openai_key\")` 获取 API key → 本地跑 precompute ~53 min\n\n### 5. 🎯 战略上下文\n**核心叙事**：Dissociation finding — perturbation sensitivity ≠ pruning safety，ack messages 扰动敏感但可安全剪枝。NeurIPS 2026 投稿（abstract 5/3-4, paper 5/5-6）。\n\n**关键决策链**：D200 维持 dissociation 主线 → D201 κ>0.8 选 GPT-4o-mini oracle → D205 72B 降级 preliminary → D206 prompt_mod v2 有效支持 emergent behavior\n\n**已有数据**：双 backbone 10-seed（Llama Δ=+2.1±2.4pp, Qwen Δ=+0.40±1.02pp），heuristic/length-only/prompt_mod 结果齐全。Stochastic 10-seed 是最后一个关键数据点。\n\n**易错点**：\n- P1 oracle 是本地任务，不要再提交到服务器（已失败 3 次）\n- length-only Qwen vs Llama 50x 差异（suppress 42.2% vs 0.81%）是已知 model-dependent 现象，不是 bug，Discussion 已写\n- prompt_mod 47.9% 参考值来自不同实验模式（skip），论文 framing 是方向性论述不是量化对比\n- vLLM 服务（PID 856695）是 stochastic 实验的依赖，不要 kill\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-7.md"
+}

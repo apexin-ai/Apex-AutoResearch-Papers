@@ -1,0 +1,97 @@
+Device: cuda:0
+Model: deit_small, params: 21.7M
+CIFAR-100 train: 50000 images, 390 batches
+Target layers: 50 (conv2d + linear)
+  Epoch 1/5 [50/390] loss=4.4345 acc=3.5%
+  Epoch 1/5 [100/390] loss=4.3409 acc=4.1%
+  Epoch 1/5 [150/390] loss=4.2560 acc=4.9%
+  Epoch 1/5 [200/390] loss=4.1866 acc=5.7%
+  Epoch 1/5 [250/390] loss=4.1401 acc=6.4%
+  Epoch 1/5 [300/390] loss=4.1029 acc=7.0%
+  Epoch 1/5 [350/390] loss=4.0676 acc=7.4%
+
+--- Running gradient geometry scan at epoch 1 ---
+
+=== Epoch 1 Summary ===
+Conv layers: 1 total, Davis=True: 1 (100.0%)
+  Reclass theory:   1/1 (100.0%)
+  Reclass grishina: 1/1 (100.0%)
+  Reclass empirical:0/1 (0.0%)
+Linear layers: 49 total, Davis=True: 49 (100.0%)
+Timeouts: 0
+Scan completed in 3.8s
+Epoch 1/5: loss=4.0431, acc=7.7%
+  Epoch 2/5 [50/390] loss=3.7768 acc=11.4%
+  Epoch 2/5 [100/390] loss=3.7636 acc=11.5%
+  Epoch 2/5 [150/390] loss=3.7675 acc=11.4%
+  Epoch 2/5 [200/390] loss=3.7556 acc=11.7%
+  Epoch 2/5 [250/390] loss=3.7380 acc=12.1%
+  Epoch 2/5 [300/390] loss=3.7226 acc=12.3%
+  Epoch 2/5 [350/390] loss=3.7142 acc=12.5%
+Epoch 2/5: loss=3.7075, acc=12.5%
+  Epoch 3/5 [50/390] loss=3.6366 acc=13.3%
+  Epoch 3/5 [100/390] loss=3.5969 acc=13.9%
+  Epoch 3/5 [150/390] loss=3.5901 acc=14.1%
+  Epoch 3/5 [200/390] loss=3.5783 acc=14.4%
+  Epoch 3/5 [250/390] loss=3.5639 acc=14.7%
+  Epoch 3/5 [300/390] loss=3.5571 acc=14.8%
+  Epoch 3/5 [350/390] loss=3.5555 acc=14.9%
+
+--- Running gradient geometry scan at epoch 3 ---
+
+=== Epoch 3 Summary ===
+Conv layers: 1 total, Davis=True: 1 (100.0%)
+  Reclass theory:   1/1 (100.0%)
+  Reclass grishina: 1/1 (100.0%)
+  Reclass empirical:0/1 (0.0%)
+Linear layers: 49 total, Davis=True: 49 (100.0%)
+Timeouts: 0
+Scan completed in 3.7s
+Epoch 3/5: loss=3.5510, acc=15.0%
+  Epoch 4/5 [50/390] loss=3.4468 acc=16.0%
+  Epoch 4/5 [100/390] loss=3.4356 acc=16.7%
+  Epoch 4/5 [150/390] loss=3.4332 acc=16.7%
+  Epoch 4/5 [200/390] loss=3.4300 acc=16.8%
+  Epoch 4/5 [250/390] loss=3.4287 acc=16.9%
+  Epoch 4/5 [300/390] loss=3.4236 acc=17.0%
+  Epoch 4/5 [350/390] loss=3.4115 acc=17.3%
+Epoch 4/5: loss=3.4085, acc=17.4%
+  Epoch 5/5 [50/390] loss=3.2988 acc=19.6%
+  Epoch 5/5 [100/390] loss=3.2798 acc=19.8%
+  Epoch 5/5 [150/390] loss=3.2786 acc=19.9%
+  Epoch 5/5 [200/390] loss=3.2789 acc=19.9%
+  Epoch 5/5 [250/390] loss=3.2842 acc=19.8%
+  Epoch 5/5 [300/390] loss=3.2807 acc=20.0%
+  Epoch 5/5 [350/390] loss=3.2755 acc=20.1%
+
+--- Running gradient geometry scan at epoch 5 ---
+
+=== Epoch 5 Summary ===
+Conv layers: 1 total, Davis=True: 1 (100.0%)
+  Reclass theory:   1/1 (100.0%)
+  Reclass grishina: 1/1 (100.0%)
+  Reclass empirical:0/1 (0.0%)
+Linear layers: 49 total, Davis=True: 49 (100.0%)
+Timeouts: 0
+Scan completed in 3.7s
+Epoch 5/5: loss=3.2699, acc=20.2%
+
+Results saved to /root/autodl-tmp/spectral_optim_vision_geometry/results/gradient_geometry_results.csv
+
+==============================================================
+=== Pass/Fail Criteria ===
+P1 (SVD computable): PASS - 150/150 layers computed, 0 timeouts
+
+P2 (>=20% conv reclassification, any delta):
+  P2_theory   (d=sqrt(k)): PASS - 3/3 (100.0%)
+  P2_grishina (d=k):       PASS - 3/3 (100.0%)
+  P2_empirical (d=emp):    FAIL - 0/3 (0.0%)
+  P2 overall: PASS
+  >>> Passed via: theory(sqrt(k)), grishina(k)
+
+P3 (<5% linear reclassification, all deltas):
+  theory:    PASS (0.0%)
+  grishina:  PASS (0.0%)
+  empirical: PASS (0.0%)
+  P3 overall: PASS
+==============================================================

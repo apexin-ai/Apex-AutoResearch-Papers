@@ -1,0 +1,302 @@
+{
+  "mode": "online_pruning",
+  "pruning_mode": "skip",
+  "detection_mode": "heuristic",
+  "char_threshold": 30,
+  "num_tasks": 20,
+  "total_attempted": 20,
+  "total_completed": 20,
+  "total_skipped": 0,
+  "total_infra_errors": 0,
+  "baseline": {
+    "correct": 3,
+    "total": 20,
+    "accuracy": 0.15
+  },
+  "online_pruned": {
+    "correct": 1,
+    "total": 20,
+    "accuracy": 0.05,
+    "total_suppressed_msgs": 50,
+    "total_agent_rounds": 100,
+    "suppress_pct": 50.0
+  },
+  "delta_pp": -10.0,
+  "elapsed_seconds": 256.6,
+  "per_task": [
+    {
+      "task_id": "arc_0000",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0001",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0002",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        2,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0003",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0004",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0005",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0006",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0007",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0008",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0009",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0010",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0011",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0012",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        2,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0013",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0014",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0015",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0016",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0017",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0018",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        1,
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0019",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    }
+  ],
+  "config": {
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "api_base": "http://localhost:8001/v1",
+    "max_rounds": 6
+  }
+}

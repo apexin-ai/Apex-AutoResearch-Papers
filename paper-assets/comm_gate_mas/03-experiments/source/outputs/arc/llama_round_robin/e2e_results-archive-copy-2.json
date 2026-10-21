@@ -1,0 +1,293 @@
+{
+  "mode": "simulate",
+  "baseline": {
+    "correct": 182,
+    "total": 250,
+    "accuracy": 0.728
+  },
+  "token_stats": {
+    "reasoning_guidance": {
+      "msg_count": 249,
+      "total_words": 41507,
+      "est_tokens": 53959,
+      "word_share_pct": 30.23
+    },
+    "acknowledgment": {
+      "msg_count": 623,
+      "total_words": 55210,
+      "est_tokens": 71773,
+      "word_share_pct": 40.21
+    },
+    "coordination": {
+      "msg_count": 34,
+      "total_words": 4267,
+      "est_tokens": 5547,
+      "word_share_pct": 3.11
+    },
+    "information_provision": {
+      "msg_count": 162,
+      "total_words": 21098,
+      "est_tokens": 27427,
+      "word_share_pct": 15.37
+    },
+    "verification": {
+      "msg_count": 182,
+      "total_words": 15228,
+      "est_tokens": 19796,
+      "word_share_pct": 11.09
+    },
+    "_total_words": 137310,
+    "_total_est_tokens": 178503
+  },
+  "function_guided": {
+    "single_type": {
+      "acknowledgment": {
+        "pruned_types": [
+          "acknowledgment"
+        ],
+        "correct": 192,
+        "total": 250,
+        "accuracy": 0.768,
+        "pruned_words": 55210,
+        "total_words": 148784,
+        "token_savings_pct": 37.11
+      },
+      "information_provision": {
+        "pruned_types": [
+          "information_provision"
+        ],
+        "correct": 178,
+        "total": 250,
+        "accuracy": 0.712,
+        "pruned_words": 21098,
+        "total_words": 148784,
+        "token_savings_pct": 14.18
+      },
+      "reasoning_guidance": {
+        "pruned_types": [
+          "reasoning_guidance"
+        ],
+        "correct": 155,
+        "total": 250,
+        "accuracy": 0.62,
+        "pruned_words": 41507,
+        "total_words": 148784,
+        "token_savings_pct": 27.9
+      },
+      "verification": {
+        "pruned_types": [
+          "verification"
+        ],
+        "correct": 185,
+        "total": 250,
+        "accuracy": 0.74,
+        "pruned_words": 15228,
+        "total_words": 148784,
+        "token_savings_pct": 10.23
+      },
+      "coordination": {
+        "pruned_types": [
+          "coordination"
+        ],
+        "correct": 183,
+        "total": 250,
+        "accuracy": 0.732,
+        "pruned_words": 4267,
+        "total_words": 148784,
+        "token_savings_pct": 2.87
+      }
+    },
+    "combinations": {
+      "information_provision+verification": {
+        "pruned_types": [
+          "information_provision",
+          "verification"
+        ],
+        "correct": 173,
+        "total": 250,
+        "accuracy": 0.692,
+        "pruned_words": 36326,
+        "total_words": 148784,
+        "token_savings_pct": 24.42
+      },
+      "information_provision+reasoning_guidance": {
+        "pruned_types": [
+          "information_provision",
+          "reasoning_guidance"
+        ],
+        "correct": 146,
+        "total": 250,
+        "accuracy": 0.584,
+        "pruned_words": 62605,
+        "total_words": 148784,
+        "token_savings_pct": 42.08
+      },
+      "coordination+information_provision": {
+        "pruned_types": [
+          "information_provision",
+          "coordination"
+        ],
+        "correct": 186,
+        "total": 250,
+        "accuracy": 0.744,
+        "pruned_words": 25365,
+        "total_words": 148784,
+        "token_savings_pct": 17.05
+      },
+      "acknowledgment+information_provision": {
+        "pruned_types": [
+          "acknowledgment",
+          "information_provision"
+        ],
+        "correct": 180,
+        "total": 250,
+        "accuracy": 0.72,
+        "pruned_words": 76308,
+        "total_words": 148784,
+        "token_savings_pct": 51.29
+      },
+      "information_provision+reasoning_guidance+verification": {
+        "pruned_types": [
+          "reasoning_guidance",
+          "information_provision",
+          "verification"
+        ],
+        "correct": 122,
+        "total": 250,
+        "accuracy": 0.488,
+        "pruned_words": 77833,
+        "total_words": 148784,
+        "token_savings_pct": 52.31
+      },
+      "acknowledgment+information_provision+reasoning_guidance": {
+        "pruned_types": [
+          "acknowledgment",
+          "information_provision",
+          "reasoning_guidance"
+        ],
+        "correct": 109,
+        "total": 250,
+        "accuracy": 0.436,
+        "pruned_words": 117815,
+        "total_words": 148784,
+        "token_savings_pct": 79.19
+      }
+    }
+  },
+  "random_baseline": {
+    "3": {
+      "target_prune_pct": 3,
+      "n_trials": 10,
+      "accuracy_mean": 0.7248,
+      "accuracy_std": 0.0071,
+      "token_savings_mean": 2.75,
+      "token_savings_std": 0.28
+    },
+    "10": {
+      "target_prune_pct": 10,
+      "n_trials": 10,
+      "accuracy_mean": 0.7216,
+      "accuracy_std": 0.0098,
+      "token_savings_mean": 9.29,
+      "token_savings_std": 0.63
+    },
+    "14": {
+      "target_prune_pct": 14,
+      "n_trials": 10,
+      "accuracy_mean": 0.7184,
+      "accuracy_std": 0.0086,
+      "token_savings_mean": 13.04,
+      "token_savings_std": 0.69
+    },
+    "20": {
+      "target_prune_pct": 20,
+      "n_trials": 10,
+      "accuracy_mean": 0.7108,
+      "accuracy_std": 0.0132,
+      "token_savings_mean": 18.49,
+      "token_savings_std": 0.63
+    },
+    "28": {
+      "target_prune_pct": 28,
+      "n_trials": 10,
+      "accuracy_mean": 0.6904,
+      "accuracy_std": 0.0181,
+      "token_savings_mean": 25.82,
+      "token_savings_std": 0.91
+    },
+    "30": {
+      "target_prune_pct": 30,
+      "n_trials": 10,
+      "accuracy_mean": 0.6824,
+      "accuracy_std": 0.0164,
+      "token_savings_mean": 27.55,
+      "token_savings_std": 0.85
+    },
+    "37": {
+      "target_prune_pct": 37,
+      "n_trials": 10,
+      "accuracy_mean": 0.6744,
+      "accuracy_std": 0.0146,
+      "token_savings_mean": 34.05,
+      "token_savings_std": 0.7
+    },
+    "40": {
+      "target_prune_pct": 40,
+      "n_trials": 10,
+      "accuracy_mean": 0.6676,
+      "accuracy_std": 0.0153,
+      "token_savings_mean": 36.91,
+      "token_savings_std": 0.91
+    },
+    "50": {
+      "target_prune_pct": 50,
+      "n_trials": 10,
+      "accuracy_mean": 0.6324,
+      "accuracy_std": 0.0166,
+      "token_savings_mean": 46.21,
+      "token_savings_std": 1.22
+    }
+  },
+  "dominance_analysis": {
+    "acknowledgment": {
+      "fn_savings_pct": 37.11,
+      "fn_accuracy": 0.768,
+      "random_savings_pct": 34.05,
+      "random_accuracy": 0.6744,
+      "function_advantage_pp": 9.36,
+      "dominates_random": true
+    },
+    "information_provision": {
+      "fn_savings_pct": 14.18,
+      "fn_accuracy": 0.712,
+      "random_savings_pct": 13.04,
+      "random_accuracy": 0.7184,
+      "function_advantage_pp": -0.64,
+      "dominates_random": false
+    },
+    "reasoning_guidance": {
+      "fn_savings_pct": 27.9,
+      "fn_accuracy": 0.62,
+      "random_savings_pct": 25.82,
+      "random_accuracy": 0.6904,
+      "function_advantage_pp": -7.04,
+      "dominates_random": false
+    },
+    "verification": {
+      "fn_savings_pct": 10.23,
+      "fn_accuracy": 0.74,
+      "random_savings_pct": 9.29,
+      "random_accuracy": 0.7216,
+      "function_advantage_pp": 1.84,
+      "dominates_random": true
+    },
+    "coordination": {
+      "fn_savings_pct": 2.87,
+      "fn_accuracy": 0.732,
+      "random_savings_pct": 2.75,
+      "random_accuracy": 0.7248,
+      "function_advantage_pp": 0.72,
+      "dominates_random": true
+    }
+  }
+}

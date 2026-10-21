@@ -1,0 +1,77 @@
+Device: cuda:0
+Loaded: muon=320 keys, adamw=320 keys
+/root/miniconda3/lib/python3.12/site-packages/torchvision/datasets/cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+Val: 10000, BN recal: 10000
+Muon baseline: 77.02%
+AdamW baseline: 68.13%
+Swappable modules: 54
+
+  [1/54] conv1 (conv): SR_div=2.12  drop_orig=+75.29pp  drop_recal=+47.99pp  [14s]
+  [2/54] layer1.0.conv1 (conv): SR_div=5.72  drop_orig=+2.06pp  drop_recal=+0.52pp  [27s]
+  [3/54] layer1.0.conv2 (conv): SR_div=1.18  drop_orig=+0.99pp  drop_recal=+0.57pp  [41s]
+  [4/54] layer1.0.conv3 (conv): SR_div=3.61  drop_orig=+2.00pp  drop_recal=+0.51pp  [54s]
+  [5/54] layer1.0.downsample.0 (conv): SR_div=3.53  drop_orig=+69.68pp  drop_recal=+14.65pp  [68s]
+  [6/54] layer1.1.conv1 (conv): SR_div=3.59  drop_orig=+0.10pp  drop_recal=+0.07pp  [81s]
+  [7/54] layer1.1.conv2 (conv): SR_div=5.67  drop_orig=+0.50pp  drop_recal=+0.32pp  [95s]
+  [8/54] layer1.1.conv3 (conv): SR_div=1.39  drop_orig=+0.45pp  drop_recal=+0.25pp  [108s]
+  [9/54] layer1.2.conv1 (conv): SR_div=8.14  drop_orig=+0.49pp  drop_recal=+0.19pp  [121s]
+  [10/54] layer1.2.conv2 (conv): SR_div=5.31  drop_orig=+0.82pp  drop_recal=+0.47pp  [134s]
+  [11/54] layer1.2.conv3 (conv): SR_div=0.02  drop_orig=+0.66pp  drop_recal=+0.37pp  [148s]
+  [12/54] layer2.0.conv1 (conv): SR_div=6.37  drop_orig=+1.12pp  drop_recal=+0.41pp  [161s]
+  [13/54] layer2.0.conv2 (conv): SR_div=14.84  drop_orig=+0.90pp  drop_recal=+0.50pp  [174s]
+  [14/54] layer2.0.conv3 (conv): SR_div=9.54  drop_orig=+1.13pp  drop_recal=+0.45pp  [188s]
+  [15/54] layer2.0.downsample.0 (conv): SR_div=28.86  drop_orig=+75.53pp  drop_recal=+16.50pp  [201s]
+  [16/54] layer2.1.conv1 (conv): SR_div=14.58  drop_orig=+3.92pp  drop_recal=+0.98pp  [215s]
+  [17/54] layer2.1.conv2 (conv): SR_div=17.73  drop_orig=+7.33pp  drop_recal=+1.69pp  [229s]
+  [18/54] layer2.1.conv3 (conv): SR_div=15.99  drop_orig=+6.93pp  drop_recal=+0.96pp  [242s]
+  [19/54] layer2.2.conv1 (conv): SR_div=12.35  drop_orig=+6.33pp  drop_recal=+0.62pp  [256s]
+  [20/54] layer2.2.conv2 (conv): SR_div=16.72  drop_orig=+8.86pp  drop_recal=+2.19pp  [270s]
+  [21/54] layer2.2.conv3 (conv): SR_div=12.46  drop_orig=+11.93pp  drop_recal=+1.02pp  [284s]
+  [22/54] layer2.3.conv1 (conv): SR_div=13.07  drop_orig=+5.54pp  drop_recal=+0.75pp  [298s]
+  [23/54] layer2.3.conv2 (conv): SR_div=19.56  drop_orig=+5.02pp  drop_recal=+1.63pp  [312s]
+  [24/54] layer2.3.conv3 (conv): SR_div=12.19  drop_orig=+7.22pp  drop_recal=+1.04pp  [326s]
+  [25/54] layer3.0.conv1 (conv): SR_div=54.71  drop_orig=+17.14pp  drop_recal=+1.74pp  [339s]
+  [26/54] layer3.0.conv2 (conv): SR_div=45.72  drop_orig=+15.35pp  drop_recal=+2.99pp  [353s]
+  [27/54] layer3.0.conv3 (conv): SR_div=52.14  drop_orig=+17.84pp  drop_recal=+1.77pp  [367s]
+  [28/54] layer3.0.downsample.0 (conv): SR_div=85.77  drop_orig=+72.13pp  drop_recal=+15.41pp  [380s]
+  [29/54] layer3.1.conv1 (conv): SR_div=57.59  drop_orig=+19.53pp  drop_recal=+2.99pp  [394s]
+  [30/54] layer3.1.conv2 (conv): SR_div=51.57  drop_orig=+36.49pp  drop_recal=+6.69pp  [408s]
+  [31/54] layer3.1.conv3 (conv): SR_div=45.78  drop_orig=+30.34pp  drop_recal=+3.24pp  [422s]
+  [32/54] layer3.2.conv1 (conv): SR_div=52.74  drop_orig=+23.27pp  drop_recal=+2.71pp  [437s]
+  [33/54] layer3.2.conv2 (conv): SR_div=53.93  drop_orig=+27.29pp  drop_recal=+5.20pp  [450s]
+  [34/54] layer3.2.conv3 (conv): SR_div=45.52  drop_orig=+27.31pp  drop_recal=+2.77pp  [464s]
+  [35/54] layer3.3.conv1 (conv): SR_div=52.24  drop_orig=+16.44pp  drop_recal=+2.68pp  [478s]
+  [36/54] layer3.3.conv2 (conv): SR_div=53.78  drop_orig=+20.25pp  drop_recal=+5.27pp  [492s]
+  [37/54] layer3.3.conv3 (conv): SR_div=40.36  drop_orig=+24.13pp  drop_recal=+2.69pp  [505s]
+  [38/54] layer3.4.conv1 (conv): SR_div=47.70  drop_orig=+40.75pp  drop_recal=+3.82pp  [519s]
+  [39/54] layer3.4.conv2 (conv): SR_div=52.37  drop_orig=+20.89pp  drop_recal=+6.37pp  [533s]
+  [40/54] layer3.4.conv3 (conv): SR_div=40.48  drop_orig=+22.52pp  drop_recal=+3.41pp  [547s]
+  [41/54] layer3.5.conv1 (conv): SR_div=41.58  drop_orig=+33.29pp  drop_recal=+3.90pp  [561s]
+  [42/54] layer3.5.conv2 (conv): SR_div=43.09  drop_orig=+17.45pp  drop_recal=+6.82pp  [575s]
+  [43/54] layer3.5.conv3 (conv): SR_div=38.37  drop_orig=+21.79pp  drop_recal=+3.38pp  [588s]
+  [44/54] layer4.0.conv1 (conv): SR_div=88.45  drop_orig=+5.38pp  drop_recal=+1.23pp  [602s]
+  [45/54] layer4.0.conv2 (conv): SR_div=116.88  drop_orig=+3.10pp  drop_recal=+0.90pp  [617s]
+  [46/54] layer4.0.conv3 (conv): SR_div=79.25  drop_orig=+2.36pp  drop_recal=+0.61pp  [630s]
+  [47/54] layer4.0.downsample.0 (conv): SR_div=238.59  drop_orig=+67.43pp  drop_recal=+10.72pp  [645s]
+  [48/54] layer4.1.conv1 (conv): SR_div=112.85  drop_orig=+16.99pp  drop_recal=+9.18pp  [659s]
+  [49/54] layer4.1.conv2 (conv): SR_div=85.44  drop_orig=+46.46pp  drop_recal=+6.03pp  [674s]
+  [50/54] layer4.1.conv3 (conv): SR_div=26.31  drop_orig=+22.38pp  drop_recal=+2.69pp  [687s]
+  [51/54] layer4.2.conv1 (conv): SR_div=70.83  drop_orig=+16.36pp  drop_recal=+6.61pp  [701s]
+  [52/54] layer4.2.conv2 (conv): SR_div=49.02  drop_orig=+14.64pp  drop_recal=+4.78pp  [716s]
+  [53/54] layer4.2.conv3 (conv): SR_div=25.21  drop_orig=+5.79pp  drop_recal=+1.90pp  [730s]
+  [54/54] fc (linear): SR_div=12.64  drop_orig=+1.06pp  drop_recal=+1.14pp  [743s]
+
+============================================================
+Muon baseline: 77.02%
+AdamW baseline: 68.13%
+Layers: 54
+
+Spearman rho (SR_divergence vs accuracy_drop):
+  Original (no BN recal):  rho=0.5304  p=3.7028e-05
+  After BN recalibration:  rho=0.5836  p=3.6267e-06
+============================================================
+
+Saved: /root/spectral_optim_vision_geometry/results/resnet50_bn_recal_ablation.csv
+Time: 743s
+BN_RECAL_COMPLETE n_layers=54 rho_orig=0.5304 rho_recal=0.5836 p_recal=3.6267e-06

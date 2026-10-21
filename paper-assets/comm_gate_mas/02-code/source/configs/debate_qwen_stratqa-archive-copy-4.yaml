@@ -1,0 +1,40 @@
+# Debate topology pilot (C5): symmetric argumentation
+# Qwen2.5-7B, StrategyQA, N=100, greedy decoding
+model:
+  name: "Qwen2.5-7B-Instruct"
+  api_base: "http://localhost:8000/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  advocate:
+    name: "Advocate"
+    system_message: |
+      You are a debate advocate. Given a yes/no question, argue for the answer you believe is correct.
+      Present evidence and reasoning to support your position.
+      If the other debater raises valid points, acknowledge them but defend or refine your position.
+      End your response with: "The answer is [Yes/No]."
+  challenger:
+    name: "Challenger"
+    system_message: |
+      You are a debate challenger. Given a yes/no question, critically examine the advocate's argument.
+      Identify weaknesses, missing evidence, or logical gaps.
+      Present counter-arguments or alternative perspectives.
+      If the advocate's reasoning is sound, you may agree.
+      End your response with: "The answer is [Yes/No]."
+
+data:
+  source: "strategyqa"
+  split: "test"
+  num_tasks: 100
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+output:
+  trace_dir: "outputs/debate_pilot/traces"
+  analysis_dir: "outputs/debate_pilot"

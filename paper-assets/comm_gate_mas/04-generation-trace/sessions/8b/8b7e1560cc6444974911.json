@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7e1560cc6444974911",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "agent / loop_6_1777430814.md",
+  "task_key": "loop_6_1777430814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1777430814.md",
+    "occurrence": 1,
+    "bytes": 4192,
+    "sha256": "8279e3ae147b58eac1b46943f98d1389b74582816e5a4008d518c617802ff35a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-04-28T22:32:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:1** on westb-4x6000-a。cuda:0/2/3 属其他项目，禁止使用\n- `oracle_qwen72b_gsm8k_n500.yaml` 端口刚从 8002 修为 **8000**（本地+服务器均已改）。不要改回去\n- Pipeline Phase B 的 Qwen 配置用的是 `*_port8001.yaml` 专用文件，不是原始 `stratqa_qwen_rr.yaml`/`arc_qwen_rr.yaml`（后者端口分别是 8003/8000，不匹配 pipeline）\n- 72B-AWQ vLLM 必须启在 port 8000（匹配 `qwen72b_gsm8k_rr.yaml` + 修后的 oracle config）\n- NeurIPS 2026 abstract DDL 5/3-4, paper DDL 5/5-6 AOE\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-4x6000-a**，工作目录 `/root/autodl-tmp/comm_gate_mas/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- GPU：96GB RTX PRO 6000 Blackwell × 4，本项目仅用 cuda:1\n- 模型路径：`/root/autodl-tmp/models/Llama-3.1-8B-Instruct`（port 8001）、`Qwen2.5-72B-Instruct-AWQ-ms/`（port 8000）、Qwen-7B 由 pipeline Phase B 临时启在 port 8001\n- Pipeline 日志：`/root/autodl-tmp/comm_gate_mas/pipeline.log`，完成标志：`pipeline_sentinel.txt` → `PIPELINE_DONE`\n- 活跃进程：Pipeline PID **341188**（外壳），Llama chain PID **319949**\n- Cron：`llama_heuristic_stratqa` 监控 PID 341188，180s interval\n\n### 3. 📊 当前状态\n刚完成 Reviewer 指示的三项修复：(1) 6 个实验 registry 状态+spec 补全，(2) 72B 端口 8002→8000 修复（本地+服务器），(3) Phase B 端口一致性验证通过。\n\nRegistry 关键实验：\n- `llama_heuristic_stratqa` — **RUNNING**，Pipeline Phase A 执行中（Llama StratQA ~119/200 → Llama ARC 自动链）\n- `llama_heuristic_arc` — **ALLOCATED**，Phase A 排队（StratQA 后自动启动）\n- `qwen_heuristic_stratqa` — **ALLOCATED**，Phase B 排队\n- `qwen_heuristic_arc` — **ALLOCATED**，Phase B 排队\n- `oracle_qwen72b_seed123` — **PREPARING**，Phase C 排队（72B seed=123，验证零 discordant flip 可重复性）\n- `message_info_quantification` — **DONE** (success)\n- `cross_model_ack_concordance` — **DONE** (success)\n\n等待中：Pipeline cron 回调（PID 341188 退出时触发）。无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Pipeline cron 报 PID 341188 退出 → spawn worker 读取 pipeline.log 和各阶段输出文件，逐个分析 4 个 heuristic 实验 + 72B seed 123 结果，更新 registry 到 DONE\n- llama_heuristic_stratqa/arc 完成 → 推 registry RUNNING→ANALYZING→DONE，与 GSM8K 5-seed 结果对比（GSM8K Δ=+2.20±1.44pp）\n- qwen_heuristic_stratqa/arc 完成 → 与 Qwen GSM8K 10-seed 对比（Δ=-0.05±0.99pp）\n- oracle_qwen72b_seed123 完成 → 若 0 discordant flip → 更新 results.tex L93 去掉 \"preliminary single-seed\"；若有 discordant → 停止，调整叙事，报 Director\n- Pipeline 全部完成 → 运行 `scripts/post_72b_pipeline.sh` 填充 72B LaTeX macros → PDF 编译 → Reviewer 复审\n- 所有实验完成且 paper 更新后 → 提交 NeurIPS abstract (5/3-4)\n\n### 5. 🎯 战略上下文\n**核心叙事**：Perturbation sensitivity ≠ pruning safety。Ack messages 扰动敏感性最高但可安全剪枝——此 dissociation 跨 Qwen-7B/Llama-8B 一致，72B 初步验证 scale consistency。\n\n**关键数据**：Llama oracle 10-seed Δ=+2.1±2.4pp; Qwen oracle 10-seed Δ=+0.40±1.02pp TOST p=0.048; Qwen heuristic 10-seed Δ=-0.05±0.99pp TOST p=0.007; 72B seed 42 零翻转 suppression 66.8%。\n\n**P0-P2 论文修改全部完成**（D222/D223），当前是 P3 收尾阶段。\n\n**易错点**：\n- Pipeline 是一个串行脚本管理 3 个阶段，cron 只监控外壳 PID 341188。如果某阶段失败但脚本未 set -e 退出，cron 不会报错——需要读 pipeline.log 确认每阶段成功\n- `oracle_qwen72b_seed123` 的 spec 里 num_tasks=700（比 seed 42 的 N=265 大），是为了防 429 截断\n- 不要混淆原始 Qwen configs（port 8003/8000）和 pipeline 专用 `*_port8001.yaml` configs\n- 72B 结果是增量策略：0 discordant → 考虑 seed 3；有 discordant → 停止调整叙事（D223 决策）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1777430814.md"
+}

@@ -1,0 +1,66 @@
+{
+  "taxonomy_name": "Communication Function Taxonomy for Multi-Agent LLM Systems",
+  "version": "1.0",
+  "num_classes": 5,
+  "classes": {
+    "acknowledgment": {
+      "description": "Simple confirmation, repetition, or agreement that adds no new information or reasoning. Includes restating what was already said without extending it.",
+      "examples": [
+        "Yes, I agree that 2 + 2 = 4.",
+        "That's correct, the answer is 42."
+      ],
+      "pruning_safe": true,
+      "notes": "Primary target for communication pruning. Empirically shown to be safe to remove in aggregate across GSM8K and StrategyQA domains with Qwen2.5-7B and Llama-3.1-8B backbones."
+    },
+    "information_provision": {
+      "description": "Provides facts, data, intermediate calculations, or partial results that advance the solution. Includes reporting computed values, stating known quantities, or presenting new numerical results.",
+      "examples": [
+        "The cost per item is $24 / 6 = $4, and the total for 3 items is $12.",
+        "From the problem, we know the rate is 15 miles per hour and the time is 4 hours."
+      ],
+      "pruning_safe": false,
+      "notes": "Contains substantive content necessary for problem-solving."
+    },
+    "reasoning_guidance": {
+      "description": "Provides reasoning direction, problem decomposition, step-by-step plans, or conceptual frameworks. Includes breaking the problem into sub-problems, suggesting solution strategies, or outlining multi-step approaches.",
+      "examples": [
+        "Let's approach this by first finding the rate per hour, then multiplying by total hours.",
+        "We need to solve this in three parts: (1) find the cost per item, (2) calculate the total, (3) apply the discount."
+      ],
+      "pruning_safe": false,
+      "notes": "Contains structural reasoning that guides the problem-solving process."
+    },
+    "verification": {
+      "description": "Checks, corrects, or confirms the correctness of previous work. Includes identifying errors, validating results, pointing out mistakes, or confirming a step is correct with a specific reason.",
+      "examples": [
+        "The multiplication in step 2 is wrong: 15 x 4 = 60, not 45.",
+        "I verified step 3: 60 x 0.9 = 54, which is correct because the 10% discount applies after tax."
+      ],
+      "pruning_safe": false,
+      "notes": "Critical for error detection and correction in multi-agent reasoning."
+    },
+    "coordination": {
+      "description": "Manages the flow of the conversation, assigns tasks, requests clarification, or controls turn-taking. Includes delegating sub-tasks, asking for more information, or directing the problem-solving process.",
+      "examples": [
+        "Please verify my calculation for step 3 while I work on step 4.",
+        "Could you clarify whether the discount applies before or after tax?"
+      ],
+      "pruning_safe": false,
+      "notes": "Controls meta-level conversation flow."
+    }
+  },
+  "decision_rules": [
+    "If a message both provides new results AND checks previous work, classify as verification (checking takes priority).",
+    "If a message provides a reasoning plan AND new results, classify as reasoning_guidance (the plan is the primary function).",
+    "If a message confirms correctness WITH a substantive explanation of why, classify as verification (not acknowledgment).",
+    "If a message simply agrees or restates without adding new information, classify as acknowledgment."
+  ],
+  "annotation_protocol": {
+    "annotator": "GPT-4o (temperature=0, top_p=1.0)",
+    "inter_annotator_agreement": {
+      "human_4_annotator_kappa": 0.76,
+      "human_binary_kappa": 0.81,
+      "cross_model_kappa_range": "0.35-0.76"
+    }
+  }
+}

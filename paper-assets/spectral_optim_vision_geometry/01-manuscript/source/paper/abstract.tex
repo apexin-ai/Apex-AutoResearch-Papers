@@ -1,0 +1,7 @@
+\begin{abstract}
+Optimizer performance in vision models depends critically on architecture: SGD collapses to below 12\% accuracy on layer-normalized architectures while achieving 70\% on batch-normalized ones, a gap that hyperparameter tuning cannot close.
+We conduct a controlled empirical study of spectral optimizers---Muon, SOAP, and Shampoo---which exploit weight-matrix spectral structure through Newton-Schulz iteration or Kronecker-factored preconditioning, evaluating them across three architecture families (ResNet-50, DeiT-S, ConvNeXt-T), three datasets, and two training horizons.
+The spectral advantage is a \emph{family-level} property: on CIFAR-100---the only dataset where all three were evaluated---all outperform AdamW by +9 to +16\,pp. Muon, tested across all three datasets, maintains gaps of +5.9 to +24.3\,pp.
+This advantage is architecture-dependent---largest on layer-normalized networks---and persists across extended training schedules, though gap narrowing varies by architecture. Layer-wise analysis reveals distinct mechanisms: stable-rank divergence correlates positively with optimizer benefit on CNNs ($\rho{=}+0.45$) but negatively on transformers ($\rho{=}{-}0.40$).
+A normalization-swap experiment on ResNet-50 provides causal evidence that normalization type mediates the spectral advantage.
+\end{abstract}

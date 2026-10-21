@@ -1,0 +1,323 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{touvron2021training}
+\citation{liu2022convnet}
+\citation{he2016deep}
+\citation{schmidt2021crowdedvalley}
+\citation{choi2020optimizers}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\citation{bernstein2024old}
+\citation{jordan2024muon}
+\citation{vyas2025soap}
+\citation{gupta2018shampoo}
+\citation{loshchilov2019decoupled}
+\citation{bernstein2024old}
+\citation{he2016deep}
+\citation{liu2022convnet,touvron2021training}
+\citation{loshchilov2019decoupled}
+\citation{choi2020optimizers,schmidt2021crowdedvalley}
+\citation{li2024bocb}
+\citation{santurkar2018how}
+\citation{chen2022vit}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of spectral optimization advantages in vision tasks. (a) Controlled norm-swap experiment: Muon's advantage persists across BatchNorm, GroupNorm, and LayerNorm ($\Delta < 2$\,pp), while AdamW degrades sharply without BatchNorm. (b) Accuracy gains (Muon $-$ AdamW, pp) across architectures and datasets.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:overview}{{1}{2}{Overview of spectral optimization advantages in vision tasks. (a) Controlled norm-swap experiment: Muon's advantage persists across BatchNorm, GroupNorm, and LayerNorm ($\Delta < 2$\,pp), while AdamW degrades sharply without BatchNorm. (b) Accuracy gains (Muon $-$ AdamW, pp) across architectures and datasets}{figure.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\citation{martens2015kfac}
+\citation{gupta2018shampoo,anil2021scalable}
+\citation{vyas2025soap}
+\citation{jordan2024muon}
+\citation{bernstein2024old}
+\citation{pethick2025training}
+\citation{chen2024lion}
+\citation{liu2024sophia}
+\citation{mishchenko2024prodigy}
+\citation{zhao2024galore}
+\citation{jordan2024muon,liu2025muon}
+\citation{martens2015kfac}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Optimizer-architecture coupling.}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Spectral and preconditioned optimization.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complementary optimizer directions.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Spectral Analysis Framework}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Spectral Analysis Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Spectral Optimization via Orthogonalized Updates}{3}{subsection.3.1}\protected@file@percent }
+\citation{krizhevsky2009learning}
+\citation{le2015tiny}
+\citation{deng2009imagenet}
+\citation{he2016deep}
+\citation{touvron2021training}
+\citation{liu2022convnet}
+\citation{he2015delving}
+\citation{rw2019timm}
+\citation{jordan2024muon}
+\citation{vyas2025soap}
+\citation{gupta2018shampoo}
+\citation{loshchilov2019decoupled}
+\citation{sutskever2013importance}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Layer-wise Spectral Analysis Framework}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weight Swap Protocol.}{4}{section*.5}\protected@file@percent }
+\newlabel{eq:layer_benefit}{{1}{4}{Weight Swap Protocol}{equation.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Spectral Correlation Analysis.}{4}{section*.6}\protected@file@percent }
+\newlabel{eq:spectral_response}{{2}{4}{Spectral Correlation Analysis}{equation.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics and Statistical Protocol}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experimental_setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets and Architectures}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:datasets_archs}{{4.1}{4}{Datasets and Architectures}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Optimization Protocol}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:optim_protocol}{{4.2}{4}{Optimization Protocol}{subsection.4.2}{}}
+\citation{schmidt2021crowdedvalley}
+\citation{vyas2025soap}
+\citation{gupta2018shampoo}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation and Reproducibility}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:eval_protocol}{{4.3}{5}{Evaluation and Reproducibility}{subsection.4.3}{}}
+\newlabel{sec:hardware}{{4.3}{5}{Evaluation and Reproducibility}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{5}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Spectral Advantage: Magnitude and Architecture Dependence}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{5}{Spectral Advantage: Magnitude and Architecture Dependence}{subsection.5.1}{}}
+\newlabel{sec:gap_magnitude}{{5.1}{5}{Spectral Advantage: Magnitude and Architecture Dependence}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Spectral Family Comparison on CIFAR-100.}{5}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Best validation accuracy (\%) at 20 epochs. Multi-seed results ($\pm $ std) where available; $^\dagger $single-seed (seed\,=\,42). Bold = best per column. Gap = best spectral $-$ AdamW in pp. $^\ddagger $Muon$-$AdamW only (SOAP/Shampoo evaluated on CIFAR-100 only). Significance: Welch's $t$-test with Holm--Bonferroni correction across 2--4 seeds. $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$. For Tiny-ImageNet and ImageNet-100, where only Muon is evaluated among spectral methods, the gap is Muon$-$AdamW.}}{6}{table.1}\protected@file@percent }
+\newlabel{tab:main_results}{{1}{6}{Best validation accuracy (\%) at 20 epochs. Multi-seed results ($\pm $ std) where available; $^\dagger $single-seed (seed\,=\,42). Bold = best per column. Gap = best spectral $-$ AdamW in pp. $^\ddagger $Muon$-$AdamW only (SOAP/Shampoo evaluated on CIFAR-100 only). Significance: Welch's $t$-test with Holm--Bonferroni correction across 2--4 seeds. $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$. For Tiny-ImageNet and ImageNet-100, where only Muon is evaluated among spectral methods, the gap is Muon$-$AdamW}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Temporal persistence and mechanistic basis of the spectral advantage. (a) Muon-AdamW gap narrows on CNNs but persists on DeiT-S, revealing convergence-speed vs.\ solution-quality mechanisms. (b) On ResNet-50, stable-rank divergence correlates with weight-swap accuracy impact ($\rho = +0.58$, $p = 3.6 \times 10^{-6}$), indicating broad spectral reshaping across layers.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:gap_evolution}{{2}{6}{Temporal persistence and mechanistic basis of the spectral advantage. (a) Muon-AdamW gap narrows on CNNs but persists on DeiT-S, revealing convergence-speed vs.\ solution-quality mechanisms. (b) On ResNet-50, stable-rank divergence correlates with weight-swap accuracy impact ($\rho = +0.58$, $p = 3.6 \times 10^{-6}$), indicating broad spectral reshaping across layers}{figure.2}{}}
+\newlabel{fig:sign_reversal}{{2}{6}{Temporal persistence and mechanistic basis of the spectral advantage. (a) Muon-AdamW gap narrows on CNNs but persists on DeiT-S, revealing convergence-speed vs.\ solution-quality mechanisms. (b) On ResNet-50, stable-rank divergence correlates with weight-swap accuracy impact ($\rho = +0.58$, $p = 3.6 \times 10^{-6}$), indicating broad spectral reshaping across layers}{figure.2}{}}
+\newlabel{fig:combined_gap_spectral}{{2}{6}{Temporal persistence and mechanistic basis of the spectral advantage. (a) Muon-AdamW gap narrows on CNNs but persists on DeiT-S, revealing convergence-speed vs.\ solution-quality mechanisms. (b) On ResNet-50, stable-rank divergence correlates with weight-swap accuracy impact ($\rho = +0.58$, $p = 3.6 \times 10^{-6}$), indicating broad spectral reshaping across layers}{figure.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Architecture dependence.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Persistence of the Spectral Advantage: 20 vs.\ 50 Epochs}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:convergence_efficiency}{{5.2}{6}{Persistence of the Spectral Advantage: 20 vs.\ 50 Epochs}{subsection.5.2}{}}
+\citation{santurkar2018how}
+\citation{kunstner2024noise}
+\citation{zhang2020adaptive}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gap decomposition from 20 to 50 epochs (best validation accuracy throughout). $\Delta $Gap${}={}$50ep gap$-$20ep gap. Superscripts denote seed count: $^{(k)}$ = $k$-seed mean; $^\dagger $ = single seed (seed\,=\,42). IN100 AdamW seed\,=\,42 used $\text  {lr}{=}3{\times }10^{-4}$ (vs.\ $3{\times }10^{-3}$ for other seeds); a verification run confirmed identical accuracy at both rates. All gaps are Muon $-$ AdamW.}}{7}{table.2}\protected@file@percent }
+\newlabel{tab:gap_narrowing}{{2}{7}{Gap decomposition from 20 to 50 epochs (best validation accuracy throughout). $\Delta $Gap${}={}$50ep gap$-$20ep gap. Superscripts denote seed count: $^{(k)}$ = $k$-seed mean; $^\dagger $ = single seed (seed\,=\,42). IN100 AdamW seed\,=\,42 used $\text {lr}{=}3{\times }10^{-4}$ (vs.\ $3{\times }10^{-3}$ for other seeds); a verification run confirmed identical accuracy at both rates. All gaps are Muon $-$ AdamW}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces (a) Normalization-swap experiment on ResNet-50: replacing BatchNorm with LayerNorm collapses AdamW by ${\sim }17$\,pp and SGD degrades catastrophically (28.87\%, a $-40.6$ pp drop from BN), while Muon is preserved (+1.64\,pp). (b) Training recipe robustness: enhanced augmentation produces differential optimizer response across architectures, where Muon gains while AdamW is flat or declines.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:norm_recipe}{{3}{7}{(a) Normalization-swap experiment on ResNet-50: replacing BatchNorm with LayerNorm collapses AdamW by ${\sim }17$\,pp and SGD degrades catastrophically (28.87\%, a $-40.6$ pp drop from BN), while Muon is preserved (+1.64\,pp). (b) Training recipe robustness: enhanced augmentation produces differential optimizer response across architectures, where Muon gains while AdamW is flat or declines}{figure.3}{}}
+\newlabel{fig:sgd_failure}{{3}{7}{(a) Normalization-swap experiment on ResNet-50: replacing BatchNorm with LayerNorm collapses AdamW by ${\sim }17$\,pp and SGD degrades catastrophically (28.87\%, a $-40.6$ pp drop from BN), while Muon is preserved (+1.64\,pp). (b) Training recipe robustness: enhanced augmentation produces differential optimizer response across architectures, where Muon gains while AdamW is flat or declines}{figure.3}{}}
+\newlabel{fig:enhanced_recipe}{{3}{7}{(a) Normalization-swap experiment on ResNet-50: replacing BatchNorm with LayerNorm collapses AdamW by ${\sim }17$\,pp and SGD degrades catastrophically (28.87\%, a $-40.6$ pp drop from BN), while Muon is preserved (+1.64\,pp). (b) Training recipe robustness: enhanced augmentation produces differential optimizer response across architectures, where Muon gains while AdamW is flat or declines}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Mechanistic Analysis: Architecture-Dependent Correlation and Normalization Dependence}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:spectral_analysis}{{5.3}{7}{Mechanistic Analysis: Architecture-Dependent Correlation and Normalization Dependence}{subsection.5.3}{}}
+\newlabel{sec:sgd_failure}{{5.3}{7}{Mechanistic Analysis: Architecture-Dependent Correlation and Normalization Dependence}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Layer-wise weight swap reveals architecture-dependent correlation.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture-dependent mechanisms.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SGD failure as extreme normalization dependence.}{7}{section*.11}\protected@file@percent }
+\citation{wu2018group,xiong2020layer}
+\citation{zhang2018mixup}
+\citation{yun2019cutmix}
+\citation{cubuk2020randaugment}
+\citation{szegedy2016rethinking}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dose-response: accuracy (\%) under different normalization types on ResNet-50, CIFAR-100.}}{8}{table.3}\protected@file@percent }
+\newlabel{tab:norm_dose}{{3}{8}{Dose-response: accuracy (\%) under different normalization types on ResNet-50, CIFAR-100}{table.3}{}}
+\newlabel{sec:norm_swap}{{5.3}{8}{Normalization swap: dose-response evidence}{section*.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Normalization swap: dose-response evidence.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training stability under LayerNorm.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Robustness to Training Recipe Variation}{8}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:recipe_robustness}{{5.4}{8}{Robustness to Training Recipe Variation}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Ablation: Spectral Preconditioning vs.\ Parameter Grouping}{8}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ablation}{{5.5}{8}{Ablation: Spectral Preconditioning vs.\ Parameter Grouping}{subsection.5.5}{}}
+\citation{santurkar2018how}
+\citation{kumar2024how}
+\bibstyle{unsrtnat}
+\bibdata{references}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{9}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does the spectral advantage vary with architecture?}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intra-class structure.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Newton--Schulz ablation.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap convergence.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Toward a predictive diagnostic.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{9}{Conclusion}{section.7}{}}
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section*.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Broader Impact.}{9}{section*.21}\protected@file@percent }
+\bibcite{touvron2021training}{{1}{2021}{{Touvron et~al.}}{{Touvron, Cord, Douze, Massa, Sablayrolles, and J{\'e}gou}}}
+\bibcite{liu2022convnet}{{2}{2022}{{Liu et~al.}}{{Liu, Mao, Wu, Feichtenhofer, Darrell, and Xie}}}
+\bibcite{he2016deep}{{3}{2016}{{He et~al.}}{{He, Zhang, Ren, and Sun}}}
+\bibcite{schmidt2021crowdedvalley}{{4}{2021}{{Schmidt et~al.}}{{Schmidt, Schneider, and Hennig}}}
+\bibcite{choi2020optimizers}{{5}{2020}{{Choi et~al.}}{{Choi, Shallue, Nado, Lee, Maddison, and Dahl}}}
+\bibcite{bernstein2024old}{{6}{2024}{{Bernstein and Newhouse}}{{}}}
+\bibcite{jordan2024muon}{{7}{2024}{{Jordan et~al.}}{{Jordan, Jin, Boza, You, Cesista, Newhouse, and Bernstein}}}
+\bibcite{vyas2025soap}{{8}{2025}{{Vyas et~al.}}{{Vyas, Morwani, Zhao, Kwun, Shapira, Brandfonbrener, Janson, and Kakade}}}
+\bibcite{gupta2018shampoo}{{9}{2018}{{Gupta et~al.}}{{Gupta, Koren, and Singer}}}
+\bibcite{loshchilov2019decoupled}{{10}{2019}{{Loshchilov and Hutter}}{{}}}
+\bibcite{li2024bocb}{{11}{2024}{{Li et~al.}}{{Li, Tian, Wang, Zhang, Liu, Jin, Liu, Sun, and Li}}}
+\bibcite{santurkar2018how}{{12}{2018}{{Santurkar et~al.}}{{Santurkar, Tsipras, Ilyas, and Madry}}}
+\bibcite{chen2022vit}{{13}{2022}{{Chen et~al.}}{{Chen, Hsieh, and Gong}}}
+\bibcite{martens2015kfac}{{14}{2015}{{Martens and Grosse}}{{}}}
+\bibcite{anil2021scalable}{{15}{2021}{{Anil et~al.}}{{Anil, Gupta, Koren, Regan, and Singer}}}
+\bibcite{pethick2025training}{{16}{2025}{{Pethick et~al.}}{{Pethick, Xie, Antonakopoulos, Zhu, Silveti-Falls, and Cevher}}}
+\bibcite{chen2024lion}{{17}{2023}{{Chen et~al.}}{{Chen, Liang, Huang, Real, Wang, Pham, Dong, Luong, Hsieh, Lu, and Le}}}
+\bibcite{liu2024sophia}{{18}{2024}{{Liu et~al.}}{{Liu, Li, Hall, Liang, and Ma}}}
+\bibcite{mishchenko2024prodigy}{{19}{2024}{{Mishchenko and Defazio}}{{}}}
+\bibcite{zhao2024galore}{{20}{2024}{{Zhao et~al.}}{{Zhao, Zhang, Chen, Wang, Anandkumar, and Tian}}}
+\bibcite{liu2025muon}{{21}{2025}{{Liu et~al.}}{{Liu, Su, Yao, Jiang, Lai, Du, Qin, Xu, Lu, Yan, et~al.}}}
+\bibcite{krizhevsky2009learning}{{22}{2009}{{Krizhevsky and Hinton}}{{}}}
+\bibcite{le2015tiny}{{23}{2015}{{Le and Yang}}{{}}}
+\bibcite{deng2009imagenet}{{24}{2009}{{Deng et~al.}}{{Deng, Dong, Socher, Li, Li, and Fei-Fei}}}
+\bibcite{he2015delving}{{25}{2015}{{He et~al.}}{{He, Zhang, Ren, and Sun}}}
+\bibcite{rw2019timm}{{26}{2019}{{Wightman}}{{}}}
+\bibcite{sutskever2013importance}{{27}{2013}{{Sutskever et~al.}}{{Sutskever, Martens, Dahl, and Hinton}}}
+\bibcite{kunstner2024noise}{{28}{2024}{{Kunstner et~al.}}{{Kunstner, Chen, Lavington, and Schmidt}}}
+\bibcite{zhang2020adaptive}{{29}{2020}{{Zhang et~al.}}{{Zhang, Karimireddy, Veit, Kim, Reddi, Kumar, and Sra}}}
+\bibcite{wu2018group}{{30}{2018}{{Wu and He}}{{}}}
+\bibcite{xiong2020layer}{{31}{2020}{{Xiong et~al.}}{{Xiong, Yang, He, Zheng, Zheng, Xing, Zhang, Lan, Wang, and Liu}}}
+\bibcite{zhang2018mixup}{{32}{2018}{{Zhang et~al.}}{{Zhang, Cisse, Dauphin, and Lopez-Paz}}}
+\bibcite{yun2019cutmix}{{33}{2019}{{Yun et~al.}}{{Yun, Han, Oh, Chun, Choe, and Yoo}}}
+\bibcite{cubuk2020randaugment}{{34}{2020}{{Cubuk et~al.}}{{Cubuk, Zoph, Shlens, and Le}}}
+\bibcite{szegedy2016rethinking}{{35}{2016}{{Szegedy et~al.}}{{Szegedy, Vanhoucke, Ioffe, Shlens, and Wojna}}}
+\bibcite{kumar2024how}{{36}{2024}{{Kumar et~al.}}{{Kumar, Shen, Bubeck, and Gunasekar}}}
+\bibcite{hendrycks2019benchmarking}{{37}{2019}{{Hendrycks and Dietterich}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Complete optimizer configurations across all architectures and datasets. All experiments use batch size 128, cosine annealing scheduler (no warmup), and dataset-specific augmentation (Section\nobreakspace  {}\ref  {sec:datasets_archs}). Learning rates are selected via per-pair 5-epoch sweeps (Section\nobreakspace  {}\ref  {sec:optim_protocol}).}}{15}{table.4}\protected@file@percent }
+\newlabel{tab:optimizer_config}{{4}{15}{Complete optimizer configurations across all architectures and datasets. All experiments use batch size 128, cosine annealing scheduler (no warmup), and dataset-specific augmentation (Section~\ref {sec:datasets_archs}). Learning rates are selected via per-pair 5-epoch sweeps (Section~\ref {sec:optim_protocol})}{table.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Hyperparameter Configurations}{15}{appendix.A}\protected@file@percent }
+\newlabel{sec:hyperparams}{{A}{15}{Hyperparameter Configurations}{appendix.A}{}}
+\newlabel{app:hyperparams}{{A}{15}{Hyperparameter Configurations}{appendix.A}{}}
+\citation{touvron2021training}
+\citation{liu2022convnet}
+\citation{he2016deep}
+\citation{loshchilov2019decoupled}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Muon hybrid optimizer parameter routing. Muon optimizes weight matrices of Conv2d/Linear layers (ndim $\geq $ 2, excluding classifier head and embeddings); all remaining parameters use a companion AdamW optimizer.}}{16}{table.5}\protected@file@percent }
+\newlabel{tab:muon_routing}{{5}{16}{Muon hybrid optimizer parameter routing. Muon optimizes weight matrices of Conv2d/Linear layers (ndim $\geq $ 2, excluding classifier head and embeddings); all remaining parameters use a companion AdamW optimizer}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Selected learning rates per optimizer-architecture pair on each dataset, determined by 5-epoch sweeps. For most configurations, the peak is confirmed by observing accuracy decline at higher rates; exceptions are noted in Section\nobreakspace  {}\ref  {sec:optim_protocol}. SOAP and Shampoo evaluated on CIFAR-100 only; `---' indicates not tested.}}{16}{table.6}\protected@file@percent }
+\newlabel{tab:lr_selected}{{6}{16}{Selected learning rates per optimizer-architecture pair on each dataset, determined by 5-epoch sweeps. For most configurations, the peak is confirmed by observing accuracy decline at higher rates; exceptions are noted in Section~\ref {sec:optim_protocol}. SOAP and Shampoo evaluated on CIFAR-100 only; `---' indicates not tested}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Learning Rate Sweep Results}{16}{appendix.B}\protected@file@percent }
+\newlabel{sec:lr_sweep}{{B}{16}{Learning Rate Sweep Results}{appendix.B}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}DeiT-S SGD Inverted-U Response}{16}{subsection.B.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Multi-Seed Reproducibility}{16}{appendix.C}\protected@file@percent }
+\newlabel{sec:multi_seed}{{C}{16}{Multi-Seed Reproducibility}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Extended Training (50 Epochs)}{16}{appendix.D}\protected@file@percent }
+\newlabel{sec:extended_training}{{D}{16}{Extended Training (50 Epochs)}{appendix.D}{}}
+\@writefile{toc}{\contentsline {paragraph}{Weight decay choices.}{16}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Spectral family at 50 epochs.}{16}{section*.25}\protected@file@percent }
+\citation{zhang2018mixup}
+\citation{yun2019cutmix}
+\citation{cubuk2020randaugment}
+\citation{szegedy2016rethinking}
+\citation{touvron2021training}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Complete learning rate sweep results (5-epoch runs, seed=42, CIFAR-100). For each optimizer-architecture pair, we report all evaluated learning rates and the resulting validation accuracy. The best learning rate per pair (used in subsequent 20-epoch experiments) is shown in \textbf  {bold}.}}{17}{table.7}\protected@file@percent }
+\newlabel{tab:lr_sweep}{{7}{17}{Complete learning rate sweep results (5-epoch runs, seed=42, CIFAR-100). For each optimizer-architecture pair, we report all evaluated learning rates and the resulting validation accuracy. The best learning rate per pair (used in subsequent 20-epoch experiments) is shown in \textbf {bold}}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.1}Enhanced Training Recipe Details}{17}{subsection.D.1}\protected@file@percent }
+\newlabel{sec:enhanced_recipe_details}{{D.1}{17}{Enhanced Training Recipe Details}{subsection.D.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Learning rate sweep results (5-epoch runs, seed=42, Tiny-ImageNet). Best learning rate per pair is shown in \textbf  {bold}.}}{18}{table.8}\protected@file@percent }
+\newlabel{tab:lr_sweep_tinyin}{{8}{18}{Learning rate sweep results (5-epoch runs, seed=42, Tiny-ImageNet). Best learning rate per pair is shown in \textbf {bold}}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}ConvNeXt-T SGD Degradation Analysis}{18}{appendix.E}\protected@file@percent }
+\newlabel{sec:convnext_sgd_analysis}{{E}{18}{ConvNeXt-T SGD Degradation Analysis}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Learning rate sweep results (5-epoch runs, seed=42, ImageNet-100). Best learning rate per pair is shown in \textbf  {bold}.}}{19}{table.9}\protected@file@percent }
+\newlabel{tab:lr_sweep_in100}{{9}{19}{Learning rate sweep results (5-epoch runs, seed=42, ImageNet-100). Best learning rate per pair is shown in \textbf {bold}}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces DeiT-S SGD learning rate sweep (5-epoch runs, seed=42, CIFAR-100), exhibiting an inverted-U response curve. Accuracy peaks at $\text  {lr}=0.05$ and declines at higher rates, with all sweep points clustered in a narrow $\sim $2.5 percentage-point band.}}{19}{table.10}\protected@file@percent }
+\newlabel{tab:deit_sgd_sweep}{{10}{19}{DeiT-S SGD learning rate sweep (5-epoch runs, seed=42, CIFAR-100), exhibiting an inverted-U response curve. Accuracy peaks at $\text {lr}=0.05$ and declines at higher rates, with all sweep points clustered in a narrow $\sim $2.5 percentage-point band}{table.10}{}}
+\citation{jordan2024muon}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Multi-seed validation accuracy statistics (20-epoch runs, CIFAR-100). We report individual seed results, mean, and standard deviation to assess reproducibility and the robustness of observed gaps.}}{20}{table.11}\protected@file@percent }
+\newlabel{tab:multi_seed}{{11}{20}{Multi-seed validation accuracy statistics (20-epoch runs, CIFAR-100). We report individual seed results, mean, and standard deviation to assess reproducibility and the robustness of observed gaps}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Multi-seed accuracy (20 epochs, Tiny-ImageNet, seeds 42/1/2). SGD is single-seed.}}{20}{table.12}\protected@file@percent }
+\newlabel{tab:multi_seed_tinyin}{{12}{20}{Multi-seed accuracy (20 epochs, Tiny-ImageNet, seeds 42/1/2). SGD is single-seed}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Multi-seed accuracy (20 epochs, ImageNet-100, seeds 42/1/2). SGD is single-seed.}}{20}{table.13}\protected@file@percent }
+\newlabel{tab:multi_seed_in100}{{13}{20}{Multi-seed accuracy (20 epochs, ImageNet-100, seeds 42/1/2). SGD is single-seed}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Muon Algorithm Background}{20}{appendix.F}\protected@file@percent }
+\newlabel{sec:muon_background}{{F}{20}{Muon Algorithm Background}{appendix.F}{}}
+\@writefile{toc}{\contentsline {paragraph}{Steepest descent under spectral norm.}{20}{section*.26}\protected@file@percent }
+\newlabel{eq:spectral_descent}{{3}{20}{Steepest descent under spectral norm}{equation.F.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Newton--Schulz approximation.}{20}{section*.27}\protected@file@percent }
+\citation{sutskever2013importance}
+\citation{gupta2018shampoo}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Evolution of the Muon-AdamW accuracy gap from 20 to 50 epochs (seed=42, CIFAR-100 and ImageNet-100). All values are best validation accuracy (early-stopping checkpoint). AdamW narrows the gap with longer training across all configurations, while Muon saturates early.}}{21}{table.14}\protected@file@percent }
+\newlabel{tab:gap_evolution}{{14}{21}{Evolution of the Muon-AdamW accuracy gap from 20 to 50 epochs (seed=42, CIFAR-100 and ImageNet-100). All values are best validation accuracy (early-stopping checkpoint). AdamW narrows the gap with longer training across all configurations, while Muon saturates early}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Spectral family accuracy at 20 vs.\ 50 epochs on ResNet-50/CIFAR-100. Muon and AdamW values are 3-seed means (seeds 42/2/3) from Table\nobreakspace  {}\ref  {tab:gap_narrowing}. SOAP 50ep is 2-seed mean (seeds 42/2); Shampoo 50ep is single-seed (seed\,=\,42).}}{21}{table.15}\protected@file@percent }
+\newlabel{tab:spectral_50ep}{{15}{21}{Spectral family accuracy at 20 vs.\ 50 epochs on ResNet-50/CIFAR-100. Muon and AdamW values are 3-seed means (seeds 42/2/3) from Table~\ref {tab:gap_narrowing}. SOAP 50ep is 2-seed mean (seeds 42/2); Shampoo 50ep is single-seed (seed\,=\,42)}{table.15}{}}
+\newlabel{eq:ns_init}{{4}{21}{Newton--Schulz approximation}{equation.F.4}{}}
+\newlabel{eq:ns_iteration}{{5}{21}{Newton--Schulz approximation}{equation.F.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Momentum and mixed strategy.}{21}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relation to Shampoo.}{21}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {G}Wall-Clock Efficiency}{21}{appendix.G}\protected@file@percent }
+\newlabel{sec:wallclock}{{G}{21}{Wall-Clock Efficiency}{appendix.G}{}}
+\@writefile{toc}{\contentsline {paragraph}{Computational overhead of Newton-Schulz iteration.}{21}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Enhanced recipe results on CIFAR-100 at 20 epochs. All values are 3-seed mean$\pm $std (seeds 42/2/3). Gap = Muon $-$ AdamW. DeiT-S AdamW Enhanced ($51.12\%$) is slightly \emph  {below} its baseline ($52.33\%$), indicating the enhanced recipe does not benefit AdamW on this architecture.}}{22}{table.16}\protected@file@percent }
+\newlabel{tab:enhanced_recipe}{{16}{22}{Enhanced recipe results on CIFAR-100 at 20 epochs. All values are 3-seed mean$\pm $std (seeds 42/2/3). Gap = Muon $-$ AdamW. DeiT-S AdamW Enhanced ($51.12\%$) is slightly \emph {below} its baseline ($52.33\%$), indicating the enhanced recipe does not benefit AdamW on this architecture}{table.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Spectral--AdamW accuracy gap (pp) at 20 epochs. ConvNeXt-T consistently exhibits the largest gap ($+15.0$--$+24.3$\,pp); all gaps are positive across the full $3\times 3$ matrix.}}{22}{figure.4}\protected@file@percent }
+\newlabel{fig:gap_heatmap}{{4}{22}{Spectral--AdamW accuracy gap (pp) at 20 epochs. ConvNeXt-T consistently exhibits the largest gap ($+15.0$--$+24.3$\,pp); all gaps are positive across the full $3\times 3$ matrix}{figure.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Wall-clock break-even analysis.}{22}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {H}Alternative Spectral Optimizers}{22}{appendix.H}\protected@file@percent }
+\newlabel{sec:alt_spectral}{{H}{22}{Alternative Spectral Optimizers}{appendix.H}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Layer-wise Spectral Analysis and Training Stability}{22}{appendix.I}\protected@file@percent }
+\newlabel{sec:spectral_analysis_full}{{I}{22}{Layer-wise Spectral Analysis and Training Stability}{appendix.I}{}}
+\@writefile{toc}{\contentsline {paragraph}{Weight Swap Results.}{22}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Spectral Divergence Correlations.}{22}{section*.33}\protected@file@percent }
+\citation{wu2018group}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Per-epoch wall-clock time (seconds) for 20-epoch training runs on a single RTX 5090 GPU.}}{23}{table.17}\protected@file@percent }
+\newlabel{tab:wallclock}{{17}{23}{Per-epoch wall-clock time (seconds) for 20-epoch training runs on a single RTX 5090 GPU}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Wall-clock break-even analysis. \emph  {Iso-accuracy target} is AdamW's final accuracy for each configuration; \emph  {Muon ep} and \emph  {AdamW ep} are the first epoch at which each optimizer reaches that target. Wall-clock speedup accounts for Muon's per-epoch overhead.}}{23}{table.18}\protected@file@percent }
+\newlabel{tab:wallclock_breakeven}{{18}{23}{Wall-clock break-even analysis. \emph {Iso-accuracy target} is AdamW's final accuracy for each configuration; \emph {Muon ep} and \emph {AdamW ep} are the first epoch at which each optimizer reaches that target. Wall-clock speedup accounts for Muon's per-epoch overhead}{table.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training Stability Across Seeds.}{23}{figure.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {J}Metric Robustness}{23}{appendix.J}\protected@file@percent }
+\newlabel{sec:metric_robustness}{{J}{23}{Metric Robustness}{appendix.J}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Normalization Swap Implementation}{23}{appendix.K}\protected@file@percent }
+\newlabel{sec:normswap_details}{{K}{23}{Normalization Swap Implementation}{appendix.K}{}}
+\citation{chen2024lion}
+\citation{liu2024sophia}
+\citation{mishchenko2024prodigy}
+\citation{zhao2024galore}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Comparison of spectral optimizers on CIFAR-100 (20 epochs). Multi-seed means ($\pm $ std) reported where available; ConvNeXt-T SGD is single-seed (seed\,=\,42).}}{24}{table.19}\protected@file@percent }
+\newlabel{tab:spectral_comparison}{{19}{24}{Comparison of spectral optimizers on CIFAR-100 (20 epochs). Multi-seed means ($\pm $ std) reported where available; ConvNeXt-T SGD is single-seed (seed\,=\,42)}{table.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-seed standard deviation ($\sigma $) for Muon vs AdamW across all nine settings. Muon exhibits lower variance on 6/9 configurations; the stability advantage is architecture-dependent.}}{24}{figure.5}\protected@file@percent }
+\newlabel{fig:stability}{{5}{24}{Cross-seed standard deviation ($\sigma $) for Muon vs AdamW across all nine settings. Muon exhibits lower variance on 6/9 configurations; the stability advantage is architecture-dependent}{figure.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Parameter Grouping Ablation Details}{24}{appendix.L}\protected@file@percent }
+\newlabel{sec:ablation_details}{{L}{24}{Parameter Grouping Ablation Details}{appendix.L}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Additional Optimizer Comparisons}{24}{appendix.M}\protected@file@percent }
+\newlabel{sec:additional_optimizers}{{M}{24}{Additional Optimizer Comparisons}{appendix.M}{}}
+\citation{hendrycks2019benchmarking}
+\citation{hendrycks2019benchmarking}
+\citation{hendrycks2019benchmarking}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Spearman $\rho $ between per-layer divergence and Muon benefit under three spectral metrics. The positive correlation on ResNet-50 is consistent across all metrics; DeiT-S shows no significant pattern ($\rho \approx 0$, n.s.).}}{25}{table.20}\protected@file@percent }
+\newlabel{tab:metric_robustness}{{20}{25}{Spearman $\rho $ between per-layer divergence and Muon benefit under three spectral metrics. The positive correlation on ResNet-50 is consistent across all metrics; DeiT-S shows no significant pattern ($\rho \approx 0$, n.s.)}{table.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Architecture Coverage in Supplementary Experiments}{25}{appendix.N}\protected@file@percent }
+\newlabel{sec:arch_coverage}{{N}{25}{Architecture Coverage in Supplementary Experiments}{appendix.N}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Corruption Robustness}{25}{appendix.O}\protected@file@percent }
+\newlabel{sec:corruption_robustness}{{O}{25}{Corruption Robustness}{appendix.O}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response pattern in corruption robustness.}{25}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {O.1}Spectral Divergence Profile}{25}{subsection.O.1}\protected@file@percent }
+\newlabel{app:spectral-divergence}{{O.1}{25}{Spectral Divergence Profile}{subsection.O.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Corruption robustness on CIFAR-100-C. mCE ($\downarrow $ is better) normalized so same-normalization AdamW = 100\%. Retention = corruption accuracy\,/\,clean accuracy, measuring inherent robustness independent of clean performance level. mCE is computed over the standard 15 corruption types \citep  {hendrycks2019benchmarking}.}}{26}{table.21}\protected@file@percent }
+\newlabel{tab:corruption_robustness}{{21}{26}{Corruption robustness on CIFAR-100-C. mCE ($\downarrow $ is better) normalized so same-normalization AdamW = 100\%. Retention = corruption accuracy\,/\,clean accuracy, measuring inherent robustness independent of clean performance level. mCE is computed over the standard 15 corruption types \citep {hendrycks2019benchmarking}}{table.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Definition.}{26}{section*.36}\protected@file@percent }
+\newlabel{eq:rho}{{7}{26}{Definition}{equation.O.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Empirical findings.}{26}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Within-architecture ranking.}{26}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normalization and spectral modification.}{26}{section*.39}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Stable rank divergence $\rho $ and accuracy advantage $\Delta \mathrm  {acc}$ over AdamW baseline. All checkpoints are best validation accuracy (seed 42).}}{27}{table.22}\protected@file@percent }
+\newlabel{tab:rho}{{22}{27}{Stable rank divergence $\rho $ and accuracy advantage $\Delta \mathrm {acc}$ over AdamW baseline. All checkpoints are best validation accuracy (seed 42)}{table.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{27}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {O.2}Tiny-ImageNet: SOAP and Shampoo Results}{27}{subsection.O.2}\protected@file@percent }
+\newlabel{sec:tinyin_soap_shampoo}{{O.2}{27}{Tiny-ImageNet: SOAP and Shampoo Results}{subsection.O.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Tiny-ImageNet 20-epoch accuracy (\%) for spectral optimizers. The ranking Muon $>$ SOAP $>$ Shampoo holds on ResNet-50 and ConvNeXt-T. On DeiT-S, all three spectral optimizers cluster within 3.5\,pp, with SOAP slightly leading.}}{27}{table.23}\protected@file@percent }
+\newlabel{tab:tinyin_spectral}{{23}{27}{Tiny-ImageNet 20-epoch accuracy (\%) for spectral optimizers. The ranking Muon $>$ SOAP $>$ Shampoo holds on ResNet-50 and ConvNeXt-T. On DeiT-S, all three spectral optimizers cluster within 3.5\,pp, with SOAP slightly leading}{table.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {O.3}Early Convergence Speed on ImageNet-1K}{27}{subsection.O.3}\protected@file@percent }
+\newlabel{sec:imagenet1k_convergence}{{O.3}{27}{Early Convergence Speed on ImageNet-1K}{subsection.O.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces ImageNet-1K early convergence comparison: Muon reaches AdamW's accuracy in $\sim $4$\times $ fewer epochs.}}{27}{table.24}\protected@file@percent }
+\newlabel{tab:in1k_convergence}{{24}{27}{ImageNet-1K early convergence comparison: Muon reaches AdamW's accuracy in $\sim $4$\times $ fewer epochs}{table.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {O.4}Per-Layer Attention Analysis in DeiT-S}{28}{subsection.O.4}\protected@file@percent }
+\newlabel{sec:deit_attention}{{O.4}{28}{Per-Layer Attention Analysis in DeiT-S}{subsection.O.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Stable rank ratio (Muon/AdamW) by weight component in DeiT-S, averaged over layers 1--11.}}{28}{table.25}\protected@file@percent }
+\newlabel{tab:sr_by_component}{{25}{28}{Stable rank ratio (Muon/AdamW) by weight component in DeiT-S, averaged over layers 1--11}{table.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Per-layer stable rank ratio (Muon/AdamW) in DeiT-S, decomposed by component. The spectral divergence is primarily driven by the fc1 fan-out layer rather than functional role (attention vs.\ MLP).}}{29}{figure.6}\protected@file@percent }
+\newlabel{fig:deit_attention_spectral}{{6}{29}{Per-layer stable rank ratio (Muon/AdamW) in DeiT-S, decomposed by component. The spectral divergence is primarily driven by the fc1 fan-out layer rather than functional role (attention vs.\ MLP)}{figure.6}{}}
+\gdef \@abspage@last{29}

@@ -1,0 +1,1528 @@
+{
+  "experiment": "ack_injection",
+  "timestamp": "2026-05-03T21:13:24.185564+00:00",
+  "config": "injection_qwen_seed123.yaml",
+  "domain": "gsm8k",
+  "max_rounds": 6,
+  "num_tasks_requested": 300,
+  "num_completed": 0,
+  "num_skipped": 300,
+  "elapsed_seconds": 39.7,
+  "ack_templates_count": 15,
+  "total_injected_acks": 0,
+  "avg_injected_per_task": 0,
+  "control": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0
+  },
+  "inject": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0
+  },
+  "delta_pp": 0,
+  "mcnemar_p": null,
+  "per_task": [
+    {
+      "task_id": "gsm8k_0000",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0001",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0002",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0003",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0004",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0005",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0006",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0007",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0008",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0009",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0010",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0011",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0012",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0013",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0014",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0015",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0016",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0017",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0018",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0019",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0020",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0021",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0022",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0023",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0024",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0025",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0026",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0027",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0028",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0029",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0030",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0031",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0032",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0033",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0034",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0035",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0036",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0037",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0038",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0039",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0040",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0041",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0042",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0043",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0044",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0045",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0046",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0047",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0048",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0049",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0050",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0051",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0052",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0053",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0054",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0055",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0056",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0057",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0058",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0059",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0060",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0061",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0062",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0063",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0064",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0065",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0066",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0067",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0068",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0069",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0070",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0071",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0072",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0073",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0074",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0075",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0076",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0077",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0078",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0079",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0080",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0081",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0082",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0083",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0084",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0085",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0086",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0087",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0088",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0089",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0090",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0091",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0092",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0093",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0094",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0095",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0096",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0097",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0098",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0099",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0100",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0101",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0102",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0103",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0104",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0105",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0106",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0107",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0108",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0109",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0110",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0111",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0112",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0113",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0114",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0115",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0116",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0117",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0118",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0119",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0120",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0121",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0122",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0123",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0124",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0125",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0126",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0127",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0128",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0129",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0130",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0131",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0132",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0133",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0134",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0135",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0136",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0137",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0138",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0139",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0140",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0141",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0142",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0143",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0144",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0145",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0146",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0147",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0148",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0149",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0150",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0151",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0152",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0153",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0154",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0155",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0156",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0157",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0158",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0159",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0160",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0161",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0162",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0163",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0164",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0165",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0166",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0167",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0168",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0169",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0170",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0171",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0172",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0173",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0174",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0175",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0176",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0177",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0178",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0179",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0180",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0181",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0182",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0183",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0184",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0185",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0186",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0187",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0188",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0189",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0190",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0191",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0192",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0193",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0194",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0195",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0196",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0197",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0198",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0199",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0200",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0201",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0202",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0203",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0204",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0205",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0206",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0207",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0208",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0209",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0210",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0211",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0212",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0213",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0214",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0215",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0216",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0217",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0218",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0219",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0220",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0221",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0222",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0223",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0224",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0225",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0226",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0227",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0228",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0229",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0230",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0231",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0232",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0233",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0234",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0235",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0236",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0237",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0238",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0239",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0240",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0241",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0242",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0243",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0244",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0245",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0246",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0247",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0248",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0249",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0250",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0251",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0252",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0253",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0254",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0255",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0256",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0257",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0258",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0259",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0260",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0261",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0262",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0263",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0264",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0265",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0266",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0267",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0268",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0269",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0270",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0271",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0272",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0273",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0274",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0275",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0276",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0277",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0278",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0279",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0280",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0281",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0282",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0283",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0284",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0285",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0286",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0287",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0288",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0289",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0290",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0291",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0292",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0293",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0294",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0295",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0296",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0297",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0298",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    },
+    {
+      "task_id": "gsm8k_0299",
+      "skipped": true,
+      "skip_reason": "NotFoundError"
+    }
+  ]
+}

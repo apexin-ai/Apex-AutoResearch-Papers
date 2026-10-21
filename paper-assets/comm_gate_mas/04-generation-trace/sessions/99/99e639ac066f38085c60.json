@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99e639ac066f38085c60",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 4,
+    "bytes": 3575,
+    "sha256": "4908747f8d9f61facccb8e7daf44c5c9293af25f98d799ed8083a54d12796249"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-04-26T01:52:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 72B 实验在**本地** Mac 通过 SSH tunnel 到 GPU1 (port 8002) 运行，不在服务器上。日志和输出在本地 `/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_qwen72b_n500/`，不要去服务器找\n- Agent 在 72B 实验上有**连续虚报历史**（D148/D149/D150），72B 完成时必须独立 parse JSON 验证所有数字，不信 Agent 第一手汇报\n- 论文正文已预写\"scale-invariant pruning safety\"叙事（results.tex L85），72B 如果 |Δ|>3pp 或 p<0.1 需激活 CONTINGENCY-B（3 处注释块已就绪）\n- GPU 白名单：GPU 0 + GPU 1（westb-4x6000-a），GPU 0 已释放，GPU 1 跑 72B\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a(comm_gate)，代码根 `/root/autodl-tmp/comm_gate_mas`\n- 本地项目：`/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/`\n- 72B 进程：本地 PID 44522（python3 src/pruning_validation.py --mode online_oracle --config configs/oracle_qwen72b_gsm8k_n500.yaml），从 4/25 10:37AM 开始\n- 72B 输出：`outputs/oracle_qwen72b_n500/seed_42_partial.json`（checkpoint），完成后应生成 `seed_42.json`\n- 72B 日志：`outputs/oracle_qwen72b_n500/run.log`，最后检查时 61/500，~5min/task\n- vLLM 72B AWQ 在服务器 GPU1 port 8002\n\n### 3. 📊 当前状态\n本轮完成了全部预提交审计：\n- 引用真实性审计 → 4 项修复（safesieve author、zhang 重复、agentdropout venue、molchanov 删除）\n- 叙事一致性审查 → 2 critical 修复（14B/72B 标签矛盾、Fig caption \"significant\" 误用）+ 3 warning 修复\n- 统计交叉验证 → Table 1 共 90 字段，88 match，1 修正（Llama supp 36.9→36.5%），1 不可验证（heuristic supp 41.8%）\n- Contingency-B 注释块审查通过\n- paper_provenance.yaml 创建审查通过（`read_project_file` 路径问题已上报但非阻塞）\n- 3 pilot registry 补录审查通过（spec 路径不存在已上报）\n\nRegistry: oracle_qwen72b_n500 = RUNNING，其余全 DONE/QUEUED。\n无等待中的 Worker 回调。纯等 72B 阶段。\n\n### 4. 📋 待办\n- 72B PID 44522 进程结束（或 `seed_42.json` 出现）→ 独立 parse JSON 提取 baseline/pruned/delta/p/suppression → 与 Agent 填入的宏值交叉验证 → 判断 A(safe) vs B(degrade) → 如 B 则确认 CONTINGENCY-B 激活\n- 72B 整合进论文后 → 写作审查 3/3（重点：宏值与 JSON 一致、\"scale-invariant\" 叙事是否与数据匹配、CONTINGENCY-B END 标签行的格式问题 discussion.tex L20）\n- `read_project_file(\"paper_provenance.yaml\")` 路径如仍不通 → 再次提醒 Director\n- Appendix E \"directional reversal from its greedy estimate\" 残留（应为 amplification）→ 非阻塞小问题，72B 整合时可顺带修\n\n### 5. 🎯 战略上下文\n- 核心论文叙事：perturbation sensitivity ≠ pruning safety，双 backbone 10-seed 非劣效已确认\n- 72B 是最后一个数据点，决定\"scale-invariant\"还是\"scale-dependent\"叙事。7B Δ=+0.8, 14B Δ=0 都安全，72B 未知\n- D149 Agent 虚报事件是本项目最大信任危机，72B 结果是信任修复的关键时刻——必须独立验证到字段级别\n- 易错点：(1) 72B 日志/输出在本地不在服务器 (2) CONTINGENCY-B 的 `% END` 标签在 discussion.tex L20 与活跃文本同行，激活时注意别误删 (3) Fisher combined p=0.29 (Llama t=0.7) 是两个独立 seed 合并，不是单次实验\n- NeurIPS DDL: abstract 5/3-4, paper 5/5-6，时间零余量\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-12.md"
+}

@@ -1,0 +1,285 @@
+{
+  "mode": "online_oracle",
+  "num_tasks": 5,
+  "num_skipped": 0,
+  "elapsed_seconds": 1536.0,
+  "baseline": {
+    "correct": 4,
+    "total": 5,
+    "accuracy": 0.8
+  },
+  "oracle_pruned": {
+    "correct": 4,
+    "total": 5,
+    "accuracy": 0.8,
+    "total_suppressed": 17,
+    "total_agent_rounds": 25,
+    "suppression_rate": 68.0
+  },
+  "delta_pp": 0.0,
+  "mcnemar": {
+    "a_both_correct": 4,
+    "b_oracle_only": 0,
+    "c_baseline_only": 0,
+    "d_both_wrong": 1,
+    "n_discordant": 0,
+    "chi2_cc": 0.0,
+    "p_value": 1.0,
+    "method": "mcnemar_chi2_cc",
+    "significant_005": false
+  },
+  "oracle_stats": {
+    "total_api_calls": 25,
+    "total_tokens": 19026,
+    "avg_confidence": 0.906,
+    "oracle_model": "gpt-4o"
+  },
+  "per_task": [
+    {
+      "task_id": "gsm8k_0000",
+      "question": "Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.",
+      "ground_truth": "109",
+      "baseline_correct": true,
+      "baseline_answer": "109.",
+      "oracle_pruned_correct": true,
+      "oracle_pruned_answer": "109.",
+      "messages_suppressed": 4,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 740,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 741,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 741,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 4,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 740,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 5,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 741,
+          "function_type": "acknowledgment"
+        }
+      ]
+    },
+    {
+      "task_id": "gsm8k_0001",
+      "question": "Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small",
+      "ground_truth": "89",
+      "baseline_correct": false,
+      "baseline_answer": "92.",
+      "oracle_pruned_correct": false,
+      "oracle_pruned_answer": "92.",
+      "messages_suppressed": 4,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 948,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 951,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 940,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 4,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 940,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 5,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 951,
+          "function_type": "acknowledgment"
+        }
+      ]
+    },
+    {
+      "task_id": "gsm8k_0002",
+      "question": "Indras has 6 letters in her name. Her sister's name has 4 more letters than half of the letters in Indras' name. How many letters are in Indras and her sister's names?",
+      "ground_truth": "13",
+      "baseline_correct": true,
+      "baseline_answer": "13.",
+      "oracle_pruned_correct": true,
+      "oracle_pruned_answer": "13.",
+      "messages_suppressed": 3,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 692,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 683,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 750,
+          "function_type": "verification"
+        },
+        {
+          "round": 4,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 561,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 5,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 566,
+          "function_type": "acknowledgment"
+        }
+      ]
+    },
+    {
+      "task_id": "gsm8k_0003",
+      "question": "Bethany can run 10 laps on the track in one hour.  Trey can run 4 more laps than Bethany.  Shaelyn can run half as many laps as Trey.  Quinn can run 2 fewer laps than Shaelyn.  How many more laps can ",
+      "ground_truth": "5",
+      "baseline_correct": true,
+      "baseline_answer": "5.",
+      "oracle_pruned_correct": true,
+      "oracle_pruned_answer": "5.",
+      "messages_suppressed": 4,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 761,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 748,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 753,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 4,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 758,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 5,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 753,
+          "function_type": "acknowledgment"
+        }
+      ]
+    },
+    {
+      "task_id": "gsm8k_0004",
+      "question": "An ice cream truck is traveling through a neighborhood. Children from various homes have started chasing the truck and, by the time the truck has reached the end of the first street, there are 5 child",
+      "ground_truth": "25",
+      "baseline_correct": true,
+      "baseline_answer": "25.",
+      "oracle_pruned_correct": true,
+      "oracle_pruned_answer": "25.",
+      "messages_suppressed": 2,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 704,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 699,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 914,
+          "function_type": "verification"
+        },
+        {
+          "round": 4,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 726,
+          "function_type": "verification"
+        },
+        {
+          "round": 5,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 525,
+          "function_type": "acknowledgment"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "model": "/root/autodl-tmp/models/Qwen2.5-72B-Instruct-AWQ-ms/Qwen/Qwen2___5-72B-Instruct-AWQ",
+    "api_base": "http://localhost:8002/v1",
+    "max_rounds": 6,
+    "backbone": "qwen"
+  }
+}

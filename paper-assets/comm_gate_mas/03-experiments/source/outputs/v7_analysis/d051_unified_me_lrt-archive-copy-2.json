@@ -1,0 +1,109 @@
+{
+  "rr": {
+    "label": "RR-only",
+    "n": 2294,
+    "n_backbones": 3,
+    "n_func_types": 3,
+    "func_types": [
+      "acknowledgment",
+      "information_provision",
+      "reasoning_guidance"
+    ],
+    "interaction_lrt": {
+      "chi2": 199.7454,
+      "df": 4,
+      "p_value": 4.262016216501057e-42,
+      "partial_eta2": 0.0801,
+      "cohens_f2": 0.0871
+    },
+    "interaction_coefficients": {
+      "C(backbone)[T.llama]:C(func_type)[T.information_provision]": {
+        "beta": -0.1579,
+        "p": 0.010943
+      },
+      "C(backbone)[T.qwen]:C(func_type)[T.information_provision]": {
+        "beta": -0.1884,
+        "p": 5.2e-05
+      },
+      "C(backbone)[T.llama]:C(func_type)[T.reasoning_guidance]": {
+        "beta": -0.0253,
+        "p": 0.716205
+      },
+      "C(backbone)[T.qwen]:C(func_type)[T.reasoning_guidance]": {
+        "beta": 0.4497,
+        "p": 0.0
+      }
+    },
+    "conditional_effects": {
+      "gemma": {
+        "n": 750,
+        "lrt_chi2": 20.2053,
+        "lrt_df": 2,
+        "lrt_p": 4.0971135888544474e-05,
+        "partial_eta2": 0.0262,
+        "cohens_f2": 0.0269,
+        "coefficients": {
+          "C(func_type)[T.information_provision]": 0.205,
+          "C(func_type)[T.reasoning_guidance]": -0.0039
+        },
+        "p_values": {
+          "C(func_type)[T.information_provision]": 0.000126,
+          "C(func_type)[T.reasoning_guidance]": 0.965682
+        },
+        "R2m": -0.0234
+      },
+      "llama": {
+        "n": 759,
+        "lrt_chi2": 14.1403,
+        "lrt_df": 2,
+        "lrt_p": 0.0008501142575226006,
+        "partial_eta2": 0.0183,
+        "cohens_f2": 0.0186,
+        "coefficients": {
+          "C(func_type)[T.information_provision]": 0.082,
+          "C(func_type)[T.reasoning_guidance]": -0.0513
+        },
+        "p_values": {
+          "C(func_type)[T.information_provision]": 0.014599,
+          "C(func_type)[T.reasoning_guidance]": 0.011803
+        },
+        "R2m": 0.0552
+      },
+      "qwen": {
+        "n": 785,
+        "lrt_chi2": 293.2054,
+        "lrt_df": 2,
+        "lrt_p": 2.144135737841221e-64,
+        "partial_eta2": 0.2719,
+        "cohens_f2": 0.3735,
+        "coefficients": {
+          "C(func_type)[T.information_provision]": 0.0488,
+          "C(func_type)[T.reasoning_guidance]": 0.3872
+        },
+        "p_values": {
+          "C(func_type)[T.information_provision]": 0.001586,
+          "C(func_type)[T.reasoning_guidance]": 0.0
+        },
+        "R2m": 0.4576
+      }
+    }
+  },
+  "combined": {
+    "label": "RR+SEQ combined",
+    "n": 5046,
+    "backbone_x_functype_interaction": {
+      "chi2": 474.5125,
+      "df": 6,
+      "p_value": 2.594153274758473e-99,
+      "partial_eta2": 0.086,
+      "cohens_f2": 0.094
+    },
+    "three_way_interaction": {
+      "chi2": 1.4449,
+      "df": 6,
+      "p_value": 0.9630690766602361,
+      "partial_eta2": 0.0003,
+      "cohens_f2": 0.0003
+    }
+  }
+}

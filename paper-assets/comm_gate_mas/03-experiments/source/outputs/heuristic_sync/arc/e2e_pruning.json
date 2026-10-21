@@ -1,0 +1,3060 @@
+{
+  "mode": "e2e",
+  "strategy_filter": "all",
+  "num_tasks": 250,
+  "baseline": {
+    "correct": 227,
+    "total": 250,
+    "accuracy": 0.908
+  },
+  "strategies": {
+    "function_guided": {
+      "strategy": "function_guided",
+      "correct": 154,
+      "total": 250,
+      "accuracy": 0.616,
+      "total_pruned_rounds": 1051,
+      "total_rounds": 1250,
+      "prune_pct": 84.08,
+      "per_task": [
+        {
+          "task_id": "Mercury_SC_413458",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401168",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_417138",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402164",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400985",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7085225",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409266",
+          "correct": false
+        },
+        {
+          "task_id": "AKDE&ED_2008_8_47",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7186568",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405640",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_LBS11009",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7123078",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406720",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7033845",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_407260",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_405387",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS11018",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2012_5_23625",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS10597",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016765",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2007_8_42",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400440",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_9_10-v1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_415457",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404272",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401801",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7142800",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401587",
+          "correct": false
+        },
+        {
+          "task_id": "NCEOGA_2013_5_20",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401361",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401605",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400046",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7219678",
+          "correct": false
+        },
+        {
+          "task_id": "MDSA_2007_8_30",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401585",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7126263",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_404609",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7103530",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2010_3_39",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400500",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_414156",
+          "correct": false
+        },
+        {
+          "task_id": "MCAS_2011_8_15365",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7086748",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7130778",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_406710",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2005_8_10404",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7109463",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416593",
+          "correct": false
+        },
+        {
+          "task_id": "CSZ_2005_5_CSZ10021",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_410837",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401272",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401792",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408321",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7011130",
+          "correct": false
+        },
+        {
+          "task_id": "TIMSS_2011_4_pg45",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7001295",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7271128",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP_2000_8_2",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405931",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402616",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409009",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_415084",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7016310",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2015_5_14",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_406800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7182210",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7072380",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416683",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405827",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7141610",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401766",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400012",
+          "correct": true
+        },
+        {
+          "task_id": "AKDE&ED_2008_8_48",
+          "correct": false
+        },
+        {
+          "task_id": "TAKS_2009_8_27",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_410807",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_LBS10131",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS10027",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7212398",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_400404",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7203560",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057488",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2003_8_pg85",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7057085",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7164623",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406482",
+          "correct": true
+        },
+        {
+          "task_id": "TAKS_2009_5_36",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405130",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2009_5_25",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106960",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7221655",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409115",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7027405",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_402502",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2008_3_32",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2013_8_15",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7133945",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2014_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_406639",
+          "correct": false
+        },
+        {
+          "task_id": "MCAS_1999_8_1",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7027160",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400084",
+          "correct": false
+        },
+        {
+          "task_id": "TIMSS_2003_8_pg47",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7252753",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7109603",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_403930",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_405804",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7081305",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_416169",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_402638",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_416650",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7171605",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7270358",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2014_5_8",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7171570",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2016_8_15",
+          "correct": false
+        },
+        {
+          "task_id": "TIMSS_1995_8_R2",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_30",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400062",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2013_4_17",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401357",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7210455",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2009_5_12",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401798",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7029558",
+          "correct": false
+        },
+        {
+          "task_id": "AKDE&ED_2012_8_20",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_416529",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_414352",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7213343",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_9",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7217298",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7267523",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_11",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401373",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_402120",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2013_8_18",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2014_5_5",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2010_7_12",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_401241",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7038028",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_408547",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_405462",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7122640",
+          "correct": false
+        },
+        {
+          "task_id": "AKDE&ED_2012_8_6",
+          "correct": false
+        },
+        {
+          "task_id": "FCAT_2008_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2012_8_23651",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_415719",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP_2007_4_10280",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7187373",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7210123",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_404841",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7086608",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_410602",
+          "correct": true
+        },
+        {
+          "task_id": "NAEP_2000_8_S11+11",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_180373",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7218505",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409673",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2005_5_25",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_408568",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405880",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400579",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7017045",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_406451",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_417118",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_403907",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106593",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106628",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2016_8_12",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2012_4_29",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7132405",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408324",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7026355",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7221988",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2010_5_1",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7212993",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_413439",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_LBS10018",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401366",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_8_23",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_184363",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406725",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405296",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407592",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7187863",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409349",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407613",
+          "correct": false
+        },
+        {
+          "task_id": "OHAT_2007_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2009_3_22",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7250058",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_400811",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2011_8_13",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7205608",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7094308",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_401728",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_5",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2011_5_16",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2003_5_33",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7188528",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7068583",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409171",
+          "correct": false
+        },
+        {
+          "task_id": "MCAS_2005_8_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402057",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7030870",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7143308",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2011_8_pg31",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7015208",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407315",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7075023",
+          "correct": true
+        },
+        {
+          "task_id": "OHAT_2010_8_35",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057890",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405885",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404820",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_412673",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2013_7_2",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7116235",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2012_8_28",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_407539",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2007_8_10417",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7116288",
+          "correct": true
+        },
+        {
+          "task_id": "MSA_2013_5_23",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400887",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_416376",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7206430",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7172270",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7009993",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7213325",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2010_5_29",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7159215",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2011_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_414504",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7004725",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407228",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409645",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407072",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7056298",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP__7_10339",
+          "correct": false
+        },
+        {
+          "task_id": "NCEOGA_2013_8_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS10814",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_5_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408706",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_414274",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP__7_10352",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7263183",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407138",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2009_8_10430",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_402216",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_9_21-v1",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_4_28",
+          "correct": false
+        },
+        {
+          "task_id": "MSA_2012_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2007_8_17",
+          "correct": false
+        }
+      ]
+    },
+    "ack_only": {
+      "strategy": "ack_only",
+      "correct": 229,
+      "total": 250,
+      "accuracy": 0.916,
+      "total_pruned_rounds": 183,
+      "total_rounds": 1250,
+      "prune_pct": 14.64,
+      "per_task": [
+        {
+          "task_id": "Mercury_SC_413458",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401168",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_417138",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402164",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400985",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7085225",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409266",
+          "correct": true
+        },
+        {
+          "task_id": "AKDE&ED_2008_8_47",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7186568",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405640",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS11009",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7123078",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406720",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7033845",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_407260",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_405387",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS11018",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2012_5_23625",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS10597",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016765",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2007_8_42",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400440",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_9_10-v1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_415457",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404272",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401801",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7142800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401587",
+          "correct": true
+        },
+        {
+          "task_id": "NCEOGA_2013_5_20",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401361",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401605",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_400046",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7219678",
+          "correct": false
+        },
+        {
+          "task_id": "MDSA_2007_8_30",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401585",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7126263",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404609",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7103530",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2010_3_39",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400500",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_414156",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2011_8_15365",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7086748",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7130778",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406710",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2005_8_10404",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7109463",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416593",
+          "correct": false
+        },
+        {
+          "task_id": "CSZ_2005_5_CSZ10021",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_410837",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401272",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401792",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408321",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7011130",
+          "correct": false
+        },
+        {
+          "task_id": "TIMSS_2011_4_pg45",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7001295",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7271128",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP_2000_8_2",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405931",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402616",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409009",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_415084",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016310",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2015_5_14",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_406800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7182210",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7072380",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416683",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405827",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7141610",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401766",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_400012",
+          "correct": true
+        },
+        {
+          "task_id": "AKDE&ED_2008_8_48",
+          "correct": true
+        },
+        {
+          "task_id": "TAKS_2009_8_27",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_410807",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS10131",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS10027",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7212398",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_400404",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7203560",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057488",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2003_8_pg85",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057085",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7164623",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406482",
+          "correct": true
+        },
+        {
+          "task_id": "TAKS_2009_5_36",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405130",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2009_5_25",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106960",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7221655",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409115",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7027405",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_402502",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2008_3_32",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2013_8_15",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7133945",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2014_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_406639",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_1999_8_1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7027160",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400084",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2003_8_pg47",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7252753",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7109603",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_403930",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_405804",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7081305",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_416169",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402638",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_416650",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7171605",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7270358",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2014_5_8",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7171570",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2016_8_15",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_1995_8_R2",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_30",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400062",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2013_4_17",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401357",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7210455",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2009_5_12",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401798",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7029558",
+          "correct": true
+        },
+        {
+          "task_id": "AKDE&ED_2012_8_20",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_416529",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_414352",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7213343",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_9",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7217298",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7267523",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_11",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401373",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402120",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2013_8_18",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2014_5_5",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2010_7_12",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_401241",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7038028",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408547",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_405462",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7122640",
+          "correct": true
+        },
+        {
+          "task_id": "AKDE&ED_2012_8_6",
+          "correct": true
+        },
+        {
+          "task_id": "FCAT_2008_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2012_8_23651",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_415719",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2007_4_10280",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7187373",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7210123",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404841",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7086608",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_410602",
+          "correct": true
+        },
+        {
+          "task_id": "NAEP_2000_8_S11+11",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_180373",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7218505",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409673",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2005_5_25",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408568",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405880",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_400579",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7017045",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406451",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_417118",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_403907",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106593",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106628",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2016_8_12",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2012_4_29",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7132405",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408324",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7026355",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7221988",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2010_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7212993",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_413439",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_LBS10018",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401366",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_8_23",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_184363",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406725",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405296",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407592",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7187863",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409349",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407613",
+          "correct": true
+        },
+        {
+          "task_id": "OHAT_2007_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2009_3_22",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7250058",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400811",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2011_8_13",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7205608",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7094308",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_401728",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_5",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2011_5_16",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2003_5_33",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7188528",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7068583",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409171",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2005_8_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402057",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7030870",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7143308",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2011_8_pg31",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7015208",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407315",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7075023",
+          "correct": true
+        },
+        {
+          "task_id": "OHAT_2010_8_35",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057890",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405885",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404820",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_412673",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2013_7_2",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7116235",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2012_8_28",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_407539",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2007_8_10417",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7116288",
+          "correct": true
+        },
+        {
+          "task_id": "MSA_2013_5_23",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400887",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416376",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7206430",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7172270",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7009993",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7213325",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2010_5_29",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7159215",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2011_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_414504",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7004725",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407228",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409645",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407072",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7056298",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP__7_10339",
+          "correct": true
+        },
+        {
+          "task_id": "NCEOGA_2013_8_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS10814",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_5_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408706",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_414274",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP__7_10352",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7263183",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407138",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP_2009_8_10430",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_402216",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_9_21-v1",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_4_28",
+          "correct": true
+        },
+        {
+          "task_id": "MSA_2012_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2007_8_17",
+          "correct": true
+        }
+      ]
+    },
+    "random": {
+      "strategy": "random",
+      "correct": 155,
+      "total": 250,
+      "accuracy": 0.62,
+      "total_pruned_rounds": 1051,
+      "total_rounds": 1250,
+      "prune_pct": 84.08,
+      "per_task": [
+        {
+          "task_id": "Mercury_SC_413458",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401168",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_417138",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402164",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400985",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7085225",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409266",
+          "correct": false
+        },
+        {
+          "task_id": "AKDE&ED_2008_8_47",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7186568",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405640",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_LBS11009",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7123078",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406720",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7033845",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_407260",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_405387",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS11018",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2012_5_23625",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS10597",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016765",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2007_8_42",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400440",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_9_10-v1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_415457",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404272",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401801",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7142800",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401587",
+          "correct": false
+        },
+        {
+          "task_id": "NCEOGA_2013_5_20",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401361",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401605",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400046",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7219678",
+          "correct": false
+        },
+        {
+          "task_id": "MDSA_2007_8_30",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401585",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7126263",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_404609",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7103530",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2010_3_39",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400500",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_414156",
+          "correct": false
+        },
+        {
+          "task_id": "MCAS_2011_8_15365",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7086748",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7130778",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_406710",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2005_8_10404",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7109463",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416593",
+          "correct": false
+        },
+        {
+          "task_id": "CSZ_2005_5_CSZ10021",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_410837",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401272",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401792",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408321",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7011130",
+          "correct": false
+        },
+        {
+          "task_id": "TIMSS_2011_4_pg45",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7001295",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7271128",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2000_8_2",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405931",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402616",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409009",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_415084",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7016310",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2015_5_14",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_406800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7182210",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7072380",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_416683",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405827",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7141610",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401766",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400012",
+          "correct": true
+        },
+        {
+          "task_id": "AKDE&ED_2008_8_48",
+          "correct": false
+        },
+        {
+          "task_id": "TAKS_2009_8_27",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_410807",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_LBS10131",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_LBS10027",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7212398",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_400404",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7203560",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057488",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2003_8_pg85",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7057085",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7164623",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406482",
+          "correct": true
+        },
+        {
+          "task_id": "TAKS_2009_5_36",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405130",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2009_5_25",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106960",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7221655",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409115",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7027405",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_402502",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2008_3_32",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2013_8_15",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7133945",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2014_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_406639",
+          "correct": false
+        },
+        {
+          "task_id": "MCAS_1999_8_1",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7027160",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400084",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2003_8_pg47",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7252753",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7109603",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_403930",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_405804",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7081305",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_416169",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_402638",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_416650",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7171605",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7270358",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2014_5_8",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7171570",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2016_8_15",
+          "correct": false
+        },
+        {
+          "task_id": "TIMSS_1995_8_R2",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_30",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400062",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2013_4_17",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_401357",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7210455",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2009_5_12",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401798",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7029558",
+          "correct": false
+        },
+        {
+          "task_id": "AKDE&ED_2012_8_20",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_416529",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_414352",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7213343",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_9",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7217298",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7267523",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_11",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401373",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_402120",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2013_8_18",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2014_5_5",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2010_7_12",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_401241",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7038028",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_408547",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_405462",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7122640",
+          "correct": false
+        },
+        {
+          "task_id": "AKDE&ED_2012_8_6",
+          "correct": false
+        },
+        {
+          "task_id": "FCAT_2008_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2012_8_23651",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_415719",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP_2007_4_10280",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7187373",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7016800",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7210123",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_404841",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7086608",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_410602",
+          "correct": true
+        },
+        {
+          "task_id": "NAEP_2000_8_S11+11",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_180373",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7218505",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409673",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2005_5_25",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_408568",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405880",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_400579",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7017045",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_406451",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_417118",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_403907",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106593",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7106628",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2016_8_12",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2012_4_29",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7132405",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408324",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7026355",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7221988",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2010_5_1",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7212993",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_413439",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_LBS10018",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_401366",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_8_23",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_184363",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_406725",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_405296",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407592",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7187863",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409349",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407613",
+          "correct": false
+        },
+        {
+          "task_id": "OHAT_2007_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "VASoL_2009_3_22",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7250058",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_400811",
+          "correct": true
+        },
+        {
+          "task_id": "MEA_2011_8_13",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7205608",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7094308",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_401728",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_8_5",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2011_5_16",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2003_5_33",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7188528",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7068583",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_409171",
+          "correct": false
+        },
+        {
+          "task_id": "MCAS_2005_8_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_402057",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7030870",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7143308",
+          "correct": true
+        },
+        {
+          "task_id": "TIMSS_2011_8_pg31",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7015208",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407315",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7075023",
+          "correct": true
+        },
+        {
+          "task_id": "OHAT_2010_8_35",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7057890",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_405885",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_404820",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_412673",
+          "correct": false
+        },
+        {
+          "task_id": "ACTAAP_2013_7_2",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7116235",
+          "correct": true
+        },
+        {
+          "task_id": "NYSEDREGENTS_2012_8_28",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_407539",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP_2007_8_10417",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7116288",
+          "correct": true
+        },
+        {
+          "task_id": "MSA_2013_5_23",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_400887",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_416376",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7206430",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7172270",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7009993",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7213325",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2010_5_29",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7159215",
+          "correct": true
+        },
+        {
+          "task_id": "ACTAAP_2011_5_1",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_414504",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_7004725",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407228",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_409645",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_407072",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7056298",
+          "correct": true
+        },
+        {
+          "task_id": "LEAP__7_10339",
+          "correct": false
+        },
+        {
+          "task_id": "NCEOGA_2013_8_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_LBS10814",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_5_7",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_408706",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_SC_414274",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP__7_10352",
+          "correct": true
+        },
+        {
+          "task_id": "Mercury_7263183",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_SC_407138",
+          "correct": false
+        },
+        {
+          "task_id": "LEAP_2009_8_10430",
+          "correct": false
+        },
+        {
+          "task_id": "Mercury_402216",
+          "correct": true
+        },
+        {
+          "task_id": "MCAS_2004_9_21-v1",
+          "correct": false
+        },
+        {
+          "task_id": "NYSEDREGENTS_2008_4_28",
+          "correct": false
+        },
+        {
+          "task_id": "MSA_2012_5_15",
+          "correct": true
+        },
+        {
+          "task_id": "MDSA_2007_8_17",
+          "correct": false
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "fg_vs_baseline_delta_pp": -29.2,
+    "ack_vs_baseline_delta_pp": 0.8,
+    "function_guided_vs_baseline_delta_pp": -29.2,
+    "ack_only_vs_baseline_delta_pp": 0.8,
+    "random_vs_baseline_delta_pp": -28.8,
+    "fg_vs_random_delta_pp": -0.4,
+    "fg_dominates_random": false
+  },
+  "config": {
+    "model": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B-Instruct",
+    "api_base": "http://localhost:8000/v1",
+    "max_rounds": 6,
+    "placeholder": "I acknowledge the previous message."
+  }
+}

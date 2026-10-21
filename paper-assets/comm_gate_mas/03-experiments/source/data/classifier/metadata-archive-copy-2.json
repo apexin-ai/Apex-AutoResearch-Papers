@@ -1,0 +1,84 @@
+{
+  "total_records": 6069,
+  "split_ratio": "70/20/10 by task_id hash",
+  "label_mapping": {
+    "acknowledgment": 1,
+    "other": 0
+  },
+  "train": {
+    "name": "train",
+    "total": 4315,
+    "ack": 1249,
+    "non_ack": 3066,
+    "ack_ratio": 0.2895,
+    "per_backbone": {
+      "llama": 1178,
+      "qwen": 1240,
+      "gemma": 1897
+    },
+    "per_domain": {
+      "gsm8k": 3190,
+      "strategyqa": 631,
+      "arc": 367,
+      "math": 127
+    },
+    "per_5class": {
+      "acknowledgment": 1249,
+      "information_provision": 1167,
+      "reasoning_guidance": 872,
+      "coordination": 744,
+      "verification": 280,
+      "unknown": 3
+    }
+  },
+  "val": {
+    "name": "val",
+    "total": 1228,
+    "ack": 382,
+    "non_ack": 846,
+    "ack_ratio": 0.3111,
+    "per_backbone": {
+      "llama": 329,
+      "qwen": 366,
+      "gemma": 533
+    },
+    "per_domain": {
+      "gsm8k": 905,
+      "strategyqa": 185,
+      "arc": 119,
+      "math": 19
+    },
+    "per_5class": {
+      "acknowledgment": 382,
+      "information_provision": 325,
+      "reasoning_guidance": 230,
+      "coordination": 218,
+      "verification": 73
+    }
+  },
+  "test": {
+    "name": "test",
+    "total": 526,
+    "ack": 176,
+    "non_ack": 350,
+    "ack_ratio": 0.3346,
+    "per_backbone": {
+      "llama": 143,
+      "qwen": 142,
+      "gemma": 241
+    },
+    "per_domain": {
+      "gsm8k": 375,
+      "strategyqa": 75,
+      "arc": 62,
+      "math": 14
+    },
+    "per_5class": {
+      "acknowledgment": 176,
+      "information_provision": 140,
+      "reasoning_guidance": 95,
+      "coordination": 91,
+      "verification": 24
+    }
+  }
+}

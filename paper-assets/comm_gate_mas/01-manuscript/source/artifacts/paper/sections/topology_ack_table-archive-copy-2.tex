@@ -1,0 +1,27 @@
+% Topology-Ack Prevalence Spectrum (main text summary table)
+% \input this file where the table should appear.
+
+\begin{table}[t]
+\centering
+\caption{Acknowledgment prevalence spectrum across configurations, sorted by ascending ack fraction. Prevalence spans two orders of magnitude (0.2\%--66.9\%), modulated by topology, backbone, and domain. $P(\text{ack}|\text{ack})$: cascade transition probability (\S\ref{app:cascade}). All under greedy decoding.}
+\label{tab:topology_ack}
+\small
+\begin{tabular}{@{}lllrc@{}}
+\toprule
+\textbf{Backbone} & \textbf{Topology} & \textbf{Domain} & \textbf{Ack\,\%} & $P$\textbf{(ack$|$ack)} \\
+\midrule
+Qwen2.5-7B & Debate & StratQA & 0.2\textsuperscript{$\dagger$} & --- \\
+Qwen2.5-7B & Hierarchical & HumanEval & 4.2 & --- \\
+Gemma-2-9B & Round-Robin & GSM8K & 4.6 & 9.7\% \\
+Mistral-7B & Round-Robin & GSM8K & 34.9 & --- \\
+Mistral-7B & Sequential & GSM8K & 41.7 & --- \\
+Llama-3.1-8B & Round-Robin & GSM8K & 47.0 & 61.9\% \\
+Qwen2.5-7B & Round-Robin & GSM8K & 47.9 & 90.7\% \\
+Llama-3.1-8B & Round-Robin & MATH & 56.0 & --- \\
+Mistral-7B & Selector & GSM8K & 66.9 & --- \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+
+\raggedright\footnotesize \textsuperscript{$\dagger$}Heuristic detection (char~$< 30$); all other rows use dual-annotator or cross-model annotation. Cascade rates available only for backbones with sufficient ack counts ($n > 70$); Mistral and cross-domain pilots lack oracle cascade data. Full details: Appendices~\ref{app:cascade}, \ref{app:mistral}, \ref{app:humaneval-pilot}, \ref{app:math}, \ref{app:multiagent}.
+\end{table}

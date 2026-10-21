@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c58a63f13a1bc23c90b5",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3768,
+    "sha256": "34d865daae99938ac1c2383d65bad1e91462af563fab9cd9a65cc7fa7fbef1d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-04-28T00:39:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- comm_gate_mas 只能用 **cuda:1**（westb-4x6000-a）。cuda:0/2/3 是其他项目，越界即 CRITICAL\n- vLLM 启动命令必须带 `CUDA_VISIBLE_DEVICES=1`，否则 vLLM 抢 cuda:0（历史教训，见 memory feedback_vllm_cuda_visible_devices.md）\n- GPU 实验启动前必须 `pgrep` 检查是否已有同名进程（反重复进程 guard，历史两次踩坑）\n- Reviewer 角色只读——不执行实验、不修改文件，唯一输出渠道是 `reviewer_post_to_director`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-4x6000-a**，工作目录 `/root/autodl-tmp/comm_gate_mas`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型路径：`/root/autodl-tmp/models/Llama-3.1-8B-Instruct`（当前 vLLM 服务），`Qwen2.5-7B-Instruct`/`Qwen3-8B`/`72B-AWQ` 等均在同目录\n- vLLM 当前状态：**Llama-3.1-8B-Instruct on port 8001, cuda:1**（PID 997411/997778）\n- P2 实验进程：PID 999735（`pruning_validation.py --mode online_oracle`，seed_42 运行中）\n- GPU 0: pseudo_label_bias_decomp 项目；GPU 3: al_calib_imbalance_shift 项目——与我无关\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n1. stochastic_10seed_qwen_t07 — DONE, success。10-seed 全部验证通过（Δ=+0.30±1.80pp, TOST δ=-3pp p=0.000129）。聚合脚本有 bug（全零输出）但原始 JSON 数据有效，分析 worker 绕过了 bug\n2. 写作整合审查 — 发现 **abstract 与正文矛盾**（abstract 写 \"single seed\" 但正文已是 10 seeds），已提 CRITICAL 给 Director\n3. vLLM 切换到 Llama — 确认完成，P2 已启动\n\n**Registry 关键状态**：\n- `p2_oracle_online_llama_v3`: **RUNNING**（3 seeds × 200 tasks，预计 ~3h）\n- `llama_length_only_gsm8k_5seed`: PREPARING（P2 之后排队）\n- `stochastic_10seed_qwen_t07`: DONE ✅\n- `prompt_mod_qwen25_gsm8k_v2`: DONE ✅\n\n**等待中**：P2 完成回调 → 需审查 oracle online Llama 结果\n\n### 4. 📋 待办\n- P2 oracle_online_llama_v3 完成 → 审查 3-seed aggregate metrics（核对 non-inferiority δ=-3pp 是否 hold），检查 oracle cache hit rate，验证 CUDA_VISIBLE_DEVICES=1\n- llama_length_only_5seed 启动 → 验证 GPU 边界 + seed 列表与 registry 一致\n- Llama heuristic 3-seed 启动 → 同上\n- Director 修复 abstract \"single seed\" → 确认修改后 abstract 与 body 一致\n- 若收到 Framing 提案 → 立即 Read `negative-framing-review` skill，按四维度审查\n- 写作章节审查请求 → 检查 red-section skill 是否被 Agent 查看（L1 硬约束 #1）\n\n### 5. 🎯 战略上下文\n- **核心叙事**：Dissociation finding — perturbation sensitivity ≠ pruning safety，ack 消息最易扰动但可安全剪枝\n- **D210**：Qwen stochastic 10-seed 通过，Llama stochastic 多 seed 跳过（已有 2-seed 1000 tasks 的 Fisher combined 证据，pooled Δ=-2.2pp NS）。\"Backbone-dependent boundary\" 叙事\n- **D208**：P1 oracle precompute 跳过，直接用现有 GPT-4o oracle（1760/1782 msgs）\n- **NeurIPS DDL**：Abstract 5/3-4, Paper 5/5-6。P2 硬限 4/29 00:00 UTC\n- **易错点**：\n  - 不要把 Llama stochastic 的 \"single seed\" 与 \"2-seed Fisher combined\" 混淆——后者是 2 batches × 500 tasks，不是 2 random seeds\n  - Qwen3 的 -14pp 是 char<80 threshold 结果（offline replay），char<30 的结果是 -1pp NS（online）——两种 mode 不可直接对比\n  - `scripts/run_10seed_stochastic.sh` 的聚合解析有 bug（输出全零），但原始 seed JSON 文件数据正确。如果有人引用脚本聚合输出，必须警告\n  - abstract 目前仍写 \"single seed\"，这是已提交的 CRITICAL，等 Director 处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-3.md"
+}

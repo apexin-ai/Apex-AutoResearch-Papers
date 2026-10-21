@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14b197d5042945b68326",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 3,
+    "bytes": 4395,
+    "sha256": "e7a6911c4ab6f106658aec951d1208308219c8fecdd968f6d3711b6b11ce29af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-04-29T20:36:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb2-4x5090-b 只能用 cuda:0, cuda:1（cuda:2,3 是 pseudo_label_bias_decomp 项目的）\n- westb-4x6000-a 只能用 cuda:1（cuda:0 有其他项目进程，Manager 未分配给我们）\n- vLLM 启动必须 `--max-model-len 8192 --enforce-eager`（2048 导致过 100% silent failure，D237 教训）\n- vLLM pre-flight 必须发真实 prompt 验证推理输出（不能仅检查 HTTP 200）\n- 每个 seed 跑完后 sanity check baseline accuracy > 50%（脚本把 400 错误标记为 completed 不报 error）\n- suppress rate ~37% 是 Llama oracle 正确值（论文已从错误的 ~45% 修正，commit 8a880f2）\n\n### 2. 🖥️ 基础设施快照\n**bjb2-4x5090-b** (connect.bjb2.seetacloud.com, root)\n- 工作目录: `/root/autodl-tmp/comm_gate_mas`\n- Python: `/root/miniconda3/bin/python` (conda base)\n- 模型: `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct`\n- vLLM cuda:0 port 8001, cuda:1 port 8002（均 max_model_len=8192, enforce_eager）\n- 活跃: Llama StratQA seeds 3+5 (cuda:0), seeds 4+6 (cuda:1), 96% util\n- 日志: `/tmp/gpu0_seeds.log`, `/tmp/gpu1_seeds.log`\n- 输出: `outputs/stratqa_llama_4seed_v2/`\n\n**westb-4x6000-a** (connect.westb.seetacloud.com, root → account comm_gate)\n- 工作目录: `/root/autodl-tmp/comm_gate_mas`\n- Python: conda base\n- 模型: Qwen2.5-7B-Instruct（已在 HF cache）\n- vLLM cuda:1 port 8001 (PID 134958, 89GB, 0% util — 空转等修复)\n- 🚨 Qwen StratQA 脚本 FAILED: `--mode e2e` 应改为 `--mode online_pruning --detection-mode heuristic`\n- 本地论文: `artifacts/paper/` HEAD=8a880f2\n\n### 3. 📊 当前状态\n**刚完成**：\n- Manager 调研：梳理 8+12 个实验异常，Reviewer 评估完毕\n- 论文 9 项 framing 修改（commits 9c9ebc9 + 8a880f2）：suppress rate 修正、position reversal、Llama beneficial CI、StratQA comparison、Gemma t=0.7 披露、N=1000 弃用说明、topology-ack emergence、temperature-typology、variance collapse\n- Llama seed_3072 outlier 分析写入 appendix（Grubbs G=2.137 < 2.290，非 outlier，ceiling effect）\n- 论文已提交 Review Director 二审（pending 用户确认 review mode）\n\n**RUNNING**：\n- `stratqa_llama_heuristic_4seed_v2` (bjb2 cuda:0,1): seeds 3,4 已完成（+2.5pp, +0.5pp），seeds 5,6 运行中，预计 ~30-50min\n- `qwen_heuristic_stratqa_4seed` (westb cuda:1): FAILED，脚本模式错误待修复\n\n**等待中**：\n- bjb2 seeds 5+6 完成 → 8-seed 聚合分析（`stratqa_8seed_analysis.py` 已准备好）\n- Review Director 二审结果\n- westb 脚本修复后重跑\n\n### 4. 📋 待办（条件触发式）\n- bjb2 seeds 5+6 完成 → 运行 `stratqa_8seed_analysis.py` 计算 8-seed mean±SD/CI → 如果 CI 仍正向，更新 Table 1 去掉 $^\\ast$ 脚注 → post_to_reviewer 验证\n- 8-seed 均值 > +2pp 且 CI 不含 0 → 强化 Discussion beneficial claim → commit\n- 8-seed 出现负 seed 或 CI 含 0 → 保留原 4-seed 数据加 caveat\n- westb Qwen StratQA → 修复 `--mode e2e` 为 `--mode online_pruning --detection-mode heuristic` → 重跑 4 seeds → 与 Llama StratQA 组合形成双 backbone × 双任务矩阵\n- Review Director 二审报告到达 → 按 `review-report-action` skill 处理（Holistic Pass → Per-Comment Action Matrix）\n- Manager 问新研究方向 → 最有潜力方向是 \"Backbone Communication Signature\"（异常 3+6），可做 IDEA_BRIEF\n\n### 5. 🎯 战略上下文\n- 论文核心：Dissociation finding（perturbation sensitivity ≠ pruning safety）+ reusable analysis protocol\n- 目标：NeurIPS 2026 Datasets & Benchmarks Track，abstract 5/3，paper 5/5-6\n- Round 1 评分 5/10，30 项修改 + 9 项 framing 强化全部完成，预估 Round 2 → 6.5-7.5\n- 决策链：D235（收到审稿）→ D236（framing 强化 batch 1）→ D237（batch 2 + 数字修正）→ D238（StratQA 补种）→ D239（Qwen StratQA 并行）\n- **易错点**：(1) vLLM max_model_len 必须 8192 不是 2048（本轮踩过坑）(2) 脚本 `--mode` 参数：在线实验用 `online_pruning` 不是 `e2e`（本轮也踩过）(3) Registry 经常与实际状态不同步，先 SSH 查实际再信 registry (4) Llama heuristic suppress ~75% vs oracle ~37%，不要搞混 (5) StratQA 4-seed 含 discovery seed（$^\\ast$ 脚注），补种就是为了消除这个攻击面\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-copy-5.md"
+}

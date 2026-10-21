@@ -1,0 +1,37 @@
+# Heuristic online pruning: Qwen/GSM8K, t=0.3, port 8001
+model:
+  name: "/root/autodl-tmp/models/Qwen2.5-7B-Instruct"
+  api_base: "http://127.0.0.1:8001/v1"
+  api_key: "[REDACTED]"
+  temperature: 0.3
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "MathSolver"
+    system_message: |
+      You are a mathematical problem solver. Solve the given math problem step by step.
+      Show your work clearly and provide the final numerical answer on the last line
+      in the format: "The answer is [NUMBER]."
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      You are a math answer checker. Review the solver's solution carefully.
+      Check each calculation step for correctness.
+      If correct, confirm the answer. If incorrect, show the correct solution.
+      End with: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 200
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+output:
+  trace_dir: "outputs/heuristic_qwen_t03/traces"
+  analysis_dir: "outputs/heuristic_qwen_t03"

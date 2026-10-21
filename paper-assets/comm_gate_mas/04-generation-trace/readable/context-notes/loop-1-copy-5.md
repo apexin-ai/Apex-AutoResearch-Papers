@@ -1,0 +1,72 @@
+# director / loop_1.md
+
+**When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_1.md`
+- **Structured JSON:** [`ae28c433ae021ec708bf.json`](../../sessions/ae/ae28c433ae021ec708bf.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_messages
+updated: '2026-04-25T19:45:25+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- **GPU 仅 cuda:0 和 cuda:1**（cuda:2/3 属于其他项目，用户曹晓玉明确禁止，已因误用 GPU 3 被紧急纠正过一次）
+- 服务器 westb-4x6000-a，account=comm_gate
+- 论文 main body **必须 ≤ 9 页**（NeurIPS desk reject 风险）——当前正好 9 页，任何新增内容必须等量压缩
+- Auto Research 模式：不打扰用户，自主推进
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-4x6000-a (connect.westb.seetacloud.com)，工作目录 /root/autodl-tmp/comm_gate_mas
+- 本地项目：/Users/agent-001/.agent-ml-research/projects/comm_gate_mas
+- 本地 Python：/Users/agent-001/agent-ml-research/.venv/bin/python3（Python 3.14）
+- LaTeX 编译：本地 tectonic（`/Users/agent-001/.local/bin/tectonic`），latexmk 不可用
+- 论文源码：artifacts/paper/main.tex
+- GPU 0: Llama-3.1-8B vLLM (PID 182427 on server, port 8001, SSH tunnel PID 32606 local)
+- GPU 1: Qwen2.5-72B-Instruct-AWQ vLLM (port 8002, SSH tunnel PID 31985 local)
+- 活跃实验进程（本地）：
+  - oracle_qwen72b_n500: PID 44522, nohup 后台, N=500, ~42h 预估, 输出 outputs/oracle_qwen72b_n500/seed_42.json
+  - oracle_llama_stratqa: PID 45354, N=250, ~2-3h, 输出 outputs/oracle_llama_stratqa/seed_42.json
+- OpenAI API key 存于 secrets（key_id: openai_key），Agent 通过 request_secret 获取
+- 模型路径（服务器）：/root/autodl-tmp/models/Llama-3.1-8B-Instruct, /root/autodl-tmp/models/Qwen2.5-7B-Instruct, /root/autodl-tmp/models/Qwen2.5-72B-Instruct-AWQ-ms/
+
+### 3. 📊 当前状态
+**刚完成：** R11 审稿报告全部修复——两轮共 18 项写作修正（P0-P4 第一轮 + P0-P5 第二轮），页数从 ~10 页压缩到正好 9 页（Director 直接编辑 Discussion 7→3段、Table 2→inline、删 Related Work neural pruning 段）。Reviewer 逐条深度分析确认 0 条需要新实验。
+
+**运行中：**
+- oracle_qwen72b_n500 (RUNNING): 72B AWQ scale validation, N=500, 5-task 测试已通过（Δ=0pp, 0 skipped），全量刚启动 ~42h
+- oracle_llama_stratqa (RUNNING): Llama/StratQA oracle cross-domain, N=250, ~2-3h, 填 Table 1 oracle 矩阵最后一格
+
+**等待：** 两个实验完成后需要整合结果到论文
+
+### 4. 📋 待办
+- oracle_llama_stratqa 完成 → 检查结果 → 更新 Table 1 oracle 行 + §5.4 cross-domain 段落 → tectonic 编译确认 ≤ 9 页
+- oracle_qwen72b_n500 完成（~4/27）→ 检查 Δ → 如果 NS 或 positive：更新 §5.2 scale 段落从"exploratory (N=100)"升级为"substantive (N=500)"；如果 negative：新增 boundary condition
+- 两个实验都完成后 → 最终编译 PDF → submit_paper_to_review 提交 R12 审稿
+- Llama/StratQA 完成后 GPU 0 空闲 → 评估是否跑 Qwen/GSM8K t=0.7 oracle（第二高 ROI 实验）或释放
+
+### 5. 🎯 战略上下文
+- **R11 Borderline Accept 5.5/10**，从 R10 BR 提升。关键风险：R2 novelty 质疑（"acks are redundant 的复杂化"）——已用三层 paradox 叙事反驳
+- **pruning_validation.py 超时已修改**：HTTP timeout 从 config 读取（`model.timeout`），task timeout = config timeout × 5。72B config 设 timeout: 300。这个改动对 7B 实验无影响（默认 60s）
+- **D143→D144 逻辑**：D143 说"R11 不需要补实验"，D144 是用户单独要求利用空闲 GPU 跑高 ROI 实验。ROADMAP 已解释清楚两者不矛盾
+- **易错点**：(1) 72B 实验 ~42h 很长，如果中途 SSH tunnel 断了需要重建（PID 31985）；(2) 任何论文改动后必须 tectonic 编译验证仍 ≤ 9 页——当前零余量；(3) Llama heuristic 在 Llama 上 over-suppress（74.4%），所以 Llama 的 pruning claim 依赖 oracle 而非 heuristic
+- **DDL**：Abstract 5/3-4, Paper 5/5-6, 时间充裕但不要拖
+
+
+---

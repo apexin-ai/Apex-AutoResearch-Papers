@@ -1,0 +1,137 @@
+\section{Methodology Details}
+\label{app:methodology_details}
+
+\subsection{Impact Metric Definition}
+\label{app:impact_metric}
+
+Remove-ablation impact for message $m_i$ is defined as:
+\begin{equation}
+    \text{Impact}(m_i) = \cos\bigl(\mathbf{e}(\hat{a}),\; \mathbf{e}(\hat{a}_{-i})\bigr)
+\label{eq:impact}
+\end{equation}
+where $\mathbf{e}(\cdot)$ denotes sentence embedding (all-MiniLM-L6-v2), $\hat{a}$ is the original final answer, and $\hat{a}_{-i}$ is the regenerated final answer after deleting $m_i$ and replaying all subsequent turns. Lower similarity indicates greater behavioral disruption.
+
+\paragraph{Infrastructure.} Each ablation uses greedy decoding via vLLM~\citep{kwon_vllm_2023} on 4$\times$ RTX PRO 6000 GPUs (96\,GB). Conversations are limited to $K = 6$ rounds. System prompts for each topology appear in Appendix~\ref{app:system-prompts}.
+
+\paragraph{Cross-domain configuration matrix.} The $3 \times 4$ factorial design yields 18 configurations: GSM8K under round-robin (RR), sequential (SEQ), and selector (SEL) topologies; ARC-Challenge, StrategyQA, and MATH under RR only. Two primary backbones (Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct) plus one exploratory (Gemma-2-9B-it) are evaluated across all applicable domain--topology combinations. MATH serves as a boundary-probe domain where pruning consistently degrades accuracy.
+
+\subsection{Taxonomy Granularity Justification}
+\label{app:taxonomy_granularity}
+
+We chose five function types based on three convergent criteria. First, a likelihood-ratio test on perturbation impact scores rejects the null that all types share a common distribution ($\chi^2 = 47.3$, $p < 10^{-9}$, BH-corrected), confirming that the five-class partition captures statistically distinct sensitivity profiles. Second, we considered finer splits (e.g., separating \emph{information\_provision} into factual-recall and intermediate-computation subtypes, or splitting \emph{acknowledgment} into explicit confirmation and backchannel). These 7-class variants produced overlapping ablation-impact distributions between the new subtypes (Kolmogorov--Smirnov $p > 0.3$), providing no additional discriminative power for intervention studies. Third, collapsing to four classes (merging \emph{verification} into \emph{information\_provision}) eliminates a signal that differentiates backbones: Qwen's cross-annotator agreement on verification ($\kappa = 0.82$) far exceeds its agreement on information provision ($\kappa = 0.44$), whereas Gemma shows the reverse pattern ($\kappa_{\mathrm{info}} = 0.87$, $\kappa_{\mathrm{verif}} = 0.51$). The complementary $\kappa$ structure confirms that these are distinct categories whose distinguishability varies by backbone communication profile. The five-class level thus maximizes the number of categories whose perturbation impacts are statistically separable and whose inter-annotator reliability is adequate across backbones.
+
+\subsection{Statistical Framework}
+\label{app:stat_framework_details}
+
+We use OLS ANCOVA (Equation~\ref{eq:ols_app}) with function type as the factor and position/round as covariates, plus linear mixed-effects (ME) models (Equation~\ref{eq:me_app}) with task as a random intercept (the maximal converging specification):
+\begin{equation}
+    y_i = \beta_0 + \textstyle\sum_{k} \beta_k \cdot \text{FT}_{ik} + \gamma_1 \cdot \text{Pos}_i + \gamma_2 \cdot \text{Round}_i + \epsilon_i
+\label{eq:ols_app}
+\end{equation}
+\begin{equation}
+    y_{ij} = \beta_0 + \textstyle\sum_{k} \beta_k \cdot \text{FT}_{ijk} + \gamma_1 \cdot \text{Pos}_{ij} + \gamma_2 \cdot \text{Round}_{ij} + u_j + \epsilon_{ij}
+\label{eq:me_app}
+\end{equation}
+where $u_j \sim \mathcal{N}(0, \sigma^2_u)$. Per-configuration ME models use individual tasks as random intercepts (maximal converging specification). Function type significance is tested via LRT with Benjamini--Hochberg correction ($\alpha = 0.05$; nine primary tests). End-to-end pruning safety is assessed primarily via confidence intervals on accuracy deltas (e.g., Qwen oracle 10-seed 95\% CI $[-0.33, +1.13]$\,pp) and McNemar's exact test~\citep{mcnemar_1947}. Non-inferiority testing at $\delta = -3$\,pp provides supplementary evidence: at baseline ${\sim}90\%$, this margin represents a ${\sim}30\%$ relative increase in error rate ($10\% \to 13\%$), calibrated against observed seed-to-seed variance ($\text{SD} \approx 1$--$2.4$\,pp) to separate genuine degradation from sampling noise (Appendix~\ref{app:margin_selection})~\citep{lakens_equivalence_2017}. TOST equivalence at $\pm 1$\,pp further quantifies precision where applicable (Qwen oracle $p = 0.048$, marginal; interpret alongside the CI).
+
+\paragraph{Multiple comparison framework.} We organize statistical tests into three families to control false discovery risk while preserving power. \emph{Family~A} (primary confirmatory): nine LRT tests for function-type effects in mixed-effects models receive Benjamini--Hochberg correction at $\alpha = 0.05$. \emph{Family~B} (online cross-domain): McNemar tests across the backbone$\times$domain pruning matrix receive BH correction within family. \emph{Family~C} (offline exploratory): single-run offline comparisons (e.g., FG vs.\ ack-only, $N{=}100$) are explicitly labeled exploratory and do not receive cross-family correction. This hierarchy follows the confirmatory/exploratory distinction recommended in pre-registration practice; all Family~C $p$-values are reported for transparency but should not be interpreted as confirmatory evidence.
+
+\subsection{Heuristic Detector Development}
+\label{app:heuristic_details}
+
+Because backbone choice determines communication surface form (\S\ref{sec:cross_domain}), we develop \emph{model-adapted} heuristic detectors that require no LLM annotation, analogous to task-specific prompt engineering, where rules are tuned to the target system rather than designed for universal transfer.
+
+\paragraph{Qwen detector.} A character-length threshold ($< 30$) exploits Qwen's narrow ack surface band (42.2\% of checker messages below 30~chars, median 4~tokens; Appendix~\ref{app:info_theory}) and yields F1\textsubscript{GSM8K} $= 0.845$ with ${\sim}42\%$ suppression.
+
+\paragraph{Llama detector.} Llama's verbose acks (mean 59.8~tokens, 65.6\% bigram novelty; Appendix~\ref{app:info_theory}) render length thresholds near-vacuous. A composite detector combines keyword matching, 4-gram repetition ratio ($> 0.3$), and a relaxed length ceiling ($< 300$~chars) and yields ${\sim}75\%$ suppression with comparable pruning safety (\S\ref{sec:e2e_pruning}).
+
+Both detectors are task-specific proof-of-concept classifiers; limitations are evaluated in Section~\ref{sec:boundary} and discussed in Section~\ref{sec:discussion}.
+
+\subsection{Learned Classification}
+\label{app:learned_classifier_details}
+
+To quantify the gap between hand-crafted heuristics and learned detectors, we train supervised classifiers on the binary ack/non-ack label derived from the 5-class oracle annotations. The training corpus comprises a 6{,}069-message subset of the full 21{,}661-message annotated release, spanning all three backbones (Llama, Qwen, Gemma) and four domains (GSM8K, StrategyQA, ARC, MATH). We split by \texttt{task\_id} hash (70/20/10 train/val/test) to prevent messages from the same problem instance from appearing in both training and evaluation sets. This is a critical design choice, since messages within a task share surface cues that would inflate held-out scores under random splitting.
+
+\paragraph{TF-IDF + logistic regression.} Character $n$-grams ($n{=}2$--$5$, \texttt{char\_wb}) and word $n$-grams ($n{=}1$--$2$) are extracted via TF-IDF and fed to a balanced logistic regression classifier. This lightweight pipeline achieves test-set F1~$= 0.859$ (macro-averaged, $N{=}526$), substantially outperforming the best heuristic detector (F1\textsubscript{ack}~$= 0.542$; macro F1~$= 0.491$). This result confirms that learned features capture ack surface patterns that hand-crafted rules miss across backbone--domain combinations.
+
+Fine-tuning DistilBERT~\citep{sanh_distilbert_2019} on the same split achieves test-set F1~$= 0.867$ (macro; ack-class $0.822$), comparable to TF-IDF+LR. This result confirms the lightweight pipeline as a practical alternative.
+
+The cross-backbone, cross-domain training set ensures that classifiers generalize beyond any single configuration. Importantly, oracle pruning safety (\S\ref{sec:e2e_pruning}) does not depend on detector quality (it establishes an upper bound under perfect detection), so learned classifiers serve as practical deployment tools rather than prerequisites for the pruning result.
+
+\subsection{Qualitative Case Analysis}
+\label{app:qualitative}
+
+To build intuition about when acknowledgment pruning succeeds or fails, we present representative cases from the Llama oracle pruning validation (Llama-3.1-8B-Instruct, GSM8K, round-robin, $N{=}500$).
+
+\paragraph{Safe pruning examples.}
+\emph{gsm8k\_0000} (ages ratio, GT=109): The suppressed ACK at Round~4 reads ``I'm glad I could provide a clear and detailed solution to the problem. If you have any more math problems you'd like me to solve, feel free to ask!'' (147 chars). It contains zero task-relevant information; the pruned system produces the correct answer (109).
+\emph{gsm8k\_0003} (running laps, GT=5): Two ACKs suppressed (Rounds 2 and 4, 40\% message reduction). Both are confirmatory echoes of an already-established correct answer. The reasoning chain (Round~1) and verification (Round~3) remain intact; answer preserved.
+\emph{gsm8k\_0010} (balloons, GT=34): Despite a multi-step calculation, the ACK at Round~4 (``I'm glad I could provide a clear and detailed solution\ldots'', 140 chars) appears after the solution is fully verified. Removal does not disrupt the established chain.
+
+\paragraph{Error cases (pruning degrades accuracy).}
+\emph{gsm8k\_0001} (sticker trading, GT=89, pruned=85): The suppressed Round~4 message is classified as ACK due to confirmatory framing, but embeds a numerical restatement of intermediate values. Subsequent rounds depend on this implicit content; removal causes answer drift ($89 \to 85$).
+\emph{gsm8k\_0016} (oranges, GT=17, pruned=68): The suppressed ACK (317 chars) wraps an implicit restatement of the problem structure within verbose confirmatory language. When removed, the subsequent generation hallucinates a different calculation entirely, producing 68 (exceeding even the total of 25 oranges).
+
+\paragraph{Patterns.}
+Safe cases share: (1)~suppressed messages are short ($<$150 chars), (2)~they appear after core reasoning completes, (3)~they contain no numerical content. Error cases arise when messages labeled ACK are verbose ($>$250 chars) and embed implicit numerical restatements within confirmatory framing. This motivates the character-length component of the heuristic detector (\S\ref{sec:heuristic}).
+
+\subsection{Practitioners' Decision Procedure}
+\label{app:flowchart}
+
+We recommend the following four-step procedure for evaluating acknowledgment pruning on a new backbone--task configuration (Figure~\ref{fig:decision_flowchart}).
+
+\begin{figure}[h]
+\centering
+\resizebox{0.75\textwidth}{!}{%
+\begin{tikzpicture}[
+  proc/.style={rectangle, rounded corners=3pt, draw=blue!60!black, fill=blue!12,
+    minimum width=3.5cm, minimum height=1cm, text centered, text width=3.3cm,
+    font=\small\sffamily},
+  gate/.style={rectangle, rounded corners=3pt, draw=orange!70!black, fill=orange!10,
+    minimum width=3.5cm, minimum height=1cm, text centered, text width=3.3cm,
+    font=\small\sffamily},
+  stop/.style={rectangle, rounded corners=8pt, draw=red!60!black, fill=red!8,
+    minimum width=3cm, minimum height=0.8cm, text centered, text width=2.8cm,
+    font=\small\sffamily\bfseries},
+  go/.style={rectangle, rounded corners=8pt, draw=green!60!black, fill=green!8,
+    minimum width=3cm, minimum height=0.8cm, text centered, text width=2.8cm,
+    font=\small\sffamily\bfseries},
+  arr/.style={-{Stealth[length=2.5mm]}, thick, blue!50!black},
+  lbl/.style={font=\scriptsize\sffamily, fill=white, inner sep=1pt}
+]
+
+\node[proc] (step1) {1. Annotate $N{\geq}50$ traces};
+\node[gate, below=1.0cm of step1] (check_ack) {ACK $>$ 30\%?};
+\node[stop, right=2.2cm of check_ack] (no_target) {No pruning target};
+\node[proc, below=1.0cm of check_ack] (step3) {2. Oracle pilot ($N{=}100$)};
+\node[gate, below=1.0cm of step3] (check_delta) {$\Delta > -3$\,pp?};
+\node[stop, right=2.2cm of check_delta] (unsafe) {Pruning unsafe};
+\node[proc, below=1.0cm of check_delta] (step5) {3. Multi-seed TOST};
+\node[gate, below=1.0cm of step5] (check_tost) {TOST PASS $\pm 1$\,pp?};
+\node[stop, right=2.2cm of check_tost] (inconclusive) {Increase $N$ / seeds};
+\node[proc, below=1.0cm of check_tost] (step7) {4. Boundary check};
+\node[gate, below=1.0cm of step7] (check_bound) {Accuracy preserved?};
+\node[stop, right=2.2cm of check_bound] (partial) {Partial deploy};
+\node[go, below=1.0cm of check_bound] (deploy) {Deploy pruning};
+
+\draw[arr] (step1) -- (check_ack);
+\draw[arr] (check_ack) -- node[lbl, left] {Yes} (step3);
+\draw[arr] (check_ack) -- node[lbl, above] {No} (no_target);
+\draw[arr] (step3) -- (check_delta);
+\draw[arr] (check_delta) -- node[lbl, left] {Yes} (step5);
+\draw[arr] (check_delta) -- node[lbl, above] {No} (unsafe);
+\draw[arr] (step5) -- (check_tost);
+\draw[arr] (check_tost) -- node[lbl, left] {Yes} (step7);
+\draw[arr] (check_tost) -- node[lbl, above] {No} (inconclusive);
+\draw[arr] (step7) -- (check_bound);
+\draw[arr] (check_bound) -- node[lbl, left] {Yes} (deploy);
+\draw[arr] (check_bound) -- node[lbl, above] {No} (partial);
+
+\end{tikzpicture}%
+}
+\caption{Decision procedure for evaluating acknowledgment pruning on a new backbone--task configuration. Each gate corresponds to a protocol diagnostic: ACK prevalence (\S\ref{sec:cross_domain}), single-seed safety (\S\ref{sec:e2e_pruning}), multi-seed equivalence (\S\ref{sec:statistical_framework}), and boundary testing.}
+\label{fig:decision_flowchart}
+\end{figure}
+
+\paragraph{Usage notes.}
+Step~1 can use the heuristic detector for an initial ACK prevalence estimate. The 30\% threshold is empirically motivated: below this level, pruning yields insufficient efficiency gains. Step~2 uses oracle (GPT-4o) labels to establish an upper bound before investing in detector development. Step~3 validates that the heuristic or learned detector achieves comparable safety. Step~4 guards against domain-specific failure modes (analogous to our MATH finding). The entire protocol requires approximately 4--8 GPU-hours for a 7B-parameter backbone.

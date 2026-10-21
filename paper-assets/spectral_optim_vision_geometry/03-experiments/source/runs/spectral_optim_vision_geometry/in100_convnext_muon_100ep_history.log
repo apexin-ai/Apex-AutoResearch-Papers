@@ -1,0 +1,41 @@
+tee: /root/autodl-tmp/logs/convnext_muon_100ep.log: No such file or directory
+Param split: 57 Muon, 125 AdamW
+ImageNet-100 loaded: train=55218, val=10000, classes=100
+model=convnext_tiny (convnext_tiny), params=27.9M, optimizer=muon, device=cuda:1
+, batches/epoch=431
+  batch 50/431, loss=4.5881, elapsed=17.9s
+  batch 100/431, loss=4.5224, elapsed=35.8s
+  batch 150/431, loss=4.5036, elapsed=49.6s
+  batch 200/431, loss=4.1881, elapsed=63.3s
+  batch 250/431, loss=4.0515, elapsed=76.8s
+  batch 300/431, loss=3.9816, elapsed=90.6s
+  batch 350/431, loss=4.0099, elapsed=104.4s
+  batch 400/431, loss=3.7882, elapsed=118.1s
+epoch=1, train_loss=4.2589, val_acc=15.42%, time=140.1s
+  batch 50/431, loss=3.6598, elapsed=14.4s
+  batch 100/431, loss=3.6733, elapsed=28.3s
+  batch 150/431, loss=3.5942, elapsed=42.1s
+  batch 200/431, loss=3.4572, elapsed=55.9s
+  batch 250/431, loss=3.2490, elapsed=69.7s
+  batch 300/431, loss=3.4561, elapsed=83.5s
+  batch 350/431, loss=3.3601, elapsed=97.3s
+  batch 400/431, loss=3.2879, elapsed=111.0s
+epoch=2, train_loss=3.5075, val_acc=28.54%, time=131.1s
+  batch 50/431, loss=3.3299, elapsed=14.7s
+  batch 100/431, loss=3.1226, elapsed=28.7s
+  batch 150/431, loss=2.9853, elapsed=42.3s
+  batch 200/431, loss=2.9656, elapsed=55.7s
+  batch 250/431, loss=3.1157, elapsed=69.4s
+  batch 300/431, loss=2.7692, elapsed=83.2s
+  batch 350/431, loss=2.8422, elapsed=97.0s
+  batch 400/431, loss=3.1286, elapsed=110.4s
+epoch=3, train_loss=3.0777, val_acc=36.03%, time=130.7s
+  batch 50/431, loss=2.9757, elapsed=14.6s
+  batch 100/431, loss=2.8404, elapsed=28.5s
+  batch 150/431, loss=2.9371, elapsed=42.1s
+  batch 200/431, loss=2.6601, elapsed=55.8s
+  batch 250/431, loss=3.0096, elapsed=69.5s
+  batch 300/431, loss=2.8257, elapsed=82.9s
+  batch 350/431, loss=2.6760, elapsed=96.4s
+  batch 400/431, loss=3.2110, elapsed=110.0s
+

@@ -1,0 +1,65 @@
+\section{Scale Validation: Qwen2.5-14B}
+\label{app:scaling}
+
+We extend the scale trajectory analysis (Section~\ref{sec:results}) with detailed results for Qwen2.5-14B-Instruct on GSM8K under round-robin topology. These results bridge the 7B and 72B endpoints.
+
+\subsection{Function Annotation}
+
+GPT-4o annotation of 600 agent messages yields an acknowledgment rate of 31.7\% (190/600), closely matching the 72B relabeling rate (29.7\%). The full function distribution is: \textsc{verification} 191, \textsc{acknowledgment} 190, \textsc{reasoning\_guidance} 162, \textsc{information\_provision} 57, \textsc{coordination} 0. The near-identical acknowledgment proportions across 14B and 72B suggest that communication function distributions are stable within the Qwen2.5 family at these scales.
+
+\paragraph{Cross-model annotation agreement.} Qwen2.5-72B-Instruct-AWQ relabeling yields an acknowledgment rate of 29.7\% (178/600), within 2\,pp of the GPT-4o rate (31.7\%). This close agreement confirms annotator consistency at this model scale.
+
+\subsection{Heuristic Detector}
+
+A character-length threshold of 80 achieves F1 $= 0.837$ (precision $= 0.799$, recall $= 0.879$) against GPT-4o labels. The higher threshold compared to 7B (char\_threshold $= 30$) reflects 14B's tendency to produce longer acknowledgment messages. Despite the different threshold, classification quality remains comparable to the 7B detector (F1\textsubscript{GSM8K} $= 0.845$).
+
+\subsection{Simulate Pruning}
+
+Offline simulate pruning based on 72B annotations (which closely agree with GPT-4o) yields: baseline accuracy 95\% (from offline traces), ack-only accuracy 95\%, $\Delta = 0$\,pp, with 18.3\% token savings. The zero delta is consistent with acknowledgment content carrying no marginal task-relevant information at 14B scale. This result matches the 7B finding.
+
+\subsection{Online Pruning}
+
+Online pruning (skip mode, char\_threshold $= 80$, $N = 100$) yields: baseline 90\%, ack-only 93\%, $\Delta = +3$\,pp, with 5.8\% suppression rate (29/500 messages). The low suppression rate, substantially below the annotated acknowledgment proportion (31.7\%), reflects the conservative char\_threshold: at threshold $= 80$, only the shortest acknowledgments are suppressed online, while many genuine acknowledgments exceed 80 characters and pass through.
+
+\paragraph{Unified threshold validation.} To enable fair cross-scale comparison, we re-run online pruning with char\_threshold $= 30$ (matching the 7B and 72B threshold). This yields: baseline 91\%, ack-only 95\%, $\Delta = +4$\,pp, with 6.4\% suppression rate (32/500 messages). The minimal increase from 5.8\% to 6.4\% indicates that the low suppression rate is intrinsic to 14B's acknowledgment length distribution (14B generates few short, $< 30$ character, acknowledgments) rather than an artifact of threshold calibration. The heuristic thus captures only ${\sim}$20\% of true acknowledgments at 14B (6.4\% suppressed vs.\ 31.7\% true ack rate per GPT-4o). This gap illustrates that length-based heuristic transferability varies by scale. This makes the 14B online result a test of partial heuristic coverage rather than a full pruning safety test; the simulate pruning result ($\Delta = 0$\,pp with oracle labels) provides the complementary full-removal evidence.
+
+\paragraph{Interpreting the low suppression rate.} Both thresholds yield $< 7\%$ suppression, meaning the delta is based on removing only ${\sim}30$ messages out of 500. While the direction is consistently positive (no degradation), the small number of suppressed messages limits the strength of inference about what would happen under more aggressive pruning. The simulate pruning result ($\Delta = 0$\,pp at full acknowledgment removal) provides complementary evidence that complete removal is safe.
+
+\paragraph{Run-to-run variance.} Under greedy decoding, single-run point estimates carry $\pm$1--2\,pp residual variance from GPU numerical precision (cf.\ ten-run replication for 7B: $\pm 0.99$\,pp). The $+3$\,pp and $+4$\,pp deltas are within this variance band and should not be interpreted as genuine improvements.
+
+\subsection{Full-Scale 72B Oracle Pruning ($N = \qwenSevenTwoBN{}$, 5 Seeds)}
+\label{app:scaling_72b}
+
+The exploratory 72B probe ($N = 100$, $\Delta = 0$\,pp) uses a sample too small for powered inference. We extend to $N = \qwenSevenTwoBN{}$ (5 seeds $\times$ 265 tasks) with oracle (GPT-4o 5-class) labels.
+
+\paragraph{Online oracle pruning.} Qwen2.5-72B-Instruct-AWQ on GSM8K: mean baseline \qwenSevenTwoBBaseline{}\%, mean pruned \qwenSevenTwoBPruned{}\%, $\Delta = \qwenSevenTwoBDelta{} \pm \qwenSevenTwoBSD{}$\,pp (SE $= \qwenSevenTwoBSE{}$\,pp), with \qwenSevenTwoBSupp{}\% message suppression. Per-seed deltas: $[0, +0.38, +0.76, +1.13, -0.38]$\,pp (4/5 non-negative; the single negative seed is within noise). TOST equivalence at $\pm 1$\,pp yields $p = \qwenSevenTwoBPvalue{}$ (marginal pass). The higher suppression rate at 72B (\qwenSevenTwoBSupp{}\%) compared to 7B (56.3\%) reflects 72B's tendency to produce more formulaic acknowledgments.
+
+\paragraph{Cross-scale comparison.} Table~\ref{app:tab:scale_summary} summarizes oracle pruning deltas across the Qwen2.5 scale trajectory.
+
+\begin{table}[ht]
+\centering
+\caption{Pruning $\Delta$ (pp) across Qwen2.5 scales on GSM8K (oracle where available, heuristic otherwise; greedy decoding). 72B reports mean $\pm$ SD across 5 seeds.}
+\label{app:tab:scale_summary}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Scale} & $N$ & \textbf{Baseline} & \textbf{Pruned} & $\Delta$ & \textbf{Supp.} \\
+\midrule
+7B  & 500 & 88.8 & 89.6 & $+0.8$ & 56.3\% \\
+14B$^\dagger$ & 100 & 90/91 & 93/95 & $+3/+4$ & 5.8/6.4\% \\
+72B & $\qwenSevenTwoBN{}$ & \qwenSevenTwoBBaseline{} & \qwenSevenTwoBPruned{} & $\qwenSevenTwoBDelta{} \pm \qwenSevenTwoBSD{}$ & \qwenSevenTwoBSupp{}\% \\
+\bottomrule
+\end{tabular}
+
+{\footnotesize $^\dagger$14B uses char-length heuristic (thresholds 80/30); oracle online pruning was not run at this scale. Offline oracle ($\Delta = 0$\,pp) provides complementary full-removal evidence.}
+\end{table}
+
+\subsection{MAS Deployment Positioning}
+
+Our study analyzes communication \emph{within} multi-agent systems, not whether multi-agent architectures outperform single-agent alternatives, a question addressed by existing MAS benchmarks~\citep{du_protocolbench_2025, zhu_multiagentbench_2025}. The taxonomy is an empirically-derived analytical framework for understanding inter-agent message functions; its value lies in identifying which messages are safe to remove from an existing MAS pipeline, not in justifying MAS over single-agent approaches. Single-agent baselines are orthogonal: they would test whether agents should communicate at all, whereas we test which communications are redundant given that agents \emph{do} communicate. This distinction parallels neural pruning~\citep{lecun_obd_1990}, where the question is which weights to remove from a trained network, not whether the architecture should have fewer layers.
+
+\subsection{Scale Trajectory of Pruning Safety}
+
+Ack-pruning safety is directionally consistent across the Qwen2.5 scale trajectory: 7B ($\Delta = +0.8$\,pp, $N = 500$), 14B (offline oracle $\Delta = 0$\,pp), and 72B ($N = \qwenSevenTwoBN{}$, $\Delta = \qwenSevenTwoBDelta{} \pm \qwenSevenTwoBSD{}$\,pp, TOST $p = \qwenSevenTwoBPvalue{}$ at $\pm 1$\,pp, \qwenSevenTwoBSupp{}\% suppression). No significant degradation is observed at any scale. The 72B 5-seed replication confirms that seed-to-seed variance is small (SD $= \qwenSevenTwoBSD{}$\,pp), though larger $N$ per seed would tighten the TOST bound (currently marginal at $p = \qwenSevenTwoBPvalue{}$).
+The 14B result is limited by low heuristic suppression (6.4\%); the offline oracle ($\Delta = 0$\,pp) provides complementary evidence.
+Individual-message perturbation at 72B remains unmeasured; the dissociation is inferred from 7B perturbation data.

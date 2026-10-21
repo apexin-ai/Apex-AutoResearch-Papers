@@ -1,0 +1,73 @@
+model:
+  name: "Qwen2.5-7B-Instruct"
+  api_base: "http://localhost:8000/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+model_b:
+  name: "meta-llama/Llama-3.1-8B-Instruct"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+
+data:
+  dataset: "humaneval"
+  num_tasks: 50
+  seed: 42
+
+agents:
+  solver:
+    name: "CodeSolver"
+    system_message: |
+      You are a skilled Python programmer. Given a function signature and docstring,
+      write a correct implementation. Think step by step about edge cases.
+      Return your solution inside a ```python code block.
+  reviewer:
+    name: "CodeReviewer"
+    system_message: |
+      You are a code reviewer. Check the provided code for correctness, edge cases,
+      and logical errors. If you find issues, provide the corrected complete implementation
+      inside a ```python code block. If the code is correct, confirm it.
+
+trace_collection:
+  max_rounds: 6
+  framework: "metagpt"
+  topology: "hierarchical"
+
+evaluation:
+  method: "code_execution"
+  timeout: 10
+  metric: "pass_at_1"
+
+local_impact:
+  embedding_model: "/root/autodl-tmp/.hf_cache/sentence-transformers/all-MiniLM-L6-v2"
+  logprobs_top_k: 20
+  ldim_max_tokens: 5
+  neutralize_text:
+    CodeSolver: "Let me write some code for this."
+    CodeReviewer: "I'll review the code."
+    default: "Acknowledged."
+
+annotation:
+  function_types:
+    - information_provision
+    - reasoning_guidance
+    - verification
+    - coordination
+    - acknowledgment
+
+correctness:
+  categories:
+    - correct
+    - partially_correct
+    - incorrect
+    - not_applicable
+
+output:
+  trace_dir: "outputs/metagpt_humaneval/traces"
+  impact_dir: "outputs/metagpt_humaneval/impact"
+  annotation_dir: "outputs/metagpt_humaneval/annotations"
+  correctness_dir: "outputs/metagpt_humaneval/correctness"
+  figure_dir: "outputs/metagpt_humaneval/figures"
+  analysis_dir: "outputs/metagpt_humaneval"

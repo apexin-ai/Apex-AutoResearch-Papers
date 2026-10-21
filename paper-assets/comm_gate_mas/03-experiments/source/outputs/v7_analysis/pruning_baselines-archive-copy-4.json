@@ -1,0 +1,758 @@
+{
+  "per_backbone": {
+    "qwen_round_robin": {
+      "n_messages": 1500,
+      "total_tokens": 106083,
+      "n_correct_tasks": 269,
+      "random": {
+        "points": [
+          {
+            "target_pct": 10,
+            "token_savings_pct": 10.05,
+            "accuracy_risk_mean": 0.1487,
+            "accuracy_risk_std": 0.192,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 20,
+            "token_savings_pct": 20.19,
+            "accuracy_risk_mean": 0.4833,
+            "accuracy_risk_std": 0.3527,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 30,
+            "token_savings_pct": 30.14,
+            "accuracy_risk_mean": 0.8178,
+            "accuracy_risk_std": 0.422,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 40,
+            "token_savings_pct": 39.95,
+            "accuracy_risk_mean": 1.1524,
+            "accuracy_risk_std": 0.4451,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 50,
+            "token_savings_pct": 50.12,
+            "accuracy_risk_mean": 1.3755,
+            "accuracy_risk_std": 0.3938,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 60,
+            "token_savings_pct": 59.88,
+            "accuracy_risk_mean": 1.7472,
+            "accuracy_risk_std": 0.3938,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 70,
+            "token_savings_pct": 69.82,
+            "accuracy_risk_mean": 2.1933,
+            "accuracy_risk_std": 0.3697,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 80,
+            "token_savings_pct": 79.54,
+            "accuracy_risk_mean": 2.342,
+            "accuracy_risk_std": 0.306,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 90,
+            "token_savings_pct": 90.01,
+            "accuracy_risk_mean": 2.4535,
+            "accuracy_risk_std": 0.2599,
+            "n_trials": 10
+          }
+        ]
+      },
+      "position_based": {
+        "points": [
+          {
+            "rounds_removed_from": 4,
+            "rounds_removed_count": 1,
+            "msgs_pruned": 300,
+            "token_savings_pct": 7.4,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 3,
+            "rounds_removed_count": 2,
+            "msgs_pruned": 600,
+            "token_savings_pct": 18.59,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 2,
+            "rounds_removed_count": 3,
+            "msgs_pruned": 900,
+            "token_savings_pct": 33.48,
+            "accuracy_risk_pct": 2.6022
+          },
+          {
+            "rounds_removed_from": 1,
+            "rounds_removed_count": 4,
+            "msgs_pruned": 1200,
+            "token_savings_pct": 82.98,
+            "accuracy_risk_pct": 2.6022
+          }
+        ]
+      },
+      "function_guided": {
+        "points": [
+          {
+            "pruned_types": [
+              "reasoning_guidance"
+            ],
+            "added_type": "reasoning_guidance",
+            "msgs_pruned": 447,
+            "token_savings_pct": 38.36,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "reasoning_guidance",
+              "information_provision"
+            ],
+            "added_type": "information_provision",
+            "msgs_pruned": 632,
+            "token_savings_pct": 64.46,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "reasoning_guidance",
+              "information_provision",
+              "verification"
+            ],
+            "added_type": "verification",
+            "msgs_pruned": 774,
+            "token_savings_pct": 79.89,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "reasoning_guidance",
+              "information_provision",
+              "verification",
+              "coordination"
+            ],
+            "added_type": "coordination",
+            "msgs_pruned": 780,
+            "token_savings_pct": 80.35,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "reasoning_guidance",
+              "information_provision",
+              "verification",
+              "coordination",
+              "unknown"
+            ],
+            "added_type": "unknown",
+            "msgs_pruned": 781,
+            "token_savings_pct": 80.41,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "reasoning_guidance",
+              "information_provision",
+              "verification",
+              "coordination",
+              "unknown",
+              "acknowledgment"
+            ],
+            "added_type": "acknowledgment",
+            "msgs_pruned": 1500,
+            "token_savings_pct": 100.0,
+            "accuracy_risk_pct": 2.6022
+          }
+        ],
+        "pruning_order": [
+          "reasoning_guidance",
+          "information_provision",
+          "verification",
+          "coordination",
+          "unknown",
+          "acknowledgment"
+        ]
+      }
+    },
+    "llama_round_robin": {
+      "n_messages": 1470,
+      "total_tokens": 147708,
+      "n_correct_tasks": 220,
+      "random": {
+        "points": [
+          {
+            "target_pct": 10,
+            "token_savings_pct": 9.76,
+            "accuracy_risk_mean": 0.0909,
+            "accuracy_risk_std": 0.1917,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 20,
+            "token_savings_pct": 19.57,
+            "accuracy_risk_mean": 0.3182,
+            "accuracy_risk_std": 0.4815,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 30,
+            "token_savings_pct": 29.64,
+            "accuracy_risk_mean": 0.5,
+            "accuracy_risk_std": 0.452,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 40,
+            "token_savings_pct": 39.95,
+            "accuracy_risk_mean": 1.0,
+            "accuracy_risk_std": 0.516,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 50,
+            "token_savings_pct": 49.96,
+            "accuracy_risk_mean": 1.2727,
+            "accuracy_risk_std": 0.5588,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 60,
+            "token_savings_pct": 60.02,
+            "accuracy_risk_mean": 1.3182,
+            "accuracy_risk_std": 0.5442,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 70,
+            "token_savings_pct": 70.08,
+            "accuracy_risk_mean": 1.5455,
+            "accuracy_risk_std": 0.3178,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 80,
+            "token_savings_pct": 80.19,
+            "accuracy_risk_mean": 1.8182,
+            "accuracy_risk_std": 0.303,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 90,
+            "token_savings_pct": 90.28,
+            "accuracy_risk_mean": 2.1364,
+            "accuracy_risk_std": 0.2196,
+            "n_trials": 10
+          }
+        ]
+      },
+      "position_based": {
+        "points": [
+          {
+            "rounds_removed_from": 4,
+            "rounds_removed_count": 1,
+            "msgs_pruned": 294,
+            "token_savings_pct": 14.07,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 3,
+            "rounds_removed_count": 2,
+            "msgs_pruned": 588,
+            "token_savings_pct": 28.59,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 2,
+            "rounds_removed_count": 3,
+            "msgs_pruned": 882,
+            "token_savings_pct": 54.71,
+            "accuracy_risk_pct": 1.3636
+          },
+          {
+            "rounds_removed_from": 1,
+            "rounds_removed_count": 4,
+            "msgs_pruned": 1176,
+            "token_savings_pct": 88.09,
+            "accuracy_risk_pct": 2.2727
+          }
+        ]
+      },
+      "function_guided": {
+        "points": [
+          {
+            "pruned_types": [
+              "verification"
+            ],
+            "added_type": "verification",
+            "msgs_pruned": 121,
+            "token_savings_pct": 13.09,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "verification",
+              "information_provision"
+            ],
+            "added_type": "information_provision",
+            "msgs_pruned": 315,
+            "token_savings_pct": 23.97,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "verification",
+              "information_provision",
+              "coordination"
+            ],
+            "added_type": "coordination",
+            "msgs_pruned": 429,
+            "token_savings_pct": 27.3,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "verification",
+              "information_provision",
+              "coordination",
+              "reasoning_guidance"
+            ],
+            "added_type": "reasoning_guidance",
+            "msgs_pruned": 779,
+            "token_savings_pct": 47.56,
+            "accuracy_risk_pct": 0.4545
+          },
+          {
+            "pruned_types": [
+              "verification",
+              "information_provision",
+              "coordination",
+              "reasoning_guidance",
+              "acknowledgment"
+            ],
+            "added_type": "acknowledgment",
+            "msgs_pruned": 1470,
+            "token_savings_pct": 100.0,
+            "accuracy_risk_pct": 2.2727
+          }
+        ],
+        "pruning_order": [
+          "verification",
+          "information_provision",
+          "coordination",
+          "reasoning_guidance",
+          "acknowledgment"
+        ]
+      }
+    },
+    "gemma_round_robin": {
+      "n_messages": 1500,
+      "total_tokens": 46746,
+      "n_correct_tasks": 242,
+      "random": {
+        "points": [
+          {
+            "target_pct": 10,
+            "token_savings_pct": 10.36,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 20,
+            "token_savings_pct": 20.38,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 30,
+            "token_savings_pct": 30.65,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 40,
+            "token_savings_pct": 40.71,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 50,
+            "token_savings_pct": 51.07,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 60,
+            "token_savings_pct": 60.87,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 70,
+            "token_savings_pct": 70.37,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 80,
+            "token_savings_pct": 79.93,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          },
+          {
+            "target_pct": 90,
+            "token_savings_pct": 90.3,
+            "accuracy_risk_mean": 0.0,
+            "accuracy_risk_std": 0.0,
+            "n_trials": 10
+          }
+        ]
+      },
+      "position_based": {
+        "points": [
+          {
+            "rounds_removed_from": 4,
+            "rounds_removed_count": 1,
+            "msgs_pruned": 300,
+            "token_savings_pct": 0.39,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 3,
+            "rounds_removed_count": 2,
+            "msgs_pruned": 600,
+            "token_savings_pct": 0.67,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 2,
+            "rounds_removed_count": 3,
+            "msgs_pruned": 900,
+            "token_savings_pct": 1.66,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "rounds_removed_from": 1,
+            "rounds_removed_count": 4,
+            "msgs_pruned": 1200,
+            "token_savings_pct": 61.37,
+            "accuracy_risk_pct": 0.0
+          }
+        ]
+      },
+      "function_guided": {
+        "points": [
+          {
+            "pruned_types": [
+              "information_provision"
+            ],
+            "added_type": "information_provision",
+            "msgs_pruned": 846,
+            "token_savings_pct": 67.75,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "information_provision",
+              "reasoning_guidance"
+            ],
+            "added_type": "reasoning_guidance",
+            "msgs_pruned": 1078,
+            "token_savings_pct": 91.52,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "information_provision",
+              "reasoning_guidance",
+              "acknowledgment"
+            ],
+            "added_type": "acknowledgment",
+            "msgs_pruned": 1150,
+            "token_savings_pct": 96.33,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "information_provision",
+              "reasoning_guidance",
+              "acknowledgment",
+              "verification"
+            ],
+            "added_type": "verification",
+            "msgs_pruned": 1216,
+            "token_savings_pct": 99.57,
+            "accuracy_risk_pct": 0.0
+          },
+          {
+            "pruned_types": [
+              "information_provision",
+              "reasoning_guidance",
+              "acknowledgment",
+              "verification",
+              "coordination"
+            ],
+            "added_type": "coordination",
+            "msgs_pruned": 1500,
+            "token_savings_pct": 100.0,
+            "accuracy_risk_pct": 0.0
+          }
+        ],
+        "pruning_order": [
+          "information_provision",
+          "reasoning_guidance",
+          "acknowledgment",
+          "verification",
+          "coordination"
+        ]
+      }
+    }
+  },
+  "dominance_analysis": {
+    "qwen_round_robin": {
+      "function_vs_random": "function-guided does not dominate random; max safe savings: fg=80.41% vs random=0.0%",
+      "function_vs_position": "function-guided dominates position-based; max safe savings: fg=80.41% vs position=18.59%",
+      "max_safe_savings": {
+        "function_guided": 80.41,
+        "random": 0.0,
+        "position_based": 18.59
+      },
+      "detailed_comparison": {
+        "fg_vs_random": [
+          {
+            "savings_pct": 38.36,
+            "fg_risk": 0.0,
+            "other_risk": 1.1524,
+            "other_savings": 39.95,
+            "risk_reduction": 1.1524
+          },
+          {
+            "savings_pct": 64.46,
+            "fg_risk": 0.0,
+            "other_risk": 1.7472,
+            "other_savings": 59.88,
+            "risk_reduction": 1.7472
+          },
+          {
+            "savings_pct": 79.89,
+            "fg_risk": 0.0,
+            "other_risk": 2.342,
+            "other_savings": 79.54,
+            "risk_reduction": 2.342
+          },
+          {
+            "savings_pct": 80.35,
+            "fg_risk": 0.0,
+            "other_risk": 2.342,
+            "other_savings": 79.54,
+            "risk_reduction": 2.342
+          },
+          {
+            "savings_pct": 80.41,
+            "fg_risk": 0.0,
+            "other_risk": 2.342,
+            "other_savings": 79.54,
+            "risk_reduction": 2.342
+          },
+          {
+            "savings_pct": 100.0,
+            "fg_risk": 2.6022,
+            "other_risk": 2.4535,
+            "other_savings": 90.01,
+            "risk_reduction": -0.1487
+          }
+        ],
+        "fg_vs_position": [
+          {
+            "savings_pct": 38.36,
+            "fg_risk": 0.0,
+            "other_risk": 2.6022,
+            "other_savings": 33.48,
+            "risk_reduction": 2.6022
+          },
+          {
+            "savings_pct": 79.89,
+            "fg_risk": 0.0,
+            "other_risk": 2.6022,
+            "other_savings": 82.98,
+            "risk_reduction": 2.6022
+          },
+          {
+            "savings_pct": 80.35,
+            "fg_risk": 0.0,
+            "other_risk": 2.6022,
+            "other_savings": 82.98,
+            "risk_reduction": 2.6022
+          },
+          {
+            "savings_pct": 80.41,
+            "fg_risk": 0.0,
+            "other_risk": 2.6022,
+            "other_savings": 82.98,
+            "risk_reduction": 2.6022
+          }
+        ]
+      }
+    },
+    "llama_round_robin": {
+      "function_vs_random": "function-guided does not dominate random; max safe savings: fg=27.3% vs random=0.0%",
+      "function_vs_position": "function-guided dominates position-based; max safe savings: fg=27.3% vs position=28.59%",
+      "max_safe_savings": {
+        "function_guided": 27.3,
+        "random": 0.0,
+        "position_based": 28.59
+      },
+      "detailed_comparison": {
+        "fg_vs_random": [
+          {
+            "savings_pct": 13.09,
+            "fg_risk": 0.0,
+            "other_risk": 0.0909,
+            "other_savings": 9.76,
+            "risk_reduction": 0.0909
+          },
+          {
+            "savings_pct": 23.97,
+            "fg_risk": 0.0,
+            "other_risk": 0.3182,
+            "other_savings": 19.57,
+            "risk_reduction": 0.3182
+          },
+          {
+            "savings_pct": 27.3,
+            "fg_risk": 0.0,
+            "other_risk": 0.5,
+            "other_savings": 29.64,
+            "risk_reduction": 0.5
+          },
+          {
+            "savings_pct": 47.56,
+            "fg_risk": 0.4545,
+            "other_risk": 1.2727,
+            "other_savings": 49.96,
+            "risk_reduction": 0.8182
+          },
+          {
+            "savings_pct": 100.0,
+            "fg_risk": 2.2727,
+            "other_risk": 2.1364,
+            "other_savings": 90.28,
+            "risk_reduction": -0.1363
+          }
+        ],
+        "fg_vs_position": [
+          {
+            "savings_pct": 13.09,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 14.07,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 23.97,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 28.59,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 27.3,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 28.59,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 47.56,
+            "fg_risk": 0.4545,
+            "other_risk": 1.3636,
+            "other_savings": 54.71,
+            "risk_reduction": 0.9091
+          },
+          {
+            "savings_pct": 100.0,
+            "fg_risk": 2.2727,
+            "other_risk": 2.2727,
+            "other_savings": 88.09,
+            "risk_reduction": 0.0
+          }
+        ]
+      }
+    },
+    "gemma_round_robin": {
+      "function_vs_random": "function-guided dominates random; max safe savings: fg=100.0% vs random=90.3%",
+      "function_vs_position": "function-guided dominates position-based; max safe savings: fg=100.0% vs position=61.37%",
+      "max_safe_savings": {
+        "function_guided": 100.0,
+        "random": 90.3,
+        "position_based": 61.37
+      },
+      "detailed_comparison": {
+        "fg_vs_random": [
+          {
+            "savings_pct": 67.75,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 70.37,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 91.52,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 90.3,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 96.33,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 90.3,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 99.57,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 90.3,
+            "risk_reduction": 0.0
+          },
+          {
+            "savings_pct": 100.0,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 90.3,
+            "risk_reduction": 0.0
+          }
+        ],
+        "fg_vs_position": [
+          {
+            "savings_pct": 67.75,
+            "fg_risk": 0.0,
+            "other_risk": 0.0,
+            "other_savings": 61.37,
+            "risk_reduction": 0.0
+          }
+        ]
+      }
+    }
+  }
+}

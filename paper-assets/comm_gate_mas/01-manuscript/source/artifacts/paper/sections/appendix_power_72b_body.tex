@@ -1,0 +1,15 @@
+The 72B oracle experiment ($N = \qwenSevenTwoBN{}$, 5 seeds $\times$ 265 tasks) replicates pruning safety at the largest scale tested. Per-seed deltas: $[0, +0.38, +0.76, +1.13, -0.38]$\,pp (4/5 non-negative). Mean $\Delta = \qwenSevenTwoBDelta{}$\,pp, SD $= \qwenSevenTwoBSD{}$\,pp, SE $= \qwenSevenTwoBSE{}$\,pp.
+
+\paragraph{TOST equivalence.}
+We apply a one-sample TOST at $\varepsilon = \pm 1$\,pp (matching the 7B standard). The upper bound test: $t = (1 - 0.378) / 0.267 = 2.33$ ($\text{df} = 4$, $p \approx 0.04$). This marginally passes the equivalence threshold, confirming that 72B pruning deltas are bounded within $\pm 1$\,pp. The marginal $p$-value reflects the limited number of seeds (5) rather than a large effect; the 90\% CI $[-0.19, +0.95]$\,pp lies entirely within the equivalence band.
+
+\paragraph{Per-seed power.}
+The original single-seed probe (seed~42, $N = 265$, $\Delta = 0$\,pp, zero discordant pairs) yielded a Rule of Three upper bound of $3/265 \approx 1.13\%$ on the discordant rate. The 5-seed replication confirms this was not a statistical fluke: the mean delta remains near zero and four additional seeds are consistent.
+
+\paragraph{Minimum detectable effect.}
+Table~\ref{app:tab:mde} reports the MDE at 80\% power (McNemar $\chi^2$, $\alpha=0.05$) for the per-seed sample size ($N = 265$).
+At $N = 265$: MDE $= 3.8$\,pp ($\rho = 0.7$), $2.2$\,pp ($\rho = 0.9$), $1.5$\,pp ($\rho = 0.95$).
+The observed per-seed deltas ($|\Delta| \leq 1.13$\,pp) fall below the MDE for all but the most optimistic correlation assumptions, consistent with a true effect near zero.
+
+\paragraph{Limitations.}
+The TOST $p = 0.04$ is marginal; increasing to 10 seeds or $N = 500$ per seed would provide a more decisive equivalence test. Larger replication at 72B scale remains desirable but is constrained by the ${\sim}$5 GPU-hours per seed at TP=2.

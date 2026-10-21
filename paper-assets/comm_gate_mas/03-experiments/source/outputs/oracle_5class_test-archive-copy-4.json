@@ -1,0 +1,188 @@
+{
+  "mode": "online_oracle",
+  "num_tasks": 3,
+  "elapsed_seconds": 75.0,
+  "baseline": {
+    "correct": 2,
+    "total": 3,
+    "accuracy": 0.6667
+  },
+  "oracle_pruned": {
+    "correct": 2,
+    "total": 3,
+    "accuracy": 0.6667,
+    "total_suppressed": 5,
+    "total_agent_rounds": 15,
+    "suppression_rate": 33.33
+  },
+  "delta_pp": 0.0,
+  "mcnemar": {
+    "a_both_correct": 2,
+    "b_oracle_only": 0,
+    "c_baseline_only": 0,
+    "d_both_wrong": 1,
+    "n_discordant": 0,
+    "chi2_cc": 0.0,
+    "p_value": 1.0,
+    "method": "mcnemar_chi2_cc",
+    "significant_005": false
+  },
+  "oracle_stats": {
+    "total_api_calls": 15,
+    "total_tokens": 10976,
+    "avg_confidence": 0.9267,
+    "oracle_model": "gpt-4o"
+  },
+  "per_task": [
+    {
+      "task_id": "gsm8k_0000",
+      "question": "Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.",
+      "ground_truth": "109",
+      "baseline_correct": true,
+      "baseline_answer": "109.",
+      "oracle_pruned_correct": true,
+      "oracle_pruned_answer": "109.",
+      "messages_suppressed": 1,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 686,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 894,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": false,
+          "confidence": 1.0,
+          "tokens": 785,
+          "function_type": "verification"
+        },
+        {
+          "round": 4,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 632,
+          "function_type": "verification"
+        },
+        {
+          "round": 5,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 574,
+          "function_type": "verification"
+        }
+      ]
+    },
+    {
+      "task_id": "gsm8k_0001",
+      "question": "Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small",
+      "ground_truth": "89",
+      "baseline_correct": false,
+      "baseline_answer": "69.",
+      "oracle_pruned_correct": false,
+      "oracle_pruned_answer": "69.",
+      "messages_suppressed": 2,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 823,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 1145,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 814,
+          "function_type": "verification"
+        },
+        {
+          "round": 4,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 549,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 5,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 614,
+          "function_type": "verification"
+        }
+      ]
+    },
+    {
+      "task_id": "gsm8k_0002",
+      "question": "Indras has 6 letters in her name. Her sister's name has 4 more letters than half of the letters in Indras' name. How many letters are in Indras and her sister's names?",
+      "ground_truth": "13",
+      "baseline_correct": true,
+      "baseline_answer": "13.",
+      "oracle_pruned_correct": true,
+      "oracle_pruned_answer": "13.",
+      "messages_suppressed": 2,
+      "total_messages": 5,
+      "oracle_decisions": [
+        {
+          "round": 1,
+          "is_ack": false,
+          "confidence": 0.9,
+          "tokens": 652,
+          "function_type": "reasoning_guidance"
+        },
+        {
+          "round": 2,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 797,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 3,
+          "is_ack": false,
+          "confidence": 1.0,
+          "tokens": 732,
+          "function_type": "verification"
+        },
+        {
+          "round": 4,
+          "is_ack": true,
+          "confidence": 0.9,
+          "tokens": 610,
+          "function_type": "acknowledgment"
+        },
+        {
+          "round": 5,
+          "is_ack": false,
+          "confidence": 0.95,
+          "tokens": 669,
+          "function_type": "verification"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "model": "/root/autodl-tmp/models/Llama-3.1-8B-Instruct",
+    "api_base": "http://localhost:8001/v1",
+    "max_rounds": 6,
+    "backbone": "llama"
+  }
+}

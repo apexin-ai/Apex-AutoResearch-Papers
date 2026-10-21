@@ -1,0 +1,35 @@
+{
+  "bucket": "neurips2026-backups",
+  "selected_pdf": "comm_gate_mas.pdf",
+  "derived_archive_sha256": "f14bc314e27c22b59afed57a6ee2385507b5d252e5315c21320e884635aa76e6",
+  "objects": [
+    {
+      "key": "comm_gate_mas/comm_gate_mas_bjb2-10838_backup.tar.gz",
+      "bytes": 1451837634,
+      "included_project_files": 872,
+      "outside_project_root_files": 0,
+      "status": "Project-root members assembled; release sanitization applies"
+    },
+    {
+      "key": "comm_gate_mas/comm_gate_mas_westb-28993_backup.tar.gz",
+      "bytes": 1446922074,
+      "included_project_files": 729,
+      "outside_project_root_files": 0,
+      "status": "Project-root members assembled; release sanitization applies"
+    },
+    {
+      "key": "comm_gate_mas/comm_gate_mas_westd-11621_backup.tar.gz",
+      "bytes": 39946747,
+      "included_project_files": 605,
+      "outside_project_root_files": 0,
+      "status": "Project-root members assembled; release sanitization applies"
+    },
+    {
+      "key": "comm_gate_mas/comm_gate_mas_westd-13436_backup.tar.gz",
+      "bytes": 588932064,
+      "included_project_files": 457,
+      "outside_project_root_files": 0,
+      "status": "Project-root members assembled; release sanitization applies"
+    }
+  ]
+}

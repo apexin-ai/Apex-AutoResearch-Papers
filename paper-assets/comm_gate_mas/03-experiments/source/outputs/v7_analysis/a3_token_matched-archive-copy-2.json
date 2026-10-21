@@ -1,0 +1,734 @@
+[
+  {
+    "combo": "qwen_round_robin",
+    "total_msgs": 1500,
+    "total_tokens": 95672,
+    "n_correct_tasks": 269,
+    "ack_stats": {
+      "count": 719,
+      "tokens": 8235,
+      "avg_tokens": 11.5,
+      "msg_share_pct": 47.9,
+      "token_share_pct": 8.6,
+      "accuracy_risk_pct": 2.6022,
+      "tasks_at_risk": 7
+    },
+    "avg_all_tokens": 63.8,
+    "count_matched_random": {
+      "n_seeds": 10,
+      "target_msgs": 719,
+      "mean_tokens_pruned": 45340.0,
+      "token_overshoot_ratio": 5.51,
+      "accuracy_risk_mean": 1.2268,
+      "accuracy_risk_std": 0.3346,
+      "per_seed": [
+        {
+          "seed": 100,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 43053,
+          "tasks_at_risk": 1,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.3717,
+          "retained_accuracy_pct": 99.6283
+        },
+        {
+          "seed": 101,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 44885,
+          "tasks_at_risk": 3,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.1152,
+          "retained_accuracy_pct": 98.8848
+        },
+        {
+          "seed": 102,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 46388,
+          "tasks_at_risk": 4,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.487,
+          "retained_accuracy_pct": 98.513
+        },
+        {
+          "seed": 103,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 47023,
+          "tasks_at_risk": 3,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.1152,
+          "retained_accuracy_pct": 98.8848
+        },
+        {
+          "seed": 104,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 46003,
+          "tasks_at_risk": 4,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.487,
+          "retained_accuracy_pct": 98.513
+        },
+        {
+          "seed": 105,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 47531,
+          "tasks_at_risk": 3,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.1152,
+          "retained_accuracy_pct": 98.8848
+        },
+        {
+          "seed": 106,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 46289,
+          "tasks_at_risk": 4,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.487,
+          "retained_accuracy_pct": 98.513
+        },
+        {
+          "seed": 107,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 44260,
+          "tasks_at_risk": 4,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.487,
+          "retained_accuracy_pct": 98.513
+        },
+        {
+          "seed": 108,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 45044,
+          "tasks_at_risk": 3,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.1152,
+          "retained_accuracy_pct": 98.8848
+        },
+        {
+          "seed": 109,
+          "n_pruned_msgs": 719,
+          "tokens_pruned": 42919,
+          "tasks_at_risk": 4,
+          "n_correct": 269,
+          "accuracy_risk_pct": 1.487,
+          "retained_accuracy_pct": 98.513
+        }
+      ]
+    },
+    "token_matched_random": {
+      "n_seeds": 10,
+      "token_budget": 8235,
+      "mean_msgs_pruned": 137.7,
+      "mean_tokens_pruned": 8233.0,
+      "accuracy_risk_mean": 0.223,
+      "accuracy_risk_std": 0.2466,
+      "per_seed": [
+        {
+          "seed": 100,
+          "n_pruned_msgs": 140,
+          "tokens_pruned": 8233,
+          "token_budget": 8235,
+          "fill_ratio": 0.9998,
+          "tasks_at_risk": 0,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 101,
+          "n_pruned_msgs": 148,
+          "tokens_pruned": 8235,
+          "token_budget": 8235,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 1,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.3717,
+          "retained_accuracy_pct": 99.6283
+        },
+        {
+          "seed": 102,
+          "n_pruned_msgs": 145,
+          "tokens_pruned": 8233,
+          "token_budget": 8235,
+          "fill_ratio": 0.9998,
+          "tasks_at_risk": 1,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.3717,
+          "retained_accuracy_pct": 99.6283
+        },
+        {
+          "seed": 103,
+          "n_pruned_msgs": 145,
+          "tokens_pruned": 8233,
+          "token_budget": 8235,
+          "fill_ratio": 0.9998,
+          "tasks_at_risk": 1,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.3717,
+          "retained_accuracy_pct": 99.6283
+        },
+        {
+          "seed": 104,
+          "n_pruned_msgs": 98,
+          "tokens_pruned": 8232,
+          "token_budget": 8235,
+          "fill_ratio": 0.9996,
+          "tasks_at_risk": 0,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 105,
+          "n_pruned_msgs": 165,
+          "tokens_pruned": 8233,
+          "token_budget": 8235,
+          "fill_ratio": 0.9998,
+          "tasks_at_risk": 0,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 106,
+          "n_pruned_msgs": 136,
+          "tokens_pruned": 8232,
+          "token_budget": 8235,
+          "fill_ratio": 0.9996,
+          "tasks_at_risk": 1,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.3717,
+          "retained_accuracy_pct": 99.6283
+        },
+        {
+          "seed": 107,
+          "n_pruned_msgs": 125,
+          "tokens_pruned": 8232,
+          "token_budget": 8235,
+          "fill_ratio": 0.9996,
+          "tasks_at_risk": 0,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 108,
+          "n_pruned_msgs": 133,
+          "tokens_pruned": 8235,
+          "token_budget": 8235,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 2,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.7435,
+          "retained_accuracy_pct": 99.2565
+        },
+        {
+          "seed": 109,
+          "n_pruned_msgs": 142,
+          "tokens_pruned": 8233,
+          "token_budget": 8235,
+          "fill_ratio": 0.9998,
+          "tasks_at_risk": 0,
+          "n_correct": 269,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        }
+      ]
+    },
+    "comparison": {
+      "ack_risk_pct": 2.6022,
+      "count_matched_risk_pct": 1.2268,
+      "token_matched_risk_pct": 0.223,
+      "count_matched_token_ratio": 5.51,
+      "delta_risk_count_matched_pp": -1.38,
+      "delta_risk_token_matched_pp": -2.38
+    }
+  },
+  {
+    "combo": "llama_round_robin",
+    "total_msgs": 1470,
+    "total_tokens": 161194,
+    "n_correct_tasks": 220,
+    "ack_stats": {
+      "count": 691,
+      "tokens": 54930,
+      "avg_tokens": 79.5,
+      "msg_share_pct": 47.0,
+      "token_share_pct": 34.1,
+      "accuracy_risk_pct": 1.8182,
+      "tasks_at_risk": 4
+    },
+    "avg_all_tokens": 109.7,
+    "count_matched_random": {
+      "n_seeds": 10,
+      "target_msgs": 691,
+      "mean_tokens_pruned": 75566.0,
+      "token_overshoot_ratio": 1.38,
+      "accuracy_risk_mean": 1.1818,
+      "accuracy_risk_std": 0.5821,
+      "per_seed": [
+        {
+          "seed": 100,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 77163,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 101,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 76780,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 102,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 78072,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 103,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 76455,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 104,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 75099,
+          "tasks_at_risk": 1,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.4545,
+          "retained_accuracy_pct": 99.5455
+        },
+        {
+          "seed": 105,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 77938,
+          "tasks_at_risk": 5,
+          "n_correct": 220,
+          "accuracy_risk_pct": 2.2727,
+          "retained_accuracy_pct": 97.7273
+        },
+        {
+          "seed": 106,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 72639,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 107,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 72958,
+          "tasks_at_risk": 3,
+          "n_correct": 220,
+          "accuracy_risk_pct": 1.3636,
+          "retained_accuracy_pct": 98.6364
+        },
+        {
+          "seed": 108,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 73335,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 109,
+          "n_pruned_msgs": 691,
+          "tokens_pruned": 75222,
+          "tasks_at_risk": 5,
+          "n_correct": 220,
+          "accuracy_risk_pct": 2.2727,
+          "retained_accuracy_pct": 97.7273
+        }
+      ]
+    },
+    "token_matched_random": {
+      "n_seeds": 10,
+      "token_budget": 54930,
+      "mean_msgs_pruned": 500.2,
+      "mean_tokens_pruned": 54928.0,
+      "accuracy_risk_mean": 0.8182,
+      "accuracy_risk_std": 0.5677,
+      "per_seed": [
+        {
+          "seed": 100,
+          "n_pruned_msgs": 515,
+          "tokens_pruned": 54927,
+          "token_budget": 54930,
+          "fill_ratio": 0.9999,
+          "tasks_at_risk": 1,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.4545,
+          "retained_accuracy_pct": 99.5455
+        },
+        {
+          "seed": 101,
+          "n_pruned_msgs": 499,
+          "tokens_pruned": 54930,
+          "token_budget": 54930,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 102,
+          "n_pruned_msgs": 523,
+          "tokens_pruned": 54930,
+          "token_budget": 54930,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 3,
+          "n_correct": 220,
+          "accuracy_risk_pct": 1.3636,
+          "retained_accuracy_pct": 98.6364
+        },
+        {
+          "seed": 103,
+          "n_pruned_msgs": 500,
+          "tokens_pruned": 54930,
+          "token_budget": 54930,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 104,
+          "n_pruned_msgs": 484,
+          "tokens_pruned": 54928,
+          "token_budget": 54930,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 4,
+          "n_correct": 220,
+          "accuracy_risk_pct": 1.8182,
+          "retained_accuracy_pct": 98.1818
+        },
+        {
+          "seed": 105,
+          "n_pruned_msgs": 513,
+          "tokens_pruned": 54927,
+          "token_budget": 54930,
+          "fill_ratio": 0.9999,
+          "tasks_at_risk": 0,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 106,
+          "n_pruned_msgs": 495,
+          "tokens_pruned": 54928,
+          "token_budget": 54930,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 1,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.4545,
+          "retained_accuracy_pct": 99.5455
+        },
+        {
+          "seed": 107,
+          "n_pruned_msgs": 476,
+          "tokens_pruned": 54928,
+          "token_budget": 54930,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 2,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.9091,
+          "retained_accuracy_pct": 99.0909
+        },
+        {
+          "seed": 108,
+          "n_pruned_msgs": 494,
+          "tokens_pruned": 54926,
+          "token_budget": 54930,
+          "fill_ratio": 0.9999,
+          "tasks_at_risk": 3,
+          "n_correct": 220,
+          "accuracy_risk_pct": 1.3636,
+          "retained_accuracy_pct": 98.6364
+        },
+        {
+          "seed": 109,
+          "n_pruned_msgs": 503,
+          "tokens_pruned": 54927,
+          "token_budget": 54930,
+          "fill_ratio": 0.9999,
+          "tasks_at_risk": 0,
+          "n_correct": 220,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        }
+      ]
+    },
+    "comparison": {
+      "ack_risk_pct": 1.8182,
+      "count_matched_risk_pct": 1.1818,
+      "token_matched_risk_pct": 0.8182,
+      "count_matched_token_ratio": 1.38,
+      "delta_risk_count_matched_pp": -0.64,
+      "delta_risk_token_matched_pp": -1.0
+    }
+  },
+  {
+    "combo": "gemma_round_robin",
+    "total_msgs": 1520,
+    "total_tokens": 32789,
+    "n_correct_tasks": 242,
+    "ack_stats": {
+      "count": 73,
+      "tokens": 194,
+      "avg_tokens": 2.7,
+      "msg_share_pct": 4.8,
+      "token_share_pct": 0.6,
+      "accuracy_risk_pct": 0.0,
+      "tasks_at_risk": 0
+    },
+    "avg_all_tokens": 21.6,
+    "count_matched_random": {
+      "n_seeds": 10,
+      "target_msgs": 73,
+      "mean_tokens_pruned": 1579.0,
+      "token_overshoot_ratio": 8.14,
+      "accuracy_risk_mean": 0.0,
+      "accuracy_risk_std": 0.0,
+      "per_seed": [
+        {
+          "seed": 100,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 914,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 101,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1633,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 102,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1461,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 103,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1460,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 104,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1947,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 105,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1981,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 106,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1952,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 107,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1418,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 108,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1669,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 109,
+          "n_pruned_msgs": 73,
+          "tokens_pruned": 1353,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        }
+      ]
+    },
+    "token_matched_random": {
+      "n_seeds": 10,
+      "token_budget": 194,
+      "mean_msgs_pruned": 1054.9,
+      "mean_tokens_pruned": 190.0,
+      "accuracy_risk_mean": 0.0,
+      "accuracy_risk_std": 0.0,
+      "per_seed": [
+        {
+          "seed": 100,
+          "n_pruned_msgs": 1054,
+          "tokens_pruned": 189,
+          "token_budget": 194,
+          "fill_ratio": 0.9742,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 101,
+          "n_pruned_msgs": 1052,
+          "tokens_pruned": 189,
+          "token_budget": 194,
+          "fill_ratio": 0.9742,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 102,
+          "n_pruned_msgs": 1055,
+          "tokens_pruned": 189,
+          "token_budget": 194,
+          "fill_ratio": 0.9742,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 103,
+          "n_pruned_msgs": 1056,
+          "tokens_pruned": 190,
+          "token_budget": 194,
+          "fill_ratio": 0.9794,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 104,
+          "n_pruned_msgs": 1054,
+          "tokens_pruned": 190,
+          "token_budget": 194,
+          "fill_ratio": 0.9794,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 105,
+          "n_pruned_msgs": 1055,
+          "tokens_pruned": 189,
+          "token_budget": 194,
+          "fill_ratio": 0.9742,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 106,
+          "n_pruned_msgs": 1055,
+          "tokens_pruned": 193,
+          "token_budget": 194,
+          "fill_ratio": 0.9948,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 107,
+          "n_pruned_msgs": 1057,
+          "tokens_pruned": 194,
+          "token_budget": 194,
+          "fill_ratio": 1.0,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 108,
+          "n_pruned_msgs": 1057,
+          "tokens_pruned": 190,
+          "token_budget": 194,
+          "fill_ratio": 0.9794,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        },
+        {
+          "seed": 109,
+          "n_pruned_msgs": 1054,
+          "tokens_pruned": 192,
+          "token_budget": 194,
+          "fill_ratio": 0.9897,
+          "tasks_at_risk": 0,
+          "n_correct": 242,
+          "accuracy_risk_pct": 0.0,
+          "retained_accuracy_pct": 100.0
+        }
+      ]
+    },
+    "comparison": {
+      "ack_risk_pct": 0.0,
+      "count_matched_risk_pct": 0.0,
+      "token_matched_risk_pct": 0.0,
+      "count_matched_token_ratio": 8.14,
+      "delta_risk_count_matched_pp": 0.0,
+      "delta_risk_token_matched_pp": 0.0
+    }
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "project": "comm_gate_mas",
+  "code_count": 725,
+  "data_count": 1308,
+  "env_count": 4,
+  "tex_count": 111,
+  "bib_count": 4,
+  "review_count": 0,
+  "validation_count": 22,
+  "chat_count": 0,
+  "worker_count": 0,
+  "trace_count": 148,
+  "trace_bytes": 528108,
+  "maintenance_count": 96,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "9d1f755d443813dc525d45e2e21903d81fd0b6d3a65c29903c25e1ab1b45dcb6",
+  "title": "When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems",
+  "pages": 55,
+  "status_marker": "Anonymous Author(s)",
+  "version_count": 29,
+  "version_paths": [
+    "docs/paper/main.pdf",
+    "artifacts/paper/figures/fig_crossover.pdf",
+    "artifacts/paper/figures/fig_distribution.pdf",
+    "artifacts/paper/figures/fig_forest.pdf",
+    "artifacts/paper/figures/fig_impact.pdf",
+    "artifacts/paper/figures/fig_pipeline.pdf",
+    "artifacts/paper/figures/figure2_combined.pdf",
+    "artifacts/paper/comm_gate_mas_v5.1.pdf",
+    "artifacts/paper/comm_gate_mas_v5.2.pdf",
+    "artifacts/paper/comm_gate_mas_v5.pdf",
+    "artifacts/paper/comm_gate_mas_v6.1.pdf",
+    "artifacts/paper/comm_gate_mas_v6.pdf",
+    "artifacts/paper/main_v3.pdf",
+    "artifacts/paper/main_v4.pdf",
+    "artifacts/paper/main.pdf",
+    "artifacts/paper/figures/figure2_combined.pdf",
+    "artifacts/paper/comm_gate_mas_v5.1.pdf",
+    "artifacts/paper/comm_gate_mas_v5.2.pdf",
+    "artifacts/paper/comm_gate_mas_v5.pdf",
+    "artifacts/paper/comm_gate_mas_v6.1.pdf",
+    "artifacts/paper/comm_gate_mas_v6.pdf",
+    "artifacts/paper/figures/fig_crossover.pdf",
+    "artifacts/paper/figures/fig_distribution.pdf",
+    "artifacts/paper/figures/fig_forest.pdf",
+    "artifacts/paper/figures/fig_impact.pdf",
+    "artifacts/paper/figures/fig_pipeline.pdf",
+    "artifacts/paper/main.pdf",
+    "artifacts/paper/main_v3.pdf",
+    "artifacts/paper/main_v4.pdf"
+  ],
+  "archive_rel": "locally assembled from listed NeurIPS backup objects",
+  "archive_note": "Project-root files from the listed backup objects were assembled and sanitized; see source-objects.json for omissions.",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "neurips2026-backups",
+    "source_keys": [
+      "comm_gate_mas/comm_gate_mas_bjb2-10838_backup.tar.gz",
+      "comm_gate_mas/comm_gate_mas_westb-28993_backup.tar.gz",
+      "comm_gate_mas/comm_gate_mas_westd-11621_backup.tar.gz",
+      "comm_gate_mas/comm_gate_mas_westd-13436_backup.tar.gz"
+    ],
+    "derived_archive_sha256": "f14bc314e27c22b59afed57a6ee2385507b5d252e5315c21320e884635aa76e6",
+    "selected_pdf": "comm_gate_mas.pdf"
+  },
+  "academic_record": {
+    "date": "2026-10-19",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "111 source files; 29 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "06-maintenance/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "0 conversations; 0 worker logs/results; 148 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "04-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "725 code/configuration files; 4 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "02-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "1308 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "03-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "0 internal review records; 22 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "05-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "96 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "06-maintenance/"
+    }
+  ]
+}

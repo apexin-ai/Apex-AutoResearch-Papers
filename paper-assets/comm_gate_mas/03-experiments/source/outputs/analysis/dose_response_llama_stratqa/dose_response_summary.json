@@ -1,0 +1,187 @@
+{
+  "0.0": {
+    "1024": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 0,
+      "n_ack_total": 231
+    },
+    "123": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 0,
+      "n_ack_total": 231
+    },
+    "42": {
+      "accuracy": 0.3636,
+      "n_correct": 36,
+      "n_total": 99,
+      "n_ack_pruned": 0,
+      "n_ack_total": 231
+    },
+    "456": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 0,
+      "n_ack_total": 231
+    },
+    "789": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 0,
+      "n_ack_total": 231
+    }
+  },
+  "0.25": {
+    "1024": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 90,
+      "n_ack_total": 231
+    },
+    "123": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 90,
+      "n_ack_total": 231
+    },
+    "42": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 90,
+      "n_ack_total": 231
+    },
+    "456": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 90,
+      "n_ack_total": 231
+    },
+    "789": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 90,
+      "n_ack_total": 231
+    }
+  },
+  "0.5": {
+    "1024": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 135,
+      "n_ack_total": 231
+    },
+    "123": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 135,
+      "n_ack_total": 231
+    },
+    "42": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 135,
+      "n_ack_total": 231
+    },
+    "456": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 135,
+      "n_ack_total": 231
+    },
+    "789": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 135,
+      "n_ack_total": 231
+    }
+  },
+  "0.75": {
+    "1024": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 186,
+      "n_ack_total": 231
+    },
+    "123": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 186,
+      "n_ack_total": 231
+    },
+    "42": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 186,
+      "n_ack_total": 231
+    },
+    "456": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 186,
+      "n_ack_total": 231
+    },
+    "789": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 186,
+      "n_ack_total": 231
+    }
+  },
+  "1.0": {
+    "1024": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 231,
+      "n_ack_total": 231
+    },
+    "123": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 231,
+      "n_ack_total": 231
+    },
+    "42": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 231,
+      "n_ack_total": 231
+    },
+    "456": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 231,
+      "n_ack_total": 231
+    },
+    "789": {
+      "accuracy": 0.0,
+      "n_correct": 0,
+      "n_total": 99,
+      "n_ack_pruned": 231,
+      "n_ack_total": 231
+    }
+  }
+}

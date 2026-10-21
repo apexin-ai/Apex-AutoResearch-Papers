@@ -1,0 +1,35 @@
+\subsection{Communication Function Taxonomy}
+\label{sec:taxonomy}
+
+For two-agent solver-checker dialogues, we define five mutually exclusive function types intended to cover observed inter-agent messages (Table~\ref{tab:taxonomy}). Ambiguity is resolved by hierarchical priority: \textit{coordination} $\succ$ \textit{verification} $\succ$ \textit{reasoning\_guidance} $\succ$ \textit{information\_provision} $\succ$ \textit{acknowledgment}. This hierarchy reflects the principle that functions with greater control over dialogue flow take precedence during annotation.
+
+\begin{table*}[t]
+\centering
+\caption{Five-class taxonomy of communication functions in solver--checker dialogues. Examples are verbatim from GSM8K round-robin traces (truncated). Columns Q/L/G show per-backbone frequency (\%) for Qwen ($N{=}1500$), Llama ($N{=}1470$), and Gemma ($N{=}1520$). Priority: coordination $\succ$ verification $\succ$ reasoning\_guidance $\succ$ information\_provision $\succ$ acknowledgment.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{@{}p{1.8cm}p{3.4cm}p{5.2cm}rrr@{}}
+\toprule
+\textbf{Function Type} & \textbf{Definition} & \textbf{Example} & \textbf{Q} & \textbf{L} & \textbf{G} \\
+\midrule
+\cmark{cCOORD}\;\textsc{Coord.} & Manages dialogue flow, assigns roles, or delegates tasks & \textit{``I'm ready to check the solution. Please go ahead and share\ldots''} \textit{(Llama)} & 0.4 & 7.8 & 19.1 \\
+\addlinespace[3pt]
+\cmark{cVERIF}\;\textsc{Verif.} & Checks or corrects correctness of prior messages & \textit{``Let's verify the calculations step-by-step.\ 1.\ Courtney\ldots''} \textit{(Qwen)} & 9.5 & 8.2 & 4.4 \\
+\addlinespace[3pt]
+\cmark{cREASON}\;\textsc{Reason.} & Directs reasoning via decomposition or strategic suggestions & \textit{``Let's break down the problem step by step: 1.\ Kira\ldots''} \textit{(Qwen)} & 29.8 & 23.8 & 15.5 \\
+\addlinespace[3pt]
+\cmark{cINFO}\;\textsc{Info.} & Supplies factual content, data, or intermediate results & \textit{``The total cost to renovate the kitchen floor is \$2400.''} \textit{(Llama)} & 12.3 & 13.2 & 56.2 \\
+\addlinespace[3pt]
+\cmark{cACK}\;\textsc{Ack.} & Simple confirmations with no new content & \textit{``The answer is 109.''} \textit{(Qwen)} & 47.9 & 47.0 & 4.8 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Design rationale.}
+Our categories map onto established dialogue act frameworks (DAMSL~\citep{core_damsl_1997}, ISO 24617-2~\citep{bunt_iso_2012}, FIPA ACL~\citep{fipa_acl_2002}; detailed mapping in Appendix~\ref{app:damsl-mapping}), collapsing 56+ fine-grained types into five categories chosen to support intervention studies. The number of categories was determined by the clustering structure of perturbation impacts (likelihood-ratio test). Three further choices: (1)~five coarse classes (finer splits had overlapping ablation profiles); (2)~hierarchical priority for mutual exclusivity (unambiguous per-type ablation); (3)~cross-model annotation (backbone $A$'s messages annotated by backbone $B$) to avoid self-annotation bias. Human validation ($N = 225$, $\kappa = 0.76$) confirms reliability.
+
+\paragraph{Core classification.}
+The actionable output of the annotation pipeline is a \emph{binary ack/non-ack classification} (human $\kappa = 0.81$, Appendix~\ref{app:kappa_tiers}). This single distinction drives all pruning decisions and causal injection experiments reported below. Five-class sub-typing ($\kappa \approx 0.24$--$0.67$) provides supplementary mechanism insight---impact gradients (\S\ref{sec:impact_gradient}), backbone communication profiles (\S\ref{sec:three_modes}), function-guided comparisons---but is exploratory; per-type claims should be interpreted as mechanism hypotheses rather than confirmed findings.
+
+\label{sec:annotation_protocol}
+Each message is annotated via structured prompt with taxonomy definitions and hierarchical decision rules (temperature~0, constrained JSON; Appendix~\ref{app:annotation-prompt}). Cross-model validation uses two independent annotators per message ($\kappa \geq 0.4$ threshold). Representative annotated messages appear in Appendix~\ref{app:qualitative-examples}.

@@ -1,0 +1,5 @@
+\vspace{-0.5em}
+\section*{Limitations}
+\label{sec:limitations}
+\vspace{-0.3em}
+Our controlled design deliberately constrains scope: CIFAR-100 images resized to $224{\times}224$, no warmup or advanced augmentation, batch size 128, single-GPU training, and learning rates from 5-epoch sweeps. This minimal recipe isolates optimizer effects but does not represent production protocols. The spectral intra-family comparison is limited to CIFAR-100 and Tiny-ImageNet, and the Newton--Schulz ablation does not control for update-scale confounding. For CNNs, the gap narrows with training duration (Table~\ref{tab:gap_narrowing}); longer schedules may further narrow it, though DeiT-S shows zero narrowing at 50 epochs. Whether these patterns persist at ImageNet-1K scale~\cite{kumar2024how} remains open. ImageNet-100 results are single-seed and await multi-seed confirmation.

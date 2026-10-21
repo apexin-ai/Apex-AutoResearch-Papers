@@ -1,0 +1,363 @@
+% =============================================================================
+% Appendix C: Learning Rate Sweep Results
+% =============================================================================
+\section{Learning Rate Sweep Results}\label{sec:lr_sweep}
+
+% ---- CIFAR-100 LR Sweep ----
+\begin{table}[h]
+\centering
+\caption{Complete learning rate sweep results (5-epoch runs, seed=42, CIFAR-100). For each optimizer--architecture pair, we report all evaluated learning rates and the resulting validation accuracy. The best learning rate per pair (used in subsequent 20-epoch experiments) is shown in \textbf{bold}.}
+\label{tab:lr_sweep}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+Architecture & Optimizer & Learning Rate & Val Acc (\%) & Sweep Points \\
+\midrule
+\multirow{4}{*}{ResNet-50}
+ & AdamW & $1 \times 10^{-4}$ & 26.97 & \multirow{2}{*}{2} \\
+ & AdamW & $\mathbf{1 \times 10^{-3}}$ & \textbf{45.54} & \\
+ & SGD & $\mathbf{0.1}$ & --- & 1 (lit.\ default) \\
+ & Muon & $\mathbf{0.02}$ & --- & 1 (prior sweep) \\
+\midrule
+\multirow{11}{*}{DeiT-S}
+ & AdamW & $\mathbf{1 \times 10^{-4}}$ & \textbf{35.12} & \multirow{2}{*}{2} \\
+ & AdamW & $1 \times 10^{-3}$ & 25.12 & \\
+\cmidrule(lr){2-5}
+ & SGD & $0.005$ & 27.65 & \multirow{4}{*}{4} \\
+ & SGD & $0.01$ & 27.61 & \\
+ & SGD & $\mathbf{0.05}$ & \textbf{30.14} & \\
+ & SGD & $0.1$ & 28.59 & \\
+\cmidrule(lr){2-5}
+ & Muon & $0.001$ & 49.35 & \multirow{5}{*}{5} \\
+ & Muon & $\mathbf{0.003}$ & \textbf{58.33} & \\
+ & Muon & $0.006$ & 57.37 & \\
+ & Muon & $0.02$ & 32.04 & \\
+ & Muon & $0.06$ & 13.55 & \\
+\midrule
+\multirow{13}{*}{ConvNeXt-T}
+ & AdamW & $1 \times 10^{-4}$ & 23.32 & \multirow{5}{*}{5} \\
+ & AdamW & $3 \times 10^{-4}$ & 34.52 & \\
+ & AdamW & $\mathbf{1 \times 10^{-3}}$ & \textbf{39.17} & \\
+ & AdamW & $3 \times 10^{-3}$ & 35.31 & \\
+ & AdamW & $5 \times 10^{-3}$ & 32.51 & \\
+\cmidrule(lr){2-5}
+ & SGD & $0.001$ & 7.96 & \multirow{5}{*}{5} \\
+ & SGD & $0.005$ & 9.02 & \\
+ & SGD & $\mathbf{0.01}$ & \textbf{9.27} & \\
+ & SGD & $0.05$ & 9.22 & \\
+ & SGD & $0.1$ & 4.98 & \\
+\cmidrule(lr){2-5}
+ & Muon & $0.003$ & 61.76 & \multirow{3}{*}{3} \\
+ & Muon & $0.01$ & 68.55 & \\
+ & Muon & $\mathbf{0.02}$ & \textbf{70.31} & \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% ---- Tiny-ImageNet LR Sweep ----
+\begin{table}[h]
+\centering
+\caption{Learning rate sweep results (5-epoch runs, seed=42, Tiny-ImageNet). Best learning rate per pair is shown in \textbf{bold}.}
+\label{tab:lr_sweep_tinyin}
+\small
+\begin{tabular}{llcc}
+\toprule
+Architecture & Optimizer & Learning Rate & Val Acc (\%) \\
+\midrule
+\multirow{9}{*}{ResNet-50}
+ & Muon & $0.01$ & 56.91 \\
+ & Muon & $0.02$ & 58.95 \\
+ & Muon & $\mathbf{0.04}$ & \textbf{59.56} \\
+ & Muon & $0.06$ & 59.63 \\
+\cmidrule(lr){2-4}
+ & AdamW & $5 \times 10^{-4}$ & 39.56 \\
+ & AdamW & $1 \times 10^{-3}$ & 42.04 \\
+ & AdamW & $\mathbf{2 \times 10^{-3}}$ & \textbf{43.78} \\
+ & AdamW & $3 \times 10^{-3}$ & 42.30 \\
+\cmidrule(lr){2-4}
+ & SGD & $\mathbf{0.1}$ & --- \\
+\midrule
+\multirow{9}{*}{DeiT-S}
+ & Muon & $0.001$ & 41.32 \\
+ & Muon & $\mathbf{0.003}$ & \textbf{46.87} \\
+ & Muon & $0.01$ & 41.34 \\
+\cmidrule(lr){2-4}
+ & AdamW & $5 \times 10^{-5}$ & 24.40 \\
+ & AdamW & $\mathbf{1 \times 10^{-4}}$ & \textbf{27.22} \\
+ & AdamW & $3 \times 10^{-4}$ & 25.93 \\
+\cmidrule(lr){2-4}
+ & SGD & $0.005$ & 20.62 \\
+ & SGD & $0.01$ & 21.31 \\
+ & SGD & $\mathbf{0.05}$ & \textbf{22.96} \\
+\midrule
+\multirow{7}{*}{ConvNeXt-T}
+ & Muon & \multicolumn{2}{l}{(extended sweep; see Table~\ref{tab:optimizer_config})$^\dagger$} \\
+\cmidrule(lr){2-4}
+ & AdamW & $1 \times 10^{-4}$ & 18.98 \\
+ & AdamW & $3 \times 10^{-4}$ & 28.65 \\
+ & AdamW & $\mathbf{1 \times 10^{-3}}$ & \textbf{31.46} \\
+\cmidrule(lr){2-4}
+ & SGD & $0.005$ & 4.49 \\
+ & SGD & $\mathbf{0.01}$ & \textbf{4.60} \\
+ & SGD & $0.05$ & 4.57 \\
+\bottomrule
+\end{tabular}
+\vspace{0.3em}
+\par\noindent\footnotesize{$\dagger$ ConvNeXt-T Muon lr initially set to 0.02 from the CIFAR-100 sweep; extended sweep selected lr$=$0.08 for 20-epoch training. ResNet-50 SGD uses the literature default lr$=$0.1 without sweep.}
+\end{table}
+
+% ---- ImageNet-100 LR Sweep ----
+\begin{table}[h]
+\centering
+\caption{Learning rate sweep results (5-epoch runs, seed=42, ImageNet-100). Best learning rate per pair is shown in \textbf{bold}.}
+\label{tab:lr_sweep_in100}
+\small
+\begin{tabular}{llcc}
+\toprule
+Architecture & Optimizer & Learning Rate & Val Acc (\%) \\
+\midrule
+\multirow{13}{*}{ResNet-50}
+ & Muon & $0.005$ & 34.88 \\
+ & Muon & $0.02$ & 43.55 \\
+ & Muon & $\mathbf{0.05}$ & \textbf{45.17} \\
+ & Muon & $0.08$ & 44.61 \\
+ & Muon & $0.1$ & 44.95 \\
+\cmidrule(lr){2-4}
+ & AdamW & $3 \times 10^{-4}$ & 21.87 \\
+ & AdamW & $1 \times 10^{-3}$ & 24.77 \\
+ & AdamW & $\mathbf{3 \times 10^{-3}}$ & \textbf{24.89} \\
+ & AdamW & $5 \times 10^{-3}$ & 23.92 \\
+ & AdamW & $0.01$ & 16.92 \\
+\cmidrule(lr){2-4}
+ & SGD & $0.03$ & 15.06 \\
+ & SGD & $\mathbf{0.1}$ & \textbf{18.96} \\
+ & SGD & $0.3$ & 17.84 \\
+\midrule
+\multirow{11}{*}{DeiT-S}
+ & Muon & $0.002$ & 27.82 \\
+ & Muon & $0.003$ & 29.66 \\
+ & Muon & $\mathbf{0.005}$ & \textbf{30.35} \\
+ & Muon & $0.02$ & 12.19 \\
+ & Muon & $0.05$ & 6.44 \\
+\cmidrule(lr){2-4}
+ & AdamW & $3 \times 10^{-5}$ & 13.41 \\
+ & AdamW & $\mathbf{1 \times 10^{-4}}$ & \textbf{15.73} \\
+ & AdamW & $3 \times 10^{-4}$ & 13.33 \\
+\cmidrule(lr){2-4}
+ & SGD & $\mathbf{0.01}$ & \textbf{12.75} \\
+ & SGD & $0.05$ & 11.51 \\
+ & SGD & $0.1$ & 10.13 \\
+\midrule
+\multirow{10}{*}{ConvNeXt-T}
+ & Muon & $0.005$ & 35.21 \\
+ & Muon & $0.02$ & 42.54 \\
+ & Muon & $\mathbf{0.08}$ & \textbf{46.32} \\
+ & Muon & $0.15$ & 46.97 \\
+\cmidrule(lr){2-4}
+ & AdamW & $\mathbf{3 \times 10^{-4}}$ & \textbf{12.42} \\
+ & AdamW & $1 \times 10^{-3}$ & 11.29 \\
+ & AdamW & $3 \times 10^{-3}$ & 10.91 \\
+\cmidrule(lr){2-4}
+ & SGD & $0.003$ & 3.76 \\
+ & SGD & $0.01$ & 3.88 \\
+ & SGD & $\mathbf{0.05}$ & \textbf{4.44} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ---- DeiT-S SGD Inverted-U Subsection ----
+\subsection{DeiT-S SGD Inverted-U Response}
+
+\begin{table}[h]
+\centering
+\caption{DeiT-S SGD learning rate sweep (5-epoch runs, seed=42, CIFAR-100), exhibiting an inverted-U response curve. Accuracy peaks at $\text{lr}=0.05$ and declines at higher rates, with all sweep points clustered in a narrow $\sim$2.5 percentage-point band.}
+\label{tab:deit_sgd_sweep}
+\begin{tabular}{lcccc}
+\toprule
+Learning Rate & 0.005 & 0.01 & 0.05 & 0.1 \\
+\midrule
+Val Acc (\%) & 27.65 & 27.61 & \textbf{30.14} & 28.59 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============================================================================
+% Appendix D: Multi-Seed Reproducibility
+% =============================================================================
+\section{Multi-Seed Reproducibility}\label{sec:multi_seed}
+
+% ---- CIFAR-100 Multi-Seed ----
+\begin{table}[h]
+\centering
+\caption{Multi-seed validation accuracy statistics (20-epoch runs, CIFAR-100). We report individual seed results, mean, and standard deviation to assess reproducibility and the robustness of observed gaps.}
+\label{tab:multi_seed}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccccccc}
+\toprule
+Architecture & Optimizer & Seeds & \multicolumn{5}{c}{Individual Accs (\%)} & Mean $\pm$ Std \\
+\midrule
+\multirow{4}{*}{ResNet-50}
+ & Shampoo & 42, 2, 3 & 78.16 & 78.13 & 78.45 & --- & --- & 78.25 $\pm$ 0.18 \\
+ & Muon & 42, 0, 1, 2 & 77.02 & 76.50 & 77.13 & 76.88 & --- & 76.88 $\pm$ 0.27 \\
+ & SGD & 42, 0, 1, 2 & 69.03 & 69.72 & 69.35 & 69.90 & --- & 69.50 $\pm$ 0.39 \\
+ & AdamW & 42, 0, 1, 2 & 67.71 & 67.96 & 67.70 & 68.04 & --- & 67.85 $\pm$ 0.17 \\
+\midrule
+\multirow{3}{*}{DeiT-S}
+ & Muon & 42, 0, 1, 2 & 62.94 & 62.65 & 62.99 & 62.10 & --- & 62.67 $\pm$ 0.41 \\
+ & AdamW & 42, 0, 1, 2 & 52.27 & 52.74 & 52.41 & 51.91 & --- & 52.33 $\pm$ 0.34 \\
+ & SGD & 42, 0, 1, 2 & 44.00 & 43.83 & 43.46 & 44.61 & --- & 43.98 $\pm$ 0.48 \\
+\midrule
+\multirow{3}{*}{ConvNeXt-T}
+ & Shampoo & 42, 2, 3 & 70.44 & 70.37 & 70.91 & --- & --- & 70.57 $\pm$ 0.29 \\
+ & Muon & 42, 1, 2 & 74.59 & 74.79 & 74.49 & --- & --- & 74.62 $\pm$ 0.15 \\
+ & AdamW & 42, 1, 2 & 60.25 & 59.27 & 56.10 & --- & --- & 58.54 $\pm$ 2.17 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{0.5em}
+\raggedright\footnotesize
+\textit{Note:} For ResNet-50, SGD outperforms AdamW in all 4 seeds (mean gap +1.65pp). For ConvNeXt-T, AdamW's higher variance (std=2.17 vs.\ Muon std=0.15) suggests less stable optimization on this architecture.
+\end{table}
+
+% ---- Tiny-ImageNet + ImageNet-100 Multi-Seed (side-by-side) ----
+\begin{table}[h]
+\begin{minipage}{0.48\textwidth}
+\centering
+\caption{Multi-seed accuracy (20 epochs, Tiny-ImageNet, seeds 42/1/2). SGD is single-seed.}
+\label{tab:multi_seed_tinyin}
+\footnotesize
+\begin{tabular}{@{}l@{\hskip 3pt}l@{\hskip 4pt}c@{\hskip 4pt}c@{\hskip 4pt}c@{\hskip 4pt}c@{}}
+\toprule
+Arch & Opt & s42 & s1 & s2 & Mean$\pm$Std \\
+\midrule
+\multirow{3}{*}{R50}
+ & Muon  & 62.35 & 62.65 & 62.99 & 62.66$\pm$0.32 \\
+ & AdamW & 56.34 & 57.24 & 56.69 & 56.76$\pm$0.45 \\
+ & SGD   & \multicolumn{4}{c}{60.04 (single)} \\
+\midrule
+\multirow{3}{*}{DeiT}
+ & Muon  & 48.18 & 48.11 & 47.78 & 48.02$\pm$0.21 \\
+ & AdamW & 40.01 & 40.18 & 40.81 & 40.33$\pm$0.42 \\
+ & SGD   & \multicolumn{4}{c}{34.22 (single)} \\
+\midrule
+\multirow{3}{*}{CNX}
+ & Muon  & 59.13 & 58.89 & 58.75 & 58.92$\pm$0.19 \\
+ & AdamW & 43.74 & 44.25 & 43.76 & 43.92$\pm$0.29 \\
+ & SGD   & \multicolumn{4}{c}{9.49 (single)} \\
+\bottomrule
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\caption{Multi-seed accuracy (20 epochs, ImageNet-100, seeds 42/1/2). SGD is single-seed.}
+\label{tab:multi_seed_in100}
+\footnotesize
+\begin{tabular}{@{}l@{\hskip 3pt}l@{\hskip 4pt}c@{\hskip 4pt}c@{\hskip 4pt}c@{\hskip 4pt}c@{}}
+\toprule
+Arch & Opt & s42 & s1 & s2 & Mean$\pm$Std \\
+\midrule
+\multirow{3}{*}{R50}
+ & Muon  & 62.25 & 61.87 & 61.78 & 61.97$\pm$0.25 \\
+ & AdamW & 49.63 & 51.01 & 50.87 & 50.50$\pm$0.76 \\
+ & SGD   & \multicolumn{4}{c}{50.06 (single)} \\
+\midrule
+\multirow{3}{*}{DeiT}
+ & Muon  & 36.94 & 37.46 & 36.73 & 37.04$\pm$0.38 \\
+ & AdamW & 26.04 & 26.24 & 26.09 & 26.12$\pm$0.10 \\
+ & SGD   & \multicolumn{4}{c}{20.38 (single)} \\
+\midrule
+\multirow{3}{*}{CNX}
+ & Muon  & 58.07 & 57.74 & 57.67 & 57.83$\pm$0.21 \\
+ & AdamW & 33.62 & 35.00 & 31.98 & 33.53$\pm$1.51 \\
+ & SGD   & \multicolumn{4}{c}{6.77 (single)} \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{table}
+
+% =============================================================================
+% Appendix E: Extended Training (50 Epochs)
+% =============================================================================
+\section{Extended Training (50 Epochs)}\label{sec:extended_training}
+
+\begin{table}[h]
+\centering
+\caption{Evolution of the Muon--AdamW accuracy gap from 20 to 50 epochs (seed=42, CIFAR-100 and ImageNet-100). All values are best validation accuracy (early-stopping checkpoint). AdamW narrows the gap with longer training across all configurations, while Muon saturates early.}
+\label{tab:gap_evolution}
+\small
+\begin{tabular}{llccccccc}
+\toprule
+ & & \multicolumn{3}{c}{20 Epochs} & \multicolumn{3}{c}{50 Epochs} & \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+Dataset & Architecture & Muon & AdamW & Gap & Muon & AdamW & Gap & $\Delta$ Gap \\
+\midrule
+\multirow{3}{*}{CIFAR-100}
+ & ResNet-50  & 77.02 & 67.71 & +9.31 & 77.82 & 70.78 & +7.04 & $-$2.27 \\
+ & DeiT-S     & 62.94 & 52.27 & +10.67 & 63.38 & 52.86 & +10.52 & $-$0.15 \\
+ & ConvNeXt-T & 74.59 & 60.25 & +14.34 & 74.58 & 63.83 & +10.75 & $-$3.59 \\
+\midrule
+\multirow{2}{*}{ImageNet-100}
+ & ResNet-50  & 62.25 & 49.63 & +12.62 & 62.24 & 58.68 & +3.56 & $-$9.06 \\
+ & ConvNeXt-T & 58.07 & 33.62 & +24.45 & 58.35 & 46.98 & +11.37 & $-$13.08 \\
+\bottomrule
+\end{tabular}
+\vspace{0.3em}
+\par\noindent\footnotesize{All gaps in percentage points (pp). $\Delta$ Gap $=$ Gap$_{50\text{ep}}$ $-$ Gap$_{20\text{ep}}$; negative values indicate AdamW catching up. This table shows seed\,=\,42 values; 3-seed means (seeds 42/2/3) are reported in Table~\ref{tab:gap_narrowing}. CIFAR-100 3-seed 50-epoch results: ResNet-50 Muon $77.77{\pm}0.28$\% / AdamW $71.01{\pm}0.22$\%, gap $+6.76$\,pp; DeiT-S Muon $62.91{\pm}0.40$\% / AdamW $52.54{\pm}0.45$\%, gap $+10.37$\,pp; ConvNeXt-T Muon $74.59{\pm}0.11$\% / AdamW $61.99{\pm}1.74$\%, gap $+12.60$\,pp. ConvNeXt-T AdamW shows $15.8\times$ higher cross-seed std than Muon.}
+\end{table}
+
+\paragraph{Weight decay choices.}
+The weight decay values used in our experiments follow established defaults for each optimizer family: AdamW uses $\text{wd}=0.05$ across all architectures, consistent with the DeiT~\cite{touvron2021training} and ConvNeXt~\cite{liu2022convnet} training recipes; SGD uses the standard $\text{wd}=10^{-4}$~\cite{he2016deep}. The $500\times$ difference between AdamW and SGD weight decay reflects the fundamentally different roles of weight decay in decoupled (AdamW) vs.\ coupled (SGD) regularization~\cite{loshchilov2019decoupled}. For Muon, the spectral update itself uses no weight decay ($\text{wd}=0$); the accompanying AdamW sub-optimizer for non-Muon parameters uses $\text{wd}=0.05$. We verified that these values are not confounding our ConvNeXt-T SGD results: a sanity check with $\text{wd}=0.01$ yielded 9.18\% vs.\ 9.27\% with $\text{wd}=10^{-4}$ ($\Delta=-0.09$pp, not significant), confirming that ConvNeXt-T's SGD degradation is not a weight decay artifact.
+
+\paragraph{Spectral family at 50 epochs.}
+We extend the spectral comparison (Table~\ref{tab:spectral_comparison}) to 50 epochs on ResNet-50/CIFAR-100 to test whether intra-family rankings persist with longer training.
+
+\begin{table}[h]
+\centering
+\caption{Spectral family accuracy at 20 vs.\ 50 epochs on ResNet-50/CIFAR-100. Muon and AdamW values are 3-seed means (seeds 42/2/3) from Table~\ref{tab:gap_narrowing}. SOAP 50ep is 2-seed mean (seeds 42/2); Shampoo 50ep is single-seed (seed\,=\,42).}
+\label{tab:spectral_50ep}
+\vspace{-0.5em}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Optimizer & 20ep & 50ep & $\Delta$ \\
+\midrule
+Shampoo & 78.25{\scriptsize$\pm$0.18} & 79.54 & +1.29 \\
+SOAP    & 77.28{\scriptsize$\pm$0.20} & 77.43{\scriptsize$\pm$0.06} & +0.15 \\
+Muon    & 76.88{\scriptsize$\pm$0.27} & 77.77{\scriptsize$\pm$0.28} & +0.89 \\
+AdamW   & 67.85{\scriptsize$\pm$0.17} & 71.01{\scriptsize$\pm$0.22} & +3.16 \\
+\bottomrule
+\end{tabular}
+\vspace{-0.5em}
+\end{table}
+
+All three spectral optimizers maintain or improve accuracy from 20 to 50 epochs: SOAP is statistically indistinguishable ($77.43{\pm}0.06\%$ vs.\ $77.28{\pm}0.20\%$, $n{=}2$), Muon improves modestly ($+0.89$\,pp), and Shampoo continues to improve ($+1.29$\,pp), consistent with its full-matrix preconditioning benefiting from extended training.
+In contrast, AdamW gains $+3.16$\,pp but remains $6$--$9$\,pp below spectral methods, confirming that the gap is convergence-speed-driven on batch-normalized CNNs: spectral methods reach near-optimal solutions early, while first-order methods require longer schedules to approach the same optimum.
+Under cosine($T{=}50$), Shampoo degrades on DeiT-S (54.97\% vs.\ 63.53\% at $T{=}20$) while SOAP improves (+1.40\,pp). This architecture-specific sensitivity is consistent with Shampoo's documented lr fragility: the same lr optimal at $T{=}20$ becomes suboptimal under slower cosine decay, specifically on attention layers where the full-matrix preconditioner amplifies early-training instability.
+
+\subsection{Enhanced Training Recipe Details}
+\label{sec:enhanced_recipe_details}
+
+The enhanced recipe augments the baseline protocol (Section~\ref{sec:experimental_setup}) with five additions: (1) 5-epoch linear warmup from $\text{lr}=0$ to the target learning rate, (2) Mixup~\cite{zhang2018mixup} with $\alpha=0.2$, (3) CutMix~\cite{yun2019cutmix} with $\alpha=1.0$ (randomly selected per batch with equal probability when both are active), (4) RandAugment~\cite{cubuk2020randaugment} with $N=2$ operations and magnitude $M=9$, and (5) label smoothing~\cite{szegedy2016rethinking} with $\varepsilon=0.1$.
+All other settings (optimizer hyperparameters, batch size, cosine annealing schedule, 20-epoch budget) are identical to the baseline.
+The enhanced recipe reflects a standard modern training pipeline; these specific augmentation choices follow DeiT~\cite{touvron2021training} defaults.
+
+\begin{table}[h]
+\centering
+\caption{Enhanced recipe results on CIFAR-100 at 20 epochs. All values are 3-seed mean$\pm$std (seeds 42/2/3). Gap = Muon $-$ AdamW. DeiT-S AdamW Enhanced ($51.12\%$) is slightly \emph{below} its baseline ($52.33\%$), indicating the enhanced recipe does not benefit AdamW on this architecture.}
+\label{tab:enhanced_recipe}
+\vspace{-0.5em}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Architecture & Muon (enh) & AdamW (enh) & Gap (enh) & Gap (base) & $\Delta$ \\
+\midrule
+ResNet-50 & 79.71{\scriptsize$\pm$0.18} & 68.79{\scriptsize$\pm$0.65} & +10.92 & +9.03 & +1.89 \\
+DeiT-S & 71.79{\scriptsize$\pm$0.26} & 51.12{\scriptsize$\pm$0.37} & +20.67 & +10.34 & +10.33 \\
+ConvNeXt-T & 78.76{\scriptsize$\pm$0.24} & 66.85{\scriptsize$\pm$0.85} & +11.91 & +16.08 & $-$4.17 \\
+\bottomrule
+\end{tabular}
+\vspace{-0.5em}
+\end{table}

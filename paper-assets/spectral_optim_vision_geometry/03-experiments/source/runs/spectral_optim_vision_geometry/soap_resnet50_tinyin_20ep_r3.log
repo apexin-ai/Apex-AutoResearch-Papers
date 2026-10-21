@@ -1,0 +1,10 @@
+SOAP import OK
+usage: tiny_imagenet_train.py [-h]
+                              [--model {resnet50,deit_small,convnext_tiny}]
+                              [--optimizer {adamw,sgd,muon}] [--gpu GPU]
+                              [--seed SEED] [--epochs EPOCHS]
+                              [--batch-size BATCH_SIZE] [--muon-lr MUON_LR]
+                              [--lr LR] [--data-dir DATA_DIR]
+                              [--output-dir OUTPUT_DIR]
+tiny_imagenet_train.py: error: argument --optimizer: invalid choice: 'soap' (choose from 'adamw', 'sgd', 'muon')
+EXIT_CODE=2

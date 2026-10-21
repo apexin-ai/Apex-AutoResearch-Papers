@@ -1,0 +1,287 @@
+{
+  "mode": "online_pruning",
+  "pruning_mode": "skip",
+  "detection_mode": "distilbert",
+  "char_threshold": 30,
+  "num_tasks": 20,
+  "total_attempted": 20,
+  "total_completed": 20,
+  "total_skipped": 0,
+  "total_infra_errors": 0,
+  "baseline": {
+    "correct": 14,
+    "total": 20,
+    "accuracy": 0.7
+  },
+  "online_pruned": {
+    "correct": 15,
+    "total": 20,
+    "accuracy": 0.75,
+    "total_suppressed_msgs": 40,
+    "total_agent_rounds": 95,
+    "suppress_pct": 42.11
+  },
+  "delta_pp": 5.0,
+  "elapsed_seconds": 329.4,
+  "per_task": [
+    {
+      "task_id": "gsm8k_0000",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "109.",
+      "baseline_answer": "109."
+    },
+    {
+      "task_id": "gsm8k_0001",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "107.",
+      "baseline_answer": "87."
+    },
+    {
+      "task_id": "gsm8k_0002",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "13.",
+      "baseline_answer": "13."
+    },
+    {
+      "task_id": "gsm8k_0003",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "5.",
+      "baseline_answer": "5."
+    },
+    {
+      "task_id": "gsm8k_0004",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "35.",
+      "baseline_answer": "40."
+    },
+    {
+      "task_id": "gsm8k_0005",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "462.",
+      "baseline_answer": "452."
+    },
+    {
+      "task_id": "gsm8k_0006",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "43.",
+      "baseline_answer": "43."
+    },
+    {
+      "task_id": "gsm8k_0007",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "34.",
+      "baseline_answer": "34."
+    },
+    {
+      "task_id": "gsm8k_0008",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "120.",
+      "baseline_answer": "120."
+    },
+    {
+      "task_id": "gsm8k_0009",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "11.",
+      "baseline_answer": "11."
+    },
+    {
+      "task_id": "gsm8k_0010",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "36.",
+      "baseline_answer": "36."
+    },
+    {
+      "task_id": "gsm8k_0011",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "12.",
+      "baseline_answer": "4."
+    },
+    {
+      "task_id": "gsm8k_0012",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "15.",
+      "baseline_answer": "0.625."
+    },
+    {
+      "task_id": "gsm8k_0013",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "24.",
+      "baseline_answer": "24."
+    },
+    {
+      "task_id": "gsm8k_0014",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0
+    },
+    {
+      "task_id": "gsm8k_0015",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "120.",
+      "baseline_answer": "120."
+    },
+    {
+      "task_id": "gsm8k_0016",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "17.",
+      "baseline_answer": "17."
+    },
+    {
+      "task_id": "gsm8k_0017",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "36.",
+      "baseline_answer": "36."
+    },
+    {
+      "task_id": "gsm8k_0018",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "12.",
+      "baseline_answer": "12."
+    },
+    {
+      "task_id": "gsm8k_0019",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "45.",
+      "baseline_answer": "45."
+    }
+  ],
+  "config": {
+    "model": "Llama-3.1-8B-Instruct",
+    "api_base": "http://localhost:8001/v1",
+    "max_rounds": 6
+  }
+}

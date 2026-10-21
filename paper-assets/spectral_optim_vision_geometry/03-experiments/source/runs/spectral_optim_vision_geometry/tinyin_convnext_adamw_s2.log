@@ -1,0 +1,18 @@
+Extracting ...
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/tiny_imagenet_train.py", line 338, in <module>
+    train(args)
+  File "/root/spectral_optim_vision_geometry/tiny_imagenet_train.py", line 232, in train
+    train_dl, val_dl = get_dataloaders(args.batch_size)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/spectral_optim_vision_geometry/tiny_imagenet_train.py", line 111, in get_dataloaders
+    download_tiny_imagenet()
+  File "/root/spectral_optim_vision_geometry/tiny_imagenet_train.py", line 72, in download_tiny_imagenet
+    with zipfile.ZipFile(zip_path, "r") as zf:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/zipfile/__init__.py", line 1349, in __init__
+    self._RealGetContents()
+  File "/root/miniconda3/lib/python3.12/zipfile/__init__.py", line 1416, in _RealGetContents
+    raise BadZipFile("File is not a zip file")
+zipfile.BadZipFile: File is not a zip file
+EXIT_CODE=1

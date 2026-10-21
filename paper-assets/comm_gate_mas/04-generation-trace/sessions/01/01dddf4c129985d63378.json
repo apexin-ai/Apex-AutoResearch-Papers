@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01dddf4c129985d63378",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 2,
+    "bytes": 3156,
+    "sha256": "a3acebe6f694bb0f2194a75762aa7cfe88e473224c410e0e8585e04e1a25985e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-04-25T22:06:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 项目 GPU 分配：westb-4x6000-a 的 cuda:0 和 cuda:1。GPU 2/3 属于其他项目，绝不触碰\n- GPU 2 上跑着 Phi-4-reasoning（PID 181011），不是本项目的——不要误报越界\n- 服务器名用 `westb-4x6000-a`（不带括号后缀），`westb-4x6000-a(comm_gate)` 会报 unknown server\n- Reviewer 只读，唯一输出渠道是 `reviewer_post_to_director`，project 参数传 `comm_gate_mas`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a，代码根目录 /root/autodl-tmp/comm_gate_mas\n- GPU 0：Qwen 7B vLLM 已加载（~88GB），服务 oracle_qwen_gsm8k_t07\n- GPU 1：Qwen 72B AWQ vLLM（~90GB），服务 oracle_qwen72b_n500，端口 8002\n- GPU 2：其他项目（Phi-4-reasoning, PID 181011, ~30GB）——不管\n- GPU 3：空闲\n- 论文路径：projects/comm_gate_mas/artifacts/paper/\n- Registry：projects/comm_gate_mas/registry.yaml（read_registry 精确匹配 exp_id 偶尔返回空，用 limit=5 获取最近的更可靠）\n\n### 3. 📊 当前状态\n刚完成 ROADMAP 审查（D145 oracle 矩阵完整）+ oracle_qwen_gsm8k_t07 部署审查。已提交 3 条 reviewer_post_to_director。\n\nRUNNING 实验：\n- **oracle_qwen72b_n500**（GPU 1）：72B scale validation，N=500，预计 4/27 完成\n- **oracle_qwen_gsm8k_t07**（GPU 0）：Qwen t=0.7 stochastic decoding oracle，N=500，刚启动\n\n等待：两个实验完成后需独立核实数据。无 Cron/Worker 回调挂起。\n\n### 4. 📋 待办\n- oracle_qwen_gsm8k_t07 完成通知 → 读 registry metrics，交叉验证 Δ/p/suppression_rate，与 Llama t=0.7 结果（Fisher combined p=0.29）对比，检查论文是否需要更新 stochastic decoding 段落\n- oracle_qwen72b_n500 完成通知 → 读 registry metrics，检查 72B Δ 是否与 7B/14B 一致（预期 ~0pp），验证 §5.2 scale 段落更新\n- 两实验都完成 → ROADMAP 应更新为 \"final polish\" 阶段，审查最终 PDF 前的 submit_paper_to_review R12\n- Director 转发章节审查请求 → 必查 Agent 是否读过 red-section skill（L1 硬约束）\n- Director 转发 Framing 调整提案 → Read negative-framing-review skill 后四维度审\n\n### 5. 🎯 战略上下文\n- 核心叙事：perturbation sensitivity ≠ pruning safety，dual-backbone non-inferiority（Llama Δ=+2.1±2.4pp, Qwen Δ=+0.40±1.02pp, 均 non-inf p<0.001）\n- Oracle 2×2 矩阵完整，四格均 NS。**Llama/StratQA 是异常值**（Δ=+5.0pp vs 其他 ≤0.8pp），已在 Table 1 footnote 解释为低 suppression（21.5%）+ 小 N（238）\n- R11 审稿 Borderline Accept 5.5/10，0 条需要新实验，全部 writing fix\n- NeurIPS DDL：abstract 5/3-4, paper 5/5-6，缓冲 ~5 天\n- 易错点：(1) llama_10run_oracle_gsm8k 和 qwen_10run_oracle_gsm8k registry 标记 conclusion=\"failed\" 但数据完整且已被论文引用——这是 status 不一致不是真的 failed；(2) D146 说释放 GPU 0 但 D147 又启动实验，ROADMAP GPU 状态可能滞后；(3) TOST ±1pp p=0.048 被 R11 审稿批评为 borderline，primary claim 已改为 ±3pp non-inf (p<0.001)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-6.md"
+}

@@ -1,0 +1,101 @@
+{
+  "qwen_rr": {
+    "F": 180.9647,
+    "p": 1.42752e-113,
+    "R2": 0.4501,
+    "R2_adj": 0.447,
+    "n": 900,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 894
+  },
+  "qwen_seq": {
+    "F": 171.4557,
+    "p": 6.58407e-109,
+    "R2": 0.4402,
+    "R2_adj": 0.437,
+    "n": 898,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 892
+  },
+  "qwen_sel": {
+    "F": 22.3343,
+    "p": 5.96194e-14,
+    "R2": 0.0729,
+    "R2_adj": 0.0687,
+    "n": 900,
+    "n_func_types": 4,
+    "func_types": ["acknowledgment", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 3,
+    "df_resid": 895
+  },
+  "gemma_rr": {
+    "F": 6.3396,
+    "p": 4.95434e-05,
+    "R2": 0.1198,
+    "R2_adj": 0.1149,
+    "n": 900,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 894
+  },
+  "gemma_seq": {
+    "F": 8.0427,
+    "p": 2.26533e-06,
+    "R2": 0.1332,
+    "R2_adj": 0.1283,
+    "n": 900,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 894
+  },
+  "gemma_sel": {
+    "F": 18.1552,
+    "p": 2.3835e-14,
+    "R2": 0.0751,
+    "R2_adj": 0.07,
+    "n": 900,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 894
+  },
+  "llama_rr": {
+    "F": 6.4172,
+    "p": 4.32026e-05,
+    "R2": 0.0327,
+    "R2_adj": 0.0272,
+    "n": 882,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 876
+  },
+  "llama_seq": {
+    "F": 6.6927,
+    "p": 2.62511e-05,
+    "R2": 0.0303,
+    "R2_adj": 0.0248,
+    "n": 888,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 882
+  },
+  "llama_sel": {
+    "F": 21.6331,
+    "p": 4.71923e-17,
+    "R2": 0.0894,
+    "R2_adj": 0.0842,
+    "n": 897,
+    "n_func_types": 5,
+    "func_types": ["acknowledgment", "coordination", "information_provision", "reasoning_guidance", "verification"],
+    "df_func": 4,
+    "df_resid": 891
+  }
+}

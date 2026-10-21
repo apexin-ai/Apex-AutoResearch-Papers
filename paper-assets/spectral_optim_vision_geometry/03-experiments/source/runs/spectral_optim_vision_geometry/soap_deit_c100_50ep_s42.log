@@ -1,0 +1,9 @@
+usage: baseline_train.py [-h]
+                         [--model {convnext_tiny,resnet50,resnet50_ln,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR] [--enhanced]
+baseline_train.py: error: argument --model: invalid choice: 'deit_small_patch16_224' (choose from 'convnext_tiny', 'resnet50', 'resnet50_ln', 'deit_small')
+EXIT_CODE=2

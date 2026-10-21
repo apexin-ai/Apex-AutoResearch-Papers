@@ -1,0 +1,545 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{du_debate_2024,qian_scaling_2025,zhang_agentprune_2025}
+\citation{zhang_agentprune_2025}
+\citation{jiang_llmlingua_2023,chevalier_autocompressors_2023}
+\citation{wang_agentdropout_2025}
+\citation{chen_optima_2025,lin_supervisoragent_2026,li_agp_2025}
+\citation{zeng_s2mad_2025}
+\citation{rizvi_martel_communication_2026}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The perturbation--pruning paradox. (a)\nobreakspace  {}Per-message perturbation impact: acknowledgments (ACKs) are the most locally disruptive message type (median similarity $= 0.34$ after removal vs.\ $0.50$ for non-ACK types; $n = 450$ each, Qwen2.5-7B, GSM8K). Lower similarity indicates greater disruption to subsequent dialogue. (b)\nobreakspace  {}Yet bulk removal of \emph  {all} acknowledgments preserves task accuracy across configurations. $\bullet $ = single seed; $\blacklozenge $ = multi-seed mean $\pm $ 95\% CI. Green band: $\pm 1$\,pp TOST equivalence; blue band: $-3$\,pp non-inferiority margin. The Llama/StratQA single-seed point ($+5.0$\,pp) reflects high variance under longer reasoning chains ($N{=}238$).\relax }}{2}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:paradox}{{1}{2}{The perturbation--pruning paradox. (a)~Per-message perturbation impact: acknowledgments (ACKs) are the most locally disruptive message type (median similarity $= 0.34$ after removal vs.\ $0.50$ for non-ACK types; $n = 450$ each, Qwen2.5-7B, GSM8K). Lower similarity indicates greater disruption to subsequent dialogue. (b)~Yet bulk removal of \emph {all} acknowledgments preserves task accuracy across configurations. $\bullet $ = single seed; $\blacklozenge $ = multi-seed mean $\pm $ 95\% CI. Green band: $\pm 1$\,pp TOST equivalence; blue band: $-3$\,pp non-inferiority margin. The Llama/StratQA single-seed point ($+5.0$\,pp) reflects high variance under longer reasoning chains ($N{=}238$).\relax }{figure.caption.2}{}}
+\citation{finin_kqml_1994}
+\citation{sukhbaatar_commnet_2016,foerster_dial_2016}
+\citation{rizvi_martel_communication_2026}
+\citation{chen_five_ws_2026}
+\citation{zhou_why_agents_communicate_2025}
+\citation{yan_beyond_self_talk_2025}
+\citation{du_debate_2024}
+\citation{li_camel_2023,hong_metagpt_2024,wu_autogen_2024,chen_agentverse_2024,wang_megaagent_2025}
+\citation{shen_eib_2025}
+\citation{li_arg_designer_2026,lu_dytopo_2026}
+\citation{wang_agentdropout_2025,wang_agentdropout_v2_2026,li_agp_2025,xiao_agentdiet_2026}
+\citation{wang_dagp_2025,fan_imad_2026}
+\citation{zeng_s2mad_2025}
+\citation{chen_optima_2025,chen_goagent_2026,wang_anymac_2025,li_lacp_2025}
+\citation{safesieve_2025,lin_supervisoragent_2026}
+\citation{ye_kvcomm_2025}
+\citation{zou_latentmas_2025,du_interlat_2025}
+\citation{li_omac_2025,jiang_agentcomm_2026}
+\citation{choi_debate_or_vote_2025,wu_can_agents_debate_2025}
+\citation{yi_latent_agents_2026}
+\citation{zhang_agentprune_2025}
+\citation{austin_how_1962,searle_speech_acts_1969}
+\citation{core_damsl_1997}
+\citation{bunt_iso_2012}
+\citation{stolcke_dialogue_acts_2000}
+\citation{yngve_getting_1970}
+\citation{schegloff_discourse_1982}
+\citation{jefferson_acknowledgment_1984}
+\citation{clark_contributing_1989}
+\citation{inoue_backchannel_2025,qian_backchannel_2026}
+\citation{qamar_dialogue_acts_2025,zhang_communication_strategies_2025}
+\citation{xia_hivemind_2026,horovicz_agentshap_2025,cemri_mast_2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-agent communication.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Communication efficiency.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural versus functional pruning.}{3}{section*.5}\protected@file@percent }
+\citation{core_damsl_1997}
+\citation{bunt_iso_2012}
+\citation{fipa_acl_2002}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Five-class taxonomy of communication functions in solver--checker dialogues. Examples are verbatim from GSM8K round-robin traces (truncated). Columns Q/L/G show per-backbone frequency (\%) for Qwen ($N{=}1500$), Llama ($N{=}1470$), and Gemma ($N{=}1520$). Priority: coordination $\succ $ verification $\succ $ reasoning\_guidance $\succ $ information\_provision $\succ $ acknowledgment.\relax }}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{4}{Five-class taxonomy of communication functions in solver--checker dialogues. Examples are verbatim from GSM8K round-robin traces (truncated). Columns Q/L/G show per-backbone frequency (\%) for Qwen ($N{=}1500$), Llama ($N{=}1470$), and Gemma ($N{=}1520$). Priority: coordination $\succ $ verification $\succ $ reasoning\_guidance $\succ $ information\_provision $\succ $ acknowledgment.\relax }{table.caption.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Theoretical foundations.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Taxonomy of Communication Functions}{4}{section.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3}{4}{Taxonomy of Communication Functions}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Communication Function Taxonomy}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3.1}{4}{Communication Function Taxonomy}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design rationale.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Core classification.}{4}{section*.9}\protected@file@percent }
+\newlabel{sec:annotation_protocol}{{3.1}{4}{Core classification}{section*.9}{}}
+\citation{cohen_1960}
+\citation{reimers_sentence_bert_2019}
+\citation{mcnemar_1947}
+\citation{schuirmann_tost_1987}
+\citation{sanh_distilbert_2019}
+\citation{cobbe_gsm8k_2021}
+\citation{clark_arc_2018}
+\citation{geva_strategyqa_2021}
+\citation{hendrycks_math_2021}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{5}{section.4}\protected@file@percent }
+\newlabel{sec:methodology}{{4}{5}{Experimental Setup}{section.4}{}}
+\newlabel{fig:pipeline}{{4}{5}{Experimental Setup}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Annotation Protocol}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:methodology}{{4.1}{5}{Annotation Protocol}{subsection.4.1}{}}
+\newlabel{sec:taxonomy_method}{{4.1}{5}{Annotation Protocol}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Perturbation-Based Impact Measurement}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:perturbation}{{4.2}{5}{Perturbation-Based Impact Measurement}{subsection.4.2}{}}
+\newlabel{eq:cosine_sim}{{1}{5}{Perturbation-Based Impact Measurement}{equation.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Statistical Framework}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:statistical_framework}{{4.3}{5}{Statistical Framework}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}End-to-End Pruning Protocol}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:pruning_protocol}{{4.4}{5}{End-to-End Pruning Protocol}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Detection Methods}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:heuristic}{{4.5}{5}{Detection Methods}{subsection.4.5}{}}
+\newlabel{sec:learned_classifier}{{4.5}{5}{Detection Methods}{subsection.4.5}{}}
+\citation{kwon_vllm_2023}
+\citation{cobbe_gsm8k_2021}
+\citation{geva_strategyqa_2021}
+\citation{clark_arc_2018}
+\citation{hendrycks_math_2021}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Domain Experimental Design}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:cross_domain_design}{{4.6}{6}{Cross-Domain Experimental Design}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Implementation and Evaluation}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:implementation}{{4.7}{6}{Implementation and Evaluation}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models and infrastructure.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets and correctness.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset overview.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Protocol reusability.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{6}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{6}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Impact Gradient}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:impact_gradient}{{5.1}{6}{Impact Gradient}{subsection.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces (a)\nobreakspace  {}Remove-ablation similarity by function type (Qwen2.5-7B, $n{=}895$). Lower $=$ greater disruption; acknowledgments (acks; median $= 0.34$) most impactful despite least information. The COORD boxplot ($n{=}5$) should be interpreted with caution given the small sample size. (b)\nobreakspace  {}Cumulative type-elimination dose-response (None $\to $ ACK $\to $ +COORD $\to $ +INFO $\to $ All-RG). Qwen holds within 1\,pp through +INFO; only All-RG (70\% suppression) reaches significance. Llama drops sharply at +INFO (68\% suppression). Error bars: 95\% CIs from McNemar's discordant pairs.\relax }}{7}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:impact_and_dose}{{2}{7}{(a)~Remove-ablation similarity by function type (Qwen2.5-7B, $n{=}895$). Lower $=$ greater disruption; acknowledgments (acks; median $= 0.34$) most impactful despite least information. The COORD boxplot ($n{=}5$) should be interpreted with caution given the small sample size. (b)~Cumulative type-elimination dose-response (None $\to $ ACK $\to $ +COORD $\to $ +INFO $\to $ All-RG). Qwen holds within 1\,pp through +INFO; only All-RG (70\% suppression) reaches significance. Llama drops sharply at +INFO (68\% suppression). Error bars: 95\% CIs from McNemar's discordant pairs.\relax }{figure.caption.15}{}}
+\newlabel{fig:impact}{{2}{7}{(a)~Remove-ablation similarity by function type (Qwen2.5-7B, $n{=}895$). Lower $=$ greater disruption; acknowledgments (acks; median $= 0.34$) most impactful despite least information. The COORD boxplot ($n{=}5$) should be interpreted with caution given the small sample size. (b)~Cumulative type-elimination dose-response (None $\to $ ACK $\to $ +COORD $\to $ +INFO $\to $ All-RG). Qwen holds within 1\,pp through +INFO; only All-RG (70\% suppression) reaches significance. Llama drops sharply at +INFO (68\% suppression). Error bars: 95\% CIs from McNemar's discordant pairs.\relax }{figure.caption.15}{}}
+\newlabel{fig:dose_response}{{2}{7}{(a)~Remove-ablation similarity by function type (Qwen2.5-7B, $n{=}895$). Lower $=$ greater disruption; acknowledgments (acks; median $= 0.34$) most impactful despite least information. The COORD boxplot ($n{=}5$) should be interpreted with caution given the small sample size. (b)~Cumulative type-elimination dose-response (None $\to $ ACK $\to $ +COORD $\to $ +INFO $\to $ All-RG). Qwen holds within 1\,pp through +INFO; only All-RG (70\% suppression) reaches significance. Llama drops sharply at +INFO (68\% suppression). Error bars: 95\% CIs from McNemar's discordant pairs.\relax }{figure.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Oracle pruning accuracy (\%). GPT-4o ack-only detection. Multi-seed rows report mean$\pm $SD. Llama/StratQA: $N{=}238$ due to context overflow. Llama/GSM8K 10-seed: $N{=}1{,}939$ after filtering. Details: Appendix\nobreakspace  {}\ref  {app:online}.\footnotemark \relax }}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:oracle_pruning}{{2}{7}{Oracle pruning accuracy (\%). GPT-4o ack-only detection. Multi-seed rows report mean$\pm $SD. Llama/StratQA: $N{=}238$ due to context overflow. Llama/GSM8K 10-seed: $N{=}1{,}939$ after filtering. Details: Appendix~\ref {app:online}.\protect \footnotemark \relax }{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}E2E Communication Pruning}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:e2e_pruning}{{5.2}{7}{E2E Communication Pruning}{subsection.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Forest plot of pruning $\Delta $\,pp with 95\% CIs. Green band: $\pm 1$\,pp TOST equivalence; blue band: $-3$\,pp non-inferiority margin. Oracle and heuristic results cluster near zero for Qwen and Llama; boundary conditions (MATH, Qwen3) degrade beyond the non-inferiority margin.\relax }}{8}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:forest}{{3}{8}{Forest plot of pruning $\Delta $\,pp with 95\% CIs. Green band: $\pm 1$\,pp TOST equivalence; blue band: $-3$\,pp non-inferiority margin. Oracle and heuristic results cluster near zero for Qwen and Llama; boundary conditions (MATH, Qwen3) degrade beyond the non-inferiority margin.\relax }{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Efficiency.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heuristic and cross-domain safety.}{8}{section*.20}\protected@file@percent }
+\citation{cramer_1946}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Heuristic pruning accuracy (\%). Annotation-free detectors (F1\textsubscript  {GSM8K} $= 0.845$/$0.805$). DistilBERT (F1 $= 0.867$) yields consistent results (Appendix\nobreakspace  {}\ref  {app:learned_classifier_details}).\relax }}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:heuristic_pruning}{{3}{9}{Heuristic pruning accuracy (\%). Annotation-free detectors (F1\textsubscript {GSM8K} $= 0.845$/$0.805$). DistilBERT (F1 $= 0.867$) yields consistent results (Appendix~\ref {app:learned_classifier_details}).\relax }{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scaling and generalization.}{9}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Injection Experiments Reveal Backbone-Dependent Mechanisms}{9}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:causal_injection}{{5.3}{9}{Injection Experiments Reveal Backbone-Dependent Mechanisms}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Domain Consistency}{9}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cross_domain}{{5.4}{9}{Cross-Domain Consistency}{subsection.5.4}{}}
+\citation{rizvi_martel_communication_2026}
+\citation{lecun_obd_1990,braess_1968}
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{austin_how_1962}{{1}{1962}{{Austin}}{{}}}
+\bibcite{bunt_iso_2012}{{2}{2012}{{Bunt et~al.}}{{Bunt, Alexandersson, Choe, Fang, Hasida, Petukhova, Popescu-Belis, and Traum}}}
+\bibcite{cemri_mast_2025}{{3}{2025}{{Cemri et~al.}}{{Cemri, Pan, Yang, Agrawal, Chopra, Tiwari, Keutzer, Parameswaran, Klein, Ramchandran, Zaharia, Gonzalez, and Stoica}}}
+\bibcite{chen_goagent_2026}{{4}{2026{a}}{{Chen et~al.}}{{Chen, Zheng, Liu, Jiao, Li, Liu, Zhao, Xu, Khalil, and Pan}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Backbone Communication Typology}{10}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:three_modes}{{5.5}{10}{Backbone Communication Typology}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{10}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information-theoretic interpretation.}{10}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{10}{Conclusion}{section.7}{}}
+\bibcite{chen_five_ws_2026}{{5}{2026{b}}{{Chen et~al.}}{{Chen, Yang, Liu, and Joe-Wong}}}
+\bibcite{chen_humaneval_2021}{{6}{2021}{{Chen et~al.}}{{Chen, Tworek, Jun, Yuan, Pinto, Kaplan, Edwards, Burda, Joseph, Brockman, Ray, Puri, Krueger, Petrov, Khlaaf, Sastry, Mishkin, Chan, Gray, Ryder, Pavlov, Power, Kaiser, Bavarian, Winter, Tillet, Such, Cummings, Plappert, Chantzis, Barnes, Herbert-Voss, Guss, Nichol, Paino, Tezak, Tang, Babuschkin, Balaji, Jain, Saunders, Hesse, Carr, Leike, Achiam, Misra, Morikawa, Radford, Knight, Brundage, Murati, Mayer, Welinder, McGrew, Amodei, McCandlish, Sutskever, and Zaremba}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Backbone-dependent communication. (a)\nobreakspace  {}Function type distribution by backbone (round-robin, GSM8K, $N{=}300$ each). Qwen and Llama concentrate $>$47\% of messages as acknowledgments; Gemma is dominated by information provision (56\%). (b)\nobreakspace  {}Acknowledgment injection effect: inserting acks into non-ack positions is harmless for Qwen ($p = 0.71$, five seeds) but degrades Llama accuracy ($\bar  {\Delta } = -3.88$\,pp, $p = 0.0029$, five seeds), revealing backbone-dependent mechanisms. Green band: $\pm 1$\,pp equivalence zone.\relax }}{11}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:distribution}{{4}{11}{Backbone-dependent communication. (a)~Function type distribution by backbone (round-robin, GSM8K, $N{=}300$ each). Qwen and Llama concentrate $>$47\% of messages as acknowledgments; Gemma is dominated by information provision (56\%). (b)~Acknowledgment injection effect: inserting acks into non-ack positions is harmless for Qwen ($p = 0.71$, five seeds) but degrades Llama accuracy ($\bar {\Delta } = -3.88$\,pp, $p = 0.0029$, five seeds), revealing backbone-dependent mechanisms. Green band: $\pm 1$\,pp equivalence zone.\relax }{figure.caption.22}{}}
+\newlabel{fig:injection}{{4}{11}{Backbone-dependent communication. (a)~Function type distribution by backbone (round-robin, GSM8K, $N{=}300$ each). Qwen and Llama concentrate $>$47\% of messages as acknowledgments; Gemma is dominated by information provision (56\%). (b)~Acknowledgment injection effect: inserting acks into non-ack positions is harmless for Qwen ($p = 0.71$, five seeds) but degrades Llama accuracy ($\bar {\Delta } = -3.88$\,pp, $p = 0.0029$, five seeds), revealing backbone-dependent mechanisms. Green band: $\pm 1$\,pp equivalence zone.\relax }{figure.caption.22}{}}
+\bibcite{chen_agentverse_2024}{{7}{2024}{{Chen et~al.}}{{Chen, Su, Zuo, Yang, Yuan, Chan, Yu, Lu, Hung, Qian, Qin, Cong, Xie, Liu, Sun, and Zhou}}}
+\bibcite{chen_optima_2025}{{8}{2025}{{Chen et~al.}}{{Chen, Yuan, Qian, Yang, Liu, and Sun}}}
+\bibcite{chevalier_autocompressors_2023}{{9}{2023}{{Chevalier et~al.}}{{Chevalier, Wettig, Ajith, and Chen}}}
+\bibcite{clark_contributing_1989}{{10}{1989}{{Clark and Schaefer}}{{}}}
+\bibcite{clark_arc_2018}{{11}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
+\bibcite{cobbe_gsm8k_2021}{{12}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{cohen_1960}{{13}{1960}{{Cohen}}{{}}}
+\bibcite{cohen_statistical_1988}{{14}{1988}{{Cohen}}{{}}}
+\bibcite{core_damsl_1997}{{15}{1997}{{Core and Allen}}{{}}}
+\bibcite{cramer_1946}{{16}{1946}{{Cram\'{e}r}}{{}}}
+\bibcite{du_protocolbench_2025}{{17}{2025{a}}{{Du et~al.}}{{Du, Su, Li, Ding, Yang, Han, Tang, Zhu, and You}}}
+\bibcite{du_debate_2024}{{18}{2024}{{Du et~al.}}{{Du, Li, Torralba, Tenenbaum, and Mordatch}}}
+\bibcite{du_interlat_2025}{{19}{2025{b}}{{Du et~al.}}{{Du, Wang, Bai, Cao, Zhu, Cheng, Zheng, Chen, and Ying}}}
+\bibcite{finin_kqml_1994}{{20}{1994}{{Finin et~al.}}{{Finin, Fritzson, McKay, and McEntire}}}
+\bibcite{foerster_dial_2016}{{21}{2016}{{Foerster et~al.}}{{Foerster, Assael, de~Freitas, and Whiteson}}}
+\bibcite{fipa_acl_2002}{{22}{2002}{{Foundation for Intelligent Physical Agents}}{{}}}
+\bibcite{geva_strategyqa_2021}{{23}{2021}{{Geva et~al.}}{{Geva, Khashabi, Segal, Khot, Roth, and Berant}}}
+\bibcite{hendrycks_math_2021}{{24}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}
+\bibcite{hong_metagpt_2024}{{25}{2024}{{Hong et~al.}}{{Hong, Zhuge, Chen, Zheng, Cheng, Zhang, Wang, Wang, Yau, Lin, Zhou, Ran, Xiao, Wu, and Schmidhuber}}}
+\bibcite{horovicz_agentshap_2025}{{26}{2025}{{Horovicz}}{{}}}
+\bibcite{inoue_backchannel_2025}{{27}{2025}{{Inoue et~al.}}{{Inoue, Lala, Skantze, and Kawahara}}}
+\bibcite{jefferson_acknowledgment_1984}{{28}{1984}{{Jefferson}}{{}}}
+\bibcite{jiang_llmlingua_2023}{{29}{2023}{{Jiang et~al.}}{{Jiang, Wu, Lin, Yang, and Qiu}}}
+\bibcite{jiang_agentcomm_2026}{{30}{2026}{{Jiang et~al.}}{{Jiang, Feng, Guo, Wen, and Jin}}}
+\bibcite{kwon_vllm_2023}{{31}{2023}{{Kwon et~al.}}{{Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang, and Stoica}}}
+\bibcite{lakens_equivalence_2017}{{32}{2017}{{Lakens}}{{}}}
+\bibcite{landis_koch_1977}{{33}{1977}{{Landis and Koch}}{{}}}
+\bibcite{lecun_obd_1990}{{34}{1990}{{LeCun et~al.}}{{LeCun, Denker, and Solla}}}
+\bibcite{li_agp_2025}{{35}{2025{a}}{{Li et~al.}}{{Li, Zhao, Lee, and Wang}}}
+\bibcite{li_camel_2023}{{36}{2023}{{Li et~al.}}{{Li, Hammoud, Itani, Khizbullin, and Ghanem}}}
+\bibcite{li_omac_2025}{{37}{2025{b}}{{Li et~al.}}{{Li, Hasson, and Ghosh}}}
+\bibcite{li_lacp_2025}{{38}{2025{c}}{{Li et~al.}}{{Li, Liu, and Yuen}}}
+\bibcite{lin_supervisoragent_2026}{{39}{2026}{{Lin et~al.}}{{Lin, Chen, Fang, Wang, and Lin}}}
+\bibcite{lin_awq_2024}{{40}{2024}{{Lin et~al.}}{{Lin, Tang, Tang, Yang, Chen, Wang, Xiao, Dang, Gan, and Han}}}
+\bibcite{mcnemar_1947}{{41}{1947}{{McNemar}}{{}}}
+\bibcite{qamar_dialogue_acts_2025}{{42}{2025}{{Qamar et~al.}}{{Qamar, Tong, and Huang}}}
+\bibcite{qian_backchannel_2026}{{43}{2026}{{Qian and Skantze}}{{}}}
+\bibcite{reimers_sentence_bert_2019}{{44}{2019}{{Reimers and Gurevych}}{{}}}
+\bibcite{rizvi_martel_communication_2026}{{45}{2026}{{Rizvi-Martel et~al.}}{{Rizvi-Martel, Bhattamishra, Rathi, Rabusseau, and Hahn}}}
+\bibcite{sanh_distilbert_2019}{{46}{2019}{{Sanh et~al.}}{{Sanh, Debut, Chaumond, and Wolf}}}
+\bibcite{schegloff_discourse_1982}{{47}{1982}{{Schegloff}}{{}}}
+\bibcite{schuirmann_tost_1987}{{48}{1987}{{Schuirmann}}{{}}}
+\bibcite{searle_speech_acts_1969}{{49}{1969}{{Searle}}{{}}}
+\bibcite{stolcke_dialogue_acts_2000}{{50}{2000}{{Stolcke et~al.}}{{Stolcke, Ries, Coccaro, Shriberg, Bates, Jurafsky, Taylor, Martin, Van Ess-Dykema, and Meteer}}}
+\bibcite{sukhbaatar_commnet_2016}{{51}{2016}{{Sukhbaatar et~al.}}{{Sukhbaatar, Szlam, and Fergus}}}
+\bibcite{wang_megaagent_2025}{{52}{2025{a}}{{Wang et~al.}}{{Wang, Wang, Tang, Li, Chen, Liang, and He}}}
+\bibcite{wang_dagp_2025}{{53}{2025}{{Wang and Tong}}{{}}}
+\bibcite{wang_anymac_2025}{{54}{2025{b}}{{Wang et~al.}}{{Wang, Tan, Chen, Zhou, Chen, and Li}}}
+\bibcite{wang_agentdropout_v2_2026}{{55}{2026}{{Wang et~al.}}{{Wang, Xiong, Liu, Zhou, Ding, Zhang, and Zhang}}}
+\bibcite{wang_agentdropout_2025}{{56}{2025{c}}{{Wang et~al.}}{{Wang, Wang, Liu, Ding, Zhang, Liu, and Zhang}}}
+\bibcite{wu_autogen_2024}{{57}{2024}{{Wu et~al.}}{{Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, Awadallah, White, Burger, and Wang}}}
+\bibcite{xia_hivemind_2026}{{58}{2026}{{Xia et~al.}}{{Xia, Wang, Zhang, Weng, Cao, and Liew}}}
+\bibcite{xiao_agentdiet_2026}{{59}{2026}{{Xiao et~al.}}{{Xiao, Gao, Peng, and Xiong}}}
+\bibcite{yan_beyond_self_talk_2025}{{60}{2025}{{Yan et~al.}}{{Yan, Zhou, Zhang, Zhang, Zhou, Miao, Li, Li, and Zhang}}}
+\bibcite{ye_kvcomm_2025}{{61}{2025}{{Ye et~al.}}{{Ye, Gao, Ma, Wang, Fu, Chung, Lin, Liu, Zhang, Zhuo, and Chen}}}
+\bibcite{yngve_getting_1970}{{62}{1970}{{Yngve}}{{}}}
+\bibcite{zeng_s2mad_2025}{{63}{2025}{{Zeng et~al.}}{{Zeng, Huang, Jiang, Liu, Jin, Tiana, Li, and Xu}}}
+\bibcite{zhang_agentprune_2025}{{64}{2025{a}}{{Zhang et~al.}}{{Zhang, Yue, Li, Yun, Wan, Wang, Cheng, Yu, and Chen}}}
+\bibcite{zhang_communication_strategies_2025}{{65}{2025{b}}{{Zhang et~al.}}{{Zhang, Zhai, Lin, Kleiman, Zapata-Rivera, Forsyth, Jiang, Hu, and Graesser}}}
+\bibcite{safesieve_2025}{{66}{2025{c}}{{Zhang et~al.}}{{Zhang, Zhao, Wang, Chen, Zhang, Zhang, Wang, and Wen}}}
+\bibcite{zhou_why_agents_communicate_2025}{{67}{2025}{{Zhou et~al.}}{{Zhou, Feng, Julaiti, and Yang}}}
+\bibcite{zhu_multiagentbench_2025}{{68}{2025}{{Zhu et~al.}}{{Zhu, Du, Hong, Yang, Guo, Wang, Wang, Qian, Tang, Ji, and You}}}
+\bibcite{zou_latentmas_2025}{{69}{2025}{{Zou et~al.}}{{Zou, Yang, Qiu, Li, Tieu, Lu, Shen, Tong, Choi, He, Zou, Wang, and Yang}}}
+\citation{chen_humaneval_2021}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Qualitative Examples of Communication Functions}{15}{appendix.A}\protected@file@percent }
+\newlabel{app:qualitative-examples}{{A}{15}{Qualitative Examples of Communication Functions}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}HumanEval Cross-Domain Pilot}{15}{appendix.B}\protected@file@percent }
+\newlabel{app:humaneval-pilot}{{B}{15}{HumanEval Cross-Domain Pilot}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{15}{section*.28}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Qualitative examples for each communication function type. All examples have inter-annotator agreement with confidence $= 1.0$. Messages are lightly edited for length.\relax }}{16}{table.caption.27}\protected@file@percent }
+\newlabel{tab:qualitative-examples}{{4}{16}{Qualitative examples for each communication function type. All examples have inter-annotator agreement with confidence $= 1.0$. Messages are lightly edited for length.\relax }{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{17}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Boundary classification.}{17}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Temperature Robustness}{17}{appendix.C}\protected@file@percent }
+\newlabel{app:temp-robustness}{{C}{17}{Temperature Robustness}{appendix.C}{}}
+\@writefile{toc}{\contentsline {paragraph}{Pruning under stochastic decoding.}{17}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heuristic multi-seed temperature sweep.}{17}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heuristic threshold sensitivity under stochastic decoding.}{18}{section*.33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Heuristic threshold sweep on Llama/GSM8K at $t{=}0.7$ ($N{=}100$ per threshold). $\Delta $ is pruned $-$ baseline accuracy (pp). Greedy default threshold is 30 characters.\relax }}{18}{table.caption.34}\protected@file@percent }
+\newlabel{tab:threshold_t07}{{5}{18}{Heuristic threshold sweep on Llama/GSM8K at $t{=}0.7$ ($N{=}100$ per threshold). $\Delta $ is pruned $-$ baseline accuracy (pp). Greedy default threshold is 30 characters.\relax }{table.caption.34}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}OLS Robustness Checks}{18}{appendix.D}\protected@file@percent }
+\newlabel{app:ols-robustness}{{D}{18}{OLS Robustness Checks}{appendix.D}{}}
+\@writefile{toc}{\contentsline {paragraph}{Residual diagnostics.}{18}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Nonlinear position model.}{18}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Message length control.}{18}{section*.38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Linear vs.\ quadratic position model: function type significance after controlling for nonlinear position effects.\relax }}{19}{table.caption.37}\protected@file@percent }
+\newlabel{tab:nonlinear}{{6}{19}{Linear vs.\ quadratic position model: function type significance after controlling for nonlinear position effects.\relax }{table.caption.37}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Kruskal--Wallis Results}{19}{appendix.E}\protected@file@percent }
+\newlabel{app:kw}{{E}{19}{Kruskal--Wallis Results}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Kruskal--Wallis $H$ statistics for remove-ablation similarity across function types. All $p < 0.01$.\relax }}{19}{table.caption.39}\protected@file@percent }
+\newlabel{tab:kruskal_wallis}{{7}{19}{Kruskal--Wallis $H$ statistics for remove-ablation similarity across function types. All $p < 0.01$.\relax }{table.caption.39}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}System Prompts}{19}{appendix.F}\protected@file@percent }
+\newlabel{app:system-prompts}{{F}{19}{System Prompts}{appendix.F}{}}
+\@writefile{toc}{\contentsline {paragraph}{Solver prompt.}{19}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Checker prompt.}{19}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selector prompt (selector topology only).}{19}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {G}Neutralize Ablation Analysis}{19}{appendix.G}\protected@file@percent }
+\newlabel{app:neutralize}{{G}{19}{Neutralize Ablation Analysis}{appendix.G}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Supplementary Tables}{20}{appendix.H}\protected@file@percent }
+\newlabel{app:supplementary}{{H}{20}{Supplementary Tables}{appendix.H}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model annotation agreement (Cohen's $\kappa $) by backbone and topology.\relax }}{20}{table.caption.43}\protected@file@percent }
+\newlabel{tab:kappa_full}{{8}{20}{Cross-model annotation agreement (Cohen's $\kappa $) by backbone and topology.\relax }{table.caption.43}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Impact Metric Robustness}{20}{appendix.I}\protected@file@percent }
+\newlabel{app:metric-robustness}{{I}{20}{Impact Metric Robustness}{appendix.I}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Spearman $\rho $ between MiniLM cosine similarity and alternative impact metrics. All correlations computed over per-message impact scores within each configuration.\relax }}{20}{table.caption.44}\protected@file@percent }
+\newlabel{tab:metric_robustness}{{9}{20}{Spearman $\rho $ between MiniLM cosine similarity and alternative impact metrics. All correlations computed over per-message impact scores within each configuration.\relax }{table.caption.44}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Cross-Domain Validation: MATH}{20}{appendix.J}\protected@file@percent }
+\newlabel{app:math}{{J}{20}{Cross-Domain Validation: MATH}{appendix.J}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen on MATH.}{20}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gemma on MATH.}{21}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Llama on MATH.}{21}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary.}{21}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why MATH acknowledgments carry task-critical content.}{21}{section*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {K}Annotation Prompt}{21}{appendix.K}\protected@file@percent }
+\newlabel{app:annotation-prompt}{{K}{21}{Annotation Prompt}{appendix.K}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Mixed-Effects Model Results}{22}{appendix.L}\protected@file@percent }
+\newlabel{app:mixed-effects}{{L}{22}{Mixed-Effects Model Results}{appendix.L}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces OLS ANCOVA vs.\ mixed-effects model (ME) with task random intercept. LRT = likelihood ratio test for function type. ICC = intraclass correlation from the full ME model. ``Excluded'' lists function types with $n < 30$ removed before fitting. $^{***}p < 0.001$; $^{**}p < 0.01$; n.s.\ = not significant. $F$ and $\chi ^2$ values are not directly comparable across configurations due to differing numbers of included function types.\relax }}{23}{table.caption.50}\protected@file@percent }
+\newlabel{tab:mixed_effects}{{10}{23}{OLS ANCOVA vs.\ mixed-effects model (ME) with task random intercept. LRT = likelihood ratio test for function type. ICC = intraclass correlation from the full ME model. ``Excluded'' lists function types with $n < 30$ removed before fitting. $^{***}p < 0.001$; $^{**}p < 0.01$; n.s.\ = not significant. $F$ and $\chi ^2$ values are not directly comparable across configurations due to differing numbers of included function types.\relax }{table.caption.50}{}}
+\@writefile{toc}{\contentsline {paragraph}{Key observations.}{23}{section*.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {M}Mistral-7B Cross-Backbone Validation}{23}{appendix.M}\protected@file@percent }
+\newlabel{app:mistral}{{M}{23}{Mistral-7B Cross-Backbone Validation}{appendix.M}{}}
+\@writefile{toc}{\contentsline {paragraph}{Accuracy.}{23}{section*.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Function type distribution.}{23}{section*.53}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Mistral-7B function type distribution (\%) by topology.\relax }}{23}{table.caption.54}\protected@file@percent }
+\newlabel{tab:mistral_dist}{{11}{23}{Mistral-7B function type distribution (\%) by topology.\relax }{table.caption.54}{}}
+\@writefile{toc}{\contentsline {paragraph}{Communication mode: weakly differentiated.}{23}{section*.55}\protected@file@percent }
+\citation{core_damsl_1997}
+\citation{bunt_iso_2012}
+\citation{fipa_acl_2002}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Mistral-7B statistical summary across topologies.\relax }}{24}{table.caption.56}\protected@file@percent }
+\newlabel{tab:mistral_stats}{{12}{24}{Mistral-7B statistical summary across topologies.\relax }{table.caption.56}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{24}{section*.57}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for the typology.}{24}{section*.58}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {N}DAMSL/ISO Taxonomy Mapping}{24}{appendix.N}\protected@file@percent }
+\newlabel{app:damsl-mapping}{{N}{24}{DAMSL/ISO Taxonomy Mapping}{appendix.N}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Mapping between our communication function taxonomy and established dialogue act frameworks. Each row shows the primary corresponding categories and the key distinction that motivates our grouping.\relax }}{24}{table.caption.59}\protected@file@percent }
+\newlabel{tab:damsl_mapping}{{13}{24}{Mapping between our communication function taxonomy and established dialogue act frameworks. Each row shows the primary corresponding categories and the key distinction that motivates our grouping.\relax }{table.caption.59}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design choices.}{24}{section*.60}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {O}Replacement Text Sensitivity}{25}{appendix.O}\protected@file@percent }
+\newlabel{app:replacement-sensitivity}{{O}{25}{Replacement Text Sensitivity}{appendix.O}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Neutralize ablation: mean semantic similarity by function type and replacement text (Qwen RR, 50 tasks, 150 messages). Lower similarity indicates greater impact from neutralization.\relax }}{25}{table.caption.61}\protected@file@percent }
+\newlabel{tab:placeholder_sensitivity}{{14}{25}{Neutralize ablation: mean semantic similarity by function type and replacement text (Qwen RR, 50 tasks, 150 messages). Lower similarity indicates greater impact from neutralization.\relax }{table.caption.61}{}}
+\@writefile{toc}{\contentsline {paragraph}{Ranking stability.}{25}{section*.62}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Acknowledged-specific confound.}{25}{section*.63}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {P}Capability Confound Analysis}{25}{appendix.P}\protected@file@percent }
+\newlabel{app:capability-confound}{{P}{25}{Capability Confound Analysis}{appendix.P}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces OLS ANCOVA by task difficulty stratum. All models use the same specification as the primary analysis (Equation\nobreakspace  {}\ref  {eq:ols_app}).\relax }}{26}{table.caption.64}\protected@file@percent }
+\newlabel{tab:capability_confound}{{15}{26}{OLS ANCOVA by task difficulty stratum. All models use the same specification as the primary analysis (Equation~\ref {eq:ols_app}).\relax }{table.caption.64}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Heuristic Non-Transferability: Qwen3 Acknowledgment Comparison}{26}{appendix.Q}\protected@file@percent }
+\newlabel{app:qwen3_comparison}{{Q}{26}{Heuristic Non-Transferability: Qwen3 Acknowledgment Comparison}{appendix.Q}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen3-8B vs.\ Qwen2.5-7B acknowledgment profiles.}{26}{section*.65}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Acknowledgment content comparison: Qwen2.5-7B (GSM8K, $N = 300$ tasks, $n = 719$ ack messages) vs.\ Qwen3-8B ($N = 100$ tasks, $n = 332$ heuristic-classified ack messages). Qwen2.5 types from dual-annotator consensus; Qwen3 types from heuristic classifier (char length $< 80$).\relax }}{26}{table.caption.66}\protected@file@percent }
+\newlabel{tab:qwen3_vs_qwen25}{{16}{26}{Acknowledgment content comparison: Qwen2.5-7B (GSM8K, $N = 300$ tasks, $n = 719$ ack messages) vs.\ Qwen3-8B ($N = 100$ tasks, $n = 332$ heuristic-classified ack messages). Qwen2.5 types from dual-annotator consensus; Qwen3 types from heuristic classifier (char length $< 80$).\relax }{table.caption.66}{}}
+\@writefile{toc}{\contentsline {paragraph}{Key differences.}{26}{section*.67}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Pooled neutralize vs.\ remove semantic similarity by function type ($N = 8{,}479$). All Wilcoxon signed-rank tests $p < 0.001$. $\Delta $ = remove $-$ neutralize (positive = neutralize more disruptive).\relax }}{27}{table.caption.69}\protected@file@percent }
+\newlabel{tab:neut_vs_rm}{{17}{27}{Pooled neutralize vs.\ remove semantic similarity by function type ($N = 8{,}479$). All Wilcoxon signed-rank tests $p < 0.001$. $\Delta $ = remove $-$ neutralize (positive = neutralize more disruptive).\relax }{table.caption.69}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Neutralize Ablation Results}{27}{appendix.R}\protected@file@percent }
+\newlabel{app:neutralize-detail}{{R}{27}{Neutralize Ablation Results}{appendix.R}{}}
+\@writefile{toc}{\contentsline {paragraph}{Neutralize produces stronger disruption than remove.}{27}{section*.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Impact gradients diverge between ablation methods.}{27}{section*.70}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Informational vs.\ structural value.}{27}{section*.71}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-message correlation is weak.}{27}{section*.72}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Action-level changes are concordant.}{27}{section*.73}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {S}Statistical Details}{27}{appendix.S}\protected@file@percent }
+\newlabel{app:statistical}{{S}{27}{Statistical Details}{appendix.S}{}}
+\citation{lakens_equivalence_2017,schuirmann_tost_1987}
+\citation{lakens_equivalence_2017}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Neutralize Kruskal--Wallis $H$ statistics for semantic similarity across function types (cf.\ Table\nobreakspace  {}\ref  {tab:kruskal_wallis} for remove). All $p < 0.01$.\relax }}{28}{table.caption.74}\protected@file@percent }
+\newlabel{tab:neut_kruskal}{{18}{28}{Neutralize Kruskal--Wallis $H$ statistics for semantic similarity across function types (cf.\ Table~\ref {tab:kruskal_wallis} for remove). All $p < 0.01$.\relax }{table.caption.74}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.1}McNemar Test Details}{28}{subsection.S.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces McNemar test summary. \emph  {Ack vs.\ Random}: per-seed McNemar comparing ack-only to each of 10 random seeds. \emph  {Ack vs.\ Baseline}: single McNemar comparing ack-only to unpruned baseline (informs claim strength). MDE: minimum detectable effect at 80\% power ($\alpha = 0.05$); $\sim $ denotes estimates from approximate discordant pair counts.\relax }}{28}{table.caption.75}\protected@file@percent }
+\newlabel{app:tab:mcnemar_summary}{{19}{28}{McNemar test summary. \emph {Ack vs.\ Random}: per-seed McNemar comparing ack-only to each of 10 random seeds. \emph {Ack vs.\ Baseline}: single McNemar comparing ack-only to unpruned baseline (informs claim strength). MDE: minimum detectable effect at 80\% power ($\alpha = 0.05$); $\sim $ denotes estimates from approximate discordant pair counts.\relax }{table.caption.75}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.2}Non-Inferiority Margin Selection ($\delta = -3$\,pp)}{28}{subsection.S.2}\protected@file@percent }
+\newlabel{app:margin_selection}{{S.2}{28}{Non-Inferiority Margin Selection ($\delta = -3$\,pp)}{subsection.S.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Precedent and rationale.}{28}{section*.76}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration against seed variance.}{28}{section*.77}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity across margins.}{28}{section*.78}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TOST equivalence sensitivity.}{29}{section*.79}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces TOST $p$-values at varying equivalence margins. Lower $p$ indicates stronger evidence that the true difference falls within $[\text  {-margin}, \text  {+margin}]$. $^\ddagger $Proportion-based TOST (McNemar-based TOST inapplicable with $\leq 1$ discordant pair).\relax }}{29}{table.caption.80}\protected@file@percent }
+\newlabel{tab:tost_sensitivity}{{20}{29}{TOST $p$-values at varying equivalence margins. Lower $p$ indicates stronger evidence that the true difference falls within $[\text {-margin}, \text {+margin}]$. $^\ddagger $Proportion-based TOST (McNemar-based TOST inapplicable with $\leq 1$ discordant pair).\relax }{table.caption.80}{}}
+\@writefile{toc}{\contentsline {paragraph}{Minimum detectable effects.}{29}{section*.81}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Minimum detectable effects (pp) at 80\% power, $\alpha = 0.05$, $\rho = 0.7$. $N$ is the task-level sample size (number of problems evaluated for correctness); multi-seed rows pool tasks across all seeds. Sorted by MDE ascending.\relax }}{29}{table.caption.82}\protected@file@percent }
+\newlabel{app:tab:mde}{{21}{29}{Minimum detectable effects (pp) at 80\% power, $\alpha = 0.05$, $\rho = 0.7$. $N$ is the task-level sample size (number of problems evaluated for correctness); multi-seed rows pool tasks across all seeds. Sorted by MDE ascending.\relax }{table.caption.82}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.3}Post-Hoc Power Analysis for 72B Oracle Result}{29}{subsection.S.3}\protected@file@percent }
+\newlabel{app:power_72b}{{S.3}{29}{Post-Hoc Power Analysis for 72B Oracle Result}{subsection.S.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{TOST equivalence.}{29}{section*.83}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-seed power.}{30}{section*.84}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Minimum detectable effect.}{30}{section*.85}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{30}{section*.86}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.4}Mixed-Effects Model Results}{30}{subsection.S.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Function type significance controlling for position and round ($n \geq 30$ per type). Both OLS and ME use remove-ablation similarity (Eq.\nobreakspace  {}\ref  {eq:impact}) as the dependent variable. OLS: Type II partial $F$. ME: LRT $\chi ^2$ with task as random intercept; $R^2_m$ = marginal (fixed-effects only). $\dagger $ marks OLS-ME discrepancies (both under selector topology). $^{***}p < 0.001$; $^{**}p < 0.01$; $^{*}p < 0.05$; n.s.\ = not significant.\relax }}{30}{table.caption.87}\protected@file@percent }
+\newlabel{app:tab:me_results}{{22}{30}{Function type significance controlling for position and round ($n \geq 30$ per type). Both OLS and ME use remove-ablation similarity (Eq.~\ref {eq:impact}) as the dependent variable. OLS: Type II partial $F$. ME: LRT $\chi ^2$ with task as random intercept; $R^2_m$ = marginal (fixed-effects only). $\dagger $ marks OLS-ME discrepancies (both under selector topology). $^{***}p < 0.001$; $^{**}p < 0.01$; $^{*}p < 0.05$; n.s.\ = not significant.\relax }{table.caption.87}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.5}Position$^2$ Robustness Check}{30}{subsection.S.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Position$^2$ robustness check: ME LRT for function type in linear vs.\ quadratic position models ($n \geq 30$ per type). Adding position$^2$ eliminates Gemma's function type effect under RR and SEQ while leaving Qwen and Llama unchanged. Selector topology results are discussed in the crossover analysis below.\relax }}{30}{table.caption.88}\protected@file@percent }
+\newlabel{app:tab:me_quad}{{23}{30}{Position$^2$ robustness check: ME LRT for function type in linear vs.\ quadratic position models ($n \geq 30$ per type). Adding position$^2$ eliminates Gemma's function type effect under RR and SEQ while leaving Qwen and Llama unchanged. Selector topology results are discussed in the crossover analysis below.\relax }{table.caption.88}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.6}Gemma-Excluded Sensitivity Analysis}{31}{subsection.S.6}\protected@file@percent }
+\newlabel{app:gemma_excluded}{{S.6}{31}{Gemma-Excluded Sensitivity Analysis}{subsection.S.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.7}Function Type Distribution}{31}{subsection.S.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Function type distribution by backbone under round-robin topology (300 GSM8K tasks each). Qwen2.5-7B and Llama-3.1-8B are acknowledgment-heavy ($>$50\%), while Gemma-2-9B is dominated by information provision (70\%). Types with $n < 30$ are excluded from OLS ANCOVA analysis.\relax }}{31}{figure.caption.89}\protected@file@percent }
+\newlabel{app:fig:distribution}{{5}{31}{Function type distribution by backbone under round-robin topology (300 GSM8K tasks each). Qwen2.5-7B and Llama-3.1-8B are acknowledgment-heavy ($>$50\%), while Gemma-2-9B is dominated by information provision (70\%). Types with $n < 30$ are excluded from OLS ANCOVA analysis.\relax }{figure.caption.89}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.8}Crossover Interaction}{31}{subsection.S.8}\protected@file@percent }
+\newlabel{app:crossover}{{S.8}{31}{Crossover Interaction}{subsection.S.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.9}Pooled ANOVA}{31}{subsection.S.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.10}Additional Statistical Details}{31}{subsection.S.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multiple comparison note.}{31}{section*.92}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Backbone $\times $ topology crossover interaction. $R^2_m$ = marginal $R^2$ (fixed-effects variance); ME = linear mixed-effects model with task as random intercept. Selector topology attenuates function-organization for Qwen ($R^2_m = 0.34 \to 0.004$) and amplifies it for Llama ($R^2_m = 0.02 \to 0.04$), partially converging the two.\relax }}{32}{figure.caption.90}\protected@file@percent }
+\newlabel{fig:crossover}{{6}{32}{Backbone $\times $ topology crossover interaction. $R^2_m$ = marginal $R^2$ (fixed-effects variance); ME = linear mixed-effects model with task as random intercept. Selector topology attenuates function-organization for Qwen ($R^2_m = 0.34 \to 0.004$) and amplifies it for Llama ($R^2_m = 0.02 \to 0.04$), partially converging the two.\relax }{figure.caption.90}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Pooled ANOVA on remove-ablation similarity ($N = 8{,}065$, $R^2 = 0.298$). Computed on all five function types across all 9 configurations; individual-configuration analyses (Table\nobreakspace  {}\ref  {app:tab:me_results}) exclude types with $n < 30$. All $p < .001$. \emph  {Caveat:} pooling across unbalanced configurations risks Simpson's paradox; $\eta ^2$ values should be interpreted alongside per-configuration ME models (Table\nobreakspace  {}\ref  {app:tab:me_results}).\relax }}{32}{table.caption.91}\protected@file@percent }
+\newlabel{app:tab:pooled_anova}{{24}{32}{Pooled ANOVA on remove-ablation similarity ($N = 8{,}065$, $R^2 = 0.298$). Computed on all five function types across all 9 configurations; individual-configuration analyses (Table~\ref {app:tab:me_results}) exclude types with $n < 30$. All $p < .001$. \emph {Caveat:} pooling across unbalanced configurations risks Simpson's paradox; $\eta ^2$ values should be interpreted alongside per-configuration ME models (Table~\ref {app:tab:me_results}).\relax }{table.caption.91}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temperature robustness details.}{32}{section*.93}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Llama $t{=}0.7$ at $N = 500$.}{32}{section*.94}\protected@file@percent }
+\citation{landis_koch_1977}
+\@writefile{toc}{\contentsline {paragraph}{Zero-correction channel details.}{33}{section*.95}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OLS-ME agreement.}{33}{section*.96}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model annotation agreement.}{33}{section*.97}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.11}Offline Replay Pruning}{33}{subsection.S.11}\protected@file@percent }
+\newlabel{app:offline_pruning}{{S.11}{33}{Offline Replay Pruning}{subsection.S.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Offline replay pruning accuracy (\%), for reference (warm-start bias possible, \S  \ref  {sec:discussion}). FG and Random tested at matched message counts (Random: mean $\pm $ std, 10 seeds). Supp.\ = ack proportion in traces. $^*$$N = 96$, 4.6\% ack. $^\dagger $3 seeds. $^\ddagger $FG/Random prune 84--91\% vs.\ ack-only 9--15\%.\relax }}{33}{table.caption.98}\protected@file@percent }
+\newlabel{tab:offline_pruning}{{25}{33}{Offline replay pruning accuracy (\%), for reference (warm-start bias possible, \S \ref {sec:discussion}). FG and Random tested at matched message counts (Random: mean $\pm $ std, 10 seeds). Supp.\ = ack proportion in traces. $^*$$N = 96$, 4.6\% ack. $^\dagger $3 seeds. $^\ddagger $FG/Random prune 84--91\% vs.\ ack-only 9--15\%.\relax }{table.caption.98}{}}
+\@writefile{toc}{\contentsline {paragraph}{FG pruning analysis.}{33}{section*.99}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label noise robustness.}{34}{section*.100}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.12}Online Pruning Validation}{34}{subsection.S.12}\protected@file@percent }
+\newlabel{app:online}{{S.12}{34}{Online Pruning Validation}{subsection.S.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Backbone comparison.}{34}{section*.101}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Online pruning validation: accuracy and suppression rates for Qwen and Llama on GSM8K ($N = 100$, single run). Ten-seed oracle replication yields Qwen $+0.40 \pm 1.02$\,pp and Llama $+2.1 \pm 2.4$\,pp ($N{=}200$ per seed). Heuristic ten-run replication yields Qwen $-0.05 \pm 0.99$\,pp ($N{=}200$ per seed).\relax }}{34}{table.caption.102}\protected@file@percent }
+\newlabel{tab:online_comparison}{{26}{34}{Online pruning validation: accuracy and suppression rates for Qwen and Llama on GSM8K ($N = 100$, single run). Ten-seed oracle replication yields Qwen $+0.40 \pm 1.02$\,pp and Llama $+2.1 \pm 2.4$\,pp ($N{=}200$ per seed). Heuristic ten-run replication yields Qwen $-0.05 \pm 0.99$\,pp ($N{=}200$ per seed).\relax }{table.caption.102}{}}
+\@writefile{toc}{\contentsline {paragraph}{Llama McNemar details.}{34}{section*.103}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces McNemar contingency table for Llama online pruning ($N = 100$).\relax }}{34}{table.caption.104}\protected@file@percent }
+\newlabel{tab:online_llama_mcnemar}{{27}{34}{McNemar contingency table for Llama online pruning ($N = 100$).\relax }{table.caption.104}{}}
+\@writefile{toc}{\contentsline {paragraph}{Llama $N = 1{,}000$ confirmation.}{35}{section*.105}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces McNemar contingency table for Llama online pruning ($N = 1{,}000$). Baseline accuracy 80.8\%, skip accuracy 82.9\%.\relax }}{35}{table.caption.106}\protected@file@percent }
+\newlabel{tab:online_llama_mcnemar_1k}{{28}{35}{McNemar contingency table for Llama online pruning ($N = 1{,}000$). Baseline accuracy 80.8\%, skip accuracy 82.9\%.\relax }{table.caption.106}{}}
+\@writefile{toc}{\contentsline {paragraph}{Round-level suppression breakdown.}{35}{section*.107}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces Llama online suppression rate by round ($N = 100$ tasks, 5 rounds each).\relax }}{35}{table.caption.108}\protected@file@percent }
+\newlabel{tab:online_suppression_rounds}{{29}{35}{Llama online suppression rate by round ($N = 100$ tasks, 5 rounds each).\relax }{table.caption.108}{}}
+\@writefile{toc}{\contentsline {paragraph}{StratQA offline--online divergence.}{35}{section*.109}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.13}Dose-Response Analysis}{35}{subsection.S.13}\protected@file@percent }
+\newlabel{app:dose_response}{{S.13}{35}{Dose-Response Analysis}{subsection.S.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Dose-response: accuracy (\%) by ack-only pruning rate (Qwen/GSM8K/RR, $N = 100$). 289 total ack messages across 100 tasks.\relax }}{35}{table.caption.110}\protected@file@percent }
+\newlabel{tab:dose_response}{{30}{35}{Dose-response: accuracy (\%) by ack-only pruning rate (Qwen/GSM8K/RR, $N = 100$). 289 total ack messages across 100 tasks.\relax }{table.caption.110}{}}
+\@writefile{toc}{\contentsline {paragraph}{Llama dose-response (5 seeds).}{36}{section*.111}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces Dose-response: accuracy (\%) by ack-only pruning rate (Llama/GSM8K/RR, $N = 100$, 5 seeds).\relax }}{36}{table.caption.112}\protected@file@percent }
+\newlabel{tab:dose_response_llama}{{31}{36}{Dose-response: accuracy (\%) by ack-only pruning rate (Llama/GSM8K/RR, $N = 100$, 5 seeds).\relax }{table.caption.112}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-run variance (from-scratch online).}{36}{section*.113}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normality and non-parametric validation.}{36}{section*.114}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Outlier seed analysis (seed 3).}{36}{section*.115}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Outlier seed analysis, Llama oracle (seed 3072).}{37}{section*.116}\protected@file@percent }
+\newlabel{app:stratqa_8seed}{{S.13}{37}{StratQA eight-seed robustness (Llama heuristic)}{section*.117}{}}
+\@writefile{toc}{\contentsline {paragraph}{StratQA eight-seed robustness (Llama heuristic).}{37}{section*.117}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces Per-seed accuracy for Llama/StratQA heuristic pruning ($N{=}200$ per seed, greedy decoding). Suppress rate is stable across seeds (49--52\%), which indicates consistent detector behavior; accuracy variance reflects downstream reasoning divergence. $^*$Discovery seed (included in the original 4-seed analysis). $^\dagger $Per-seed baseline/pruned accuracy not individually recorded; delta computed from paired evaluation.\relax }}{37}{table.caption.118}\protected@file@percent }
+\newlabel{app:tab:stratqa_seeds}{{32}{37}{Per-seed accuracy for Llama/StratQA heuristic pruning ($N{=}200$ per seed, greedy decoding). Suppress rate is stable across seeds (49--52\%), which indicates consistent detector behavior; accuracy variance reflects downstream reasoning divergence. $^*$Discovery seed (included in the original 4-seed analysis). $^\dagger $Per-seed baseline/pruned accuracy not individually recorded; delta computed from paired evaluation.\relax }{table.caption.118}{}}
+\@writefile{toc}{\contentsline {paragraph}{Llama ack variance = 0: expected behavior.}{37}{section*.119}\protected@file@percent }
+\newlabel{app:cascade}{{S.13}{38}{Acknowledgment cascade transition probabilities}{section*.120}{}}
+\@writefile{toc}{\contentsline {paragraph}{Acknowledgment cascade transition probabilities.}{38}{section*.120}\protected@file@percent }
+\newlabel{app:cascade_significance}{{S.13}{38}{Cascade rate significance test}{section*.121}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cascade rate significance test.}{38}{section*.121}\protected@file@percent }
+\newlabel{app:cascade_position_control}{{S.13}{38}{Position-controlled cascade analysis}{section*.122}{}}
+\@writefile{toc}{\contentsline {paragraph}{Position-controlled cascade analysis.}{38}{section*.122}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Position effect divergence and suppressor dynamics.}{38}{section*.123}\protected@file@percent }
+\newlabel{app:cascade_vs_pruning}{{S.13}{39}{Task-level cascade rate vs.\ pruning outcome}{section*.124}{}}
+\@writefile{toc}{\contentsline {paragraph}{Task-level cascade rate vs.\ pruning outcome.}{39}{section*.124}\protected@file@percent }
+\newlabel{app:cascade_length}{{S.13}{39}{Cascade length and pruning safety}{section*.125}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cascade length and pruning safety.}{39}{section*.125}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces Pruning safety rate (\%) by cascade length (consecutive ack sequence length). $N$: number of task$\times $seed observations per bucket. Cochran--Armitage trend test assesses monotonic association between cascade length and safety.\relax }}{39}{table.caption.126}\protected@file@percent }
+\newlabel{app:tab:cascade_length}{{33}{39}{Pruning safety rate (\%) by cascade length (consecutive ack sequence length). $N$: number of task$\times $seed observations per bucket. Cochran--Armitage trend test assesses monotonic association between cascade length and safety.\relax }{table.caption.126}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.14}Per-Position Label Concordance}{39}{subsection.S.14}\protected@file@percent }
+\newlabel{app:position_concordance}{{S.14}{39}{Per-Position Label Concordance}{subsection.S.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces Per-position label concordance across 10 oracle seeds (Llama/GSM8K, $N = 195$ tasks with valid traces in all seeds). Majority concordance: fraction of seeds agreeing with the modal label. Fleiss' $\kappa $: inter-seed agreement on binary ack/non-ack classification. Computed from the 10-seed oracle output files.\relax }}{40}{table.caption.127}\protected@file@percent }
+\newlabel{app:tab:position_concordance}{{34}{40}{Per-position label concordance across 10 oracle seeds (Llama/GSM8K, $N = 195$ tasks with valid traces in all seeds). Majority concordance: fraction of seeds agreeing with the modal label. Fleiss' $\kappa $: inter-seed agreement on binary ack/non-ack classification. Computed from the 10-seed oracle output files.\relax }{table.caption.127}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.15}Cross-Model Ack Concordance}{40}{subsection.S.15}\protected@file@percent }
+\newlabel{app:cross_model_concordance}{{S.15}{40}{Cross-Model Ack Concordance}{subsection.S.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {35}{\ignorespaces Cross-model (Qwen vs.\ Llama) ack concordance on GSM8K ($N = 200$ tasks, seed\nobreakspace  {}42). Pooled $\kappa $ includes all rounds; stratified $\kappa $ averages within-round $\kappa $ weighted by $n$, removing positional confounds. Round\nobreakspace  {}1 excluded (always non-ack for both models).\relax }}{40}{table.caption.128}\protected@file@percent }
+\newlabel{app:tab:cross_model_concordance}{{35}{40}{Cross-model (Qwen vs.\ Llama) ack concordance on GSM8K ($N = 200$ tasks, seed~42). Pooled $\kappa $ includes all rounds; stratified $\kappa $ averages within-round $\kappa $ weighted by $n$, removing positional confounds. Round~1 excluded (always non-ack for both models).\relax }{table.caption.128}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.16}Practical Cost Savings}{40}{subsection.S.16}\protected@file@percent }
+\newlabel{app:cost}{{S.16}{40}{Practical Cost Savings}{subsection.S.16}{}}
+\citation{cohen_statistical_1988}
+\@writefile{lot}{\contentsline {table}{\numberline {36}{\ignorespaces Comparison of MAS communication pruning methods. \textbf  {Granularity}: what is pruned. \textbf  {Online}: works at inference time without training. \textbf  {Taxonomy}: uses message-function categories. \textbf  {Domains}: number of tested task domains. \textbf  {Stats}: formal statistical testing (McNemar, ANOVA, CI).\relax }}{41}{table.caption.129}\protected@file@percent }
+\newlabel{tab:method_comparison}{{36}{41}{Comparison of MAS communication pruning methods. \textbf {Granularity}: what is pruned. \textbf {Online}: works at inference time without training. \textbf {Taxonomy}: uses message-function categories. \textbf {Domains}: number of tested task domains. \textbf {Stats}: formal statistical testing (McNemar, ANOVA, CI).\relax }{table.caption.129}{}}
+\@writefile{toc}{\contentsline {paragraph}{Complementarity with other efficiency methods.}{41}{section*.130}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.17}Llama Pruning Mechanism (Hypothesis)}{41}{subsection.S.17}\protected@file@percent }
+\newlabel{app:llama_mechanism}{{S.17}{41}{Llama Pruning Mechanism (Hypothesis)}{subsection.S.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.18}Per-Type $\kappa $ Impact Analysis}{41}{subsection.S.18}\protected@file@percent }
+\newlabel{app:kappa_tiers}{{S.18}{41}{Per-Type $\kappa $ Impact Analysis}{subsection.S.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.19}Cohen's $h$ Effect Sizes}{41}{subsection.S.19}\protected@file@percent }
+\newlabel{app:cohens_h}{{S.19}{41}{Cohen's $h$ Effect Sizes}{subsection.S.19}{}}
+\citation{lin_awq_2024}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.20}Token-Count-Matched Random Pruning}{42}{subsection.S.20}\protected@file@percent }
+\newlabel{app:token_matched}{{S.20}{42}{Token-Count-Matched Random Pruning}{subsection.S.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {37}{\ignorespaces Offline accuracy risk (\%) under three pruning regimes. Risk = fraction of correct tasks whose final answer changes (10\nobreakspace  {}seeds, mean $\pm $ SD for random). Gemma results based on $n = 11$ ack messages; interpret with caution.\relax }}{42}{table.caption.131}\protected@file@percent }
+\newlabel{app:tab:token_matched}{{37}{42}{Offline accuracy risk (\%) under three pruning regimes. Risk = fraction of correct tasks whose final answer changes (10~seeds, mean $\pm $ SD for random). Gemma results based on $n = 11$ ack messages; interpret with caution.\relax }{table.caption.131}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.21}Boundary Conditions}{42}{subsection.S.21}\protected@file@percent }
+\newlabel{app:boundary_conditions}{{S.21}{42}{Boundary Conditions}{subsection.S.21}{}}
+\newlabel{sec:boundary}{{S.21}{42}{Boundary Conditions}{subsection.S.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.22}Extended Limitations}{42}{subsection.S.22}\protected@file@percent }
+\newlabel{app:extended_limitations}{{S.22}{42}{Extended Limitations}{subsection.S.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{AWQ quantization.}{42}{section*.132}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stochastic decoding.}{42}{section*.133}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inter-rater reliability.}{42}{section*.134}\protected@file@percent }
+\newlabel{app:annotation_agreement}{{S.22}{42}{Online oracle annotator agreement}{section*.135}{}}
+\@writefile{toc}{\contentsline {paragraph}{Online oracle annotator agreement.}{42}{section*.135}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Discarded $N{=}1{,}000$ Llama oracle run.}{42}{section*.136}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FG offline replay.}{43}{section*.137}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heuristic detector calibration.}{43}{section*.138}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle distribution shift.}{43}{section*.139}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Replication asymmetry.}{43}{section*.140}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle API dependency.}{43}{section*.141}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heuristic non-transferability.}{43}{section*.142}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Topology scope.}{43}{section*.143}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Injection seed coverage.}{43}{section*.144}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Random baseline count mismatch.}{43}{section*.145}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.23}Extended Discussion}{43}{subsection.S.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Length as proxy feature: convergence and divergence.}{43}{section*.146}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Suggestive positive trend under heuristic pruning.}{44}{section*.147}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.24}Alternative Explanations}{44}{subsection.S.24}\protected@file@percent }
+\newlabel{app:alternative_explanations}{{S.24}{44}{Alternative Explanations}{subsection.S.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.25}Heuristic Threshold Sensitivity}{44}{subsection.S.25}\protected@file@percent }
+\newlabel{app:threshold_sensitivity}{{S.25}{44}{Heuristic Threshold Sensitivity}{subsection.S.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity analysis.}{44}{section*.148}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {38}{\ignorespaces Heuristic threshold sensitivity (Llama/GSM8K, $N = 200$, single seed). Pruned accuracy is stable across detector configurations (81.5--82.5\%). Baseline variability (77.7--81.5\%) reflects vLLM inference non-determinism for V1--V3 ($\pm 2$\,pp); V4's lower baseline (77.7\%) additionally reflects sample bias from 35\% data loss.\textsuperscript  {$\dagger $}\relax }}{45}{table.caption.149}\protected@file@percent }
+\newlabel{tab:threshold_sensitivity}{{38}{45}{Heuristic threshold sensitivity (Llama/GSM8K, $N = 200$, single seed). Pruned accuracy is stable across detector configurations (81.5--82.5\%). Baseline variability (77.7--81.5\%) reflects vLLM inference non-determinism for V1--V3 ($\pm 2$\,pp); V4's lower baseline (77.7\%) additionally reflects sample bias from 35\% data loss.\textsuperscript {$\dagger $}\relax }{table.caption.149}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Information-Theoretic Analysis of Acknowledgments}{45}{appendix.T}\protected@file@percent }
+\newlabel{app:info_theory}{{T}{45}{Information-Theoretic Analysis of Acknowledgments}{appendix.T}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {39}{\ignorespaces Information-theoretic properties by function type (Qwen/GSM8K/RR, $N = 1{,}500$ messages). All ack vs.\ non-ack comparisons significant at $p < 10^{-10}$ (Mann--Whitney $U$) except where noted.\relax }}{45}{table.caption.150}\protected@file@percent }
+\newlabel{tab:info_theory_qwen}{{39}{45}{Information-theoretic properties by function type (Qwen/GSM8K/RR, $N = 1{,}500$ messages). All ack vs.\ non-ack comparisons significant at $p < 10^{-10}$ (Mann--Whitney $U$) except where noted.\relax }{table.caption.150}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {40}{\ignorespaces Information-theoretic properties by function type (Llama/GSM8K/RR, $N = 1{,}470$ messages).\relax }}{45}{table.caption.151}\protected@file@percent }
+\newlabel{tab:info_theory_llama}{{40}{45}{Information-theoretic properties by function type (Llama/GSM8K/RR, $N = 1{,}470$ messages).\relax }{table.caption.151}{}}
+\@writefile{toc}{\contentsline {paragraph}{Surface-level information content.}{45}{section*.152}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {41}{\ignorespaces Surface-level information metrics by function type and backbone (GSM8K/round-robin). \textit  {Bi-OL} and \textit  {Tri-OL}: fraction of current-message bigrams/trigrams also present in the preceding message. TTR: type--token ratio (unique words / total words). Gemma excluded ($n_\text  {ack} = 11$).\relax }}{46}{table.caption.153}\protected@file@percent }
+\newlabel{tab:surface_info}{{41}{46}{Surface-level information metrics by function type and backbone (GSM8K/round-robin). \textit {Bi-OL} and \textit {Tri-OL}: fraction of current-message bigrams/trigrams also present in the preceding message. TTR: type--token ratio (unique words / total words). Gemma excluded ($n_\text {ack} = 11$).\relax }{table.caption.153}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dual mechanism.}{46}{section*.154}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-round acknowledgment trends.}{46}{section*.155}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {T.1}Heuristic Detector Performance}{46}{subsection.T.1}\protected@file@percent }
+\newlabel{app:heuristic}{{T.1}{46}{Heuristic Detector Performance}{subsection.T.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Scale Validation: Qwen2.5-14B}{46}{appendix.U}\protected@file@percent }
+\newlabel{app:scaling}{{U}{46}{Scale Validation: Qwen2.5-14B}{appendix.U}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.1}Function Annotation}{46}{subsection.U.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model annotation agreement.}{46}{section*.156}\protected@file@percent }
+\citation{du_protocolbench_2025,zhu_multiagentbench_2025}
+\citation{lecun_obd_1990}
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.2}Heuristic Detector}{47}{subsection.U.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.3}Simulate Pruning}{47}{subsection.U.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.4}Online Pruning}{47}{subsection.U.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unified threshold validation.}{47}{section*.157}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpreting the low suppression rate.}{47}{section*.158}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Run-to-run variance.}{47}{section*.159}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.5}Full-Scale 72B Oracle Pruning ($N = 265{}$, 5 Seeds)}{47}{subsection.U.5}\protected@file@percent }
+\newlabel{app:scaling_72b}{{U.5}{47}{Full-Scale 72B Oracle Pruning ($N = \qwenSevenTwoBN {}$, 5 Seeds)}{subsection.U.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Online oracle pruning.}{47}{section*.160}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-scale comparison.}{47}{section*.161}\protected@file@percent }
+\citation{cohen_statistical_1988}
+\@writefile{lot}{\contentsline {table}{\numberline {42}{\ignorespaces Pruning $\Delta $ (pp) across Qwen2.5 scales on GSM8K (oracle where available, heuristic otherwise; greedy decoding). 72B reports mean $\pm $ SD across 5 seeds.\relax }}{48}{table.caption.162}\protected@file@percent }
+\newlabel{app:tab:scale_summary}{{42}{48}{Pruning $\Delta $ (pp) across Qwen2.5 scales on GSM8K (oracle where available, heuristic otherwise; greedy decoding). 72B reports mean $\pm $ SD across 5 seeds.\relax }{table.caption.162}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.6}MAS Deployment Positioning}{48}{subsection.U.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {U.7}Scale Trajectory of Pruning Safety}{48}{subsection.U.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Cross-Experiment Summary}{48}{appendix.V}\protected@file@percent }
+\newlabel{app:summary}{{V}{48}{Cross-Experiment Summary}{appendix.V}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Efficiency Analysis}{48}{appendix.W}\protected@file@percent }
+\newlabel{app:efficiency}{{W}{48}{Efficiency Analysis}{appendix.W}{}}
+\@writefile{toc}{\contentsline {paragraph}{Computational efficiency.}{48}{section*.164}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle cost and upper-bound positioning.}{48}{section*.165}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {43}{\ignorespaces Full cross-experiment pruning matrix. $\Delta $: pruned $-$ baseline accuracy (pp). $p$: McNemar $\chi ^2$ with continuity correction (single-run) or paired $t$ (multi-seed); exact binomial $p$-values agree within 0.001 for all entries. TOST: equivalence $p$ at stated margin. $h$: Cohen's arcsine effect size. Non-boundary $|h| < 0.20$ (negligible); Qwen3-8B reaches ``small'' ($|h| = 0.38$); MATH at $N{=}200$ is negligible ($|h| = 0.048$). $^\dagger $Fisher combined across two independent $N{=}500$ runs. $^\ddagger $Heuristic detector, not oracle. $^\S  $Simulate pruning (offline with oracle labels). $^\|$\,Single-seed; TOST requires multi-seed variance estimate. NI: one-sided non-inferiority (symmetric TOST fails due to positive outliers, not degradation).\relax }}{49}{table.caption.163}\protected@file@percent }
+\newlabel{app:tab:full_matrix}{{43}{49}{Full cross-experiment pruning matrix. $\Delta $: pruned $-$ baseline accuracy (pp). $p$: McNemar $\chi ^2$ with continuity correction (single-run) or paired $t$ (multi-seed); exact binomial $p$-values agree within 0.001 for all entries. TOST: equivalence $p$ at stated margin. $h$: Cohen's arcsine effect size. Non-boundary $|h| < 0.20$ (negligible); Qwen3-8B reaches ``small'' ($|h| = 0.38$); MATH at $N{=}200$ is negligible ($|h| = 0.048$). $^\dagger $Fisher combined across two independent $N{=}500$ runs. $^\ddagger $Heuristic detector, not oracle. $^\S $Simulate pruning (offline with oracle labels). $^\|$\,Single-seed; TOST requires multi-seed variance estimate. NI: one-sided non-inferiority (symmetric TOST fails due to positive outliers, not degradation).\relax }{table.caption.163}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {44}{\ignorespaces Efficiency of oracle-guided ack pruning on GSM8K. Calls saved = suppression rate; token savings are lower because acks are short (median 4 tokens). Oracle cost is for GPT-4o 5-class classification; heuristic detectors achieve comparable savings at zero cost (\S  \ref  {sec:heuristic}).\relax }}{50}{table.caption.166}\protected@file@percent }
+\newlabel{tab:efficiency}{{44}{50}{Efficiency of oracle-guided ack pruning on GSM8K. Calls saved = suppression rate; token savings are lower because acks are short (median 4 tokens). Oracle cost is for GPT-4o 5-class classification; heuristic detectors achieve comparable savings at zero cost (\S \ref {sec:heuristic}).\relax }{table.caption.166}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Exploratory Multi-Agent and Alternative Topology Pilots}{50}{appendix.X}\protected@file@percent }
+\newlabel{app:multiagent}{{X}{50}{Exploratory Multi-Agent and Alternative Topology Pilots}{appendix.X}{}}
+\@writefile{toc}{\contentsline {paragraph}{Three-agent solver-checker-critic.}{50}{section*.167}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Debate (advocate--challenger).}{50}{section*.168}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {45}{\ignorespaces Exploratory topology pilots (Qwen2.5-7B, $N = 100$, greedy decoding). Suppression uses the heuristic detector (char $< 30$ for single-seed pilot, char $< 150$ for 3-seed replication); no oracle annotation was performed for the debate pilot. The 3-seed row reports mean $\pm $ SD.\relax }}{50}{table.caption.169}\protected@file@percent }
+\newlabel{tab:pilot_results}{{45}{50}{Exploratory topology pilots (Qwen2.5-7B, $N = 100$, greedy decoding). Suppression uses the heuristic detector (char $< 30$ for single-seed pilot, char $< 150$ for 3-seed replication); no oracle annotation was performed for the debate pilot. The 3-seed row reports mean $\pm $ SD.\relax }{table.caption.169}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Artifact Description}{50}{appendix.Y}\protected@file@percent }
+\newlabel{app:artifacts}{{Y}{50}{Artifact Description}{appendix.Y}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Y.1}Released Artifacts}{50}{subsection.Y.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code repository.}{50}{section*.170}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{51}{section*.171}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Annotation materials.}{51}{section*.172}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {Y.2}Protocol Reuse}{51}{subsection.Y.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {Y.3}License and Ethics}{52}{subsection.Y.3}\protected@file@percent }
+\gdef \@abspage@last{53}

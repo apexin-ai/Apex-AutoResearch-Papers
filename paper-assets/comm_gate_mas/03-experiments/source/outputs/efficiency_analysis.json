@@ -1,0 +1,139 @@
+{
+  "description": "Ack pruning efficiency analysis computed from oracle experiment data. NOTE: 'oracle_token_overhead' reports GPT-4o oracle classifier API token usage, NOT agent message tokens. Per-task agent message token counts are not available in the source data.",
+  "data_sources": {
+    "qwen": "outputs/oracle_qwen_n500_fixed/result.json",
+    "llama": [
+      "outputs/oracle_llama_10run/seed_42.json",
+      "outputs/oracle_llama_10run/seed_123.json",
+      "outputs/oracle_llama_10run/seed_456.json",
+      "outputs/oracle_llama_10run/seed_789.json",
+      "outputs/oracle_llama_10run/seed_1024.json"
+    ]
+  },
+  "qwen": {
+    "name": "Qwen2.5-7B-Instruct / GSM8K (N=500)",
+    "num_tasks": 500,
+    "baseline_accuracy": 0.888,
+    "oracle_accuracy": 0.896,
+    "suppression_rate": 56.32,
+    "message_analysis": {
+      "total_messages": 2500,
+      "total_suppressed": 1408,
+      "avg_messages_per_task": 5.0,
+      "avg_suppressed_per_task": 2.82
+    },
+    "oracle_token_overhead": {
+      "note": "These are GPT-4o oracle classifier API tokens (resp.usage.total_tokens), not agent message tokens.",
+      "oracle_tokens_total": 1737625,
+      "oracle_tokens_per_task": 3475.2,
+      "oracle_api_calls": 2500,
+      "avg_confidence": 0.904
+    },
+    "oracle_cost": {
+      "est_cost_per_1k_tasks_usd": 13.90,
+      "pricing_assumption": "GPT-4o: $2.50/1M input, $10/1M output, 80/20 split → effective $4.00/1M tokens"
+    },
+    "latency": {
+      "elapsed_seconds": 8152.0,
+      "avg_time_per_task_s": 16.30,
+      "avg_time_per_round_s": 3.26,
+      "rounds_per_task": 5.0,
+      "saved_rounds_per_task": 2.82,
+      "est_time_saved_per_task_s": 9.18,
+      "est_time_saved_pct": 56.3,
+      "caveat": "Assumes roughly uniform per-round latency; actual savings depend on message generation length and model throughput."
+    }
+  },
+  "llama": {
+    "name": "Llama-3.1-8B-Instruct / GSM8K (N=972, 5 seeds)",
+    "num_tasks": 972,
+    "seeds_aggregated": ["seed_42", "seed_123", "seed_456", "seed_789", "seed_1024"],
+    "per_seed_n": [193, 195, 193, 196, 195],
+    "per_seed_suppression_rate": [37.72, 35.49, 40.21, 35.71, 35.38],
+    "suppression_rate": 36.89,
+    "message_analysis": {
+      "total_messages": 4860,
+      "total_suppressed": 1793,
+      "avg_messages_per_task": 5.0,
+      "avg_suppressed_per_task": 1.84
+    },
+    "oracle_token_overhead": {
+      "note": "These are GPT-4o oracle classifier API tokens (resp.usage.total_tokens), not agent message tokens.",
+      "oracle_tokens_total": 3503671,
+      "oracle_tokens_per_task": 3604.6,
+      "oracle_api_calls": 4860,
+      "per_seed_oracle_tokens": [702660, 695096, 690864, 697824, 717227],
+      "avg_confidence": 0.907
+    },
+    "oracle_cost": {
+      "est_cost_per_1k_tasks_usd": 14.42,
+      "pricing_assumption": "GPT-4o: $2.50/1M input, $10/1M output, 80/20 split → effective $4.00/1M tokens"
+    },
+    "latency": {
+      "total_elapsed_seconds": 21908.8,
+      "avg_time_per_task_s": 22.54,
+      "avg_time_per_round_s": 4.51,
+      "rounds_per_task": 5.0,
+      "saved_rounds_per_task": 1.84,
+      "est_time_saved_per_task_s": 8.32,
+      "est_time_saved_pct": 36.9,
+      "caveat": "Assumes roughly uniform per-round latency; actual savings depend on message generation length and model throughput."
+    }
+  },
+  "estimated_agent_token_savings": {
+    "method": "Estimated using per-category mean token lengths from paper (appendix_info_theory.tex, appendix_examples.tex). Not directly measured from trace data.",
+    "token_means_source": {
+      "qwen_ack_mean": 9.0,
+      "llama_ack_mean": 59.8,
+      "verification_mean": 95,
+      "reasoning_guidance_mean": 117,
+      "information_provision_mean": 53,
+      "coordination_mean": 50
+    },
+    "qwen": {
+      "function_type_distribution": {"acknowledgment": 1408, "verification": 566, "reasoning_guidance": 487, "information_provision": 39},
+      "est_total_agent_tokens": 125488,
+      "est_suppressed_tokens": 12672,
+      "est_token_savings_pct": 10.1,
+      "est_tokens_saved_per_task": 25.3,
+      "note": "56.3% of messages pruned yields only 10.1% token savings because ack messages are much shorter (mean 9 tokens) than substantive messages (mean 95-117 tokens)."
+    },
+    "llama": {
+      "function_type_distribution": {"acknowledgment": 1793, "verification": 1390, "reasoning_guidance": 961, "information_provision": 598, "coordination": 118},
+      "est_total_agent_tokens": 389302,
+      "est_suppressed_tokens": 107221,
+      "est_token_savings_pct": 27.5,
+      "est_tokens_saved_per_task": 110.3,
+      "note": "Llama acks are more verbose (mean 59.8 tokens vs Qwen mean 9.0), yielding higher token savings despite lower suppression rate."
+    }
+  },
+  "cost_analysis_framework": {
+    "open_weight_local": {
+      "scenario": "Open-weight models on local GPUs (this paper's setting)",
+      "primary_savings": "GPU-seconds and latency from eliminated inference calls",
+      "qwen_inference_calls_saved_pct": 56.3,
+      "llama_inference_calls_saved_pct": 36.9,
+      "oracle_cost": "GPT-4o oracle used for validation only; deployment uses heuristic detector (F1=0.845)"
+    },
+    "api_models": {
+      "scenario": "API-served models (e.g., GPT-4o, Claude)",
+      "primary_savings": "Each suppressed message = one fewer API call (includes per-call overhead, not just tokens)",
+      "note": "API pricing has per-call minimums and context window costs; savings exceed pure token reduction"
+    },
+    "oracle_vs_heuristic": {
+      "oracle_cost_per_1k_tasks": "$13.90-$14.42 (GPT-4o)",
+      "heuristic_cost": "Zero (rule-based, no API call)",
+      "heuristic_f1": 0.845,
+      "recommendation": "Use heuristic in deployment; oracle for validation/calibration only"
+    }
+  },
+  "summary": {
+    "key_findings": [
+      "Primary value: inference call reduction — Qwen 56.3%, Llama 36.9% fewer LLM calls",
+      "Estimated agent token savings are modest: Qwen ~10.1%, Llama ~27.5% (ack messages are short)",
+      "Ack pruning's value is reducing inference calls and latency, not token savings",
+      "Llama acks are more verbose (mean 59.8 tokens) than Qwen acks (mean 9.0), explaining higher token savings despite lower suppression rate",
+      "Oracle overhead: $13.90-$14.42 per 1K tasks; deployable heuristic (F1=0.845) has zero API cost"
+    ]
+  }
+}

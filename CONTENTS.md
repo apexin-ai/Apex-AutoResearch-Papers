@@ -1,6 +1,6 @@
 # Project catalogue
 
-The 34 selected research projects are listed below. Search this page for a project name or title, then open its README for all seven material categories.
+The 36 selected research projects are listed below. Search this page for a project name or title, then open its README for all seven material categories.
 
 | Project | Paper title | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---|---:|---:|---:|---:|
@@ -9,6 +9,7 @@ The 34 selected research projects are listed below. Search this page for a proje
 | [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 253 | 873 | 880 | 97,735 |
 | [clkc_mech_interp](paper-assets/clkc_mech_interp/README.md) | English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries | [PDF](paper-assets/clkc_mech_interp/01-manuscript/paper.pdf) | 189 | 584 | 689 | 76,491 |
 | [contamcal-irt-calibration](paper-assets/contamcal-irt-calibration/README.md) | Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families | [PDF](paper-assets/contamcal-irt-calibration/01-manuscript/paper.pdf) | 958 | 2,747 | 5,003 | 356,899 |
+| [comm_gate_mas](paper-assets/comm_gate_mas/README.md) | When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems | [PDF](paper-assets/comm_gate_mas/01-manuscript/paper.pdf) | 725 | 1,308 | 148 | 148 |
 | [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) | 339 | 940 | 1,573 | 119,612 |
 | [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) | 276 | 513 | 855 | 116,437 |
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) | 495 | 1,236 | 2,831 | 209,966 |
@@ -35,6 +36,7 @@ The 34 selected research projects are listed below. Search this page for a proje
 | [simgate-modular-routing](paper-assets/simgate-modular-routing/README.md) | Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld | [PDF](paper-assets/simgate-modular-routing/01-manuscript/paper.pdf) | 336 | 806 | 2,025 | 177,700 |
 | [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning | [PDF](paper-assets/solver-trace-ablation/01-manuscript/paper.pdf) | 579 | 1,578 | 3,262 | 227,092 |
 | [spectral_collapse_ews](paper-assets/spectral_collapse_ews/README.md) | Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff | [PDF](paper-assets/spectral_collapse_ews/01-manuscript/paper.pdf) | 191 | 270 | 925 | 64,614 |
+| [spectral_optim_vision_geometry](paper-assets/spectral_optim_vision_geometry/README.md) | Spectral Optimization Across Vision Architecture Families: A Controlled Empirical Study | [PDF](paper-assets/spectral_optim_vision_geometry/01-manuscript/paper.pdf) | 264 | 583 | 0 | 0 |
 | [struct_self_consist_ie](paper-assets/struct_self_consist_ie/README.md) | When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap | [PDF](paper-assets/struct_self_consist_ie/01-manuscript/paper.pdf) | 1,112 | 2,786 | 3,033 | 300,755 |
 | [symb_invariant_consensus](paper-assets/symb_invariant_consensus/README.md) | Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction | [PDF](paper-assets/symb_invariant_consensus/01-manuscript/paper.pdf) | 625 | 1,219 | 2,623 | 260,972 |
 | [vla-ssd](paper-assets/vla-ssd/README.md) | Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis | [PDF](paper-assets/vla-ssd/01-manuscript/paper.pdf) | 348 | 1,167 | 1,850 | 182,262 |

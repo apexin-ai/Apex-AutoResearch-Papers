@@ -1,0 +1,258 @@
+=== ConvNeXt-T TinyIN AdamW lr sweep ===
+Start: Wed Apr 29 01:17:30 CST 2026
+--- lr=1e-4 ---
+Tiny-ImageNet already exists at /root/autodl-tmp/data/tiny-imagenet-200
+model=convnext_tiny (convnext_tiny), params=28.0M, optimizer=adamw, device=cuda:0, batches/epoch=781
+  batch 50/781, loss=5.2317, elapsed=16.9s
+  batch 100/781, loss=5.0737, elapsed=30.0s
+  batch 150/781, loss=5.0537, elapsed=43.0s
+  batch 200/781, loss=5.0173, elapsed=56.0s
+  batch 250/781, loss=5.1098, elapsed=69.1s
+  batch 300/781, loss=5.0880, elapsed=82.3s
+  batch 350/781, loss=5.0388, elapsed=95.7s
+  batch 400/781, loss=4.9070, elapsed=108.9s
+  batch 450/781, loss=4.6778, elapsed=121.9s
+  batch 500/781, loss=4.7292, elapsed=135.1s
+  batch 550/781, loss=4.8163, elapsed=148.1s
+  batch 600/781, loss=4.8640, elapsed=161.5s
+  batch 650/781, loss=4.5693, elapsed=174.8s
+  batch 700/781, loss=4.6650, elapsed=188.2s
+  batch 750/781, loss=4.7306, elapsed=201.6s
+epoch=1, train_loss=4.9262, val_acc=6.28%, time=215.5s
+  batch 50/781, loss=4.5063, elapsed=13.7s
+  batch 100/781, loss=4.7306, elapsed=26.9s
+  batch 150/781, loss=4.4841, elapsed=40.2s
+  batch 200/781, loss=4.4973, elapsed=53.4s
+  batch 250/781, loss=4.4930, elapsed=66.7s
+  batch 300/781, loss=4.4662, elapsed=79.9s
+  batch 350/781, loss=4.4627, elapsed=92.9s
+  batch 400/781, loss=4.3259, elapsed=106.1s
+  batch 450/781, loss=4.4047, elapsed=119.2s
+  batch 500/781, loss=4.4610, elapsed=132.4s
+  batch 550/781, loss=4.6088, elapsed=145.6s
+  batch 600/781, loss=4.4184, elapsed=158.9s
+  batch 650/781, loss=4.2784, elapsed=172.1s
+  batch 700/781, loss=4.2993, elapsed=185.2s
+  batch 750/781, loss=4.2613, elapsed=198.5s
+epoch=2, train_loss=4.4884, val_acc=10.30%, time=211.3s
+  batch 50/781, loss=4.2851, elapsed=13.4s
+  batch 100/781, loss=4.3803, elapsed=26.5s
+  batch 150/781, loss=4.1759, elapsed=39.7s
+  batch 200/781, loss=4.1269, elapsed=53.0s
+  batch 250/781, loss=4.0348, elapsed=66.2s
+  batch 300/781, loss=4.1994, elapsed=79.4s
+  batch 350/781, loss=4.3432, elapsed=92.7s
+  batch 400/781, loss=4.0966, elapsed=106.0s
+  batch 450/781, loss=3.8027, elapsed=119.2s
+  batch 500/781, loss=4.3194, elapsed=132.5s
+  batch 550/781, loss=4.2209, elapsed=145.8s
+  batch 600/781, loss=3.9404, elapsed=159.0s
+  batch 650/781, loss=3.9781, elapsed=172.3s
+  batch 700/781, loss=4.2817, elapsed=185.6s
+  batch 750/781, loss=4.0466, elapsed=198.9s
+epoch=3, train_loss=4.1730, val_acc=14.26%, time=211.2s
+  batch 50/781, loss=4.0358, elapsed=13.6s
+  batch 100/781, loss=3.7596, elapsed=26.6s
+  batch 150/781, loss=4.0439, elapsed=39.6s
+  batch 200/781, loss=3.9666, elapsed=52.7s
+  batch 250/781, loss=4.0245, elapsed=65.5s
+  batch 300/781, loss=3.8897, elapsed=78.3s
+  batch 350/781, loss=4.1547, elapsed=91.3s
+  batch 400/781, loss=3.8830, elapsed=104.2s
+  batch 450/781, loss=3.9908, elapsed=117.3s
+  batch 500/781, loss=3.8008, elapsed=130.1s
+  batch 550/781, loss=3.8982, elapsed=142.8s
+  batch 600/781, loss=3.8088, elapsed=155.4s
+  batch 650/781, loss=3.6485, elapsed=168.0s
+  batch 700/781, loss=3.9348, elapsed=180.7s
+  batch 750/781, loss=3.8421, elapsed=193.7s
+epoch=4, train_loss=3.8935, val_acc=17.67%, time=206.5s
+  batch 50/781, loss=3.8542, elapsed=13.3s
+  batch 100/781, loss=3.7983, elapsed=26.2s
+  batch 150/781, loss=3.6702, elapsed=39.1s
+  batch 200/781, loss=3.8206, elapsed=52.0s
+  batch 250/781, loss=3.7577, elapsed=64.9s
+  batch 300/781, loss=3.9843, elapsed=77.9s
+  batch 350/781, loss=3.7718, elapsed=90.7s
+  batch 400/781, loss=3.7062, elapsed=103.5s
+  batch 450/781, loss=3.5539, elapsed=116.4s
+  batch 500/781, loss=3.8852, elapsed=129.4s
+  batch 550/781, loss=3.8832, elapsed=142.3s
+  batch 600/781, loss=3.7064, elapsed=155.2s
+  batch 650/781, loss=3.7357, elapsed=168.2s
+  batch 700/781, loss=3.9107, elapsed=181.2s
+  batch 750/781, loss=3.7093, elapsed=194.3s
+epoch=5, train_loss=3.7296, val_acc=18.98%, time=206.6s
+TRAINING_COMPLETE val_acc=18.98%
+--- lr=1e-4 done ---
+--- lr=3e-4 ---
+Tiny-ImageNet already exists at /root/autodl-tmp/data/tiny-imagenet-200
+model=convnext_tiny (convnext_tiny), params=28.0M, optimizer=adamw, device=cuda:0, batches/epoch=781
+  batch 50/781, loss=5.2827, elapsed=16.5s
+  batch 100/781, loss=5.0884, elapsed=29.6s
+  batch 150/781, loss=5.0805, elapsed=42.7s
+  batch 200/781, loss=4.9288, elapsed=55.9s
+  batch 250/781, loss=5.1532, elapsed=69.2s
+  batch 300/781, loss=4.9628, elapsed=82.4s
+  batch 350/781, loss=4.8831, elapsed=95.6s
+  batch 400/781, loss=4.7574, elapsed=108.9s
+  batch 450/781, loss=4.4645, elapsed=121.8s
+  batch 500/781, loss=4.4595, elapsed=135.1s
+  batch 550/781, loss=4.6000, elapsed=148.3s
+  batch 600/781, loss=4.6431, elapsed=161.5s
+  batch 650/781, loss=4.3362, elapsed=174.7s
+  batch 700/781, loss=4.4420, elapsed=187.9s
+  batch 750/781, loss=4.4863, elapsed=201.1s
+epoch=1, train_loss=4.7941, val_acc=9.13%, time=215.3s
+  batch 50/781, loss=4.2318, elapsed=13.5s
+  batch 100/781, loss=4.4669, elapsed=26.7s
+  batch 150/781, loss=4.2019, elapsed=39.9s
+  batch 200/781, loss=4.2457, elapsed=53.1s
+  batch 250/781, loss=4.2677, elapsed=66.3s
+  batch 300/781, loss=4.1478, elapsed=79.1s
+  batch 350/781, loss=4.0801, elapsed=92.0s
+  batch 400/781, loss=3.9479, elapsed=104.8s
+  batch 450/781, loss=4.1296, elapsed=117.8s
+  batch 500/781, loss=4.0381, elapsed=130.8s
+  batch 550/781, loss=4.2742, elapsed=143.7s
+  batch 600/781, loss=4.0267, elapsed=156.7s
+  batch 650/781, loss=3.9786, elapsed=170.0s
+  batch 700/781, loss=4.0324, elapsed=183.3s
+  batch 750/781, loss=3.8444, elapsed=196.7s
+epoch=2, train_loss=4.1817, val_acc=15.17%, time=209.9s
+  batch 50/781, loss=3.9346, elapsed=13.0s
+  batch 100/781, loss=3.9490, elapsed=25.6s
+  batch 150/781, loss=3.6234, elapsed=38.2s
+  batch 200/781, loss=3.6741, elapsed=51.0s
+  batch 250/781, loss=3.6078, elapsed=63.7s
+  batch 300/781, loss=3.6344, elapsed=76.5s
+  batch 350/781, loss=3.9701, elapsed=89.3s
+  batch 400/781, loss=3.4959, elapsed=102.3s
+  batch 450/781, loss=3.3055, elapsed=115.2s
+  batch 500/781, loss=3.7013, elapsed=128.2s
+  batch 550/781, loss=3.7620, elapsed=141.1s
+  batch 600/781, loss=3.3427, elapsed=154.1s
+  batch 650/781, loss=3.5089, elapsed=167.0s
+  batch 700/781, loss=3.7940, elapsed=179.9s
+  batch 750/781, loss=3.5074, elapsed=192.7s
+epoch=3, train_loss=3.6471, val_acc=21.98%, time=205.5s
+  batch 50/781, loss=3.4624, elapsed=13.1s
+  batch 100/781, loss=3.2394, elapsed=25.8s
+  batch 150/781, loss=3.3692, elapsed=38.3s
+  batch 200/781, loss=3.3523, elapsed=51.1s
+  batch 250/781, loss=3.5184, elapsed=64.0s
+  batch 300/781, loss=3.2326, elapsed=77.0s
+  batch 350/781, loss=3.5186, elapsed=89.9s
+  batch 400/781, loss=3.1911, elapsed=103.0s
+  batch 450/781, loss=3.4669, elapsed=116.0s
+  batch 500/781, loss=3.2543, elapsed=129.0s
+  batch 550/781, loss=3.1782, elapsed=142.0s
+  batch 600/781, loss=3.2962, elapsed=155.1s
+  batch 650/781, loss=2.9296, elapsed=168.2s
+  batch 700/781, loss=3.3369, elapsed=181.3s
+  batch 750/781, loss=3.1950, elapsed=194.3s
+epoch=4, train_loss=3.2943, val_acc=27.08%, time=207.3s
+  batch 50/781, loss=3.1895, elapsed=13.4s
+  batch 100/781, loss=3.0608, elapsed=26.3s
+  batch 150/781, loss=3.0951, elapsed=39.2s
+  batch 200/781, loss=3.1354, elapsed=52.1s
+  batch 250/781, loss=3.0822, elapsed=65.1s
+  batch 300/781, loss=3.3665, elapsed=78.0s
+  batch 350/781, loss=3.1047, elapsed=91.1s
+  batch 400/781, loss=3.0755, elapsed=104.0s
+  batch 450/781, loss=2.9438, elapsed=117.0s
+  batch 500/781, loss=3.3058, elapsed=129.9s
+  batch 550/781, loss=3.2281, elapsed=142.8s
+  batch 600/781, loss=3.1179, elapsed=155.7s
+  batch 650/781, loss=3.1698, elapsed=168.7s
+  batch 700/781, loss=3.3267, elapsed=181.7s
+  batch 750/781, loss=3.1113, elapsed=194.7s
+epoch=5, train_loss=3.0947, val_acc=28.65%, time=207.7s
+TRAINING_COMPLETE val_acc=28.65%
+--- lr=3e-4 done ---
+--- lr=1e-3 ---
+Tiny-ImageNet already exists at /root/autodl-tmp/data/tiny-imagenet-200
+model=convnext_tiny (convnext_tiny), params=28.0M, optimizer=adamw, device=cuda:0, batches/epoch=781
+  batch 50/781, loss=5.3614, elapsed=16.5s
+  batch 100/781, loss=5.0434, elapsed=29.5s
+  batch 150/781, loss=4.9583, elapsed=42.6s
+  batch 200/781, loss=4.9005, elapsed=55.8s
+  batch 250/781, loss=5.0294, elapsed=68.9s
+  batch 300/781, loss=4.9614, elapsed=81.9s
+  batch 350/781, loss=4.7671, elapsed=95.2s
+  batch 400/781, loss=4.6452, elapsed=108.5s
+  batch 450/781, loss=4.4793, elapsed=121.7s
+  batch 500/781, loss=4.4519, elapsed=134.9s
+  batch 550/781, loss=4.5006, elapsed=148.1s
+  batch 600/781, loss=4.5716, elapsed=161.3s
+  batch 650/781, loss=4.3297, elapsed=174.6s
+  batch 700/781, loss=4.3567, elapsed=187.9s
+  batch 750/781, loss=4.3933, elapsed=201.2s
+epoch=1, train_loss=4.7707, val_acc=10.09%, time=215.4s
+  batch 50/781, loss=4.0996, elapsed=13.6s
+  batch 100/781, loss=4.2349, elapsed=26.7s
+  batch 150/781, loss=3.9954, elapsed=39.8s
+  batch 200/781, loss=4.1849, elapsed=53.0s
+  batch 250/781, loss=4.0789, elapsed=66.0s
+  batch 300/781, loss=3.9470, elapsed=79.1s
+  batch 350/781, loss=4.0024, elapsed=92.3s
+  batch 400/781, loss=3.8461, elapsed=105.6s
+  batch 450/781, loss=3.8930, elapsed=118.9s
+  batch 500/781, loss=3.8879, elapsed=132.0s
+  batch 550/781, loss=4.0243, elapsed=145.0s
+  batch 600/781, loss=3.8662, elapsed=158.2s
+  batch 650/781, loss=3.8444, elapsed=171.3s
+  batch 700/781, loss=3.8146, elapsed=184.3s
+  batch 750/781, loss=3.6533, elapsed=197.6s
+epoch=2, train_loss=4.0234, val_acc=18.02%, time=210.4s
+  batch 50/781, loss=3.8116, elapsed=13.4s
+  batch 100/781, loss=3.6473, elapsed=26.5s
+  batch 150/781, loss=3.4804, elapsed=39.7s
+  batch 200/781, loss=3.5617, elapsed=53.0s
+  batch 250/781, loss=3.5053, elapsed=66.2s
+  batch 300/781, loss=3.4768, elapsed=79.5s
+  batch 350/781, loss=3.8447, elapsed=92.7s
+  batch 400/781, loss=3.3688, elapsed=105.9s
+  batch 450/781, loss=3.2287, elapsed=119.3s
+  batch 500/781, loss=3.6036, elapsed=132.5s
+  batch 550/781, loss=3.6289, elapsed=145.6s
+  batch 600/781, loss=3.3396, elapsed=158.7s
+  batch 650/781, loss=3.3480, elapsed=171.8s
+  batch 700/781, loss=3.7025, elapsed=185.0s
+  batch 750/781, loss=3.3410, elapsed=198.2s
+epoch=3, train_loss=3.5113, val_acc=23.65%, time=210.7s
+  batch 50/781, loss=3.2526, elapsed=13.7s
+  batch 100/781, loss=2.9627, elapsed=26.8s
+  batch 150/781, loss=3.3201, elapsed=40.1s
+  batch 200/781, loss=3.1887, elapsed=53.2s
+  batch 250/781, loss=3.3175, elapsed=66.3s
+  batch 300/781, loss=3.2317, elapsed=79.4s
+  batch 350/781, loss=3.1680, elapsed=92.6s
+  batch 400/781, loss=3.0844, elapsed=105.7s
+  batch 450/781, loss=3.2549, elapsed=118.9s
+  batch 500/781, loss=3.2757, elapsed=132.1s
+  batch 550/781, loss=2.9543, elapsed=145.4s
+  batch 600/781, loss=3.1030, elapsed=158.6s
+  batch 650/781, loss=2.7456, elapsed=171.8s
+  batch 700/781, loss=3.1571, elapsed=184.9s
+  batch 750/781, loss=2.9771, elapsed=198.1s
+epoch=4, train_loss=3.1302, val_acc=29.58%, time=210.9s
+  batch 50/781, loss=2.9678, elapsed=13.9s
+  batch 100/781, loss=2.8217, elapsed=27.1s
+  batch 150/781, loss=2.9527, elapsed=40.3s
+  batch 200/781, loss=2.9430, elapsed=53.6s
+  batch 250/781, loss=2.7057, elapsed=66.9s
+  batch 300/781, loss=3.1861, elapsed=80.4s
+  batch 350/781, loss=2.9137, elapsed=93.9s
+  batch 400/781, loss=2.9042, elapsed=107.4s
+  batch 450/781, loss=2.6711, elapsed=120.9s
+  batch 500/781, loss=2.9428, elapsed=134.2s
+  batch 550/781, loss=2.9656, elapsed=147.6s
+  batch 600/781, loss=3.0402, elapsed=160.9s
+  batch 650/781, loss=2.8986, elapsed=174.3s
+  batch 700/781, loss=3.1593, elapsed=187.8s
+  batch 750/781, loss=2.9544, elapsed=201.3s
+epoch=5, train_loss=2.8786, val_acc=31.46%, time=214.4s
+TRAINING_COMPLETE val_acc=31.46%
+--- lr=1e-3 done ---
+End: Wed Apr 29 02:10:33 CST 2026

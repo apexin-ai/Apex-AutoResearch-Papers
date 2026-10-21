@@ -1,0 +1,20 @@
+\section*{Responsible AI Statement}
+\label{app:rai}
+
+\paragraph{Data biases.}
+GSM8K consists of English-language grade-school math problems, reflecting arithmetic reasoning in a single language and cultural context. StrategyQA draws on English Wikipedia for commonsense facts, with potential Western-centric bias in question framing. ARC-Challenge uses multiple-choice science questions from U.S.\ standardized tests. Our communication analysis inherits these biases: functional patterns observed may not generalize to non-English, non-Western, or non-STEM domains.
+
+\paragraph{Intended use.}
+This dataset and protocol are intended for research analysis of LLM inter-agent communication patterns. They are not designed for direct production deployment without empirical screening on the target backbone and domain ($N \geq 200$, as recommended in Section~\ref{sec:discussion}).
+
+\paragraph{Misuse scenarios.}
+Our finding that acknowledgment injection harms Llama accuracy ($\bar{\Delta} = -3.88$\,pp, 5 seeds) identifies a potential adversarial vector: selective injection or suppression of structurally minimal messages in deployed multi-agent pipelines could degrade performance with minimal detectable content. We recommend that deployed systems monitor structural communication patterns (message length, position, and repetition rate) as an integrity signal, not just propositional content.
+
+\paragraph{Energy and carbon footprint.}
+Total compute is approximately 120 GPU-hours on NVIDIA RTX PRO 6000 GPUs (96\,GB each). No large-scale model training was performed; all experiments use inference on existing open-weight models ($\leq$72B parameters).
+
+\paragraph{Representativeness.}
+Results span two backbone families (Qwen, Llama) and three reasoning domains. Gemma is included as an exploratory third backbone. This coverage does not represent all LLM communication patterns; proprietary models, multilingual settings, and tasks requiring extended multi-turn planning remain untested.
+
+\paragraph{Personal and sensitive information.}
+Not applicable. All analyzed text is LLM-generated. No human-authored content, personally identifiable information, or sensitive data appear in the dataset. Human annotation involved only classification of LLM-generated messages into predefined functional categories.

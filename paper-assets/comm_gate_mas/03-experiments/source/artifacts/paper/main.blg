@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--I didn't find a database entry for "qian_scaling_2025"
+Warning--I didn't find a database entry for "shen_eib_2025"
+Warning--I didn't find a database entry for "li_arg_designer_2026"
+Warning--I didn't find a database entry for "lu_dytopo_2026"
+Warning--I didn't find a database entry for "fan_imad_2026"
+Warning--I didn't find a database entry for "choi_debate_or_vote_2025"
+Warning--I didn't find a database entry for "wu_can_agents_debate_2025"
+Warning--I didn't find a database entry for "yi_latent_agents_2026"
+Warning--I didn't find a database entry for "braess_1968"
+Warning--empty booktitle in stolcke_dialogue_acts_2000
+Warning--can't use both volume and number fields in stolcke_dialogue_acts_2000
+You've used 69 entries,
+            2773 wiz_defined-function locations,
+            930 strings with 20769 characters,
+and the built_in function-call counts, 43696 in all, are:
+= -- 3379
+> -- 4118
+< -- 29
++ -- 1389
+- -- 1312
+* -- 3897
+:= -- 6978
+add.period$ -- 222
+call.type$ -- 69
+change.case$ -- 642
+chr.to.int$ -- 61
+cite$ -- 140
+duplicate$ -- 1614
+empty$ -- 2712
+format.name$ -- 1393
+if$ -- 8867
+int.to.chr$ -- 9
+int.to.str$ -- 1
+missing$ -- 72
+newline$ -- 366
+num.names$ -- 278
+pop$ -- 1421
+preamble$ -- 1
+purify$ -- 575
+quote$ -- 0
+skip$ -- 1387
+stack$ -- 0
+substring$ -- 668
+swap$ -- 212
+text.length$ -- 10
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 739
+warning$ -- 2
+while$ -- 251
+width$ -- 0
+write$ -- 882
+(There were 11 warnings)

@@ -1,0 +1,115 @@
+{
+  "rho_table": [
+    {
+      "arch": "R50-BN",
+      "optimizer": "Muon",
+      "rho": 2.100130341924526,
+      "delta_acc": 8.89,
+      "spec_acc": 77.02,
+      "base_acc": 68.13,
+      "eta": 4.2330705968722615
+    },
+    {
+      "arch": "R50-BN",
+      "optimizer": "SOAP",
+      "rho": 3.919143949822254,
+      "delta_acc": 9.340000000000003,
+      "spec_acc": 77.47,
+      "base_acc": 68.13,
+      "eta": 2.3831734990044455
+    },
+    {
+      "arch": "R50-BN",
+      "optimizer": "Shampoo",
+      "rho": 3.4355020340182185,
+      "delta_acc": 10.030000000000001,
+      "spec_acc": 78.16,
+      "base_acc": 68.13,
+      "eta": 2.919515081255461
+    },
+    {
+      "arch": "R50-LN",
+      "optimizer": "Muon",
+      "rho": 6.944567662705519,
+      "delta_acc": 26.370000000000005,
+      "spec_acc": 78.31,
+      "base_acc": 51.94,
+      "eta": 3.7972126244251427
+    },
+    {
+      "arch": "ConvNeXt-T",
+      "optimizer": "Muon",
+      "rho": 4.533489230657118,
+      "delta_acc": 11.780000000000001,
+      "spec_acc": 78.49,
+      "base_acc": 66.71,
+      "eta": 2.5984400537094734
+    },
+    {
+      "arch": "ConvNeXt-T",
+      "optimizer": "SOAP",
+      "rho": 7.79138727090369,
+      "delta_acc": 8.460000000000008,
+      "spec_acc": 75.17,
+      "base_acc": 66.71,
+      "eta": 1.085814336503744
+    },
+    {
+      "arch": "ConvNeXt-T",
+      "optimizer": "Shampoo",
+      "rho": 8.4905633328471,
+      "delta_acc": 4.670000000000002,
+      "spec_acc": 71.38,
+      "base_acc": 66.71,
+      "eta": 0.55002239744604
+    },
+    {
+      "arch": "DeiT-S",
+      "optimizer": "Muon",
+      "rho": 4.538440945881935,
+      "delta_acc": 45.05,
+      "spec_acc": 72.08,
+      "base_acc": 27.03,
+      "eta": 9.92631622559223
+    },
+    {
+      "arch": "DeiT-S",
+      "optimizer": "SOAP",
+      "rho": 5.3080453687805225,
+      "delta_acc": 28.6,
+      "spec_acc": 55.63,
+      "base_acc": 27.03,
+      "eta": 5.388047390893082
+    },
+    {
+      "arch": "DeiT-S",
+      "optimizer": "Shampoo",
+      "rho": 6.62852560507937,
+      "delta_acc": 27.939999999999998,
+      "spec_acc": 54.97,
+      "base_acc": 27.03,
+      "eta": 4.215115346101984
+    }
+  ],
+  "within_arch_correlations": {
+    "ConvNeXt-T": {
+      "kendall_tau": -1.0,
+      "p_value": 0.3333333333333333
+    },
+    "DeiT-S": {
+      "kendall_tau": -1.0,
+      "p_value": 0.3333333333333333
+    },
+    "R50-BN": {
+      "kendall_tau": 0.33333333333333337,
+      "p_value": 1.0
+    }
+  },
+  "diagnostic_summary": {
+    "all_rho_positive": true,
+    "min_rho": 2.100130341924526,
+    "max_rho": 8.4905633328471,
+    "within_arch_negative_correlation": true,
+    "muon_highest_efficiency": true
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "project": "spectral_optim_vision_geometry",
+  "code_count": 264,
+  "data_count": 583,
+  "env_count": 1,
+  "tex_count": 35,
+  "bib_count": 2,
+  "review_count": 0,
+  "validation_count": 0,
+  "chat_count": 0,
+  "worker_count": 0,
+  "trace_count": 0,
+  "trace_bytes": 0,
+  "maintenance_count": 3,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "419358f00bedf96e25767e5c5c01a3b0dc8642ba64699366ebc0f3033210536a",
+  "title": "Spectral Optimization Across Vision Architecture Families: A Controlled Empirical Study",
+  "pages": 29,
+  "status_marker": "Anonymous Author(s)",
+  "version_count": 37,
+  "version_paths": [
+    "docs/paper/main.pdf",
+    "paper/figures/fig1_gap_heatmap.pdf",
+    "paper/figures/fig1_spectral_gap_heatmap.pdf",
+    "paper/figures/fig1_teaser.pdf",
+    "paper/figures/fig2_gap_evolution.pdf",
+    "paper/figures/fig3_sign_reversal.pdf",
+    "paper/figures/fig3_stability.pdf",
+    "paper/figures/fig4_enhanced_recipe.pdf",
+    "paper/figures/fig4_norm_recipe.pdf",
+    "paper/figures/fig5_sgd_failure.pdf",
+    "paper/figures/fig6_stability_ratio.pdf",
+    "paper/main.pdf",
+    "paper/v8_spectral_optim_vision.pdf",
+    "paper/v9_spectral_optim_vision.pdf",
+    "paper/figures/fig1_gap_heatmap.pdf",
+    "paper/figures/fig1_spectral_gap_heatmap.pdf",
+    "paper/figures/fig2_gap_evolution.pdf",
+    "paper/figures/fig3_sign_reversal.pdf",
+    "paper/figures/fig3_stability.pdf",
+    "paper/figures/fig4_enhanced_recipe.pdf",
+    "paper/figures/fig5_sgd_failure.pdf",
+    "paper/figures/fig4_norm_recipe.pdf",
+    "paper/figures/fig6_stability_ratio.pdf",
+    "paper/figures/fig1_teaser.pdf",
+    "paper/figures/fig3_spectral_divergence.pdf",
+    "paper/figures/hero_figure_v2.pdf",
+    "paper/figures/hero_figure_v3.pdf",
+    "paper/figures/hero_figure_v4.pdf",
+    "paper/figures/hero_figure_v5.pdf",
+    "paper/figures/hero_figure_v6.pdf",
+    "paper/figures/deit_attention_spectral.pdf",
+    "paper/figures/deit_perlayer_sr_ratio.pdf",
+    "paper/v8_spectral_optim_vision.pdf",
+    "paper/v9_spectral_optim_vision.pdf",
+    "paper/spectral_optim_v14_draft.pdf",
+    "paper/spectral_optim_v14.pdf",
+    "paper/main.pdf"
+  ],
+  "archive_rel": "locally assembled from listed NeurIPS backup objects",
+  "archive_note": "Project-root files from the listed backup objects were assembled and sanitized; see source-objects.json for omissions.",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "neurips2026-backups",
+    "source_keys": [
+      "spectral_optim_vision_geometry/spectral_backup_westd-31809.tar.gz",
+      "spectral_optim_vision_geometry/spectral_code_westd-42515.tar.gz",
+      "spectral_optim_vision_geometry/spectral_checkpoints_westd-42515.tar"
+    ],
+    "derived_archive_sha256": "5f7c6095a3b61851b475e1c4800526984ac1b416dc9ef4742bf90aa2c5e24187",
+    "selected_pdf": "spectral_optim_vision_geometry.pdf"
+  },
+  "academic_record": {
+    "date": "2026-10-19",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "35 source files; 37 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "06-maintenance/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Not found",
+      "evidence": "0 conversations; 0 worker logs/results; 0 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "04-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "264 code/configuration files; 1 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "02-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "583 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "03-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Not found",
+      "evidence": "0 internal review records; 0 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "05-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "3 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "06-maintenance/"
+    }
+  ]
+}

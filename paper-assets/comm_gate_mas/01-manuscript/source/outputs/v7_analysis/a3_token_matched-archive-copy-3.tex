@@ -1,0 +1,65 @@
+\subsection{Token-Count-Matched Random Pruning}
+\label{app:token_matched}
+
+The message-count-matched random baseline in Table~\ref{tab:main} prunes the same
+\emph{number} of messages as ack-only but not the same volume of content.
+Because acknowledgments are short (Qwen: $\sim$12 est.\ tokens vs.\ $\sim$64 overall mean;
+Llama: $\sim$80 vs.\ $\sim$110), count-matched random pruning removes substantially more
+tokens. We test whether this token asymmetry explains the accuracy gap by constraining
+random pruning to match ack-only's \emph{token} budget rather than its message count.
+
+\paragraph{Methodology.} For each backbone, we compute the total estimated tokens
+in ack-labeled messages. We then perform greedy-knapsack random sampling (10~seeds):
+messages are shuffled and greedily added to the prune set until the ack token budget
+is exhausted. Accuracy risk is measured via offline neutralization (fraction of correct
+tasks whose final answer changes when pruned messages are removed from context).
+
+\begin{table}[h]
+\centering
+\caption{Offline accuracy risk (\%) under three pruning regimes.
+\emph{Count-matched} matches ack message count (removes $k{\times}$ more tokens);
+\emph{token-matched} constrains to the same token budget.
+Risk = fraction of correct tasks whose final answer changes upon message removal
+(10~seeds, mean $\pm$ SD for random).}
+\label{app:tab:token_matched}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Backbone} & \textbf{Ack-only} & \textbf{Count-matched} & \textbf{Token-matched} & \textbf{Token ratio} \\
+ & risk (\%) & risk (\%) & risk (\%) & (count/ack) \\
+\midrule
+Qwen & 2.6 & 1.2$\pm$0.3 & 0.2$\pm$0.2 & 5.51$\times$ \\
+Llama & 1.8 & 1.2$\pm$0.6 & 0.8$\pm$0.6 & 1.38$\times$ \\
+Gemma & 0.0 & 0.0$\pm$0.0 & 0.0$\pm$0.0 & 8.14$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Results.}
+For Qwen, count-matched random removes 5.51$\times$
+more tokens than ack-only (9\% of total context).
+When constrained to the same token budget (8235 est.\ tokens),
+random pruning touches only $\sim$138$ messages
+(vs.\ 719 for ack-only) and achieves
+0.2\% risk---lower than ack-only's
+2.6\%.
+This occurs because ack-only targets a specific message class that occasionally
+contains answer-relevant content (2.6\% of ack-suppressed tasks change their final answer),
+whereas distributing the same small token budget randomly across many partial messages
+is unlikely to hit any single answer-critical message.
+For Llama, the gap narrows from 1.38$\times$ token
+overshoot to matched budgets, with token-matched random risk at
+0.8\%
+vs.\ ack-only's 1.8\%.
+
+\paragraph{Interpretation.}
+The offline token-matched analysis suggests that ack-only's safety advantage over
+count-matched random in the e2e experiments (Table~\ref{tab:main}: Qwen ack 92\%
+vs.\ random 87.3\%) is primarily driven by the $\sim$5$\times$ token asymmetry rather
+than by the semantic targeting of acknowledgments.
+However, this finding must be interpreted cautiously: (1)~offline risk simulation
+assumes message independence, while e2e pruning involves causal cascade effects;
+(2)~ack-only's value lies not in raw accuracy advantage over token-matched random,
+but in its \emph{interpretability}---it targets a semantically coherent message class
+with low information content, whereas random pruning at matched token budgets would
+arbitrarily truncate or skip substantive content in unpredictable ways.

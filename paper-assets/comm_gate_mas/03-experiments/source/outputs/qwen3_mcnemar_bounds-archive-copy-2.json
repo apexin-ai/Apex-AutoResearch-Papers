@@ -1,0 +1,50 @@
+{
+  "model": "Qwen3-8B",
+  "task": "GSM8K",
+  "n": 100,
+  "baseline_correct": 90,
+  "baseline_accuracy": 0.9,
+  "ack_only_correct": 76,
+  "ack_only_accuracy": 0.76,
+  "delta_pp": -14.0,
+  "suppression_rate": 0.664,
+  "mcnemar_analysis": {
+    "note": "Exact contingency table unknown (baseline per-task data on remote server). Bounds computed for all possible c values [0,10].",
+    "b_minus_c": 14,
+    "b_minus_c_is_fixed": true,
+    "chi2_range": [
+      4.9706,
+      12.0714
+    ],
+    "p_chi2_range": [
+      0.000512,
+      0.025782
+    ],
+    "p_exact_range": [
+      0.000122,
+      0.024307
+    ],
+    "significant_at_005": true,
+    "significant_at_001": "for c \u2264 7",
+    "worst_case_p": 0.025782,
+    "best_case_p": 0.000512
+  },
+  "contingency_bounds": {
+    "c_range": [
+      0,
+      10
+    ],
+    "c_0": {
+      "a": 76,
+      "b": 14,
+      "c": 0,
+      "d": 10
+    },
+    "c_10": {
+      "a": 66,
+      "b": 24,
+      "c": 10,
+      "d": 0
+    }
+  }
+}

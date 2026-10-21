@@ -1,0 +1,4082 @@
+{
+  "cab0279a5a00da0832436e9c45f868d187cca384fcdf8ed267a002646357100a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0000",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "e3e9791584254873bdd87b34ef606b8253d58fdcaf39930cbfa4dcd2e47ecb33": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0000",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "eb7ee026310c230cf2d2403209743a0168c0404903ac76c58f076310182b420c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0000",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "127a6db17ec2b3a6f6cf41d7debac5039a79fbf299ba4c028fddf4f8ced0c9dd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0000",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "0dd992626371eaea6d7197139202846a7d92c5de7f331d0fd24cfe397d334c4a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0000",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "0b0898b25ecf1593990166dcb1639fe032d323fbccbe0b2eed7e6ad2b5a07af0": {
+    "is_ack": true,
+    "confidence": 1.0,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0000",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "335268b90bfddfa3bd65c179b3281ec49987092f98393c8591e74f10175d27af": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0001",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "27c5aa58654f1c08ce350670eb0d52cdae671d1ff9af02f0a17220f0fbe4b917": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0001",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "c20acb303b6af3cdfe23599535b8de98e55a77914a21335f2ca9a804e084382d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0001",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "c1bb9b91b67933de9ea0c1bbe50300b6ef90661c074b74752c65f60acf60e6d1": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0001",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "f702e596488320a0a41b76d64f1339a274a7e893648e68dc02f69d5c7548df5b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0001",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "1a70a058d13fa69a543f62f3730d69addcdedd7f3b994980c17367bf0aea0dcb": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0001",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "7a84c00d6962fca1a9d25da39cf372e756b6e2c1cc275a89c0ac47ec488f709a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0002",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "9bbbdf754d20355a9c939adef89848c273bc2d4403a5de9f7fbdc7459ba5b1ea": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0002",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "8f1ebdb446390ee551f685f2a2c7ce1d6bef9dd5b11585b54ee8de90cc7961b9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0002",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "8f603f34eb3892e674c47ef51a5e57497e52bb4152e7566748e1c75a690b8cac": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0002",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "09830df31f7503d78c6fd1f40b962dbd18c771d013d7b1641fde529f6bc399d0": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0002",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "34ec381724e8f2f02dabfc92d21d825ce7c34bf8b9e0801f3834a9e88a37bd84": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0002",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "c7bd418c3bec59f3f37708b9aa94d9c8bcd38ffbcb06e5f0f2d27f6b5b639cfd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0003",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "d75ee45140e0180fdf4badfae8ed9b9d3d02bf5988f1bd6127196fb4d9dab483": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0003",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "52941c33ecd95ad89deea3a2f3191e83593d7006173d1b9d8d4afc2e6b69f936": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0003",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "8a901281c22572969113fb221ca014b528033d2ce892d0bf7420c8d8de67b0b5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0003",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "16a396be7426b4ae8519354cabaa821bb4ed69352962d76a94ca70ea155f1218": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0003",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "417cf6dab158f75fe55db4803de66f983ef8e93d3106dd05b440713dc2408a83": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0003",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "2dd300c174f80b1b01c228ec412c5a26330e5482b90b9623f1716881c9195eda": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0004",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "e6575a339639f5937cd117b4adb4328c03446a5c99cfb0c48721c86ec8e9a6ea": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0004",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "e6e55cacdafd04cc02e49e93cbd52adc35b83b7ce016414dbe94e7591aae418f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0004",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "27537e724816ebf48b2f29975c1bd71b11a5765a60d0c40e1819c5755595899b": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0004",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "21a824f34a8b921c737727cc26d1e49d2403a5a0fea8542e1aa49c68ef7cd118": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0004",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "8e9951f2855ed3453d328a9b994d47e69374fb1589ad1a08090919155ea081b6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0004",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "7abf2db58788a16062ceee87d90ec861f173a2b6a989a58a4d8332aa2b09699d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0005",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "692288d86613a666cf4068026a4601248762b8dc13ade9f165ee18feb4e7d193": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0005",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "391c5788490f0b6df9102e8253ed06efc7c7e015af44e31a8fa03bdc6d6e1e66": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0005",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "38b025f85f750467ead9b649ac763616113930c299ea2118946aa4111323ecf7": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0005",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7384652a29ffffed6a29dc8e4b12bcce7d752959d09825edb008f67f2d997200": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0005",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "f10d09cd7423a879a5ab21fc9616ab6411413c36b74247843f9daf4863273dbc": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0005",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "8d043a44bad23d6954c1a9ea97fe073ee9007e8a80c682ac06a1acea95243fb9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0006",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "f166b675f454970d2144afa0ec151e993b6bcdda29d8e17a325e407f24daf9f2": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0006",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "a47cd82c3e3d08f8647353e94ea3eb73f068f38b5f2c7bc64730a8bcd3106ae5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0006",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "09b8a52343429f69d047362b27c5358b3620dd7e5e82cf6eefdb28b0337a3a66": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0006",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "0dd0eedbe153e16cd2368531368f156bc50b0a7df45d63daf5e85049cde55b92": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0006",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "bf8cd09c2d2a3d136d31a14624e9b825471c7a34cfda949dce58b7033771ce90": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0006",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "a1364253213d5b6286ef5f10fc3489bb9cdc85e057d10a3507c7ed3375779adf": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0007",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "7c920387f03807e227452a900e3c4bea51c29f5e5164fe4c333e23e7e92a5d41": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0007",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "dfaa882bf74f506ff5e9327af1dbfb93ded099f04bbb9d2b44c6ea65265e6037": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0007",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "9ef1923cc8ec348081a579997968c7ecc3928bcfc7eb82709aafce1633cbd631": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0007",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "c1496fe310067ba75443ee96cc657300a67e467df84e5c908ebfa1271e08e4f5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0007",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "5535c28dc6c1ad05017fdc0fc26cb0f2637c4d6b51c7282bdf3071eafd46d3c5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0007",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "667be1f307c4549c1aa53198af0d9006cc5c5b86f5f2f0ccd9fef4d27be8105b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0008",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "6e4f066616f77c074831222a62a5efa05faeca3a1cb813fa8a3aeb4d8738779a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0008",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "55d4f9f91a61cb08b437ffcbea1bdf2fa5acd77923ef0ea4d304dd1579a16166": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0008",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "f29ad74a7a2bb3eb89942ef159bbd2adcb87bdf820d3cc9859b9ec34e7a877fd": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0008",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "90e346c44f5542c8f203310d29eea16ee470a2ed499ca099f65220d881d6576a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0008",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "a0c16d429355f17d0df4483f6e5384b2c8286c0016b2ea72b142e8e487593a8f": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0008",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "c4428a2eb835db1fcf189269ead9816b164d3b09da4413f6f86d9864d88cc93b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0009",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "ced89ad1ba9c89b02e79afd94cd47a0616e54c0bf5c10087192574c31e8ed624": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0009",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "fa3b1ef778151d59c3bb9df00b68de5b460eaa2bc9139752e4b99b6899eb1020": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0009",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "f72a795cbc5103b88d87cd7bf573689669f6046cbf9851a0705aa6f49647cc6a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0009",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "30c431669e0eaae8f72669b03ec4194c798d6c6c34d450c93b055532ea449d5b": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0009",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "970793eb8e47c9ae9ca35b06bf2beda99976c0aeb935286508c7621e7e8e8e59": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0009",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "02c624dde266011bbadfe7d7df74ce4272001a33d46aba02ee5cea9999b88b8d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0010",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "51d7b8d8783ddcbd494af190898eb1833f51b916a3b7bdc2629f557b31b009ec": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0010",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "10151f46ee4334d1345febd95f42597abdd39ef4f8de5b32cac6f4dc7a704370": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0010",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "7bc959180aa9d37c962f1dca830fa0c44e9bb65922dca4e1591b96a8a0110436": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0010",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "c9a0a481d32b3b966f50bd932b16299fcc98839bdde026787d79f6b79d80a264": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0010",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "fb17413c0f89f22c1b664e1ace78f69dc7a2c4b473434eb77c822427c6433557": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0010",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "e24d3582798a3ceb77ce48815e2f57fd2555163bd994007ff67fbbb4c249e552": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0011",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "93d4975640453d4ba2507841d60a468525a4fd7842e7b22f862c53172129012d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0011",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "cfb713ed85b01b8a81385ef9bb5135c0c2b466c8220c222ede1abb7cd81e32b1": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0011",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "a9f4d6c9d25427472a96b5fb701374bf38af97a51e8f7f8b9454c3f0e4a31ef4": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0011",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "1be3e1f150527c9436e941abbc54eeb67a1913840fd64ad63efac54322d65c18": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0011",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "1fa8c0689627676062df4ca96c3da18a3520842d7fc92143aa1faabc062e2b14": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0011",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "16abafcd18a2ce4c01aac86327d66ba57fc1c8fd21e77a8ebec36e89d7749c78": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0012",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "4221d0052e43e5b68621845da54e826aad6cfc161c8550d44a6cc4e958d75c84": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0012",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "42fc899f53fe000e4e46d67572d78d837dd11be3caf97765d1630d979c0ae238": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0012",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "7c6fe0e0cf19c044c8886066d7450a239dff9437104b0c8b9e8844e2d0ea0fc0": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0012",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "cf5bca409901895f4ccac7e486e99b9d0bd205a728999b3e7b7510f4aee8afc5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0012",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "62f68874fba35155630d423a2d3704d2484ac86c8c32def1c4551fd94ca2ff05": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0012",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "2448e62d6c16c8afc213bbb8f150ec09369eeb3f1e329f389950b8659fe472e9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0013",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "be64b2783e5786b1a462bf2cdf21f07eac3f36002d54db8257c53a01ac44f181": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0013",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "b618b0a302f9d2e79d97cfd80bb8171d798c359967f782e4c57fead620187052": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0013",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "18b7c33ee990cb109e4aa16e65e67c97a0ffaa5e4485dbdf8a4f8c4ebb43b35a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0013",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "6f20f92930664722c252ef2e159816d363015500e69f15780572e090dcd858b2": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0013",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "f2e6bd2e23951a2209e9ae5b59044d9e4b026862573e660718527f1ff181dff5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0013",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "890e730bf1e655a1098f04d20265fe4cb2c12ebe2a7409c1d0978f79e9db5e05": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0014",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "7cd90ea5ef17a1814dc68f7764cf5973de624bafe0528caf63ff7955ad5ec439": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0014",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "26c2955e90e3158298628388c0832ff07d0d4600f462ab89dd10555ab93e13c2": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0014",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "e9f8ecde5c5533fd73cca9da1b8a8d74c5bceada1411bcb5a8f7b0e8ee993ffd": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0014",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "d5e7c039ccf98e70775090cda3d4d2392bd966693e99ec88bedb78804af13e95": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0014",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "99405638793ced439f096ab747d0ad0d51ddf8d469f44551e21ec7c9fb3e63f4": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0014",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "4e64983db6f9c7d2c4a9deca721599e645a8923eb1c72cd3050fe4354b4292a6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0015",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "f7ee6b099f0828fa9884bea4e832f4827ee4eb469507a91feafd8e416075d4bd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0015",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "5519dad4a9f091bd7b2dc64ed3eed48e9724da9a76baf771de214ea6674604e3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0015",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "9964743aaa59b11922cee30670e589e8a89ee4e4f06864c9dd2b8b90048d4a95": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0015",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "9ce5d46374cc4e2b1971d8b67e973ebf2e7403914f560885baa3b8c006dea2eb": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0015",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "902d1aa4f53caa2bafaf6b5347712a2e74135dd134170cc7a0b741987fa7e7e7": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0015",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "dd9ef41453c3ba42abdfb32a10f133a8a2aabdd9a73b304aef911ebbfd86c384": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0016",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "ad82c49c6705cffbaeb53686f41d5dc1b29126a3817781ff06b3a0875c755c9e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0016",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "486182fd599924607b28ffc4d5dcc09ee1a6d5fc2e8e4d8c741ba3a0e67eee24": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0016",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "43016fb42afcfa9a28ae59e3fba4825df323a5d380ec02de1a859aff7bb41cab": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0016",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "ffed034df584a2e36b77d29fd9d43f363deae5d0a672558dfece34bcf85af1e5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0016",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "b173327b4ec8435384f92e917bc4fb6a6dee329402bcbb554632d7fbd458dbd2": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0016",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "bd0dcc35b004610a8caee262a712e87d54d0700cdfaaed0b07ed897a9cb5aea9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0017",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "233b6f7aa2d76fb8e1b104895cadb20015c83700a5fbe9039af137876d9d911e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0017",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "84e397d52e0793026b623d729b127792da01ac6d1cb4bfa3433031f81fcafc2f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0017",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "a21aeabea40eecaa11d7315797064cde186ee852a694358437c4b6e7d22e979b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0017",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "5f6a8d5b9d8c54d58983f8d07d09ac28e6ff690dc2644c0799fd9b7f06c7f6f2": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0017",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "1d8ccf5a1e2dee06e6a8ba03a5412eb0041f5d0ade3589c824759799a30d6160": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0017",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "79ad2f2d34baf9df4374b63368edcc72acf86df46f81ca73da52dca5a2816611": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0018",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "69a1fe6cc1c0735bc05230676ba26f174fe1a1fafa91d7939f6d8954a0fef778": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0018",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d4e78d97feb983554b5fe5e5c987ff12384b4657a0976b8ab4c0f510881fdf00": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0018",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "873881b23f5106bb76720020d03dd60536535f86afa470b2b5a34f9a9f42f2d0": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0018",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "007f106ac3761e9ed2c2aa916d4ef0bf8dc1424c11ab4d41f3d92b8e6e7cf5f9": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0018",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "ba5062ee206b452fea932abbfebc4df49bbbff6e15c6352fb0191f191157ce36": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0018",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "0aaf216dadf8c79bc81cb7e9c4a6b8cabe868223a3a28dfc14aceac92713f711": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0019",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "2997c79089c2b98491a2d0be3f5f7edd70b866eda9d1a31dae34da549647b167": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0019",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "a2be960271e979a166b92744b1b9eec7d0a82e92a3285c5a72d40b4b7f633200": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0019",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "5606cb7deea220e8ee9223443dd2de2e935a733b37af2fb55a3d53b26d460f03": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0019",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "64195b15f015152ac601b4134c2b377d60f44c7474cf229b7c9c747aca928511": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0019",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "b9ab41fb33b97762bca194232a6e249c5d2b3c71c8ad517524c3cb241fd7cb1b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0019",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "eb6335467c9ea3f5668ca3dc4833a3cb7ab3b2559e38156c4b5e7ec2bd220603": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0020",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "822e865c175ecd27e6dfb85366153db748d8f6f9f68733250a1fc12071ef1aa8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0020",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "b6ae69574e8bd7a72accfeb477e7e3cc38caf98489511b28d4bed404017d3ac3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0020",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "d839cb715bdb07bf6e47443d9c28b94c5b8d30647e8b3a487f48ddb083c084f1": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0020",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "0f9ee4805dfd7bd8929f03494eefba571e95f1b02f126d5ed3bf296abcb7e349": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0020",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "12ccf6c6a8b8bf228973d4da99bbb3385f72e33dee0525e51694c20326e18090": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0020",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "046effcd66358a2c4c6f0df93753fdc9c33bcfafa05716c33fa821c768a9004f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0021",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "a4daf98df38ff03abe5ad134fcc2225f153e970dceaa0cf180bfd40a83427511": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0021",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "c6fa12f27ed784e8ea789ba155a4cddf80d8f41ce004183a9bc9f4a51515c1c7": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0021",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "4e8d5ea606e45ef460c18ec78bb6dfc62a6fab1f96f3a39bca1e559a6e89afcd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0021",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "3e04483c1bc06296e59f8b2ac13c44324874fb1977682b7f6e1e60a601dc8b92": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0021",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "02fda130b0bfe695ce6953b7d38aad4712930dafded1f6af13438a1dd1ad2223": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0021",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "af281ecf57895481eac52a5ecc696b013ff02bc006977590a38478492de3de84": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0022",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "2e9346fe247168bf93fe2b87ab11cb9c44af7f34c95556c569d2b15595e888e9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0022",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "cf089be76020cf51b3b72a565f8ea5e84524c6ca6e43ab90df1e09f17d8de925": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0022",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "0b7d121ecacf1fab985bf5ae080e5e5160d8c81bed115caec82e3d9252e3b354": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0022",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "116ba42b2e7202aad14af3bdee5b9711225e90ed6888551b22d496b5fd911d1a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0022",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "d75481e21f1989411affb71d849b10575fd56c594df1b746e971b9da90855331": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0022",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "b93170b15f9ca62c1befd30bdf7d0e6aa6414e9d9ee4f9da0124366d1f7c4874": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0023",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "3335b5e10c75af5a9dfe85c344139d0bdbe0830c82d54fe9386fb1e863f638b8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0023",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "7ad42951e57d23eaef17501efc68bee1df36ac0f51dc96dbb7602dc7c41633aa": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0023",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "8bac3267d3171abb082205cb4c50dd69f69f74d922e600a78f8051f8b6564e71": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0023",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "8e1fd902f9ea4cc081ea56ba545d444b8092074757e5105128d0b141d5ccd73d": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0023",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "aad9fae141d9bbe2540da9d4f20fb45e93b89c30d0fce0dbb24369d9f513385b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0023",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "29daf041d132a6577ea60a74a3200e4d6a977c06682d0b89bc63433367c8d3d0": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0024",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "091e83554555e078dde8d11bb6f6c99b389e32e6ce6bacf87ce47ba78c1f8dc6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0024",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "7c34e7efdb64c115ad05b7c4a9405d4b7ffb2d7062d216c38da37aff9ff55857": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0024",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "2a4099dceb16a48f030cc04dba48a4f336845e2dbdbe8bf17991c875e3959b05": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0024",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "efaee2518617b425bc026a506492f2d741743a3c48b85d2629b2901cec775094": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0024",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "99cce27a7b1a97b1555d47992f3509baa7fad3dc8213fcfb93aa5d41107d48dd": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0024",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "e58f66561ff709e0510e7fe941bd73988bae5bc0e601dd2a236aa43ee42858b6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0025",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "2a61b1c7b57f18e7935787d48bb810fd94b9b02c040e5b41468616c7bd519500": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0025",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d2ea41c39e2f35ea76e8ac6690c4ce6a9632485af648f711ddaaf1869ef5cf85": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0025",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "b2bee38ceedba902f6f0905e1eaa6acaf1a00806f88990aa5d996e0ec897818c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0025",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "b072e1e485dada5a4add445e49e2373d2e6e839cb5c7d88366a9b215dd59928e": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0025",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "a0943f0e9cc74397aaddf96ab0abd5e17be2864b32c14f36b155035009706215": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0025",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "01bf5507d94a18868432f6ee41561a958a87553ddf03363ad4a8e619f0e79729": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0026",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "83ab4c2b514a0bd5bf4bdc08399e6d12e3e48b395ea87f3559a7ae1ec33b34b2": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0026",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "39ba8e27f21562363099dac5679fd29adb7418c51366636e7ec8bf5a4c9f1ce5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0026",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "21d6ec3f865fb4e7d8b04cce3fb11ce549f3d097320153833edd6ca4d07a0989": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0026",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "030f780e08b05e5d97badfc0b708a69f3aaa2490bc6bcb58d4a09e2916c9b530": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0026",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "eac50c74ec0b9f5717da2317f11138fb15ff92d424ac33655622d46e2076f281": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0026",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "d9d52599b5f02baea0b0585a7028a94a39e31731cc9e3fda357ac7dd3441ff87": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0028",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "7d115469d8b24c3d61170fb99be36f83edc4e55c4052525dd0d878917805dcbe": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0028",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "4969a9027eb284b2be8657cfa39083ab0f0524387ecc928f51d064b02b94fc74": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0028",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "f3779fd9b00f70100b57485d8240e5d29c84ae021549abbbcf7ae1afa5485583": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0028",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "dea82413f7e0c69530749df26e1deb26c1bef183c2fb5acd9645f1f755cfd81f": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0028",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "6415b91dea283ce8b473f7874dabb9f736090a7841fffc57b9cc5bd421263731": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0028",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "aa7506071a0740b49a221fe1c744f66bbdd9f45535fc18a9c61f0f596fae0e67": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0029",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "ef4aab5478ebf2b4e735d66b08fbb560f5bcae5fb1d05918477c0bf7059da733": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0029",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "693fe5a7348bb033bcc252a73c0bd337ecfb994db5e1972743ce10fb6d63928e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0029",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "11c88658af324324c964295121c7ea69b1f8ec84467079534fa42055be2c86eb": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0029",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7a4d61b8b67d95af0fe3b1745bd6bf98e6a0860a06d8cb758d86daa1949c70c8": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0029",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "253dd9eca7b573fa4367b9eae1f0b6f64f11e1ac70639d6e097f383ac71958f4": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0029",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "08ceaa0a64184116f7878135cba695959360dd6b5d72361dfd4525371ae718e5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0030",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "57d77ef6a4c9c1dd2ec10751708d32806aba97daf781970cb57400845cb481ff": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0030",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "44b3f032a609c835955cf766993ace5161074af745c864d985f242d24d0f114b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0030",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "94dab3a9f4fc829c7bfef28b18bac435eaf7e72255a85127823bcf0805f8ffba": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0030",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "01a5e98af1fe88fbf2a87bf31cfd05ebaf44fbfec8019e4658a1a02aca97491a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0030",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "1924b598df72b324c70e314a2499bc2380afa2d3db68fb634eec3d55a450b270": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0030",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "a5c65e4d7850fb81b5cae2e7dba7e38fcbd1d41a67470c3554c2bbcb9c2997ce": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0031",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "e9e814095e53c4158ce5c995261c794614b5e54212938c4170fe8410cf096cfe": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0031",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "550fa543dd581d245eca77fec7d82592b8b1dda40e0df6558fb7abfbc1806014": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0031",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "1cd8efae0f5c7097da5f6b0c22ef86fcea75425ff819c7c0cc54d2088c590c95": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0031",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7605993782b18bf383fe4b64e13505e967a65b0028e6f04f3127452dc8b77bcf": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0031",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "bd093abee41aa9dd23b499f3ea289744bd5baffb2eb3ed2d1368c54a81d22d26": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0031",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "632a83230d985a26eb55856e9f12b655771fadc1ea32e9e1c885c3814d478719": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0032",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "100e109626c4552cee097f87aedcde010b9ccc3b9829eb5c06e7857160e1b351": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0032",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "4e44bba5e780ce63e475122b85688cbda51ec8baa57042cb4b0b1cfc147d54af": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0032",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "128f235ebca8255fe08c3fbc3bb54790ffbd10e490ab81aab63e55f888d15a19": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0032",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "c77d0ec074276337372c56bd20c3c4d89bf449f79caadaf2da4af8cac839c873": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0032",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "ea50a25017e01d51eb776e42186fabb2a526598c0ce8688b2724b470a614f364": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0032",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "0d2ca587fda6c4c4e98f79876d615354f7bf9d68f83bc06f03a02539853f87c3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0033",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "d8a027b89d49824877155224b5b66719cb52b48e17438ba0695662a9900fb46b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0033",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "4048a5d4e34f336864328cc389ad96fd61300b102644920507360534f1df7dab": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0033",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "ce1846ea1916d98907e85ecd92ce09c641db6852830cccef56c76d0bd94a6395": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0033",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "3dff4d41d30777a0ecbb26077157de222420faa9570b1870ae6eee4a04bd5bcf": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0033",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "5a42ca59e3248d634ef1ac5eb885d56fe950617db8da97d37e0401c391b06be7": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0033",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "e7bba03c5ce31b544f52133f4aecd57e8fae20a630dd604327fed3676c687521": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0034",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "45df0a0ed90f5c62cf674a77d9378ee0586604c73f616f63868f7136713e3b96": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0034",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "6873c2176ae2067231c2d73f803b0e145d344c40f89bdd7df68ab1f1c4d0008e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0034",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "241e91240d5c426ae9e3a405c34f7a194105ba1a1db918d553f3a8f3a1b81d13": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0034",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7e9c717a1a8120e41c20ee959051a67a77d3a0b806a2e6c407b77a5cea304da9": {
+    "is_ack": true,
+    "confidence": 1.0,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0034",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "9547ce7fc083e9729a83c6db293cfc6749042af2ce6cdcd96670ee8b25c5e3ab": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0034",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "deb2366d4ac58c63dc427659691305b5d54403eb5f3b64f6260269b9be08ce83": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0035",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "9705133237cc8919b5181847b5d40299c0c30ae327f18b0def62822129f273ba": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0035",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "1265f082e639b465fed14b41e3bf7f2a2639c881bf875353b7bceea5ea0a16af": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0035",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "98c89895017c1ccca571c04991c2f9c508178a079d2d4c1ef01f2a0ca1470fc1": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0035",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "56b34d4698000c8c29e91e1a31fbcf0d08406522c16d6f01e89e465eb7e1abee": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0035",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "090f8dfeec5f80b226b6b9c2778da8c487870e3f2ce3ef54add50a5ec2e4bcbf": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0035",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "12f2ccee749cda738ccaf1c53a3828652843e24c1d62b95bd18d5ad416db90f8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0036",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "09edbc75ca158fd3c273d32a17232796044e420f19ab4c67a64aee80438d3d62": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0036",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "04178eb8ef113be6e1e4e96c0011f127817f87fa5c44d6b0f9e30150666315c6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0036",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "0ab2f762c148c837e090e34f741a23bfb7607573a94368f74e0ab4f9020066c4": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0036",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "be1a58f5860fdd5f33bb2cede6445389f71fc0fbf22682667bf4fac36f529c35": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0036",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "bf59f4065c6f7a116bc69aa9b1be6cd36e310d80ac8711ee5e34621971db512e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0036",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "49cd631a9ac853f6182105d4293710175b2b467a0f7ac32d47a1a6dc9a5e4af5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0037",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "17e4f65d4574862833b2fc4299523f9f32a8170112ae7d392f3a777e8006a3d0": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0037",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "6e67b3584a6b7f4a2745ab2210626d96b52163071b6b913e6eb79a1658df3788": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0037",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "cad5ec37c455d14f0d051875af1d40b5783e0c1ee0182de94be57d5b9b96d3fc": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0037",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "1e77b5862794aed96d12b5e85f3c1383e171c9bcd9cdef2d3eacf01a8effcfbc": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0037",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "2f0ffa291ac28dd396bac564e6c82a9b57e1fc82320a1bfceebac3b5f2ff5dad": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0037",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "be1b5d0daa2c665f9654881fe5c98112ff54f6a0fc45f609fc0337e2c6f7f2ea": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0038",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "99b3f4693a06a366fedaa10be74fec8ad4a17dda1f6c1500595197b3a969340f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0038",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "8b660e00d95090b8f94e0b78bf9907fc23cd3d3e600c64f921f40f1e67198ebf": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0038",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "d0e7885d9c2e966514426ce9cfd831f53d3c0d68b36a152f244da1eb03a39c42": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0038",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "39f9f39fd140c47c0a3616f83fbf2ad4c6c23b689a0f1383026986de00d4635e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0038",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "7c5a7d9e12eaa61a032f3dc37059705da11fc15f9191b26984da36a2e043298c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0038",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "20e2d2f6e02e99ac6f0a27fd3310cf78c38ce639f14d43769c32403a13c64c69": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0039",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "510f06f40b0cefcc7c0b07e805c6218021f976aca52cb72057b8fd63dd52fd40": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0039",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "ac6d84ffb0ee3bbc77af551d8058c928e4fc39bc6c17a47a230d9764c51b275d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0039",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "0e07aafb35fbe4ac40e9fcfa4a81ee6a7e37b9dd4e469abbc169f27595c3c926": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0039",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "170c00e3bdfcca198bcf5de99adaf843085b0d886722d3b4974211e882eaaf93": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0039",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "0511aae081182ba9925a575b7deed8e56cf2450f4a455c84b5498b9b0380b299": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0039",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "f0e0211c2669649b31f79c426e52bc99c73761f3415d6f21ca5c4729d5f5c830": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0040",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "e6c174d8d68ef112e1d186b1d372b9199fe484ebac6a846925cc6c2e8739c695": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0040",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "91b78868d4524c8bac5c544d547928cd6f5c0a165c2520c6c8f8f6b8a408dce1": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0040",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "5bcaf3140086423aae2bf9a368ecab717f27595de3b3e404cf131328ce759505": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0040",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "70154d2c4064a5e369c46a60db32f3a64ffc51654aab673e43bf0053ad19f71f": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0040",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "cc35bef20a6cc99db709f9ac85499fffeac589dd02b66b2a6459c6d7bda05e66": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0040",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "0088d8399b04cef3ce9c6d13b3024fbb3fde67a8d093c0658bdf714cd1a37afa": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0041",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "065dd7874bbe4990d3ff712b8eb832f87a40779beb6da54c804961afaa0dff3a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0041",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "83cdc80ca55be7e0b285848f82a7f79653d9e5f83ba0fbd710990882d0209abf": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0041",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "85fefe3d84bfa7008ca6b157a5d050698716aed7e3087a1b2048338f1e842ccf": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0041",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "3f381c914eef3736e8380bfdf9daeccc9accaddbee77f0add4343b8f7464ce55": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0041",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "9113c8c0d4949811d481da2d4a50f59420185100f495cb5bc65bd9075bcbb64d": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0041",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "4f051466b7787a20787e05d97b43f8c9986b0cd19e780a926667e3506f1c1d14": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0042",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "3acb2573e35a79c1ddf471c099133c85356649646ad04bd3c9420d921fc78498": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0042",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "1ed2790b09329d530492c7adc486878b9c72a235abb031ffd6803f9b809edcc9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0042",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "a5be4a2da2021796759e55a68e7443d5a00cdd17bc052f5a451281571df03b92": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0042",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "a510a40086b3bbfa02fed7064fd9588a5ea59ae0ae4c26d5ec58c766b7a4a862": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0042",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "957cb5c7add4ea5ebba2ac302558e44ffa54d1db9464997e75c685dc5e62f904": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0042",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "91e885a12c909cf4d1c48aa12a2ca9bdb7b62bec40c9252cffb92248b30354ce": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0043",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "152dc6d0f1b3450b6f373390877ebf76e34d29f8b91c45db7fe7ffd98c927466": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0043",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "835826dfed7edfb30f2effeae06ac025917be2434b908e3231a8f9a2527fc927": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0043",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "9044ff0045b5b5496b82cc864900edcdfde05eaf4e98eee2d5917335024e2284": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0043",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "c5833068748cf5ca66c8389ffd3c525eb56d2ed5bf8bab63055ced42d9972a24": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0043",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "77703dc13478ad36ab19c8b68688f057519c7d34ebecc3e310d84f6b59985a51": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0043",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "65fb75de07974818f8a9203ebafeb336be0ab00aa811e914f975e8d1f491b3bd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0044",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "defc51b9ba39ee6bd86e43a1b2527cb8b7fd3e8fcc1c27fb306ce0d0f2da46fc": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0044",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "1df6322acfe3c1bf04580e19ccdb5255a179feb49ae7db2e705341ff602633b8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0044",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "1f4ae9ca48f4000abf71b8bbd6eaf5b17047bab970dfc6b37a13c6eda9f5f8c9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0044",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7fefa9a90769f7c207727c19ba89e69b766cd4a2a9886c4534d8ea469fed0e68": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0044",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "5b66ae98914e660d0e314f16aa0ed1452994fb1b70d26939d797df5cb62fa91b": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0044",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "13d75ee4e54092c3951dab5bf40178babc862ae691487e442c72d79bf48c1a25": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0045",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "8336fd2e45ac596bd35e28d9e137073dc6d06b4e666062a3532d723a61dff5d8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0045",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "3106422341b7db150baec80659176a27494a6b73d06be8d6f4012568ca341544": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0045",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "f369a795eef238a48d2a862d3c572a27cb75266b85056c217c881591a08d80fb": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0045",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "5ce7fd2f20fd625136499c61c931a1a45bc492e6eda5f448881c4d7ae7b2fcd8": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0045",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "af42c3f3784c42892adc1a4024deb59435887ef29e36508b0c3894d7156d38fd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0045",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "845eacd50d5ec0414c2e85d525ed0b8854fe3db184ff69155e25ab07dcac0703": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0046",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "9e2c89430ed241e9a9fd1770028b99cedfe00ec9903437a68d75e8a30dc5c1c5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0046",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "5d3b8998cea59b85746cc60bd8bc676fb9d12530ef9e32d5982f0cb3d30409a9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0046",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "77f4eec0ed785bc1919ac1e661829323b8ebe93aed96196b74de0579b055e4d9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0046",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "a8f7e5d1b1966cf07caeb4ebdbae23e989ea47c3d260b763189df39c1bfe84e6": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0046",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "0ff22a4b4b32eb670f8a3e17d8ed5a446ada0b4b820103ee2506980a9876c8b8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0046",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "a0c88a5dcd9ec3d68bdecfce913eb3804971bec6c98269a043830c14e230baa1": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0047",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "7542c1aed771db371700ba39bd24c9566977470407f56107eca7841c73733bdc": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0047",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "abbf3d815c027effeaf28edce6ba87d1164548f561657a7c1d48da5bf06ac459": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0047",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "bdda33e71a6919fec60a02a1fc3fd7eab48c78569af22dfcd236e343d6661f92": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0047",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "a06a7a669a7f3d088e69190b795da258f5c31bbfc7a8757e38c3e7ce84b6b85e": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0047",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "df742d3f02ba4d49e10bfd1ff00373ab5414e9b981b3682dc4cab6cf53b4c09f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0047",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "08c533b559d88d9c9b74edb44d684b8d0d3670db00d51f8ad049a181575b60e4": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0048",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "774e9c750d6e26df357b711967ba36f93d00630f59aae0eb084e1eddd3d61fc3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0048",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "de6ae522174237bfcb6282233be9c2ab81b9c32021dee2555d211cbd94c496eb": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0048",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "72cda4dfcc0e46cfee12cbd0f73bfe83ac10d16ab7e977200ccd76004bda46b1": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0048",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7eeef0af46762e95cef182939493faf87a5b2bfb62bc0f5d4eed97b72bbe262f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0048",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "546be0b1a227bc88ced985a156cbbb4c5c499fbbce1a78b686173c0e50b0e4a9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0048",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "03cc1cfd8fe19b0ecdf2f86b500458ab79a48990ef7f124c315c2448c14be0f9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0049",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "223a34c8b1c1eb47e8de518dd8bb112b77e798b626580910fd6e2817f5997bfd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0049",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "edeb0cc599e62dcf72e1d73699d720aba3116f326e349746082bac277bb4040a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0049",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "4760e71ae24dde230914facbf0122ac69dd7751834f63c728e244c3375852541": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0049",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "5db91d75e61b99dd4248e22980af1b568e2e135bcf653f4aa1ece3113983048c": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0049",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "a089e56772fb165037015c35025b6c9e637d1317ba3b0028c9bed930a1d0d010": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0049",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "e181a51213de1ace102e5ff1da5596ae493cd9a004bad3360ba2c2547a37a33d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0050",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "8c7fda7def21fe312463b5f0b2fd000b59c80ded30cfc364b276562361630220": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0050",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "a0e35bdc289e552e63a7a0036be5ea3e4e47b32bf37a5dadf9c11a62f034b837": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0050",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "8f4fa321df10f6ffdf297e2a52f77b5e8a570907afc6bd0698ec1624dddcf2e3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0050",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "0cd58d197914a53e219200d886a0da6318fe60668bc4f0db67d0b04783b5e7da": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0050",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "421d47f0123711d5d8cade3e6fb5567a05c084218292a44520c1ec022f257fe9": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0050",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "c408af3aabfc71f17990207401c2489cf62eadd633e3303194a03c3656435b07": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0051",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "fcd145949d150cf976c806eae3404485e75bb8fdac40c415f39650ab54d70e1b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0051",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d22d80d935e87d6e8e237a8a6c7e708e828ac6a98ee1d51e99e802a07ac5714e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0051",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "3e13467a79034e04862f62754d302cec96fa5acd57109ec4ca6b38e6194b11dc": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0051",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "f944b6173ebe0a673dd471724b44ee17197327e0153b23055ec6e3c01e18e3a9": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0051",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "c94f6e1d7d236c2def1ec8855b73f90402dba2fa08e3629bc472ebcc29335e47": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0051",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "b36834c039b5bfb19f2df80fdfdc2f8de1b3bab1c4a171335b5058edcd5a7238": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0052",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "88c6dde99934278b363db88a23fed7b4b27d062a1ec1807bc529a5400c36bebf": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0052",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "c55c6a1ff85a92ce883a6d49ce77862b912190d7a78dc0e428e2ef4fe86d34d9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0052",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "9f23205885640cfa44b3a9afb70329c9dfe8413140c833349fc040df8e6fbe47": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0052",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "f10b29dcc96afd1d432245d010428567346fa5f71f7d2c88b87f8cc650ae0dd7": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0052",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "1e90dd4d3a8ec4460c5c4610a22da2812133a4bd2034af757e8b37334eb95a98": {
+    "is_ack": true,
+    "confidence": 1.0,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0052",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "60678e6c3408668c337a8b228c103afefbaf287608cdd37f39e06a600fb9504b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0053",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "bde6a6f97296629b0620004c767d1f8b3b6ed65e124aa0ffa65a9be13fe6d457": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0053",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "f25af71844d68475bc56a0049dad6b91b88f4f5752f8c619c6b9ae04812bee73": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0053",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "91d04f546b1f690f045eb9cf886861b000ea612daf9aff71663539482073fceb": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0053",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "fbb93e3e3a6afaea8ab3e82b06ce10b7e1373828ed146c6d7fabce8f6eca3176": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0053",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "9c572ab3297bdb7238c432764873af46ba8e9a197b9a08d656ffb16a62447395": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0053",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "64a5ee3d2805f8d8db7c76d7cffd8055b894345c151125487532dd1ca3a65e1e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0054",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "b7b648a0e27685318e59752d1fcc2ce7e1906fcbe5da060a34ce60485f74f08d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0054",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "76e71291c6ca7096da690e512b0a4fdb3df291a7a96923c5a871bacc0d06467a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0054",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "835978df5d37bbb1453acb3b41492be792c2525b7ee721a88bb990aea5a3386f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0054",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "0af3c652264ca03e375ccde573bb1cf2c82cb46f505ec202ff1e9e58aa8c5bbd": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0054",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "e10b670b5e6b76a891f7c1efbbd274713e909adac3e313cf0a59ffc31a3fe314": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0054",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "d88f616abfb23f65a3005dedd3971e49b08c82995fe23e3e3dad6c999b951b85": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0055",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "1c2b00c7f737a405c9242cf537e54bfdbaa59dde23c9da3c557227e79acb4776": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0055",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "3f8f1c3fdbf991bd4a15b62d53e05593c5780eb0d75ed0d5d2187381e4bcec96": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0055",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "6ea067f7b2134fbf7ac74229809fc4f531471fd8561eaed895cd57c446a8ed6f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0055",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "d26acb2bdf27cd6226f77a28c1e6c1ede7bb9619a0d880a12fe5387282f52d9b": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0055",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "5550eb91360a60bcac02ca47d905965b6e9e484a0aa40f8bed3bc2267333b078": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0055",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "319d47984f4e0619be36b14364ee63b9c42743d83be9f62035b5b56a9f8902b6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0056",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "490006beff39715cb2db0632b46050c59d8aaf3df21aeb4f98bd6851db06b479": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0056",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "16b4bfba02668cb129460239caa41af8c2daddfa1cea59585b7bd363ab9eaca7": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0056",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "2e2babf580e55c95baaa328968477e785910d58104c5bf170b5d5e17df129934": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0056",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "8e0e5c040167f9a2a878ae75ba8d5df56275b61558b1ea7182f7458dd19317d5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0056",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "1e754bd3640afb69703d595734c1e59c633c080f9ceea313c35a49b528cab550": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0056",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "310d13266da05e8b8fce79a12a236ff0b4abb4d6a74efba4a5c478e5b5acc003": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0057",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "4fd2b9445b4923f352e5cfa2fa5ccf4fd66bdb54b5c81a7da57dd7013942028c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0057",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "005a5bf64f28f4bc2d2eb89bd54fdd63a915da153400b60a5ebd13b11cf5ab7f": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0057",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "21216f1d5d928493fa71452d2a9d4b4a15c910e7ebb3ecfac14856ab10b66675": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0057",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "805cf195d7fab4de865648bf023bd3cc1d808eda8712d4e9e3b070087f4baae3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0057",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "afeca6b8999b13048145c6f4cca521c725f1de421818142d189b0fbb1212bf4a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0057",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "11e578ae3ecb6f2a3fb617da6d8c491937010ae8607bbd48e99815044992030e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0058",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "727d71b2ec183849bfbd2ae79c21f21f8fc5317f1cfe4ad77d1b37c5ec22b51e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0058",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "c0fbd94eaf134ff51f97edd9be9b8ec8b2598ad1760cf2580517364002943e5f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0058",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "cefb31a7eb1e11804df23e3e2a3e1c9179b245cf4077edc0e793b21f8db660ad": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0058",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "06ddf5aa06600335064a576743e0211ccd1e78623aeab9a29000a7a1ab4e9ded": {
+    "is_ack": true,
+    "confidence": 1.0,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0058",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "b0d6660738bd3078d46abc54bba4ec671bda78cbf5a0eadac3a15d0625068ce6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0059",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "c1da30b400df7f5aabc34a76b198f2add5b211ca7f5fc8869a0641c537f685e7": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0059",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "e6b5838c74d11cd07d5ad3992291901d3ef8fb365589dbecd7820522c936c33b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0059",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "95efbee0f0c79f58cf23df0befc9ed1ea3cf8da7bacf5d8b8f05811138012c86": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0059",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "bded74eb02664385012955375bfed943a77356ad746db4b5b5c8fb58190f4c92": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0059",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "3ec4be3fc1e025548a2f48c5dcbb480c148ee33e5fdbdc41fc1e79918c515c12": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0059",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "43780761f8bb8182dfd92431252354ef8b5eab450e8fe7c781e6982e44d3d536": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0060",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "98c3e656529f1b548a089bd51f0a320fb2dbdf309d81a2e39172b6a590e45c3b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0060",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "ff209fada68a1aacf60979e3da485d2afb19679d54e91bc50bd53efc6c1836c3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0060",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "0370af8e17e4a59bbe83cc8c05bc5833cd0260070941ae8d05b26fed8bce2a97": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0060",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "5fbf0163cd9e0b7a0e28ee9f9a0d389ae908b8ef0369f060cae74f963e930735": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0060",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "5960be411154c9239c2982ad93fed85152bf82b9bba8d6320078d1612af80fe0": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0060",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "ad9994df77eddb16b6ea4c91b0a6a58f7c7308aef9d581f6d75a72d4e061470c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0061",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "bd75c226a39347d043c78114e57d20ca9542d06e552eed74aa61754dbe99129a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0061",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "0e5d26abd9526205001d555bd1bf8b13b1509064cdc045884eb40f1b68c45bf2": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0061",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "fe3103974995cd0af6d7b910cdd8dc53dd5331471e90b22722f561f504ea53bc": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0061",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "fc8e17068f9a9ff21bc33e34ce7a32263df4609ad497b5b11c0b9650373cca22": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0061",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "92cf59df612a6fd15cccb76e8f7537ce20f0c4eaacdaa875fbedf612587cc051": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0061",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "6a8b3d3c74b666207bebde1cccf43aadd663540bea083bccea6f412c2459d114": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0062",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "56b1b4ef55b7645e10958b007af1087c5d80256ca285ff949387d13119f4f7d5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0062",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "70ce8f10078f803ddc5623127dd525bb47705123968965f6646cb54b60f25add": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0062",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "9cf170180ba870ae4120040d597302c681608462d80ccf95ec5976d20420ad12": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0062",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "a0744910f264e36b1e033c2b140906fe1ad64987e0fec03b87f9af0a01b4ca33": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0062",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "dea6800fa118d9691704c3c7b2fc75656a68df6d2e7f2e1a1da17fccdcb606c0": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0062",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "7fe29040e6a55e776381e6abacdeff9a4b1b7aa7af4d432c33214b053a7f6057": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0063",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "a3eaf0356b1c412228fb35dfbe9d8b7fd3cdf93877fb31b7b34588636b5d2de9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0063",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d2c62dd6a5e2a8380ef9346e7e2385ebcd7d9593b0aea0d32a0c32399dcd3dad": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0063",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "30325e3e9ce79b1bc38a6c74936d613fbefcf8fcee8e460499466ba53b314223": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0063",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "c8471d8a00378f93fb281f3fc44d04d5e40c8e68dcaadf6382b6f51d6251a5d3": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0063",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "55e3d5ae92e9f87bbafe583c951e9fe370363e7b22bacb4ef297ce2046268f3d": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0063",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "22c71f27ba616d205a670a51182bc3a8a73acf91978134d8181e2d820b1f5367": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0064",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "69e18d2483edb6c4002df4f4bbd15b4e3b463fb9c53fad010b4ad01fac73f5b7": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0064",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "63f988de6d46e1ff723d6ac9e23f087dbf88b368a115d6d3550056bcb8c0ee9e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0064",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "6043be6ee0e314ec6e7cf2bbc0ddcf1dae47fa35798e2dd9bcb3ed1467edf2ed": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0064",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "842d7041f5ce0e9167767d7603d1033b58827328669f6ba400e8bb6bdb38e485": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0064",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "b3ff5e3e4385ae9acb2cec1df89e987c26cb2acb70c6ce6b838e976f49fa75c5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0064",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "2fa5efec47060a4db207909a965c1949bafb8c996665ca69452412cefe90bc1b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0065",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "800f8676ca3f212f09d0d031504cafb7e791b218329be1eaaf17bc4b939080ca": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0065",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "ed91a4776df3a5018d96aff54de9fcb56682abd00cd3761c3ca1dbfa0d974988": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0065",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "77b6c10d114332593e62977d107c91dae8212a40eae7e191c74254e287c4d051": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0065",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "21d63282e735c8333a05fbaae9244c810abe2170e63b464faddc31d6dfbbb471": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0065",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "a2c2c11d0cfd7a93ca58d97fb2b6d5e4d0fbdbb23f469f60ef7dba0abf836d5e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0065",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "8c79b265b632902fd65278fc2b4d118e87ac29d4716b9ef0d5589da4a1cc3894": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0066",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "c8dc685eefa5dbcca7a529f0e8b378f89273aaacf6f79b29f906c1dbb668f134": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0066",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "19d04ef2d7ba0566f1cf31ebe8f095cd43aefd7d1ce856e037ef4cc45f7b370e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0066",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "13cb3b6215bf21a532c4c827f8ba45f29d94cb3f3d9d99aa444945490fabd4ee": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0066",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "d893184113202fb55e721e65d80ee3990b0f50612c8e12d83f1d6c29d30693a5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0066",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "be195f4c19b47faaae828e84b864403158bd78a0889a4f0da2e808d1732d580f": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0066",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "f55fcffc09239bb2a2cbf7927f570f118949cd9e62a61c4cca778e87987d98d9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0067",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "8c3afa09abe334872e332857562120bc9afb067e41f7a9a6af1223236a9a5156": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0067",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d33b7c0690300b51c51f9c5784bf21cb25c0bf0eb6d2c22edd0a149dec4bd156": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0067",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "4759bc2491ee33f7cc269453f63561dc3b87e9ea1c1a7b9274f3432115f22688": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0067",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "f2eb154ed6452035a52e59d47d0c1f1c996f9715f6dc95f15f890ab2b9e18203": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0067",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "923019d2e953501785f9f68c1a1e15b220e64e4ee4fb1d12ce311aca8d690c76": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0067",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "a4625e993c526b30c274b24bc41bbaa5fdd1ee6e4fcfc31d7c98ae21060f76c5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0068",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "6900707691bca3a17b3d6d9fa6741c925f1363c225c0f826d6506c2c7146ca01": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0068",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "0a88b527f662fd1ac36f0a1ec959feafdda75e5aa62458bc9dabcfbe0e32d88e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0068",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "7b8969c69853da4e95b9a136941c9b954269c1f8ed87ec46a649044756c031f3": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0068",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "bd695a3560e9589b3d7f0c4eb4459a923a0e40d482d8d5fd308408785b16d563": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0068",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "a335a5778d9eb1ad63946635f306e2e84c61393bcb7c35432a356a61e10d3784": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0068",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "073062786138f004601e6d9e39b41074a8a7822b917a3e3fefaf93934b65e155": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0069",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "b13ad39a6495560b64ab1baf2a1a7ba8b02bfbcc1fc541664b22fd6f9f2d7eee": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0069",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "0ddaabd95bfa78d4141fb9d525fd455a2738172e046216949595fc60ed8f3ad4": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0069",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "df6b4d9f2186ac29334a3cf658626ea9eead68e1199e8eb92e227b80a2e104bd": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0069",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "6365917cc46609ad27f398d3fb492fd305de31e907501ab98fd88b321f8ea9d9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0069",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "5ba964dcda39e7db115dea0343fa28bb4b6a2068079f7879cb9f5e14a2ffb935": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0069",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "41ef17320b36b061663f343c85f074ec25b08ffeaabe7a6acbd4d3ec80cd8347": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0070",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "b89be6f8063b079959871491cb689e255e942520363e69bb54b01721ed4fd50f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0070",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d10ea94259a8a08ba0edd0e85f911feca97b8bd6e4ae81bd570f2c94664b7aee": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0070",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "ecacd9d8f0c973a8f1c6d6c2bc7d9d3ee40d718f21381a8ba5ea061ac7bfd848": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0070",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "396bf73cb347b964d18c9b0ffba1754e56b362e373101bea4b5088ad7cb5976a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0070",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "e5c89cbce3ca0f7ccb55ff5ef8f86456be01c0b5cf28b84658177db8118bb32e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0070",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "d4c1a4ab5a717b2dc078d91c5b31864f0fa580a3234ce944cce73cb527444bf4": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0071",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "1415576fe87a4533974e53d46b05f07901a4120febe0765dc0695237fa2f3f39": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0071",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "1cff6f34e7e2b9c2ac234f52d15a3ed4f269748d1a2284f56265294f655e0e82": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0071",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "235b0709dd0b1c8a49c32560929e4e6c2ed6c75b7abf8791631e7e980ca26079": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0071",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "7e0ddc87fac19495444a8c5d227c244a5a91770cc98a4bc6a7f6fb282d32feee": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0071",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "8cfd5b1047e0a477947f9599ade6caaabc945f54811dfeb375e5d566dba64960": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0071",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "a306ac6d61c2ae4b86d7326188df139f386ffb1ec3d34ecc2414c81bfae32cd9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0072",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "678fb15087486fb0f0bf57bda22a02d4be9fd2b75be8b8a5653852afa8649b96": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0072",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "780500d409f03b3a568df6b445ac58c905254cbea725a86cdf3de883be8002a2": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0072",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "2f49a912c027961330827a773dc4bba8775c15188eef13ec4a6db2b8d436db29": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0072",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "12c21b917f39eef411ed3ee2504ed7bb7f532796a49de86dbf1dc6776d5cd986": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0072",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "b37c316d7544f8f76a2eecb606001bcc79524208c376e5ddd14ddd60c2cad9e3": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0072",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "09cd40e96105a669945189d4f82589ce71f788f72cbd76e508806c6f839f500c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0073",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "5252b8bd813dced8ab777cb9bf40a2062e144fd2164f1f97c77c29c97e104bfc": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0073",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "00c6957d0ebeab7e68586c87b5476049c13b065eea32ebed53fb77974d79b457": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0073",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "ca545b2e938f718896c847d83ceae79fd139c12e59d6e86978e40832baddc0aa": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0073",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "02b763822e5974f1dd03d595cd3eb49124f0bbd61f0cafb382bca28835f9cf2e": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0073",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "b63d26ac9133cd52862657ac956b9461618494608d563de65e34453017d1b385": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0073",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "ab963da2857b027a30d496fd47327e69e06a45ac1c49c28e6d830d3cc5ba4038": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0074",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "25bcb89c3f818b774dcbc6798e51b3c31bd057bb7ac9591ce158941ad6fdc414": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0074",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "f5ad636a86e1412d0b312a8c2467ebf87096c7a32890f225d7e922095c6b3b8b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0074",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "a00158ba0292702856a0ae31bf8fc3134c9900e443ed130c00b1b9707b47bb80": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0074",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "56d000d5091196a18e77ed128ba49934b8d8738159d1542a6cdb7ff8fd39fc2b": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0074",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "ad7bf62cfd9f54fb14ea22b577cac68c3a5285c6688d17a2458a2ee55e7ccd2f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0074",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "b2d9ddc4071e2bb5b22771cdb9f541f73eb13d161cf1eaff6c1e3b6d53bb20c6": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0075",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "22526a8bf3b24d0430207fcf09c3044477f01662a38f382467911ec60773f9e4": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0075",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "4d0418e435697016840ede481e498f73e20cf92f3dbefe500385ceabf5ff43ad": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0075",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "f9eb21cbdbfdbb02cdcea21516ab4ee961c81533cce8bf70b95a7b5bd4307a7c": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0075",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "3aa20b9cddcaae15a2f331002895ef927bda5f61eb20f3dfb6510c299d9bf87c": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0075",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "e4885d61f76f7dce15670ad060ef13d2b8ee1deb1ef69180542d101de641c4a5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0075",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "247014128ee9819c4717d29b57c7cb9756924288cb81b6200ce835168f1d394e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0076",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "f78a2e4dee39298d36829158f530576c03fcc2db1860df2ae5370587d6305644": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0076",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "fc74b5c1ce6dc38ca361bd0096138fb57881fc9e72cf7498b8aeeef83b7706b2": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0076",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "4096862ba5294f30b51deb243773d3395a8a0f185e53aec6e0a3ec3424595da8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0076",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "eea4663abf1bffa7c8d4ca7893d6c05702a47009042f863e774f588ccf11ef16": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0076",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "4cb3199f89ab09f3f2fefa080d0a5b25a1a494954227173b10245ea677d32c09": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0076",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "27cc4f0b669d74e499364248bbe10fa80efe15ea57473e5f5784e261e6efe3f5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0077",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "dd38b4cc357c4fedfcba837663bf7abf9471eccd0257b1a86d17228a09860811": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0077",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "6aad6a52db1e5fd90908d4f8c411a0756a0abfbf20babaa43b7a6e8e4283e939": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0077",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "dfe6f7f0770b5e2840d02f7216959e6b8925c45c8ad4fa718993f28f8b4e1baa": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0077",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "2caa8f3b0334d3a11056ef6c5eb31fc43013b4dc9a0ab5a4c569251e4f07e680": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0077",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "da8e43a24ca178964f26848f32c4d50d760c1d7d0af5376cb92a0766818bc7b0": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0077",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "91617e7b6a1f9838ef810f8fc7bcd85b0983ad9cf2cfad80b7400e422ca6170a": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0078",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "d3ed9574108cdb8ec21209bdc25d5de1a6ebb934b7cb236f5168f9ae976f6c0e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0078",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "dfa5b96112f07abae51f312b4e2011192241f678490887278054a014d901d39e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0078",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "79121a00d2f4eac20142baa906ad0f20d1172b36945619ef7b6cc223a6fd63bb": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0078",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "3c77f0757dd4ee031b1b76405402235d3b48e359889820dab25dc924bd0c79c9": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0078",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "bf5fc84145a0832bd0daf3f6cf28adfa2b9bdb8189ddca420cd2d7c360ddb3e4": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0078",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "bbf7e5fdd185148ae71c69b65c574147cc960a7708c20f81f159076e1c1c4efa": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0079",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "aceca4efc17f9f691b53c2ef9c927039aa32604c8c87594ca454245300a6ff97": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0079",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "d07f1b37c9c568690b17baaf4cc6a52f9532b771e57787181c1277d6ffec9a8c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0079",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "99410bbffa5341b3a3c322c5936e38f5e2b997de8f763f526231951bd459237a": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0079",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "f8e47e0cb51a43ebceffe43b89be0156b7859770c7331f7267006593411d278f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0079",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "da9e8d58fbfeb5ab51d18b206751d08f16d5188f161cebf38c2468e1a3d3e226": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0079",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "f75a8eefd0a679b956f9ff3df3f114971d187865c0e3daeb70470b556909ba37": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0080",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "3d92ac4755736e30e5a1c02096c182ab3402f8cf0ce993dad47eaf6880df1b6c": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0080",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "3a75f35868791893587dbb43dd25b0984ce3f156239a2e0c1d3989320766b7c8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0080",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "ed67ceecea490ac37e842fbe924bd1a6517e66080288d9746846df76b96f2add": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0080",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "d3ccfbb5afc42462bfdde39cdb182ba0b0fe6ade148abb9fab9fa4ce2a0c3f66": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0080",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "fed8941996dfff1078d28498d5c93efd4fea6927b450d6ef5a4a551ade2a63fb": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0080",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "d37e8324b98adf4a3a5e725480226331f64d3174fe583ef40f1b5c72e8b22810": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0081",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "3842f41c0217d9d7b1093e19a7b5f52d1911a4b998beb33fa8f53c1c8e20b2b9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0081",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "1bf560f629a375a5ba9784716f32c0d8f73a73e987b1cfe72790e87496a1ba6f": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0081",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "d5049557a1a1961193dab2a54ccd82145711348bf005644f9d6f72c3942a3bc5": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0081",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "10bfedbfa17be86eabd350592a4358ae0628b122a9bd1b586033eb5dd4d07b6c": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0081",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "9321f0e0ca0c53c3e14ce58728e92863e27b2fb008a32b55647131f338383b92": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0081",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "ce6488dda8a72420a8794a8aaa6675ec5abb800d539ad0b4b540dc3c95627067": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0082",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "2d848430fbe120ec6b63b8d79fbecff4e94bdfce8b91b3689ba28e1884e88acf": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0082",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "c7c6f0b33f12efd89947a1055fccc2eca7f8cb45fe5a52808ea5a90e3f0a8474": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0082",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "56df79611adc956810ebd542aafb9a6838197cc316d7fb6eb2f03338b9eb6396": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0082",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "941a31b2302f7bbec051373515f5f2188bb108506254670a48186b3247f457f5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0082",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "41d289fda9c308317283ce9594dd2f2165a58deeb9c1e24e5ce0fb6f472135ca": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0082",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "f0adf7f8e3beb5b45abe900e9afd863a1c0ea62a6f958981d04a290599f89ccf": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0083",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "bcd391f930fbbcf8cf61130813804c55d0b69bfc4e07e17bdcd6f14699ad30fa": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0083",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "c94a4ee9379b8dda2ab73e3c187095e7996b12962bc855980e30c1f3d256de40": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0083",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "4d1047d88cdffd77d855fa87a9b79a42461ebe28f3b58bb9104b795d7998fc08": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0083",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "5f37e7584123a5196c1d9d6d8ac353d216b5dd6fd9024634cb92434419edd7e2": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0083",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "27a5523759c35cdc1f5e42325617d3e4efa976ebc711ce52ce7986f26390b08b": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0083",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "cee3a7347a60f508b360e323040358f710e2b858656b5650946b80c3889a7b72": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "reasoning_guidance",
+    "task_id": "gsm8k_0084",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "f8ea6b47c2b2ec5d78c5a78ae3e4aff3da753a7e7b306bdc79f62da3397ae2a9": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0084",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "f811d4f3f40e8d5b5f07460f41b9198224bc5656accdee9de9fdd6c9dc49d850": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0084",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "2371de86350f843af129349218bd4853cbd31cf7b64b02d9f6d4ea9c80c6bffa": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0084",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "f0a4d941822097823419d80e50483632e594bbdc387ae33ff96b75ebc937aac5": {
+    "is_ack": true,
+    "confidence": 0.9,
+    "function_type": "acknowledgment",
+    "task_id": "gsm8k_0084",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "ef34ab42bd5e67b111cbb4b60104cab591468ec86f917d384d4b587957cd4d8e": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "coordination",
+    "task_id": "gsm8k_0084",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "ef06197fd42ff9c20b10164129af06feef9c7bbf8c0430e5471180780dca0b83": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0085",
+    "round": 0,
+    "sender": "MathSolver"
+  },
+  "7600183ea0a5e0421df673280143e17f0855c940f70434ed194e0e0bfb9d7296": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0085",
+    "round": 1,
+    "sender": "AnswerChecker"
+  },
+  "fd0274c1a8318cc77bb9d7deffee589bd289d007b17629a491fe1f2c32b1bdd8": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0085",
+    "round": 2,
+    "sender": "MathSolver"
+  },
+  "6253ff085e7314dc125c401f20f9045bf960d97451d3fbe5923ec15b52c12e05": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0085",
+    "round": 3,
+    "sender": "AnswerChecker"
+  },
+  "204f34d26b0f36d66ab84ac75c92f505d1f7b34299b0e72b960d17a2e67130eb": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0085",
+    "round": 4,
+    "sender": "MathSolver"
+  },
+  "715c0901b36b0dd97abd44d7562145d368796c2a18a333601644970c57412914": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "verification",
+    "task_id": "gsm8k_0085",
+    "round": 5,
+    "sender": "AnswerChecker"
+  },
+  "ee2c42b429b8c4c635c1de3c70a0196453c62e9a6416a23c048c3961b7c90ff7": {
+    "is_ack": false,
+    "confidence": 0.9,
+    "function_type": "information_provision",
+    "task_id": "gsm8k_0086",
+    "round": 0,
+    "sender": "MathSolver"
+  }
+}

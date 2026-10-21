@@ -1,0 +1,43 @@
+\section{Artifact Description}
+\label{app:artifacts}
+
+All code, data, and annotation materials are released under the MIT License at \url{[anonymized]}.
+
+\subsection{Released Artifacts}
+
+\paragraph{Code repository.}
+The repository contains the full experimental pipeline:
+\begin{itemize}[nosep]
+  \item \textbf{Trace collection} (\texttt{src/trace\_collection.py}): multi-agent conversation recording via AG2, supporting round-robin, sequential, and selector topologies.
+  \item \textbf{Functional annotation} (\texttt{src/functional\_annotation.py}, \texttt{src/gpt4o\_annotation.py}): LLM-based 5-class message function annotation with cross-model agreement.
+  \item \textbf{Acknowledgment detection} (\texttt{src/heuristic\_ack\_detector.py}, \texttt{scripts/train\_ack\_classifier.py}): rule-based and trained neural classifiers for identifying acknowledgment messages.
+  \item \textbf{Perturbation analysis} (\texttt{src/local\_impact.py}): per-message remove and neutralize ablations with LDIM computation.
+  \item \textbf{Pruning validation} (\texttt{src/pruning\_validation.py}): offline simulation and online pruning with oracle or heuristic detection.
+  \item \textbf{Statistical analysis} (\texttt{src/analysis.py}): McNemar tests, TOST equivalence tests, likelihood-ratio tests, and figure generation.
+\end{itemize}
+YAML configuration files in \texttt{configs/} specify all model, agent, data, and topology parameters for reproducibility.
+
+\paragraph{Datasets.}
+The complete annotated dataset (21{,}661 labeled messages across 3 backbones and 4 domains, 18 configurations) is included in the supplementary materials and will be publicly released on HuggingFace Datasets upon acceptance. Each record includes a \texttt{text\_complete} boolean indicating whether the message text is the full original (74.6\% of records) or a 100-character preview; all function labels, confidence scores, and agreement metadata are complete for all records. A Croissant JSON-LD metadata file (\texttt{croissant.json}) conforming to MLCommons v1.0 is provided with the dataset, including RAI fields for data collection, annotation protocol, personal information, social impact, and limitations.
+\begin{itemize}[nosep]
+  \item \textbf{Sample traces} (\texttt{data/sample\_traces/}): representative annotated traces from one backbone-domain configuration, with complete traces for all configurations available in the repository.
+  \item \textbf{Human annotation data} (\texttt{data/human\_annotation/}): annotation sheets from three independent annotators in CSV format, with inter-annotator agreement scripts (Cohen's $\kappa$, Fleiss' $\kappa$, Krippendorff's $\alpha$).
+  \item \textbf{Classifier training data} (\texttt{data/classifier/}): train/validation/test splits (70/20/10 by task\_id hash) for acknowledgment classifier training, with 5-class labels and metadata per record.
+\end{itemize}
+
+\paragraph{Annotation materials.}
+The repository includes the annotation guideline document (\texttt{docs/annotation\_guide.md}) and a standalone web-based annotation interface (\texttt{data/human\_annotation/annotator\_standalone.html}) used in the human validation study described in Section~\ref{sec:methodology}.
+
+\subsection{Protocol Reuse}
+
+Researchers can apply our analysis framework to their own multi-agent systems in three steps:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Collect multi-agent traces.} Record inter-agent message logs from the target system. The pipeline accepts JSONL traces; \texttt{src/mast\_utils.py} provides utilities for converting from the MAST trace format. For AG2-based systems, \texttt{src/trace\_collection.py} handles trace recording directly.
+  \item \textbf{Annotate communication functions.} Run \texttt{src/functional\_annotation.py} to classify each message into the five-type taxonomy (Acknowledgment, Information Provision, Reasoning Guidance, Verification, Coordination). Alternatively, use the heuristic detector (\texttt{src/heuristic\_ack\_detector.py}) for lightweight acknowledgment-only classification without an external LLM API.
+  \item \textbf{Evaluate pruning trade-offs.} Run \texttt{src/pruning\_validation.py} with \texttt{-{}-mode online\_pruning} to measure the accuracy--efficiency trade-off of removing detected acknowledgment messages in live conversations. The statistical analysis script (\texttt{src/analysis.py}) produces McNemar tests, equivalence tests, and summary figures.
+\end{enumerate}
+
+\subsection{License and Ethics}
+
+The code and annotation data are released under the MIT License. The underlying benchmark datasets (GSM8K, ARC-Challenge, StrategyQA) retain their original licenses. All three model backbones use permissive open-weight licenses. No personally identifiable information is contained in any released artifact; all data consists of LLM-generated text and researcher annotations thereof.

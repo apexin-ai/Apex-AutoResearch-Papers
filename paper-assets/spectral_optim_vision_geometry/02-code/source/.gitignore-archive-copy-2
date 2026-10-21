@@ -1,0 +1,11 @@
+results/
+checkpoints/
+*.pt
+*.pth
+__pycache__/
+wandb/
+data/
+*.log
+runs/
+*.pyc
+.ipynb_checkpoints/

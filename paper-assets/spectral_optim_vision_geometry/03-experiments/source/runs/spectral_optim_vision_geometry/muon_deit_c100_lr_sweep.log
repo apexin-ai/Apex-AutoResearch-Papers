@@ -1,0 +1,42 @@
+=== Muon DeiT-S lr=1e-4 ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --optimizer: invalid choice: 'muon' (choose from 'adamw', 'sgd', 'lion', 'soap', 'shampoo', 'adamw_twogroup')
+=== Muon DeiT-S lr=3e-4 ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --optimizer: invalid choice: 'muon' (choose from 'adamw', 'sgd', 'lion', 'soap', 'shampoo', 'adamw_twogroup')
+=== Muon DeiT-S lr=1e-3 ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --optimizer: invalid choice: 'muon' (choose from 'adamw', 'sgd', 'lion', 'soap', 'shampoo', 'adamw_twogroup')
+=== Muon DeiT-S lr=3e-3 ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --optimizer: invalid choice: 'muon' (choose from 'adamw', 'sgd', 'lion', 'soap', 'shampoo', 'adamw_twogroup')
+=== Muon DeiT-S lr=1e-2 ===
+usage: baseline_train.py [-h] [--model {convnext_tiny,resnet50,deit_small}]
+                         [--optimizer {adamw,sgd,lion,soap,shampoo,adamw_twogroup}]
+                         [--gpu GPU] [--seed SEED] [--epochs EPOCHS]
+                         [--batch-size BATCH_SIZE] [--output-dir OUTPUT_DIR]
+                         [--lr LR] [--weight-decay WEIGHT_DECAY]
+                         [--soap-lr SOAP_LR]
+baseline_train.py: error: argument --optimizer: invalid choice: 'muon' (choose from 'adamw', 'sgd', 'lion', 'soap', 'shampoo', 'adamw_twogroup')
+ALL SWEEPS DONE
+EXIT_CODE=0

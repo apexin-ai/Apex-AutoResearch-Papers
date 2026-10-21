@@ -1,0 +1,34 @@
+# Qwen GSM8K round_robin — temperature 0.7 large-N validation (D112)
+# N=500 for MDE=2.8pp (vs current N=200 MDE=4.4pp)
+model:
+  name: "Qwen2.5-7B-Instruct"
+  api_base: "http://localhost:8000/v1"
+  api_key: "[REDACTED]"
+  temperature: 0.7
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "MathSolver"
+    system_message: |
+      You are a mathematical problem solver. Solve the given math problem step by step.
+      Show your work clearly and provide the final numerical answer on the last line
+      in the format: "The answer is [NUMBER]."
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      You are a math answer checker. Review the solver's solution carefully.
+      Check each calculation step for correctness.
+      If correct, confirm the answer. If incorrect, show the correct solution.
+      End with: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 500
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6

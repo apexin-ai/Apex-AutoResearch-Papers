@@ -1,0 +1,27 @@
+{
+  "bucket": "neurips2026-backups",
+  "selected_pdf": "spectral_optim_vision_geometry.pdf",
+  "derived_archive_sha256": "5f7c6095a3b61851b475e1c4800526984ac1b416dc9ef4742bf90aa2c5e24187",
+  "objects": [
+    {
+      "key": "spectral_optim_vision_geometry/spectral_backup_westd-31809.tar.gz",
+      "bytes": 474607976,
+      "included_project_files": 184,
+      "outside_project_root_files": 3,
+      "status": "Project-root members assembled; release sanitization applies"
+    },
+    {
+      "key": "spectral_optim_vision_geometry/spectral_code_westd-42515.tar.gz",
+      "bytes": 2632243046,
+      "included_project_files": 737,
+      "outside_project_root_files": 23,
+      "status": "Project-root members assembled; release sanitization applies"
+    },
+    {
+      "key": "spectral_optim_vision_geometry/spectral_checkpoints_westd-42515.tar",
+      "bytes": 45501317120,
+      "included_project_files": 0,
+      "status": "Not uploaded: model checkpoints exceed practical GitHub repository size"
+    }
+  ]
+}

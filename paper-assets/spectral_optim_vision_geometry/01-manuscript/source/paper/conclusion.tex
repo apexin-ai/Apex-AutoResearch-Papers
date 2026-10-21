@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Muon consistently outperforms AdamW by $+5.9$ to $+24.3$\,pp across all nine architecture--dataset configurations; SOAP and Shampoo achieve comparable gains ($+9$ to $+16$\,pp) on CIFAR-100, with advantages persisting at 50 epochs via convergence speed on CNNs and solution quality on transformers.
+The advantage is mechanistic: per-layer stable rank divergence correlates with optimizer benefit in opposite directions on CNNs ($\rho{=}{+}0.45$, broad reshaping) vs.\ transformers ($\rho{=}{-}0.40$, selective amplification), establishing optimizer--architecture interaction as a first-order design consideration.
+A normalization-swap experiment on ResNet-50 provides causal evidence: replacing BatchNorm with LayerNorm collapses AdamW by ${\sim}17$\,pp and SGD by ${\sim}41$\,pp while Muon is preserved (+1.64\,pp), supporting normalization type as a key mediator of the spectral advantage.
+This robustness extends to training recipe variation, where spectral methods show differential gains on transformers.
+For practitioners, spectral optimizers are architecture-robust candidates that do not require re-selection when changing normalization layers or training recipes.

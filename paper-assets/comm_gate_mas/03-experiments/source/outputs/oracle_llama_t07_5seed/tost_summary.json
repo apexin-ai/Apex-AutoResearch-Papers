@@ -1,0 +1,28 @@
+{
+  "n_seeds": 5,
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1024
+  ],
+  "detection_mode": "heuristic",
+  "per_seed_deltas_pp": [
+    -2.0000000000000018,
+    -1.0000000000000009,
+    -6.000000000000005,
+    -3.0000000000000027,
+    -4.999999999999993
+  ],
+  "mean_baseline_acc": 0.798,
+  "mean_pruned_acc": 0.764,
+  "mean_delta_pp": -3.400000000000001,
+  "se_delta": 0.009273618495495703,
+  "ci_90_lo_pp": -5.37699337872419,
+  "ci_90_hi_pp": -1.4230066212758117,
+  "tost_epsilon_pp": 5.0,
+  "tost_p_value": 0.07977642634919702,
+  "tost_equivalent": false,
+  "note": "heuristic detection fallback - OpenAI API unreachable via proxy"
+}

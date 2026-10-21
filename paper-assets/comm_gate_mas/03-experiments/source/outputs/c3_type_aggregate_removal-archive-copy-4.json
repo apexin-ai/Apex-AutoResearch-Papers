@@ -1,0 +1,51 @@
+{
+  "baseline_acc": 0.92,
+  "n_tasks": 200,
+  "types": {
+    "acknowledgment": {
+      "accuracy": 0.92,
+      "delta_pp": 0.0,
+      "total_pruned_msgs": 480,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "significant_005": false
+    },
+    "reasoning_guidance": {
+      "accuracy": 0.92,
+      "delta_pp": 0.0,
+      "total_pruned_msgs": 295,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "significant_005": false
+    },
+    "verification": {
+      "accuracy": 0.92,
+      "delta_pp": 0.0,
+      "total_pruned_msgs": 89,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "significant_005": false
+    },
+    "information_provision": {
+      "accuracy": 0.92,
+      "delta_pp": 0.0,
+      "total_pruned_msgs": 130,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "significant_005": false
+    },
+    "coordination": {
+      "accuracy": 0.92,
+      "delta_pp": 0.0,
+      "total_pruned_msgs": 5,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "significant_005": false
+    }
+  }
+}

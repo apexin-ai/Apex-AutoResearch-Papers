@@ -1,0 +1,163 @@
+{
+  "gsm8k_qwen": {
+    "n": 895,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "information_provision",
+      "reasoning_guidance",
+      "verification"
+    ],
+    "R2m": 0.3479,
+    "lrt_chi2": 188.8997,
+    "lrt_p": 0.0,
+    "full_llf": 271.48,
+    "red_llf": 177.04
+  },
+  "gsm8k_llama": {
+    "n": 868,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "information_provision",
+      "reasoning_guidance",
+      "verification"
+    ],
+    "R2m": 0.0522,
+    "lrt_chi2": 16.3141,
+    "lrt_p": 0.000978,
+    "full_llf": 156.18,
+    "red_llf": 148.03
+  },
+  "gsm8k_gemma": {
+    "n": 895,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "coordination",
+      "information_provision",
+      "reasoning_guidance"
+    ],
+    "R2m": -0.0245,
+    "lrt_chi2": 23.5967,
+    "lrt_p": 3e-05,
+    "full_llf": -481.78,
+    "red_llf": -493.57
+  },
+  "math_qwen": {
+    "n": 268,
+    "n_func_types": 4,
+    "func_types": [
+      "information_provision",
+      "reasoning_guidance",
+      "unknown",
+      "verification"
+    ],
+    "R2m": 0.2007,
+    "lrt_chi2": 13.6592,
+    "lrt_p": 0.003408,
+    "full_llf": 34.03,
+    "red_llf": 27.2
+  },
+  "math_gemma": {
+    "n": 103,
+    "n_func_types": 2,
+    "func_types": [
+      "coordination",
+      "information_provision"
+    ],
+    "R2m": -0.0001,
+    "lrt_chi2": 0.0055,
+    "lrt_p": 0.940733,
+    "full_llf": -46.38,
+    "red_llf": -46.39
+  },
+  "arc_qwen": {
+    "n": 735,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "information_provision",
+      "reasoning_guidance",
+      "verification"
+    ],
+    "R2m": 0.0098,
+    "lrt_chi2": 4.4006,
+    "lrt_p": 0.221329,
+    "full_llf": 224.48,
+    "red_llf": 222.28
+  },
+  "arc_llama": {
+    "n": 732,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "information_provision",
+      "reasoning_guidance",
+      "verification"
+    ],
+    "R2m": -0.1452,
+    "lrt_chi2": 20.6962,
+    "lrt_p": 0.000122,
+    "full_llf": -71.27,
+    "red_llf": -81.62
+  },
+  "arc_gemma": {
+    "n": 693,
+    "n_func_types": 3,
+    "func_types": [
+      "acknowledgment",
+      "coordination",
+      "information_provision"
+    ],
+    "R2m": -0.2726,
+    "lrt_chi2": 80.6374,
+    "lrt_p": 0.0,
+    "full_llf": -147.93,
+    "red_llf": -188.25
+  },
+  "stratqa_qwen": {
+    "n": 747,
+    "n_func_types": 3,
+    "func_types": [
+      "acknowledgment",
+      "reasoning_guidance",
+      "verification"
+    ],
+    "R2m": 0.0005,
+    "lrt_chi2": 0.5818,
+    "lrt_p": 0.747585,
+    "full_llf": 583.35,
+    "red_llf": 583.06
+  },
+  "stratqa_llama": {
+    "n": 737,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "information_provision",
+      "reasoning_guidance",
+      "verification"
+    ],
+    "R2m": -0.2094,
+    "lrt_chi2": 62.6292,
+    "lrt_p": 0.0,
+    "full_llf": -149.58,
+    "red_llf": -180.89
+  },
+  "stratqa_gemma": {
+    "n": 734,
+    "n_func_types": 4,
+    "func_types": [
+      "acknowledgment",
+      "coordination",
+      "information_provision",
+      "reasoning_guidance"
+    ],
+    "R2m": -0.2751,
+    "lrt_chi2": 131.0574,
+    "lrt_p": 0.0,
+    "full_llf": -238.19,
+    "red_llf": -303.72
+  }
+}

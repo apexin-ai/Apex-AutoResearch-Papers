@@ -1,0 +1,3952 @@
+{
+  "metadata": {
+    "mode": "oracle",
+    "seed": 123,
+    "num_tasks": 164,
+    "char_threshold": null,
+    "model": "Qwen2.5-7B-Instruct",
+    "timestamp": "2026-05-06T21:08:13.581541+00:00"
+  },
+  "statistics": {
+    "n_tasks": 164,
+    "baseline_accuracy": 0.7256,
+    "pruned_accuracy": 0.7256,
+    "accuracy_diff": 0.0,
+    "mcnemar": {
+      "b": 8,
+      "c": 8,
+      "p_value": 1.0
+    },
+    "tost_equivalence": {
+      "epsilon": 0.01,
+      "p_value": 0.341631
+    },
+    "non_inferiority": {
+      "delta": -0.03,
+      "p_value": 0.110938
+    },
+    "paired_confusion": {
+      "both_correct": 111,
+      "base_only": 8,
+      "prune_only": 8,
+      "both_wrong": 37
+    },
+    "messages": {
+      "baseline_total": 316,
+      "pruned_total": 314,
+      "reduction_pct": 0.63,
+      "total_pruned_rounds": 21
+    }
+  },
+  "records": [
+    {
+      "task_id": "HumanEval/18",
+      "humaneval_id": "HumanEval/18",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1225,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/31",
+      "humaneval_id": "HumanEval/31",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1426,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/158",
+      "humaneval_id": "HumanEval/158",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.95,
+            "tokens": 1349,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/43",
+      "humaneval_id": "HumanEval/43",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1245,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/39",
+      "humaneval_id": "HumanEval/39",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1670,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/15",
+      "humaneval_id": "HumanEval/15",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1091,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/151",
+      "humaneval_id": "HumanEval/151",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1250,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/101",
+      "humaneval_id": "HumanEval/101",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1195,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/34",
+      "humaneval_id": "HumanEval/34",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1383,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/52",
+      "humaneval_id": "HumanEval/52",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1096,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/113",
+      "humaneval_id": "HumanEval/113",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1406,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/119",
+      "humaneval_id": "HumanEval/119",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.95,
+            "tokens": 1387,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/83",
+      "humaneval_id": "HumanEval/83",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpa_ije3lp.py\", line 39, in <module>\n    check(starts_one_ends)\n  File \"/tmp/tmpa_ije3lp.py\", line 29, in check\n    assert candidate(2) == 18\n           ^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpjkqwqlk_.py\", line 39, in <module>\n    check(starts_one_ends)\n  File \"/tmp/tmpjkqwqlk_.py\", line 29, in check\n    assert candidate(2) == 18\n           ^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.95,
+            "tokens": 1213,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/116",
+      "humaneval_id": "HumanEval/116",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpmalbcifm.py\", line 49, in <module>\n    check(sort_array)\n  File \"/tmp/tmpmalbcifm.py\", line 36, in check\n    assert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp1o_odx6w.py\", line 65, in <module>\n    check(sort_array)\n  File \"/tmp/tmp1o_odx6w.py\", line 52, in check\n    assert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1563,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/56",
+      "humaneval_id": "HumanEval/56",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1058,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/131",
+      "humaneval_id": "HumanEval/131",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1318,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/1",
+      "humaneval_id": "HumanEval/1",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpii1h3z10.py\", line 66, in <module>\n    check(separate_paren_groups)\n  File \"/tmp/tmpii1h3z10.py\", line 54, in check\n    assert candidate('(()()) ((())) () ((())()())') == [\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp4imrg_sm.py\", line 66, in <module>\n    check(separate_paren_groups)\n  File \"/tmp/tmp4imrg_sm.py\", line 54, in check\n    assert candidate('(()()) ((())) () ((())()())') == [\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1396,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/159",
+      "humaneval_id": "HumanEval/159",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpqjfyjqfo.py\", line 70, in <module>\n    check(eat)\n  File \"/tmp/tmpqjfyjqfo.py\", line 58, in check\n    assert candidate(5, 6, 10) == [11, 4], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpi_2ma7j0.py\", line 70, in <module>\n    check(eat)\n  File \"/tmp/tmpi_2ma7j0.py\", line 58, in check\n    assert candidate(5, 6, 10) == [11, 4], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1557,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/123",
+      "humaneval_id": "HumanEval/123",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpttlq4m2y.py\", line 46, in <module>\n    check(get_odd_collatz)\n  File \"/tmp/tmpttlq4m2y.py\", line 37, in check\n    assert candidate(14) == [1, 5, 7, 11, 13, 17]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/23",
+      "humaneval_id": "HumanEval/23",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 633,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/124",
+      "humaneval_id": "HumanEval/124",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/38",
+      "humaneval_id": "HumanEval/38",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp1dzzwz6c.py\", line 42, in <module>\n    check(decode_cyclic)\n  File \"/tmp/tmp1dzzwz6c.py\", line 37, in check\n    encoded_str = encode_cyclic(str)\n                  ^^^^^^^^^^^^^\nNameError: name 'encode_cyclic' is not defined. Did you mean: 'decode_cyclic'?"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/84",
+      "humaneval_id": "HumanEval/84",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1368,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/41",
+      "humaneval_id": "HumanEval/41",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpnw1j5eyv.py\", line 39, in <module>\n    check(car_race_collision)\n  File \"/tmp/tmpnw1j5eyv.py\", line 31, in check\n    assert candidate(2) == 4\n           ^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp5oj_dgt8.py\", line 39, in <module>\n    check(car_race_collision)\n  File \"/tmp/tmp5oj_dgt8.py\", line 31, in check\n    assert candidate(2) == 4\n           ^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1204,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/134",
+      "humaneval_id": "HumanEval/134",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1468,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1380,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/2",
+      "humaneval_id": "HumanEval/2",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1440,
+            "function_type": "reasoning_guidance"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1275,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/80",
+      "humaneval_id": "HumanEval/80",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1558,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/74",
+      "humaneval_id": "HumanEval/74",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1479,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/162",
+      "humaneval_id": "HumanEval/162",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 907,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/138",
+      "humaneval_id": "HumanEval/138",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1311,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/87",
+      "humaneval_id": "HumanEval/87",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/145",
+      "humaneval_id": "HumanEval/145",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpqpgadsmf.py\", line 44, in <module>\n    check(order_by_points)\n  File \"/tmp/tmpqpgadsmf.py\", line 32, in check\n    assert candidate([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp93hheg5b.py\", line 44, in <module>\n    check(order_by_points)\n  File \"/tmp/tmp93hheg5b.py\", line 32, in check\n    assert candidate([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1480,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/54",
+      "humaneval_id": "HumanEval/54",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1329,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/109",
+      "humaneval_id": "HumanEval/109",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp1p1y5sd6.py\", line 58, in <module>\n    check(move_one_ball)\n  File \"/tmp/tmp1p1y5sd6.py\", line 50, in check\n    assert candidate([3, 4, 5, 1, 2])==True, \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp4wabspc_.py\", line 58, in <module>\n    check(move_one_ball)\n  File \"/tmp/tmp4wabspc_.py\", line 50, in check\n    assert candidate([3, 4, 5, 1, 2])==True, \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1775,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/102",
+      "humaneval_id": "HumanEval/102",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1325,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/62",
+      "humaneval_id": "HumanEval/62",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1328,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1122,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/129",
+      "humaneval_id": "HumanEval/129",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmplxljcdmt.py\", line 62, in <module>\n    print(min_path([[1,2,3], [4,5,6], [7,8,9]], 3))  # Output: [1, 2, 1]\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmplxljcdmt.py\", line 57, in min_path\n    dfs(i, j, [grid[i][j]])\n  File \"/tmp/tmplxljcdmt.py\", line 36, in dfs\n    if len(path) > len(min_path):\n                   ^^^^^^^^^^^^^\nTypeError: object of type 'NoneType' has no len()",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1836,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/110",
+      "humaneval_id": "HumanEval/110",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1729,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/4",
+      "humaneval_id": "HumanEval/4",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1135,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/8",
+      "humaneval_id": "HumanEval/8",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1135,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/97",
+      "humaneval_id": "HumanEval/97",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1101,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/137",
+      "humaneval_id": "HumanEval/137",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp01njzecq.py\", line 70, in <module>\n    check(compare_one)\n  File \"/tmp/tmp01njzecq.py\", line 60, in check\n    assert candidate(1, \"2,3\") == \"2,3\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpyw6inlaa.py\", line 65, in <module>\n    check(compare_one)\n  File \"/tmp/tmpyw6inlaa.py\", line 55, in check\n    assert candidate(1, \"2,3\") == \"2,3\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1414,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/96",
+      "humaneval_id": "HumanEval/96",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1555,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/65",
+      "humaneval_id": "HumanEval/65",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp5ugj4p0x.py\", line 50, in <module>\n    check(circular_shift)\n  File \"/tmp/tmp5ugj4p0x.py\", line 42, in check\n    assert candidate(97, 8) == \"79\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1458,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1403,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/114",
+      "humaneval_id": "HumanEval/114",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmprip__puf.py\", line 51, in <module>\n    check(minSubArraySum)\n  File \"/tmp/tmprip__puf.py\", line 35, in check\n    assert candidate([2, 3, 4, 1, 2, 4]) == 1, \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpgrzo7qf3.py\", line 50, in <module>\n    check(minSubArraySum)\n  File \"/tmp/tmpgrzo7qf3.py\", line 34, in check\n    assert candidate([2, 3, 4, 1, 2, 4]) == 1, \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1209,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/117",
+      "humaneval_id": "HumanEval/117",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1321,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/155",
+      "humaneval_id": "HumanEval/155",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpnkeqyq6a.py\", line 52, in <module>\n    check(even_odd_count)\n  File \"/tmp/tmpnkeqyq6a.py\", line 44, in check\n    assert candidate(0) == (1, 0)\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.95,
+            "tokens": 1373,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1291,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/37",
+      "humaneval_id": "HumanEval/37",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1486,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/115",
+      "humaneval_id": "HumanEval/115",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1320,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/86",
+      "humaneval_id": "HumanEval/86",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1633,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/85",
+      "humaneval_id": "HumanEval/85",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1499,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/53",
+      "humaneval_id": "HumanEval/53",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 850,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/130",
+      "humaneval_id": "HumanEval/130",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/139",
+      "humaneval_id": "HumanEval/139",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/81",
+      "humaneval_id": "HumanEval/81",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpnc95yw0c.py\", line 73, in <module>\n    check(numerical_letter_grade)\n  File \"/tmp/tmpnc95yw0c.py\", line 61, in check\n    assert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/19",
+      "humaneval_id": "HumanEval/19",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/69",
+      "humaneval_id": "HumanEval/69",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1339,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/122",
+      "humaneval_id": "HumanEval/122",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpja9mit8t.py\", line 48, in <module>\n    check(add_elements)\n  File \"/tmp/tmpja9mit8t.py\", line 38, in check\n    assert candidate([1,-2,-3,41,57,76,87,88,99], 3) == -4\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpyt8vf6w1.py\", line 48, in <module>\n    check(add_elements)\n  File \"/tmp/tmpyt8vf6w1.py\", line 38, in check\n    assert candidate([1,-2,-3,41,57,76,87,88,99], 3) == -4\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1490,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/108",
+      "humaneval_id": "HumanEval/108",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmptl9xbajg.py\", line 49, in <module>\n    check(count_nums)\n  File \"/tmp/tmptl9xbajg.py\", line 36, in check\n    assert candidate([-1, -2, 0]) == 0\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpdrgofifc.py\", line 49, in <module>\n    check(count_nums)\n  File \"/tmp/tmpdrgofifc.py\", line 36, in check\n    assert candidate([-1, -2, 0]) == 0\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1315,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/48",
+      "humaneval_id": "HumanEval/48",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1150,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/17",
+      "humaneval_id": "HumanEval/17",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1448,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1337,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/95",
+      "humaneval_id": "HumanEval/95",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp_i708ivs.py\", line 44, in <module>\n    check(check_dict_case)\n  File \"/tmp/tmp_i708ivs.py\", line 34, in check\n    assert candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) == False, \"Fourth test error: \" + str(candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fourth test error: True"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpncmwovzg.py\", line 44, in <module>\n    check(check_dict_case)\n  File \"/tmp/tmpncmwovzg.py\", line 34, in check\n    assert candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) == False, \"Fourth test error: \" + str(candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fourth test error: True",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1408,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/91",
+      "humaneval_id": "HumanEval/91",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpezo4x6k8.py\", line 53, in <module>\n    check(is_bored)\n  File \"/tmp/tmpezo4x6k8.py\", line 42, in check\n    assert candidate(\"Is the sky blue?\") == 0, \"Test 2\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Test 2"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpwzk2ldd7.py\", line 56, in <module>\n    check(is_bored)\n  File \"/tmp/tmpwzk2ldd7.py\", line 45, in check\n    assert candidate(\"Is the sky blue?\") == 0, \"Test 2\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Test 2",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1408,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1393,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/79",
+      "humaneval_id": "HumanEval/79",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1397,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/14",
+      "humaneval_id": "HumanEval/14",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 785,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/77",
+      "humaneval_id": "HumanEval/77",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpfus60r1z.py\", line 50, in <module>\n    check(iscube)\n  File \"/tmp/tmpfus60r1z.py\", line 39, in check\n    assert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fourth test error: False"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1506,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/3",
+      "humaneval_id": "HumanEval/3",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1111,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/146",
+      "humaneval_id": "HumanEval/146",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1506,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/57",
+      "humaneval_id": "HumanEval/57",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1459,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/143",
+      "humaneval_id": "HumanEval/143",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1551,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/0",
+      "humaneval_id": "HumanEval/0",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1357,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/106",
+      "humaneval_id": "HumanEval/106",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp5dwtp3mb.py\", line 47, in <module>\n    check(f)\n  File \"/tmp/tmp5dwtp3mb.py\", line 41, in check\n    assert candidate(5) == [1, 2, 6, 24, 15]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1564,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/50",
+      "humaneval_id": "HumanEval/50",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp8magk86a.py\", line 31, in <module>\n    check(decode_shift)\n  File \"/tmp/tmp8magk86a.py\", line 27, in check\n    assert candidate(copy.deepcopy(encoded_str)) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpyl63wr46.py\", line 25, in <module>\n    check(decode_shift)\n  File \"/tmp/tmpyl63wr46.py\", line 20, in check\n    encoded_str = encode_shift(str)\n                  ^^^^^^^^^^^^\nNameError: name 'encode_shift' is not defined. Did you mean: 'decode_shift'?",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1433,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/58",
+      "humaneval_id": "HumanEval/58",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/147",
+      "humaneval_id": "HumanEval/147",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1496,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/160",
+      "humaneval_id": "HumanEval/160",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpgfd77_x4.py\", line 92, in <module>\n    check(do_algebra)\n  File \"/tmp/tmpgfd77_x4.py\", line 84, in check\n    assert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1490,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/67",
+      "humaneval_id": "HumanEval/67",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1622,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/55",
+      "humaneval_id": "HumanEval/55",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1033,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/118",
+      "humaneval_id": "HumanEval/118",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1501,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/154",
+      "humaneval_id": "HumanEval/154",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp8d2hnwqt.py\", line 47, in <module>\n    check(cycpattern_check)\n          ^^^^^^^^^^^^^^^^\nNameError: name 'cycpattern_check' is not defined"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpv4hsblif.py\", line 52, in <module>\n    check(cycpattern_check)\n          ^^^^^^^^^^^^^^^^\nNameError: name 'cycpattern_check' is not defined",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1414,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/25",
+      "humaneval_id": "HumanEval/25",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1566,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/36",
+      "humaneval_id": "HumanEval/36",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1335,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/63",
+      "humaneval_id": "HumanEval/63",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1590,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/132",
+      "humaneval_id": "HumanEval/132",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmp8j_zenh6.py\", line 57, in <module>\n    check(is_nested)\n  File \"/tmp/tmp8j_zenh6.py\", line 47, in check\n    assert candidate('[[]][[') == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpp17wird0.py\", line 62, in <module>\n    check(is_nested)\n  File \"/tmp/tmpp17wird0.py\", line 52, in check\n    assert candidate('[[]][[') == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1619,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/21",
+      "humaneval_id": "HumanEval/21",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1751,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/9",
+      "humaneval_id": "HumanEval/9",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1218,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/72",
+      "humaneval_id": "HumanEval/72",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1598,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/128",
+      "humaneval_id": "HumanEval/128",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/126",
+      "humaneval_id": "HumanEval/126",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpcqkx8wub.py\", line 60, in <module>\n    check(is_sorted)\n  File \"/tmp/tmpcqkx8wub.py\", line 55, in check\n    assert candidate([1, 2, 2, 3, 3, 4]) == True, \"This prints if this assert fails 7 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 7 (good for debugging!)"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/70",
+      "humaneval_id": "HumanEval/70",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1293,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/40",
+      "humaneval_id": "HumanEval/40",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1522,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/66",
+      "humaneval_id": "HumanEval/66",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1300,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/71",
+      "humaneval_id": "HumanEval/71",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1468,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/107",
+      "humaneval_id": "HumanEval/107",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1508,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/32",
+      "humaneval_id": "HumanEval/32",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpzh9vk799.py\", line 74, in <module>\n    print(round(find_zero([1, 2]), 2))  # Should output -0.5\n                ^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpzh9vk799.py\", line 68, in find_zero\n    raise ValueError(\"No root found within the initial range.\")\nValueError: No root found within the initial range."
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/11",
+      "humaneval_id": "HumanEval/11",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1217,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/47",
+      "humaneval_id": "HumanEval/47",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1325,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/22",
+      "humaneval_id": "HumanEval/22",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1243,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/140",
+      "humaneval_id": "HumanEval/140",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpx7sk78ij.py\", line 58, in <module>\n    check(fix_spaces)\n  File \"/tmp/tmpx7sk78ij.py\", line 50, in check\n    assert candidate(\"Yellow Yellow  Dirty  Fellow\") == \"Yellow_Yellow__Dirty__Fellow\", \"This prints if this assert fails 3 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 3 (good for debugging!)"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/30",
+      "humaneval_id": "HumanEval/30",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1195,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/10",
+      "humaneval_id": "HumanEval/10",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1352,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/112",
+      "humaneval_id": "HumanEval/112",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1124,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/111",
+      "humaneval_id": "HumanEval/111",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1539,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1607,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/28",
+      "humaneval_id": "HumanEval/28",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 758,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/135",
+      "humaneval_id": "HumanEval/135",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1290,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/94",
+      "humaneval_id": "HumanEval/94",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1626,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/13",
+      "humaneval_id": "HumanEval/13",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1181,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/7",
+      "humaneval_id": "HumanEval/7",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1103,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/157",
+      "humaneval_id": "HumanEval/157",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1298,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/49",
+      "humaneval_id": "HumanEval/49",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.95,
+            "tokens": 1486,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1340,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/120",
+      "humaneval_id": "HumanEval/120",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "no_code"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpjslu2r5j.py\", line 56, in <module>\n    check(maximum)\n  File \"/tmp/tmpjslu2r5j.py\", line 40, in check\n    assert candidate([-3, -4, 5], 3) == [-4, -3, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1454,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/89",
+      "humaneval_id": "HumanEval/89",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmphqh_cyom.py\", line 65, in <module>\n    check(encrypt)\n  File \"/tmp/tmphqh_cyom.py\", line 51, in check\n    assert candidate('hi') == 'lm', \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.95,
+            "tokens": 1416,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1423,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/98",
+      "humaneval_id": "HumanEval/98",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1118,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/100",
+      "humaneval_id": "HumanEval/100",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/64",
+      "humaneval_id": "HumanEval/64",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1484,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1809,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/103",
+      "humaneval_id": "HumanEval/103",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1495,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/125",
+      "humaneval_id": "HumanEval/125",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmphguqftqh.py\", line 47, in <module>\n    check(split_words)\n  File \"/tmp/tmphguqftqh.py\", line 42, in check\n    assert candidate(\"aaabb\") == 2\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1640,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/51",
+      "humaneval_id": "HumanEval/51",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1356,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/90",
+      "humaneval_id": "HumanEval/90",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1246,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/152",
+      "humaneval_id": "HumanEval/152",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1494,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/24",
+      "humaneval_id": "HumanEval/24",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1113,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/20",
+      "humaneval_id": "HumanEval/20",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 4,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1485,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1412,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/148",
+      "humaneval_id": "HumanEval/148",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1439,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/92",
+      "humaneval_id": "HumanEval/92",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1128,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/26",
+      "humaneval_id": "HumanEval/26",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpbkr0v4w8.py\", line 48, in <module>\n    check(remove_duplicates)\n  File \"/tmp/tmpbkr0v4w8.py\", line 45, in check\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 4,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpskrjw9u0.py\", line 50, in <module>\n    check(remove_duplicates)\n  File \"/tmp/tmpskrjw9u0.py\", line 47, in check\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1343,
+            "function_type": "verification"
+          },
+          {
+            "round": 4,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1284,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          4
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/16",
+      "humaneval_id": "HumanEval/16",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1255,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/142",
+      "humaneval_id": "HumanEval/142",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1467,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/99",
+      "humaneval_id": "HumanEval/99",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/127",
+      "humaneval_id": "HumanEval/127",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpsvhlsa0c.py\", line 64, in <module>\n    check(intersection)\n  File \"/tmp/tmpsvhlsa0c.py\", line 52, in check\n    assert candidate((-1, 1), (0, 4)) == \"NO\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "Traceback (most recent call last):\n  File \"/tmp/tmpvu7thhyx.py\", line 58, in <module>\n    check(intersection)\n  File \"/tmp/tmpvu7thhyx.py\", line 46, in check\n    assert candidate((-1, 1), (0, 4)) == \"NO\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1428,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/156",
+      "humaneval_id": "HumanEval/156",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1417,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/141",
+      "humaneval_id": "HumanEval/141",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/78",
+      "humaneval_id": "HumanEval/78",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1610,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/68",
+      "humaneval_id": "HumanEval/68",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1396,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/93",
+      "humaneval_id": "HumanEval/93",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1388,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/60",
+      "humaneval_id": "HumanEval/60",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1268,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/82",
+      "humaneval_id": "HumanEval/82",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1207,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/59",
+      "humaneval_id": "HumanEval/59",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1620,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/149",
+      "humaneval_id": "HumanEval/149",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1065,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/42",
+      "humaneval_id": "HumanEval/42",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "no_code"
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1109,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/163",
+      "humaneval_id": "HumanEval/163",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/133",
+      "humaneval_id": "HumanEval/133",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1328,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/161",
+      "humaneval_id": "HumanEval/161",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1528,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/29",
+      "humaneval_id": "HumanEval/29",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1102,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/27",
+      "humaneval_id": "HumanEval/27",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "no_code"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 2,
+        "error": "no_code",
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1066,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/61",
+      "humaneval_id": "HumanEval/61",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1080,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/104",
+      "humaneval_id": "HumanEval/104",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1267,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/45",
+      "humaneval_id": "HumanEval/45",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1303,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/75",
+      "humaneval_id": "HumanEval/75",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/6",
+      "humaneval_id": "HumanEval/6",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1385,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/136",
+      "humaneval_id": "HumanEval/136",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1394,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/33",
+      "humaneval_id": "HumanEval/33",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1466,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/44",
+      "humaneval_id": "HumanEval/44",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1385,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/88",
+      "humaneval_id": "HumanEval/88",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1515,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/12",
+      "humaneval_id": "HumanEval/12",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 817,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    },
+    {
+      "task_id": "HumanEval/105",
+      "humaneval_id": "HumanEval/105",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1526,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/121",
+      "humaneval_id": "HumanEval/121",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1229,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/144",
+      "humaneval_id": "HumanEval/144",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1541,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/73",
+      "humaneval_id": "HumanEval/73",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1539,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/76",
+      "humaneval_id": "HumanEval/76",
+      "baseline": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception"
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/5",
+      "humaneval_id": "HumanEval/5",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1063,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/46",
+      "humaneval_id": "HumanEval/46",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": false,
+        "num_messages": 0,
+        "error": "llm_exception",
+        "oracle_decisions": [],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/150",
+      "humaneval_id": "HumanEval/150",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1244,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/35",
+      "humaneval_id": "HumanEval/35",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": false,
+            "confidence": 0.9,
+            "tokens": 1103,
+            "function_type": "verification"
+          }
+        ],
+        "pruned_rounds": []
+      }
+    },
+    {
+      "task_id": "HumanEval/153",
+      "humaneval_id": "HumanEval/153",
+      "baseline": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null
+      },
+      "pruned": {
+        "is_correct": true,
+        "num_messages": 2,
+        "error": null,
+        "oracle_decisions": [
+          {
+            "round": 2,
+            "is_ack": true,
+            "confidence": 0.9,
+            "tokens": 1274,
+            "function_type": "acknowledgment"
+          }
+        ],
+        "pruned_rounds": [
+          2
+        ]
+      }
+    }
+  ]
+}

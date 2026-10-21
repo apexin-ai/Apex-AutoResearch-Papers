@@ -1,0 +1,529 @@
+\section{Qualitative Examples of Communication Functions}
+\label{app:qualitative-examples}
+
+Table~\ref{tab:qualitative-examples} presents representative messages for each of the five communication function types identified in our taxonomy, selected from annotations with full inter-annotator agreement and maximum confidence scores. Examples are drawn from different backbone--topology combinations to illustrate both the consistency of function definitions and the stylistic variations across models.
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Qualitative examples for each communication function type. All examples have inter-annotator agreement with confidence $= 1.0$. Messages are lightly edited for length.}
+\label{tab:qualitative-examples}
+\begin{tabular}{@{}p{2.2cm}p{2.0cm}p{\dimexpr\textwidth-4.2cm-4\tabcolsep}@{}}
+\toprule
+\textbf{Function Type} & \textbf{Configuration} & \textbf{Message Excerpt} \\
+\midrule
+
+% === REASONING GUIDANCE ===
+\multirow{3}{2.2cm}{\textsc{Reasoning Guidance} \\ {\scriptsize (2,327 agreed)}}
+& Qwen / RR
+& \textit{``To solve this problem, we need to convert the length of the wire from feet to inches and then divide by the length of each piece. 1.\ Convert 4 feet to inches: Since 1 foot = 12 inches, 4 feet $= 4 \times 12 = 48$ inches. 2.\ Divide the total length in inches by the length of each piece...''} \\
+\cmidrule(l){2-3}
+& Gemma / Selector
+& \textit{``Here's how to solve the problem step-by-step: Start: 2 apples. First throw: $2 + 5 = 7$ apples. Second throw: $7 - 1 + 6 = 12$ apples. The answer is 12.''} \\
+\cmidrule(l){2-3}
+& Llama / RR
+& \textit{``I'm glad the solution was accurate. If you have another problem you'd like me to check, feel free to ask.''}\footnotemark \\
+
+\midrule
+
+% === VERIFICATION ===
+\multirow{3}{2.2cm}{\textsc{Verification} \\ {\scriptsize (1,001 agreed)}}
+& Qwen / RR
+& \textit{``Step 1: Calculate the initial amount of money Johnny has. Johnny's allowance: \$20. Extra money added: \$10. Total initial amount: \$20 + \$10 = \$30. Step 2: Determine the amount after the investment triples. Tripling the initial amount: \$30 $\times$ 3 = \$90. The answer is 90.''} \\
+\cmidrule(l){2-3}
+& Llama / RR
+& \textit{``The given problem is solved step by step. The final answer is 36.''} \\
+\cmidrule(l){2-3}
+& Gemma / Selector
+& \textit{``Here's how to solve the problem: Find the total cost: \$12 (adult) + \$10 (child) = \$22. Add the change: \$22 + \$8 = \$30. Answer: Brittany's mom gave the cashier \$30.''} \\
+
+\midrule
+
+% === ACKNOWLEDGMENT ===
+\multirow{3}{2.2cm}{\textsc{Acknow\-ledg\-ment} \\ {\scriptsize (1,854 agreed)}}
+& Qwen / RR
+& \textit{``That is correct. Each single bagel will cost \$1.00 after the discount. The answer is 1.''} \\
+\cmidrule(l){2-3}
+& Llama / RR
+& \textit{``You've correctly summarized the steps and confirmed the calculations. The sequence of events and the final calculation are accurate. The answer is 43.''} \\
+\cmidrule(l){2-3}
+& Gemma / RR
+& \textit{``Your solution is perfectly correct! You clearly laid out the steps and used algebra effectively to find the answer. The answer is 10.''} \\
+
+\midrule
+
+% === INFORMATION PROVISION ===
+\multirow{3}{2.2cm}{\textsc{Information Provision} \\ {\scriptsize (471 agreed)}}
+& Gemma / RR
+& \textit{``Here's the solution: Sunday's movies: They watch 4 movies / 2 = 2 movies on Sunday. Total weekend movies: 4 + 2 = 6 movies each weekend. Movies in 4 weeks: 6 $\times$ 4 = 24 movies. The answer is 24.''} \\
+\cmidrule(l){2-3}
+& Qwen / RR
+& \textit{``To determine how much crepe paper James needs, we first calculate the perimeter of his rectangular backyard fence...''} \\
+\cmidrule(l){2-3}
+& Llama / RR
+& \textit{``Here's another problem: A bakery is making a special batch of cookies. They need to package 480 cookies into boxes that hold 12 cookies each. How many boxes can they fill with the 480 cookies? Let's solve this problem step by step.''} \\
+
+\midrule
+
+% === COORDINATION ===
+\multirow{3}{2.2cm}{\textsc{Coordination} \\ {\scriptsize (595 agreed)}}
+& Llama / RR
+& \textit{``I'm glad I was able to accurately solve the problem. If you have any more math problems you'd like me to solve, feel free to ask.''} \\
+\cmidrule(l){2-3}
+& Gemma / RR
+& \textit{``Please provide me with the problem you'd like me to solve! I'm ready to check the solver's solution...''} \\
+\cmidrule(l){2-3}
+& Llama / Selector
+& \textit{``I'm glad you were able to provide the correct steps and solution. You have a good understanding of the problem...''} \\
+
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\footnotetext{Despite its surface resemblance to \textsc{acknowledgment}, both annotators classified this Llama message as \textsc{reasoning guidance} with full agreement. The ambiguity illustrates Llama's minimally differentiated communication mode (Section~\ref{sec:discussion}): its messages are functionally interchangeable regardless of nominal category, making reliable annotation difficult for this backbone.}
+
+\section{HumanEval Cross-Domain Pilot}
+\label{app:humaneval-pilot}
+
+To provide preliminary evidence of cross-domain applicability, we ran a 50-task pilot using Qwen2.5-7B with a hierarchical (solver--reviewer) topology on the HumanEval code generation benchmark \cite{chen_humaneval_2021}.
+
+\paragraph{Results.} The system achieved 80\% pass@1 accuracy (40/50 tasks). The communication function distribution differs markedly from GSM8K: \textsc{reasoning\_guidance} dominates (50.8\%), followed by \textsc{verification} (41.5\%), with \textsc{acknowledgment} (4.2\%), \textsc{coordination} (1.7\%), and \textsc{information\_provision} (1.7\%) appearing rarely. Cross-model annotation agreement reached $\kappa = 0.47$ (moderate), comparable to the lower end of the GSM8K range.
+
+\paragraph{Limitations.} The hierarchical topology proved too efficient for statistical analysis: 86\% of tasks were solved in a single round (2 messages), yielding only 118 total messages and 18 eligible for local impact analysis. Most function types had $n < 30$, precluding Kruskal--Wallis and OLS ANCOVA tests. The distributional shift (from acknowledgment-heavy in GSM8K to reasoning-guidance-heavy in HumanEval) is itself informative---it suggests that the taxonomy captures domain-specific communication patterns---but the statistical framework requires substantially more multi-round conversations to produce meaningful results in this domain.
+
+\section{Temperature Robustness}
+\label{app:temp-robustness}
+
+To assess sensitivity to decoding temperature, we ran a 50-task subset of Qwen $\times$ round-robin at temperature $= 0.7$ (primary experiments use greedy decoding). Accuracy remains stable ($90.0\%$ vs.\ $89.7\%$). The Kruskal--Wallis test remains significant ($H = 34.0$, $p < 0.001$), and OLS ANCOVA confirms function-driven communication ($F = 37.9$, $p < 0.001$; $R^2 = 0.50$; cross-model $\kappa = 0.60$). A parallel check on Llama $\times$ round-robin at temperature $= 0.7$ yields $R^2 = 0.10$, $\kappa = 0.41$, consistent with its minimally differentiated mode under greedy decoding. The function distribution shifts toward more \textsc{reasoning\_guidance} ($37\%$ vs.\ $18\%$) and less \textsc{acknowledgment} ($36\%$ vs.\ $50\%$), suggesting stochastic decoding produces more substantive content without altering the functional structure.
+
+\paragraph{Pruning under stochastic decoding.}
+All primary pruning results use greedy decoding. A 10-seed oracle replication on Qwen/GSM8K at $t{=}0.7$ ($10 \times 200$ tasks) yields $\Delta = +0.30 \pm 1.80$\,pp (95\% CI $[-0.81, +1.41]$\,pp; two-sided $t$: $p = 0.611$, NS; TOST non-inferiority at $\delta = -3$\,pp: $p < 0.001$; at $\delta = -1$\,pp: $p = 0.024$; 39.2\% suppression). Per-seed deltas range from $-3.0$ to $+3.5$\,pp: seed 6144 ($\Delta = -3.0$\,pp) touches the non-inferiority boundary, while seed 1024 ($\Delta = +3.5$\,pp) reflects an anomalously low baseline (85.0\%, pruned 88.5\%). The suppression rate (39.2\%) is comparable to the greedy heuristic (${\sim}42\%$), indicating similar acknowledgment prevalence under stochastic decoding. In contrast, Llama oracle pruning at $t{=}0.7$ yields pooled $\Delta = -2.2$\,pp (Fisher combined $p = 0.29$), an amplification of the marginal negative trend observed under greedy decoding ($\Delta = -0.6$\,pp). Since both Qwen and Llama results use oracle labels, the divergence indicates that ack pruning safety under stochastic decoding is backbone-specific: Qwen remains consistently safe across 10 seeds, while Llama shows a marginal degradation trend ($p = 0.29$, NS) regardless of detector type. Temperature robustness cannot be assumed across backbones without empirical verification.
+
+Gemma exhibits extreme temperature sensitivity: greedy ack suppression is 4.6\% but rises to 63.6\% under $t{=}0.7$ ($14\times$), suggesting Gemma's position-organized communication pattern collapses under stochastic decoding. This reinforces Gemma's exploratory status and indicates the three-backbone typology (\S\ref{sec:cross_domain}) is greedy-specific.
+
+\section{OLS Robustness Checks}
+\label{app:ols-robustness}
+
+We validate the OLS ANCOVA (Equation~\ref{eq:ols}) with three robustness checks across all nine configurations.
+
+\paragraph{Residual diagnostics.} Shapiro--Wilk tests reject normality for all configurations (expected at $n > 400$); Breusch--Pagan tests detect heteroscedasticity in all cases. We therefore report HC3 robust standard errors throughout the main text. All conclusions are unchanged under robust inference. VIF analysis shows high collinearity between \texttt{message\_position} and \texttt{round\_number} (VIF $> 10$), but function type dummy VIF values remain below 3, confirming that multicollinearity does not affect the key func\_type inference. Q-Q plots are available in the supplementary materials.
+
+\paragraph{Nonlinear position model.} We augment the linear model with a quadratic position term (\texttt{position\textsuperscript{2}}). Table~\ref{tab:nonlinear} reports key comparisons. For Qwen and Llama, adding \texttt{position\textsuperscript{2}} produces negligible $\Delta R^2 < 0.005$ and function type remains significant ($p < 0.001$). For Gemma, \texttt{position\textsuperscript{2}} absorbs $\Delta R^2 = 0.228$ (RR) and $0.215$ (SEQ), rendering function type non-significant ($p > 0.69$). This confirms that Gemma's weak function-organization reflects genuine nonlinear positional dynamics: once position is properly modeled, function type adds negligible explanatory power.
+
+\begin{table}[htbp]
+\centering
+\caption{Linear vs.\ quadratic position model: function type significance after controlling for nonlinear position effects.}
+\label{tab:nonlinear}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{Linear $R^2$} & \textbf{Quad $R^2$} & \textbf{$\Delta R^2$} & \textbf{func\_type $p$ (quad)} \\
+\midrule
+Qwen RR    & .451 & .452 & .001 & $< .001$ \\
+Qwen SEQ   & .443 & .447 & .004 & $< .001$ \\
+Qwen SEL   & .065 & .065 & .000 & $< .001$ \\
+Gemma RR   & .111 & .339 & \textbf{.228} & .806 \\
+Gemma SEQ  & .123 & .338 & \textbf{.215} & .699 \\
+Gemma SEL  & .010 & .040 & .031 & .219 \\
+Llama RR   & .021 & .022 & .001 & .010 \\
+Llama SEQ  & .019 & .020 & .001 & .004 \\
+Llama SEL  & .070 & .074 & .004 & $< .001$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Message length control.} Adding message length (character count) as a covariate produces $\Delta R^2 < 0.04$ for all configurations. Function type remains significant for Qwen ($p < 0.001$) and Llama ($p < 0.03$) after controlling for length, indicating that the impact ordering is not an artifact of message length differences across function types.
+
+\section{Kruskal--Wallis Results}
+\label{app:kw}
+
+Table~\ref{tab:kruskal_wallis} reports Kruskal--Wallis $H$ statistics testing whether function type predicts remove-ablation similarity across all nine backbone--topology configurations. All tests are significant ($p < 0.01$), confirming that the omnibus between-type differences reported in the main text (Section~\ref{sec:impact_gradient}) are robust.
+
+\begin{table}[htbp]
+\centering
+\caption{Kruskal--Wallis $H$ statistics for remove-ablation similarity across function types. All $p < 0.01$.}
+\label{tab:kruskal_wallis}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Backbone} & \textbf{RR} & \textbf{SEQ} & \textbf{Selector} \\
+\midrule
+Qwen2.5-7B  & 287.4 & 288.1 & 50.8 \\
+Gemma-2-9B  & 21.5 & 25.1 & 6.9 \\
+Llama-3.1-8B & 13.0 & 15.8 & 63.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{System Prompts}
+\label{app:system-prompts}
+
+Full annotation system prompts are provided in Appendix~\ref{app:annotation-prompt}. The solver and checker system prompts used for multi-agent conversation are as follows:
+
+\paragraph{Solver prompt.} ``You are a math problem solver. Solve the given problem step by step, showing all your work. Provide the final numerical answer clearly.''
+
+\paragraph{Checker prompt.} ``You are a solution checker. Verify the solver's solution step by step. If you find errors, point them out and provide the correct solution. If the solution is correct, confirm it.''
+
+\paragraph{Selector prompt (selector topology only).} ``You are a group chat manager. Select the next speaker based on the current state of the conversation. Choose the solver when a new problem needs to be solved, and the checker when a solution needs to be verified.''
+
+\section{Neutralize Ablation Analysis}
+\label{app:neutralize}
+
+While the main text reports remove-ablation impact, neutralize ablation (replacing a message with ``\texttt{Acknowledged.}'' while preserving its slot) measures a complementary dimension. The two ablation types produce \emph{opposite} impact gradients:
+
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Remove} (content $+$ structure removed): acknowledgment most impactful (sim $= 0.35$), reasoning guidance least ($0.78$).
+    \item \textbf{Neutralize} (content removed, structure preserved): information provision most impactful (sim $= 0.05$), verification least ($0.50$).
+\end{itemize}
+
+The difference $\Delta = \text{sim}_{\text{remove}} - \text{sim}_{\text{neutralize}}$ isolates the \emph{structural value} of each message type. Information provision shows the largest $\Delta = 0.47$ (almost entirely content value), while coordination shows $\Delta = 0.07$ (almost entirely structural value). This decomposition is consistent with acknowledgment's high remove-impact being driven by structural presence---violating conversational expectations---rather than informational content.
+
+\section{Supplementary Tables}
+\label{app:supplementary}
+
+Table~\ref{tab:kappa_full} reports the full cross-model annotation agreement matrix.
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-model annotation agreement (Cohen's $\kappa$) by backbone and topology.}
+\label{tab:kappa_full}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Backbone} & \textbf{Round-Robin} & \textbf{Sequential} & \textbf{Selector} \\
+\midrule
+Qwen2.5-7B  & 0.64 & 0.64 & 0.669 \\
+Gemma-2-9B  & 0.350 & 0.348 & 0.351 \\
+Llama-3.1-8B & 0.46 & 0.47 & 0.634 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Impact Metric Robustness}
+\label{app:metric-robustness}
+
+To verify that the impact gradient (Section~\ref{sec:impact_gradient}) is not an artifact of the MiniLM embedding metric, we recompute message impact using three independent text similarity measures: ROUGE-L, token-level F1, and Jaccard similarity. Table~\ref{tab:metric_robustness} reports the Spearman rank correlation ($\rho$) between MiniLM cosine similarity and each alternative metric across all nine configurations.
+
+\begin{table}[htbp]
+\centering
+\caption{Spearman $\rho$ between MiniLM cosine similarity and alternative impact metrics. All correlations computed over per-message impact scores within each configuration.}
+\label{tab:metric_robustness}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{ROUGE-L} & \textbf{Token F1} & \textbf{Jaccard} \\
+\midrule
+Qwen RR   & 1.0 & 1.0 & 1.0 \\
+Qwen SEQ  & 1.0 & 1.0 & 1.0 \\
+Qwen SEL  & 1.0 & 1.0 & 1.0 \\
+Gemma RR  & 1.0 & 1.0 & 1.0 \\
+Gemma SEQ & 1.0 & 0.8 & 0.8 \\
+Gemma SEL & 0.949 & 0.949 & 0.949 \\
+Llama RR  & 0.6 & 0.6 & 0.6 \\
+Llama SEQ & 1.0 & 1.0 & 1.0 \\
+Llama SEL & 0.9 & 0.9 & 0.9 \\
+\midrule
+\textbf{Mean} & \textbf{0.939} & \textbf{0.917} & \textbf{0.917} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The prevalence of $\rho = 1.0$ reflects a ceiling effect: with only 4--5 function types per configuration, Spearman rank correlation over group medians has limited resolution---any two metrics that preserve the same ordinal ranking produce $\rho = 1.0$ regardless of magnitude differences. Where rankings do diverge (Llama RR $\rho = 0.6$, Gemma SEQ $\rho = 0.8$), the disagreement involves adjacent categories with similar impact scores, not reversals of the overall gradient. The mean $\rho > 0.91$ across all metric pairs confirms that the impact gradient ordering is consistent across metrics, though the ceiling effect limits the strength of this claim for individual configurations.
+
+\section{Cross-Domain Validation: MATH}
+\label{app:math}
+
+To test whether the backbone communication typology generalizes beyond elementary arithmetic, we ran the full pipeline on 50 MATH tasks (Level 3--5, Algebra and Number Theory) using the same round-robin topology. A follow-up pruning replication at $N{=}200$ (102 valid after filtering tasks where both conditions failed) yielded $\Delta = -2.0$\,pp (McNemar $p = 0.625$), attenuating the pilot's $-10$\,pp point estimate while remaining directionally negative (\S\ref{sec:boundary}). The annotation analysis below is based on the original 50-task pilot.
+
+\paragraph{Qwen on MATH.} Accuracy is 72.0\% (36/50), lower than GSM8K (89.7\%) as expected for harder tasks. Each task produces 6 messages (300 total, 250 eligible for analysis after excluding initial prompts). Cross-model annotation agreement reaches $\kappa = 0.45$ (moderate, above threshold). The OLS ANCOVA yields $R^2 = 0.098$ with function type significant after position control ($F = 3.77$, $p = 0.011$); the mixed-effects model yields $R^2_m = 0.201$ (LRT $p = 0.003$), confirming that Qwen's function-driven mode persists on a harder mathematical domain, though with reduced effect size compared to GSM8K ($R^2_m = 0.335$). The Kruskal--Wallis test is borderline ($H = 7.37$, $p = 0.061$), likely due to reduced sample size.
+
+\paragraph{Gemma on MATH.} Accuracy drops to 40.0\% (20/50). Cross-model $\kappa = 0.48$ (above threshold). The OLS ANCOVA yields $R^2 = 0.236$ but function type is non-significant ($F = 0.09$, $p = 0.76$), while message position is highly significant ($F = 15.22$, $p < 0.001$). This replicates Gemma's weak function-organization from GSM8K: on MATH, position again explains the variance while function type does not. The Kruskal--Wallis test is also non-significant ($H = 2.05$, $p = 0.15$).
+
+\paragraph{Llama on MATH.} Accuracy is 64.3\% (27/42; 8 tasks produced empty traces). Cross-model $\kappa = 0.36$ (below threshold). With only 168 total messages, \textsc{acknowledgment} dominates (56\%), and most other function types fall below $n = 30$, precluding OLS ANCOVA and Kruskal--Wallis analysis. The acknowledgment-dominated distribution is directionally consistent with Llama's minimally differentiated mode on GSM8K, though statistical confirmation requires larger samples.
+
+\paragraph{Summary.} Qwen's function-organized structure ($F = 3.77$, $p = 0.011$) and Gemma's position-organized structure ($F = 0.09$, n.s.; position $F = 15.22$, $p < 0.001$) both replicate on MATH. Llama's distribution is directionally consistent with its undifferentiated profile but lacks statistical power. The backbone communication typology replicates beyond elementary arithmetic.
+
+\paragraph{Why MATH acknowledgments carry task-critical content.}
+MATH acknowledgments differ qualitatively from GSM8K acknowledgments, explaining the negative pruning direction ($-2.0$\,pp at $N{=}200$, $-10$\,pp in the underpowered $N{=}50$ pilot) under moderate functional organization ($R^2_m = 0.201$). Of 93 messages receiving at least one acknowledgment label from dual annotators, 48 (51.6\%) receive a non-acknowledgment label from the other annotator (typically \textsc{information\_provision}), reflecting genuine boundary ambiguity. Representative examples illustrate the contrast:
+
+\begin{itemize}[nosep, leftmargin=*]
+\item \textbf{MATH ack (annotator disagreement):} ``The detailed step-by-step evaluation confirms that the number of integers $m$ such that $0 < m \ldots$'' (Annotator~A: \textsc{information\_provision}; Annotator~B: \textsc{acknowledgment}). The message restates a multi-step derivation while confirming correctness.
+\item \textbf{MATH ack (both agree):} ``The solution provided is correct. Here is the final answer boxed: $\boxed{11}$'' --- confirms correctness but also provides the boxed answer that downstream agents parse.
+\item \textbf{GSM8K ack (both agree):} ``The answer is 109.'' (18 characters) --- trivially redundant answer echo with no reasoning content.
+\end{itemize}
+
+\noindent Quantitative content analysis confirms the distinction: MATH acks average 16.6 tokens (vs.\ 5.6 for GSM8K), with median bigram novelty of 0.333 (vs.\ 0.0 for GSM8K, where acks introduce no new bigrams relative to the preceding message). Annotator disagreement on MATH acks reaches 55.9\% (vs.\ 26.3\% on GSM8K), reflecting genuine boundary ambiguity between acknowledgment and information\_provision. Token overlap with the preceding message is similar (0.70 vs.\ 0.74), but the higher bigram novelty indicates that MATH acks frequently contain reasoning summaries---while confirmatory in intent, they carry solution steps that downstream agents rely on. Removing them eliminates not just structural anchoring but also task-critical content, violating the redundancy assumption that makes ack-only pruning safe on GSM8K.
+
+\section{Annotation Prompt}
+\label{app:annotation-prompt}
+
+The following system prompt is used for all LLM-based function type annotations. Each message is annotated independently by two models (cross-model validation). Temperature is set to 0 with constrained JSON output.
+
+\begin{quote}
+\small
+\ttfamily
+You are a communication analyst for multi-agent systems. Your task is to classify the function of a message in a multi-agent math problem-solving conversation.
+
+\medskip
+\textbf{Function Types}
+
+\medskip
+1. \textbf{information\_provision}: Provides facts, data, intermediate calculations, or partial results that advance the solution. Includes reporting computed values, stating known quantities, or presenting new numerical results.
+
+\medskip
+2. \textbf{reasoning\_guidance}: Provides reasoning direction, problem decomposition, step-by-step plans, or conceptual frameworks. Includes breaking the problem into sub-problems, suggesting solution strategies, or outlining multi-step approaches.
+
+\medskip
+3. \textbf{verification}: Checks, corrects, or confirms the correctness of previous work. Includes identifying errors, validating results, pointing out mistakes, or confirming a step is correct with a specific reason.
+
+\medskip
+4. \textbf{coordination}: Manages the flow of the conversation, assigns tasks, requests clarification, or controls turn-taking. Includes delegating sub-tasks, asking for more information, or directing the problem-solving process.
+
+\medskip
+5. \textbf{acknowledgment}: Simple confirmation, repetition, or agreement that adds no new information or reasoning. Includes restating what was already said without extending it.
+
+\medskip
+\textbf{Decision Rules}
+
+\medskip
+- If a message both provides new results AND checks previous work, classify as \textbf{verification}.\\
+- If a message provides a reasoning plan AND new results, classify as \textbf{reasoning\_guidance}.\\
+- If a message confirms correctness WITH a substantive explanation, classify as \textbf{verification}.\\
+- If a message simply agrees or restates without adding new information, classify as \textbf{acknowledgment}.
+
+\medskip
+\textbf{Output Format}
+
+\medskip
+Respond with ONLY a JSON object:\\
+\{``type'': ``<function\_type>'', ``confidence'': <0.0--1.0>, ``reasoning'': ``<brief explanation>''\}
+\end{quote}
+
+\noindent The user prompt provides the conversation context with all messages and marks the target message for classification:
+
+\begin{quote}
+\small
+\ttfamily
+\#\# Conversation Context\\[2pt]
+{[}Message 0{]} \{sender\} -> \{receiver\}:\\
+\{content\}\\[2pt]
+{[}Message 1{]} \{sender\} -> \{receiver\}: <<< TARGET MESSAGE >>>\\
+\{content\}\\[2pt]
+{[}Message 2{]} \{sender\} -> \{receiver\}:\\
+\{content\}\\[2pt]
+...\\[2pt]
+Classify the function of Message \{target\_idx\}.
+\end{quote}
+
+\section{Mixed-Effects Model Results}
+\label{app:mixed-effects}
+
+To address within-trace non-independence (multiple messages per task), we fit linear mixed-effects models with task as a random intercept and the same fixed effects as the OLS ANCOVA (function type, normalized message position, round number). Both OLS and ME use remove-ablation similarity (Equation~\ref{eq:impact}) as the dependent variable. Table~\ref{tab:mixed_effects} compares OLS and mixed-effects results. The likelihood ratio test (LRT) compares the full model against a reduced model without function type dummies.
+
+\begin{table}[htbp]
+\centering
+\caption{OLS ANCOVA vs.\ mixed-effects model (ME) with task random intercept. LRT = likelihood ratio test for function type. ICC = intraclass correlation from the full ME model. ``Excluded'' lists function types with $n < 30$ removed before fitting. $^{***}p < 0.001$; $^{**}p < 0.01$; n.s.\ = not significant. $F$ and $\chi^2$ values are not directly comparable across configurations due to differing numbers of included function types.}
+\label{tab:mixed_effects}
+\small
+\begin{tabular}{lcccccl}
+\toprule
+\textbf{Config} & $n$ & \textbf{OLS $F$} & \textbf{LRT $\chi^2$} & \textbf{LRT $p$} & \textbf{ICC} & \textbf{Excluded} \\
+\midrule
+Qwen RR  & 895 & $239.6^{***}$ & $188.9^{***}$ & ${<}.001$ & .292 & coord. \\
+Qwen SEQ & 894 & $230.2^{***}$ & $195.3^{***}$ & ${<}.001$ & .245 & coord., unk. \\
+Qwen SEL & 891 & $58.2^{***}$ & $0.07^{\text{n.s.}}$ & .789 & \textbf{.716} & r.g., i.p. \\
+\midrule
+Gemma RR  & 883 & $7.82^{***}$ & $23.28^{***}$ & ${<}.001$ & .000 & verif. \\
+Gemma SEQ & 882 & $9.04^{***}$ & $26.86^{***}$ & ${<}.001$ & .000 & verif. \\
+Gemma SEL & 861 & $7.45^{**}$ & $3.66^{\text{n.s.}}$ & .056 & .225 & r.g., v., coord. \\
+\midrule
+Llama RR  & 868 & $3.98^{**}$ & $16.31^{***}$ & ${<}.001$ & .297 & coord. \\
+Llama SEQ & 870 & $4.83^{**}$ & $15.44^{**}$ & .001 & .205 & coord. \\
+Llama SEL & 865 & $21.6^{***}$ & $36.89^{***}$ & ${<}.001$ & .126 & i.p., r.g. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key observations.} (1) \textbf{Seven of nine configurations} show concordant OLS and ME conclusions: Qwen RR/SEQ remain strongly function-driven; Gemma RR/SEQ are significant in both OLS and ME but with small effect sizes ($R^2_m = 0.11$--$0.12$); Llama remains significant across all topologies though with negligible effect sizes ($R^2_m \leq 0.04$). (2) \textbf{Qwen SEL flips to non-significant} under ME (LRT $\chi^2 = 0.07$, $p = .789$). The ICC of $0.716$ indicates that 72\% of variance in remove-ablation similarity is between-task. With only two dominant function types (\textsc{acknowledgment} and \textsc{verification}) remaining after $n \geq 30$ filtering, the OLS effect reflects task-level confounding rather than within-task functional differentiation. (3) \textbf{Gemma SEL flips to non-significant} under ME (LRT $\chi^2 = 3.66$, $p = .056$, ICC $= 0.23$). With only two function types remaining after excluding three low-frequency categories, the borderline result has limited interpretability. (4) Both discrepancies occur under selector topology, which introduces strong task-level clustering. This suggests that dynamic routing creates task-dependent communication patterns that inflate OLS estimates.
+
+\section{Mistral-7B Cross-Backbone Validation}
+\label{app:mistral}
+
+To test whether the backbone communication typology generalizes beyond our three primary backbones, we ran the full pipeline on Mistral-7B-Instruct-v0.3 across all three topologies (300 GSM8K tasks each, same seed). Mistral uses the ChatML template with an explicit \texttt{<|im\_end|>} stop token to prevent EOS residue in multi-turn conversations.
+
+\paragraph{Accuracy.} Mistral achieves 52\% accuracy across all three topologies (RR: 52\%, SEQ: 52\%, SEL: 52\%), substantially below Qwen (90\%) and Gemma (80\%) but comparable to Llama's selector performance (56\%).
+
+\paragraph{Function type distribution.} Mistral communication is dominated by coordination and acknowledgment (${\sim}90\%$ combined), with minimal information provision ($<3\%$). Under selector topology, acknowledgment surges to 67\%.
+
+\begin{table}[htbp]
+\centering
+\caption{Mistral-7B function type distribution (\%) by topology.}
+\label{tab:mistral_dist}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Function type} & \textbf{RR} & \textbf{SEQ} & \textbf{SEL} \\
+\midrule
+\textsc{coordination}          & 55.5 & 50.7 & 25.4 \\
+\textsc{acknowledgment}        & 34.9 & 41.7 & 66.9 \\
+\textsc{reasoning\_guidance}   & 6.8  & 6.2  & 6.3  \\
+\textsc{information\_provision} & 2.7  & 1.4  & 0.7  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Communication mode: weakly differentiated.} Table~\ref{tab:mistral_stats} summarizes the statistical analysis. Only the round-robin topology produces a significant function type effect (OLS $F = 6.6$, $p < .001$, $R^2 = 0.16$). Sequential and selector topologies show weaker or non-significant effects. Cross-model annotation agreement is fair ($\kappa \approx 0.34$), below the primary backbones, consistent with Mistral's less distinct functional boundaries.
+
+\begin{table}[htbp]
+\centering
+\caption{Mistral-7B statistical summary across topologies.}
+\label{tab:mistral_stats}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Topology} & \textbf{KW $H$} & \textbf{OLS $F$} & \textbf{$R^2$} & $\kappa$ \\
+\midrule
+RR  & $22.4^{***}$ & $6.6^{***}$ & .158 & .344 \\
+SEQ & $7.6$        & $37.6^{***}$ & .056 & .353 \\
+SEL & $5.2$        & $1.5$        & .065 & .315 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.} Mistral occupies an intermediate position in the backbone communication typology, between Llama's undifferentiated profile and Qwen's function-organized structure. The structured turn-taking of round-robin activates a degree of functional differentiation that disappears under less constrained topologies. This \emph{topology-sensitive} pattern---where communication structure depends on external routing rather than being a fixed model property---is consistent with the crossover interaction observed for the primary backbones.
+
+\paragraph{Implications for the typology.} Mistral's intermediate position extends the backbone communication typology beyond the three primary models. The four observed backbones---function-organized (Qwen, $R^2_m = 0.34$), position-organized (Gemma, $R^2_m = 0.11$), weakly differentiated (Mistral), and undifferentiated (Llama, $R^2_m = 0.02$)---exhibit distinct communication structures, with topology acting as a modulating factor.
+
+\section{DAMSL/ISO Taxonomy Mapping}
+\label{app:damsl-mapping}
+
+Our five categories collapse 56+ fine-grained dialogue act types into operationally distinct categories defined by perturbation-based impact rather than speaker intent. Table~\ref{tab:damsl_mapping} provides a detailed mapping to three established frameworks: DAMSL~\cite{core_damsl_1997}, ISO 24617-2~\cite{bunt_iso_2012}, and FIPA ACL~\cite{fipa_acl_2002}.
+
+\begin{table}[ht]
+\centering
+\caption{Mapping between our communication function taxonomy and established dialogue act frameworks. Each row shows the primary corresponding categories and the key distinction that motivates our grouping.}
+\label{tab:damsl_mapping}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{p{2.6cm}p{2.6cm}p{2.8cm}p{2.0cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\textbf{Our Category} & \textbf{DAMSL} & \textbf{ISO 24617-2} & \textbf{FIPA ACL} & \textbf{Grouping Rationale} \\
+\midrule
+\textsc{acknowledgment} & Backchannel, Accept & Auto-positive, Allo-positive (feedback) & --- & Structurally present but informationally negligible \\
+\addlinespace
+\textsc{information\_provision} & Assert, Re-state & Inform, Answer & inform, inform-ref & Supplies new task-relevant content \\
+\addlinespace
+\textsc{reasoning\_guidance} & Action-directive, Open-option & Instruct, Suggest, Address-request & request, propose & Directs the partner's reasoning strategy \\
+\addlinespace
+\textsc{verification} & Agreement, Disagreement, Correction & Confirm, Disconfirm, Correction & confirm, disconfirm & Evaluates correctness of prior output \\
+\addlinespace
+\textsc{coordination} & Conventional-opening, Conventional-closing, Commit & Init, Auto-feedback (task mgmt) & request, assign, agree & Manages workflow and role allocation \\
+\bottomrule
+\end{tabular}}%
+\end{table}
+
+\paragraph{Design choices.} Several departures from standard dialogue act taxonomies reflect the LLM multi-agent setting:
+
+\begin{sloppypar}
+\begin{itemize}[nosep, leftmargin=*]
+    \item \textbf{Acknowledgment vs.\ backchannel.} Human backchannels (``uh huh,'' ``yeah'') are minimal tokens; LLM acknowledgments range from terse echoes (Qwen: median 4 tokens) to verbose paraphrases (Llama: mean 59.8 tokens). We group both under \textsc{acknowledgment} because they share the defining property---negligible information gain over the preceding message---regardless of surface length.
+    \item \textbf{Information provision vs.\ reasoning guidance.} DAMSL's \textit{Assert} covers both, but we separate them because perturbation analysis reveals distinct impact profiles: removing reasoning guidance ($\text{sim} = 0.778$) is far less disruptive than removing information provision ($\text{sim} = 0.410$). The boundary is operationally clear in solver-checker configurations (new calculations vs.\ strategy directives) but becomes ambiguous when messages serve both functions---hence the low cross-model $\kappa = 0.237$ for \textsc{information\_provision}.
+    \item \textbf{Coordination as a residual category.} In two-agent systems, explicit coordination (role assignment, turn management) is rare ($< 5\%$ of messages) because the framework handles routing. This category would likely expand in multi-agent ($>$2) settings with explicit delegation.
+    \item \textbf{No question act.} DAMSL and ISO both include question/info-request types. In our solver-checker data, questions are subsumed by \textsc{verification} (``Is this correct?'') or \textsc{coordination} (``Should we try a different approach?'') and do not form a distinct perturbation cluster.
+\end{itemize}
+\end{sloppypar}
+
+\section{Replacement Text Sensitivity}
+\label{app:replacement-sensitivity}
+
+Our neutralize ablation uses ``Acknowledged.''---itself an acknowledgment-type utterance---as the replacement text. To test sensitivity to this choice, we reran neutralize ablation on 50 Qwen RR tasks with three placeholders: ``Acknowledged.'', ``{[message removed]}'', and ``This message has been redacted.'' Table~\ref{tab:placeholder_sensitivity} reports per-function-type mean semantic similarity under each placeholder.
+
+\begin{table}[htbp]
+\centering
+\caption{Neutralize ablation: mean semantic similarity by function type and replacement text (Qwen RR, 50 tasks, 150 messages). Lower similarity indicates greater impact from neutralization.}
+\label{tab:placeholder_sensitivity}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Function Type} & \textbf{Acknowledged.} & \textbf{[removed]} & \textbf{Redacted} \\
+\midrule
+\textsc{information\_provision} & 0.146 & 0.107 & 0.050 \\
+\textsc{reasoning\_guidance}    & 0.174 & 0.133 & 0.079 \\
+\textsc{verification}           & 0.156 & 0.162 & 0.083 \\
+\textsc{coordination}           & 0.352 & 0.319 & 0.181 \\
+\textsc{acknowledgment}         & 0.134 & 0.148 & 0.051 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Ranking stability.} Pairwise Spearman rank correlations across the five function types are: ``Acknowledged.'' vs.\ ``{[removed]}'' $\rho = 0.50$, ``Acknowledged.'' vs.\ ``Redacted'' $\rho = 0.80$, ``{[removed]}'' vs.\ ``Redacted'' $\rho = 0.90$ ($p = .037$). The mean $\rho = 0.73$ indicates moderate-to-strong ranking stability. \textsc{Coordination} is consistently the least impacted (rank 5/5/5); \textsc{information\_provision} ranks in the top 2 across all three placeholders (rank 2/1/1).
+
+\paragraph{Acknowledged-specific confound.} Under the ``Acknowledged.'' placeholder, \textsc{acknowledgment} messages show anomalously high impact (rank 1) because the replacement text closely resembles typical acknowledgment content---replacing an acknowledgment with ``Acknowledged.'' preserves semantic similarity less than expected, as the regenerated next message responds to near-identical content. Excluding this confounded condition, the ``{[removed]}'' and ``Redacted'' placeholders agree strongly ($\rho = 0.90$), confirming that the neutralize gradient is robust to placeholder choice. Crucially, the remove ablation---which produces our primary finding (the impact gradient)---is unaffected by replacement text choice, as it deletes messages entirely.
+
+\section{Capability Confound Analysis}
+\label{app:capability-confound}
+
+To test whether communication mode merely tracks task difficulty, we stratify tasks by difficulty (easy: $\geq 2/3$ backbones correct, $n = 246$; hard: $\leq 1/3$ correct, $n = 54$) and refit the OLS ANCOVA within each stratum.
+
+\begin{table}[htbp]
+\centering
+\caption{OLS ANCOVA by task difficulty stratum. All models use the same specification as the primary analysis (Equation~\ref{eq:ols}).}
+\label{tab:capability_confound}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Backbone} & \textbf{Difficulty} & $n$ & $F$ & $p$ & $R^2$ \\
+\midrule
+Qwen  & Easy & 735 & $196.6^{***}$ & ${<}.001$ & .456 \\
+Qwen  & Hard & 160 & $37.3^{***}$ & ${<}.001$ & .444 \\
+\midrule
+Gemma & Easy & 726 & $0.54^{\text{n.s.}}$ & .657 & .354 \\
+Gemma & Hard & 152 & $0.73^{\text{n.s.}}$ & .483 & .286 \\
+\midrule
+Llama & Easy & 717 & $4.17^{**}$ & .006 & .025 \\
+Llama & Hard & 144 & $4.49^{*}$ & .013 & .074 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Qwen's function-organized structure persists on hard tasks ($R^2 = 0.444$), virtually unchanged from easy tasks ($R^2 = 0.456$). Gemma remains position-organized (function type non-significant for both strata), and Llama remains undifferentiated ($R^2 < 0.08$). The backbone communication typology is a backbone-intrinsic property rather than an artifact of task-relative capability.
+
+\section{Heuristic Non-Transferability: Qwen3 Acknowledgment Comparison}
+\label{app:qwen3_comparison}
+
+\paragraph{Qwen3-8B vs.\ Qwen2.5-7B acknowledgment profiles.}
+The Qwen3-8B boundary condition ($-14$\,pp with char$<$80 threshold, $p < .03$; Table~\ref{app:tab:mcnemar_summary}) provides a natural experiment for understanding heuristic non-transferability across model generations. Table~\ref{tab:qwen3_vs_qwen25} compares acknowledgment characteristics across generations.
+
+\begin{table}[ht]
+\centering
+\caption{Acknowledgment content comparison: Qwen2.5-7B (GSM8K, $N = 300$ tasks, $n = 719$ ack messages) vs.\ Qwen3-8B ($N = 100$ tasks, $n = 332$ heuristic-classified ack messages). Qwen2.5 types from dual-annotator consensus; Qwen3 types from heuristic classifier (char length $< 80$).}
+\label{tab:qwen3_vs_qwen25}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Property} & \textbf{Qwen2.5-7B} & \textbf{Qwen3-8B} \\
+\midrule
+Ack \% of messages & 47.9\% & 66.4\% \\
+Mean token length & 9.0 & $<$15 (est.) \\
+Median token length & 4 & --- \\
+Max char length & 1{,}076 & 59 \\
+Median bigram novelty & 0.0\% & --- \\
+Mean bigram novelty & 3.2\% & --- \\
+Pruning $\Delta$ (pp) & $-0.05 \pm 0.99$ & $-14.0$ \\
+McNemar $p$ & 1.000 & $<.03$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key differences.} Two properties distinguish the generations:
+\begin{enumerate}[nosep, leftmargin=*]
+    \item \textbf{Suppression rate.} Qwen3's \texttt{/no\_think} mode produces terse responses that trigger the heuristic at 66.4\% (vs.\ 47.9\% for Qwen2.5). The higher rate means more messages are removed per conversation, amplifying any per-message pruning risk.
+    \item \textbf{Tight character range.} Qwen3 ack messages span only 25--59 characters (max = 59), compared to Qwen2.5's range up to 1{,}076 characters. This uniformly short format suggests Qwen3's ``The answer is X.'' echo pattern carries implicit verification function---downstream agents may parse these terse confirmations as answer-bearing content rather than redundant echoes.
+\end{enumerate}
+
+\noindent Representative Qwen2.5-7B acknowledgments illustrate the safe-to-prune pattern:
+\begin{itemize}[nosep, leftmargin=*]
+    \item ``The answer is 525.'' (18 chars) --- verbatim answer echo, 0\% bigram novelty.
+    \item ``The answer is 17.'' (17 chars) --- identical pattern.
+\end{itemize}
+Without Qwen3 raw traces (experiment run on a transient cloud instance), direct content analysis is unavailable. The $-14$\,pp degradation, combined with the observation that all heuristic-classified ack messages fall within a narrow 25--59 character range, suggests that Qwen3's concise communication style makes the heuristic's character-length threshold too aggressive---substantive short messages are misclassified as acknowledgments. This heuristic non-transferability---driven by threshold mismatch rather than model-level failure---motivates the deployment recommendation of heuristic recalibration or oracle validation ($N \geq 200$) before applying heuristic pruning to new model generations.

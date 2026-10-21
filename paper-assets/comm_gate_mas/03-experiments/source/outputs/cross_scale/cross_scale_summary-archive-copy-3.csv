@@ -1,0 +1,9 @@
+Label,Backbone,Scale,Dataset,Temp,N,Skipped,Baseline%,Pruned%,Delta_pp,CI_lo,CI_hi,p_value,Supp%,Aggregate,Source
+Qwen / GSM8K,Qwen,7B,GSM8K,0,500,0,88.8,89.6,+0.8,-0.4,+2.0,0.3428,56.3,False,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_qwen_n500_fixed/result.json
+Llama / GSM8K,Llama,8B,GSM8K,0,500,0,82.2,81.6,-0.6,-2.7,+1.5,0.7103,36.6,False,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_5class_llama_gsm8k.json
+Qwen / GSM8K (t=0.7),Qwen,7B,GSM8K,0.7,500,0,87.4,88.0,+0.6,-1.5,+2.7,0.7103,53.1,False,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_qwen_gsm8k_t07/seed_42.json
+"Llama / GSM8K (t=0.7, seed2)",Llama,8B,GSM8K,0.7,500,0,78.8,77.4,-1.4,-5.4,+2.6,0.5544,27.7,False,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_llama_t07_ext/results.json
+Qwen / StratQA,Qwen,7B,StratQA,0,500,0,73.2,73.4,+0.2,-2.1,+2.5,1.0000,65.6,False,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_qwen_stratqa/results.json
+Llama / StratQA,Llama,8B,StratQA,0,238,12,68.9,73.9,+5.0,-1.6,+11.7,0.1757,21.5,False,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_llama_stratqa/seed_42.json
+Qwen / GSM8K (10 seeds),Qwen,7B,GSM8K,0,1998,0,90.3,90.7,+0.4,-0.2,+1.0,0.0483,56.0,True,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_qwen_10run
+Llama / GSM8K (10 seeds),Llama,8B,GSM8K,0,1878,0,85.6,87.8,+2.2,+0.6,+3.7,0.9118,36.5,True,/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/outputs/oracle_llama_10run

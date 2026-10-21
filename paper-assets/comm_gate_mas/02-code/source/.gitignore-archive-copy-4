@@ -1,0 +1,8 @@
+artifacts/
+checkpoints/
+data_snapshots/
+study-packages/
+logs/
+.claude/
+__pycache__/
+data/mast/

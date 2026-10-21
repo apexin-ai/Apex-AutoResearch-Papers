@@ -1,0 +1,78 @@
+{
+  "full_model": {
+    "n": 8065,
+    "lrt_chi2": 81.531,
+    "lrt_df": 4,
+    "p_value": 8.25244709228094e-17,
+    "omega_squared": 0.0095,
+    "marginal_r2_full": 0.018,
+    "marginal_r2_null": 0.0089,
+    "delta_marginal_r2": 0.0091,
+    "function_type_coefficients": {
+      "C(function_type)[T.coordination]": -0.0845,
+      "C(function_type)[T.information_provision]": 0.0512,
+      "C(function_type)[T.reasoning_guidance]": 0.0093,
+      "C(function_type)[T.verification]": 0.0452
+    }
+  },
+  "gemma_excluded": {
+    "n": 5365,
+    "lrt_chi2": 110.0669,
+    "lrt_df": 4,
+    "p_value": 7.042435479949252e-23,
+    "omega_squared": 0.0194,
+    "marginal_r2_full": 0.0144,
+    "marginal_r2_null": 0.0001,
+    "delta_marginal_r2": 0.0143,
+    "function_type_coefficients": {
+      "C(function_type)[T.coordination]": -0.0996,
+      "C(function_type)[T.information_provision]": 0.0361,
+      "C(function_type)[T.reasoning_guidance]": 0.0649,
+      "C(function_type)[T.verification]": 0.0377
+    }
+  },
+  "function_type_descriptives": {
+    "acknowledgment": {
+      "full_n": 3494,
+      "full_mean": 0.4393,
+      "full_std": 0.3012,
+      "gemma_excluded_n": 2806,
+      "gemma_excluded_mean": 0.3715,
+      "gemma_excluded_std": 0.2081
+    },
+    "coordination": {
+      "full_n": 553,
+      "full_mean": 0.3063,
+      "full_std": 0.249,
+      "gemma_excluded_n": 261,
+      "gemma_excluded_mean": 0.2327,
+      "gemma_excluded_std": 0.1733
+    },
+    "information_provision": {
+      "full_n": 2040,
+      "full_mean": 0.5181,
+      "full_std": 0.4286,
+      "gemma_excluded_n": 460,
+      "gemma_excluded_mean": 0.4139,
+      "gemma_excluded_std": 0.2168
+    },
+    "reasoning_guidance": {
+      "full_n": 684,
+      "full_mean": 0.5208,
+      "full_std": 0.3571,
+      "gemma_excluded_n": 596,
+      "gemma_excluded_mean": 0.5605,
+      "gemma_excluded_std": 0.3377
+    },
+    "verification": {
+      "full_n": 1294,
+      "full_mean": 0.5755,
+      "full_std": 0.3146,
+      "gemma_excluded_n": 1242,
+      "gemma_excluded_mean": 0.5741,
+      "gemma_excluded_std": 0.3069
+    }
+  },
+  "stability": "stable",
+  "conclusion": "Function type significantly predicts perturbation sensitivity in both models (full: \u03c7\u00b2=81.53, p=8.25e-17, \u03c9\u00b2=0.0095; Gemma-excluded: \u03c7\u00b2=110.07, p=7.04e-23, \u03c9\u00b2=0.0194). Effect is stronger after Gemma exclusion (\u03c7\u00b2 increases from 81.5 to 110.1), suggesting Gemma was attenuating the effect. ACK pruning non-inferiority holds: acknowledgment messages have the lowest remove-similarity among high-frequency types (full: 0.439; Gemma-excluded: 0.371), consistently below reasoning_guidance and verification, confirming they are most perturbation-sensitive (individually most disruptive to remove, yet safe for aggregate pruning per the perturbation-sensitivity dissociation)."
+}

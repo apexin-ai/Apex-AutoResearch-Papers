@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f0b8bf09a25eaed3ca",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_5.md",
+    "occurrence": 3,
+    "bytes": 3155,
+    "sha256": "d43daa28f679293e2afbe3be487a535991ed4a0dc278625e78d6eb8fd636dbe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-04-26T23:35:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 分配：westb-4x6000-a 的 cuda:0, cuda:1, cuda:2, cuda:3（4张 RTX 6000 Pro 96GB）\n- Qwen-72B 推理必须 TP=2 占 cuda:2+3，不能拆开\n- 论文页数硬限 9 页（不含 references/appendix），写入任何内容必须检查不超页\n- R12 提交是当前终点目标，所有实验服务于此，不要开新方向\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a (connect.westb.seetacloud.com)，SSH host alias: comm_gate\n- 工作目录：/root/autodl-tmp/comm_gate_mas\n- Python：conda base 环境（/root/miniconda3/bin/python）\n- vLLM 服务器用于本地推理（Llama/Qwen 7B 系列）\n- 本地项目代码：/Users/agent-001/.agent-ml-research/projects/comm_gate_mas/\n- 论文目录：artifacts/paper/（main.tex + sections/*.tex）\n- 无活跃进程：PID 71885 (llama_length_only) 已退出，无 tmux/cron 活跃任务\n\n### 3. 📊 当前状态\n- **刚完成**：llama_length_only_gsm8k 实验收割（3 seed 全完成，length-only Δ=-1.83pp vs oracle +2.1pp）\n- **正在进行**：已派 Agent 将 length-only 结果写入论文 ablation section，尚未收到回复\n- Registry：87 实验，1 个 ANALYZING→已修正为 DONE，0 个 RUNNING，5 个 PENDING（oracle_qwen_gsm8k / 5run_pruned_rerun / oracle_online_llama_gsm8k / e2e_qwen3_8b_gsm8k / e2e_llama_gsm8k_n300_clean —— 这些是 post-R12 储备，当前不急）\n- R12 提交 checklist：6/7 完成，仅剩\"length-only 结果写入论文 + Reviewer pre-R12 终审\"\n- **等待中**：Agent 写完论文后回调 → 触发 Reviewer pre-R12 终审 → 提交 Review Director\n\n### 4. 📋 待办\n- Agent 回报论文写入完成 → 调 `post_to_reviewer` 触发 pre-R12 终审（写作对抗审查，轮次 1/3）\n- Reviewer 返回 severity：critical → 让 Agent 修改重审；warning → Agent 修改不重审；info → 进入 R12 提交\n- 终审通过 → `submit_paper_to_review` 提交给 Review Director（venue/track/deadline 需确认，之前已有 review_chat_id）\n- 5 个 PENDING 实验是 post-R12 储备，R12 提交完成后再按优先级排期\n\n### 5. 🎯 战略上下文\n- **核心结论**：LLM 多智能体系统中 ~40% 消息是 acknowledgment（无信息量），oracle 语义分类 pruning 可提升准确率（+2.1pp Llama / +1.5pp Qwen on GSM8K），而 length-only heuristic 反而降低准确率（-1.83pp）——证明 \"perturbation sensitivity ≠ pruning safety\"\n- **论文 story**：首个消息级通信功能实证研究，bridging 理论通信复杂度与实际 MAS 性能\n- **决策链核心**：D-series 168 条决策，关键转折在从 binary ack 分类升级到 5-class 语义分类（oracle 模式），以及从单模型扩展到 Llama+Qwen 双模型验证\n- **易错点**：(1) 论文数字必须与 registry/provenance 严格一致（72/72 provenance 已建立，改数字必须同步更新 provenance）；(2) Reviewer 之前标记过若干 ANALYZING 状态不一致问题，新 session 注意 registry 状态卫生；(3) 页数约束紧，写入新内容后必须检查编译页数\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-8.md"
+}

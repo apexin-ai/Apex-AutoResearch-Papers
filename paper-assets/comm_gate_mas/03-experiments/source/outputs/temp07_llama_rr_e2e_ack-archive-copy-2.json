@@ -1,0 +1,428 @@
+{
+  "mode": "e2e",
+  "strategy_filter": "ack_only",
+  "num_tasks": 100,
+  "baseline": {
+    "correct": 76,
+    "total": 100,
+    "accuracy": 0.76
+  },
+  "strategies": {
+    "ack_only": {
+      "strategy": "ack_only",
+      "correct": 73,
+      "total": 100,
+      "accuracy": 0.73,
+      "total_pruned_rounds": 287,
+      "total_rounds": 500,
+      "prune_pct": 57.4,
+      "per_task": [
+        {
+          "task_id": "gsm8k_0000",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0001",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0002",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0003",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0004",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0005",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0006",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0007",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0008",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0009",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0010",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0011",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0012",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0013",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0014",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0015",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0016",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0017",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0018",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0019",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0020",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0021",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0022",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0023",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0024",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0025",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0026",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0027",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0028",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0029",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0030",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0031",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0032",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0033",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0035",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0036",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0037",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0038",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0039",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0040",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0041",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0042",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0043",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0044",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0045",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0046",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0047",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0048",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0049",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0050",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0051",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0052",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0053",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0054",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0055",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0056",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0057",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0058",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0059",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0060",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0061",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0062",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0063",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0064",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0065",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0066",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0067",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0068",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0069",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0070",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0071",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0072",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0073",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0074",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0075",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0076",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0077",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0078",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0079",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0080",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0081",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0082",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0083",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0084",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0085",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0086",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0087",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0088",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0089",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0090",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0091",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0092",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0093",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0094",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0095",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0096",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0097",
+          "correct": false
+        },
+        {
+          "task_id": "gsm8k_0098",
+          "correct": true
+        },
+        {
+          "task_id": "gsm8k_0099",
+          "correct": true
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "ack_only_vs_baseline_delta_pp": -3.0
+  },
+  "config": {
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "api_base": "http://localhost:8001/v1",
+    "max_rounds": 6,
+    "placeholder": "I acknowledge the previous message."
+  }
+}

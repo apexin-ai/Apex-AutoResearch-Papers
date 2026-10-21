@@ -1,0 +1,41 @@
+\section{Muon Algorithm Background}
+\label{sec:muon_background}
+
+Muon~\cite{jordan2024muon} is a spectral optimizer that computes steepest descent updates under the operator (spectral) norm for weight matrices of dimension two or higher.
+We summarize its key components.
+
+\paragraph{Steepest descent under spectral norm.}
+For a weight matrix $W$ with gradient $G = \nabla_W \mathcal{L}$, the steepest descent direction under the spectral norm is defined as
+\begin{equation}
+\label{eq:spectral_descent}
+\Delta W = \arg\min_{\|\Delta\|_{\mathrm{op}} \leq 1} \langle G, \Delta \rangle,
+\end{equation}
+where $\|\cdot\|_{\mathrm{op}}$ denotes the operator norm (largest singular value) and $\langle \cdot, \cdot \rangle$ the matrix inner product.
+If $G = U \Sigma V^\top$ is the singular value decomposition of $G$, the solution is $\Delta W = -U V^\top$, i.e., the negative sign matrix of the gradient.
+
+\paragraph{Newton--Schulz approximation.}
+Computing a full SVD at each step is prohibitively expensive.
+Muon instead approximates the orthogonal factor $UV^\top$ via Newton--Schulz iterations for computing the orthogonal polar factor.
+The classical iteration $X_{k+1} = \tfrac{1}{2}\, X_k (3I - X_k^\top X_k)$ converges cubically but has a narrow convergence basin.
+Muon replaces it with a quintic polynomial variant: starting from
+\begin{equation}
+\label{eq:ns_init}
+X_0 = G / \|G\|_F,
+\end{equation}
+each iteration applies
+\begin{equation}
+\label{eq:ns_iteration}
+X_{k+1} = a\, X_k + b\, X_k X_k^\top X_k + c\, X_k (X_k^\top X_k)^2,
+\end{equation}
+with fixed coefficients $a = 3.4445$, $b = -4.7750$, $c = 2.0315$ chosen to maximize the convergence basin.
+Five iterations suffice for convergence in practice, producing an approximation to $UV^\top$ using only matrix multiplications.
+
+\paragraph{Momentum and mixed strategy.}
+Muon applies Nesterov momentum~\cite{sutskever2013importance} with coefficient $\beta = 0.95$ to the orthogonalized gradient.
+The spectral formulation in Eq.~\eqref{eq:spectral_descent} applies only to parameters with matrix structure (2D+); one-dimensional parameters (biases, normalization layer weights and biases, and embedding layers) are handled by a separate AdamW instance with learning rate $3 \times 10^{-4}$ and weight decay $0.05$, yielding a hybrid optimizer.
+
+\paragraph{Relation to Shampoo.}
+Both Muon and Shampoo~\cite{gupta2018shampoo} exploit gradient matrix structure, but they differ in mechanism and scope.
+Shampoo maintains and periodically inverts Kronecker-factored preconditioners that approximate the full Fisher information matrix, incurring additional memory for the preconditioner state and periodic eigendecomposition steps.
+Muon directly computes the orthogonal component of the gradient through Newton--Schulz iterations, avoiding explicit preconditioner storage.
+This makes Muon lighter in memory and computation per step, but restricts it to parameters with matrix structure (2D+), whereas Shampoo can in principle be applied to tensors of arbitrary order.

@@ -1,0 +1,23 @@
+The \qwenSevenTwoBN{}-task 72B oracle experiment observed \emph{zero} discordant pairs ($b + c = 0$), meaning no task changed correctness status between baseline and pruned conditions.
+We report four complementary analyses to bound the true discordant rate~$\rho$ and characterize statistical power.
+
+\paragraph{Rule of Three bound.}
+With 0 events in $N = \qwenSevenTwoBN{}$ Bernoulli trials, the classical Rule of Three gives the 95\% upper confidence bound as
+$\hat\rho_{\text{upper}} = 3/N$.
+For $N = 265$ this yields $\hat\rho_{\text{upper}} = 3/265 \approx 1.13\%$, bounding the maximum excludable accuracy difference at $|\Delta| \leq 1.13$\,pp.
+
+\paragraph{Bayesian posterior.}
+Under a uniform Beta$(1,1)$ prior, the posterior after observing 0 discordant pairs in $N$ trials is Beta$(1, N{+}1)$.
+For $N = 265$: posterior mean $= 0.37\%$, median $= 0.26\%$, 95\% credible upper bound $= 1.12\%$, 99\% credible upper bound $= 1.72\%$.
+Even the 99\% bound remains below 2\,pp, providing strong evidence that pruning does not degrade accuracy at this scale.
+
+\paragraph{Minimum detectable effect.}
+Table~\ref{app:tab:mde} reports the MDE at 80\% power (McNemar $\chi^2$, $\alpha=0.05$) under varying assumptions about the correlation $\rho$ between discordant cells.
+At $N = 265$: MDE $= 3.8$\,pp ($\rho = 0.7$), $2.2$\,pp ($\rho = 0.9$), $1.5$\,pp ($\rho = 0.95$).
+The zero-flip observation is therefore consistent with power to detect effects above $\sim$1.5--3.8\,pp depending on the assumed correlation structure.
+
+\paragraph{Clopper--Pearson confirmation.}
+The one-sided 95\% Clopper--Pearson exact bound $1 - 0.05^{1/N} \approx 1.13\%$ is concordant with the Rule of Three result above.
+
+Taken together, these analyses confirm that the 72B zero-flip result is not an artifact of insufficient sample size: with $N = 265$ tasks we can exclude true discordant rates above 1.13\% at the 95\% level, supporting the scale-trajectory evidence against the most common reviewer concern of underpowered null results.
+The single-seed limitation remains: variance across seeds cannot be estimated at 72B scale (cf.\@ ten-seed validation at 7B, \S\ref{sec:e2e_pruning}).

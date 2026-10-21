@@ -1,0 +1,47 @@
+# Prompt sensitivity V3: verbose (detailed step-by-step prompts)
+model:
+  name: "Llama-3.1-8B-Instruct"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "MathSolver"
+    system_message: |
+      You are an expert mathematical problem solver with deep expertise in arithmetic,
+      algebra, and word problems. Your task is to solve the given math problem with
+      extreme care and precision. Follow these steps:
+      (1) Read the problem carefully and identify all given quantities and what is being asked.
+      (2) Plan your approach before calculating.
+      (3) Execute each calculation step by step, showing all intermediate results.
+      (4) Verify your arithmetic by re-checking key calculations.
+      (5) State the final numerical answer clearly on the last line in the exact format:
+      "The answer is [NUMBER]."
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      You are a meticulous math answer verifier. Your job is to independently verify
+      the solver's work with the highest level of scrutiny. Follow these steps:
+      (1) Re-read the original problem to understand what is being asked.
+      (2) Go through every calculation step in the solution, checking each one independently.
+      (3) Look for common errors: arithmetic mistakes, misread numbers, logical gaps, or sign errors.
+      (4) If the solution is correct, confirm it and briefly explain why each step is valid.
+      (5) If you find any error, show the complete correct solution from scratch.
+      (6) End with the correct answer in the exact format: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 100
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+output:
+  trace_dir: "outputs/prompt_sensitivity/v3_verbose/traces"
+  analysis_dir: "outputs/prompt_sensitivity/v3_verbose"

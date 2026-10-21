@@ -1,0 +1,812 @@
+{
+  "experiment": "e2e_qwen72b_online_pruning",
+  "condition": "baseline",
+  "model": "Qwen2.5-72B-Instruct-AWQ",
+  "accuracy": 0.88,
+  "correct": 88,
+  "total": 100,
+  "char_threshold": 30,
+  "max_rounds": 6,
+  "suppression_rate": 0.0,
+  "time_seconds": 1112,
+  "per_task_results": [
+    {
+      "index": 1,
+      "task_id": "gsm8k_0000",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "109"
+    },
+    {
+      "index": 2,
+      "task_id": "gsm8k_0001",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "92"
+    },
+    {
+      "index": 3,
+      "task_id": "gsm8k_0002",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "13"
+    },
+    {
+      "index": 4,
+      "task_id": "gsm8k_0003",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "5"
+    },
+    {
+      "index": 5,
+      "task_id": "gsm8k_0004",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "25"
+    },
+    {
+      "index": 6,
+      "task_id": "gsm8k_0005",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "452"
+    },
+    {
+      "index": 7,
+      "task_id": "gsm8k_0006",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "43"
+    },
+    {
+      "index": 8,
+      "task_id": "gsm8k_0007",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "34"
+    },
+    {
+      "index": 9,
+      "task_id": "gsm8k_0008",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "120"
+    },
+    {
+      "index": 10,
+      "task_id": "gsm8k_0009",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "11"
+    },
+    {
+      "index": 11,
+      "task_id": "gsm8k_0010",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "34"
+    },
+    {
+      "index": 12,
+      "task_id": "gsm8k_0011",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "12"
+    },
+    {
+      "index": 13,
+      "task_id": "gsm8k_0012",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "15"
+    },
+    {
+      "index": 14,
+      "task_id": "gsm8k_0013",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "24"
+    },
+    {
+      "index": 15,
+      "task_id": "gsm8k_0014",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "105"
+    },
+    {
+      "index": 16,
+      "task_id": "gsm8k_0015",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "120"
+    },
+    {
+      "index": 17,
+      "task_id": "gsm8k_0016",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "17"
+    },
+    {
+      "index": 18,
+      "task_id": "gsm8k_0017",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "36"
+    },
+    {
+      "index": 19,
+      "task_id": "gsm8k_0018",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "12"
+    },
+    {
+      "index": 20,
+      "task_id": "gsm8k_0019",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "45"
+    },
+    {
+      "index": 21,
+      "task_id": "gsm8k_0020",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "45"
+    },
+    {
+      "index": 22,
+      "task_id": "gsm8k_0021",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "8"
+    },
+    {
+      "index": 23,
+      "task_id": "gsm8k_0022",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "36"
+    },
+    {
+      "index": 24,
+      "task_id": "gsm8k_0023",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "1"
+    },
+    {
+      "index": 25,
+      "task_id": "gsm8k_0024",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "10"
+    },
+    {
+      "index": 26,
+      "task_id": "gsm8k_0025",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "33.00"
+    },
+    {
+      "index": 27,
+      "task_id": "gsm8k_0026",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "1248"
+    },
+    {
+      "index": 28,
+      "task_id": "gsm8k_0027",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "200"
+    },
+    {
+      "index": 29,
+      "task_id": "gsm8k_0028",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "1.00"
+    },
+    {
+      "index": 30,
+      "task_id": "gsm8k_0029",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "32"
+    },
+    {
+      "index": 31,
+      "task_id": "gsm8k_0030",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "6"
+    },
+    {
+      "index": 32,
+      "task_id": "gsm8k_0031",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "30"
+    },
+    {
+      "index": 33,
+      "task_id": "gsm8k_0032",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "4"
+    },
+    {
+      "index": 34,
+      "task_id": "gsm8k_0033",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "54"
+    },
+    {
+      "index": 35,
+      "task_id": "gsm8k_0034",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "250"
+    },
+    {
+      "index": 36,
+      "task_id": "gsm8k_0035",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "324.00"
+    },
+    {
+      "index": 37,
+      "task_id": "gsm8k_0036",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "129200"
+    },
+    {
+      "index": 38,
+      "task_id": "gsm8k_0037",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "4400"
+    },
+    {
+      "index": 39,
+      "task_id": "gsm8k_0038",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "70"
+    },
+    {
+      "index": 40,
+      "task_id": "gsm8k_0039",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "276000"
+    },
+    {
+      "index": 41,
+      "task_id": "gsm8k_0040",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "108"
+    },
+    {
+      "index": 42,
+      "task_id": "gsm8k_0041",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "160"
+    },
+    {
+      "index": 43,
+      "task_id": "gsm8k_0042",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "90"
+    },
+    {
+      "index": 44,
+      "task_id": "gsm8k_0043",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "20"
+    },
+    {
+      "index": 45,
+      "task_id": "gsm8k_0044",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "296"
+    },
+    {
+      "index": 46,
+      "task_id": "gsm8k_0045",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "4800"
+    },
+    {
+      "index": 47,
+      "task_id": "gsm8k_0046",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "30"
+    },
+    {
+      "index": 48,
+      "task_id": "gsm8k_0047",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "8"
+    },
+    {
+      "index": 49,
+      "task_id": "gsm8k_0048",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "1920"
+    },
+    {
+      "index": 50,
+      "task_id": "gsm8k_0049",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "6"
+    },
+    {
+      "index": 51,
+      "task_id": "gsm8k_0050",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "13"
+    },
+    {
+      "index": 52,
+      "task_id": "gsm8k_0051",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "420"
+    },
+    {
+      "index": 53,
+      "task_id": "gsm8k_0052",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "10"
+    },
+    {
+      "index": 54,
+      "task_id": "gsm8k_0053",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "12"
+    },
+    {
+      "index": 55,
+      "task_id": "gsm8k_0054",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "50"
+    },
+    {
+      "index": 56,
+      "task_id": "gsm8k_0055",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "92"
+    },
+    {
+      "index": 57,
+      "task_id": "gsm8k_0056",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "623"
+    },
+    {
+      "index": 58,
+      "task_id": "gsm8k_0057",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "40"
+    },
+    {
+      "index": 59,
+      "task_id": "gsm8k_0058",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "17"
+    },
+    {
+      "index": 60,
+      "task_id": "gsm8k_0059",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "940"
+    },
+    {
+      "index": 61,
+      "task_id": "gsm8k_0060",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "10"
+    },
+    {
+      "index": 62,
+      "task_id": "gsm8k_0061",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "540"
+    },
+    {
+      "index": 63,
+      "task_id": "gsm8k_0062",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "110"
+    },
+    {
+      "index": 64,
+      "task_id": "gsm8k_0063",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "20"
+    },
+    {
+      "index": 65,
+      "task_id": "gsm8k_0064",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "560"
+    },
+    {
+      "index": 66,
+      "task_id": "gsm8k_0065",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "24"
+    },
+    {
+      "index": 67,
+      "task_id": "gsm8k_0066",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "22"
+    },
+    {
+      "index": 68,
+      "task_id": "gsm8k_0067",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "4"
+    },
+    {
+      "index": 69,
+      "task_id": "gsm8k_0068",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "22"
+    },
+    {
+      "index": 70,
+      "task_id": "gsm8k_0069",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "64"
+    },
+    {
+      "index": 71,
+      "task_id": "gsm8k_0070",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "522"
+    },
+    {
+      "index": 72,
+      "task_id": "gsm8k_0071",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "5"
+    },
+    {
+      "index": 73,
+      "task_id": "gsm8k_0072",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "410"
+    },
+    {
+      "index": 74,
+      "task_id": "gsm8k_0073",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "140"
+    },
+    {
+      "index": 75,
+      "task_id": "gsm8k_0074",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "720"
+    },
+    {
+      "index": 76,
+      "task_id": "gsm8k_0075",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "1050"
+    },
+    {
+      "index": 77,
+      "task_id": "gsm8k_0076",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "8"
+    },
+    {
+      "index": 78,
+      "task_id": "gsm8k_0077",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "20"
+    },
+    {
+      "index": 79,
+      "task_id": "gsm8k_0078",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "139"
+    },
+    {
+      "index": 80,
+      "task_id": "gsm8k_0079",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "175"
+    },
+    {
+      "index": 81,
+      "task_id": "gsm8k_0080",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "64"
+    },
+    {
+      "index": 82,
+      "task_id": "gsm8k_0081",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "5600"
+    },
+    {
+      "index": 83,
+      "task_id": "gsm8k_0082",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "720"
+    },
+    {
+      "index": 84,
+      "task_id": "gsm8k_0083",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "312"
+    },
+    {
+      "index": 85,
+      "task_id": "gsm8k_0084",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "60"
+    },
+    {
+      "index": 86,
+      "task_id": "gsm8k_0085",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "450"
+    },
+    {
+      "index": 87,
+      "task_id": "gsm8k_0086",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "10000"
+    },
+    {
+      "index": 88,
+      "task_id": "gsm8k_0087",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "43500"
+    },
+    {
+      "index": 90,
+      "task_id": "gsm8k_0089",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": false,
+      "answer": "9.00"
+    },
+    {
+      "index": 91,
+      "task_id": "gsm8k_0090",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "60"
+    },
+    {
+      "index": 92,
+      "task_id": "gsm8k_0091",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "24"
+    },
+    {
+      "index": 93,
+      "task_id": "gsm8k_0092",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "539"
+    },
+    {
+      "index": 94,
+      "task_id": "gsm8k_0093",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "18"
+    },
+    {
+      "index": 95,
+      "task_id": "gsm8k_0094",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "14"
+    },
+    {
+      "index": 96,
+      "task_id": "gsm8k_0095",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "60"
+    },
+    {
+      "index": 97,
+      "task_id": "gsm8k_0096",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "1080"
+    },
+    {
+      "index": 98,
+      "task_id": "gsm8k_0097",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "291"
+    },
+    {
+      "index": 99,
+      "task_id": "gsm8k_0098",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "70"
+    },
+    {
+      "index": 100,
+      "task_id": "gsm8k_0099",
+      "suppressed": 0,
+      "total_agents": 5,
+      "correct": true,
+      "answer": "63"
+    }
+  ],
+  "log_source": "/tmp/online_pruning_72b_baseline.log",
+  "backup_date": "2026-04-22",
+  "failed_tasks": [
+    "gsm8k_0088"
+  ],
+  "notes": "gsm8k_0088 failed with ERROR, counted as incorrect. 99 tasks completed, 88 correct."
+}

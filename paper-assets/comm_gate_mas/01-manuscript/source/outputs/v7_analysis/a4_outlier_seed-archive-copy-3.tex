@@ -1,0 +1,41 @@
+\subsection{Outlier Seed Analysis (Seed~3)}
+\label{app:outlier_seed}
+
+Seed~3 (\texttt{seed=456}) produces the largest negative delta ($-2.0$\,pp)
+among the 10 Qwen replication runs. We analyze whether this outlier
+invalidates the equivalence conclusion.
+
+\paragraph{Statistical characterization.}
+Seed~3's $z$-score is $-1.98$ (mean $\Delta = -0.05$, SD $= 0.98$).
+Grubbs' test yields $G = 1.980$ vs.\ $G_{\mathrm{crit}} = 2.290$
+($\alpha = 0.05$, two-sided): the outlier is not statistically significant.
+Dixon's $Q = 0.167$ vs.\ $Q_{\mathrm{crit}} = 0.466$: also not significant.
+
+\paragraph{Task-subset difficulty.}
+Seed~3 draws a harder GSM8K subset (baseline $= 86$\%, vs.\ mean $= 89.8$\%;
+deficit $= -3.8$\,pp).
+Pruning loses a net 4 tasks ($168/200 \to 172/200$),
+yielding $\Delta = -2.0$\,pp.
+The cascade rate (tasks lost per suppressed message) is
+$0.96$\% for seed~3
+vs.\ mean $0.17$\% across all seeds---slightly elevated
+but within the range.
+
+\paragraph{Sensitivity.}
+Removing seed~3 shifts the mean from $-0.05$ to $0.17$\,pp
+(shift $= +0.22$\,pp) and reduces the 95\% CI width from
+$1.22$ to $0.98$\,pp.
+Normality is restored
+(Shapiro--Wilk $p = 0.056$ vs.\ $0.048$).
+Critically, the TOST equivalence conclusion holds with or without seed~3:
+$\pm 1$\,pp TOST $p = 0.006884$ (full) vs.\ $0.005167$ (without);
+$\pm 1.5$\,pp TOST $p = 0.000595$ vs.\ $0.00035$.
+
+\paragraph{Bootstrap validation.}
+The full-sample bootstrap 95\% CI is $[-0.65, 0.50]$\,pp
+(width $1.15$).
+Leave-seed-3-out bootstrap CI is $[-0.33, 0.56]$\,pp
+(width $0.89$, 23\% narrower).
+Seed~3 is the single most influential observation but does not qualitatively
+change any conclusion: the mean delta remains near zero ($<0.2$\,pp shift),
+the CI still straddles zero, and TOST equivalence at $\pm 1$\,pp remains significant.

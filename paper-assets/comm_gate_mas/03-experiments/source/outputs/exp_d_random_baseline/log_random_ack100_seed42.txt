@@ -1,0 +1,48 @@
+2026-05-02 01:43:41,394 INFO Raised fd limit from 1024 to 65536
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71737ce0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 6acee92f-cda0-41ff-ac50-3a90e7b8c72f)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-02 01:43:51,963 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71737ce0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 6acee92f-cda0-41ff-ac50-3a90e7b8c72f)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 1s [Retry 1/5].
+2026-05-02 01:43:51,963 WARNING Retrying in 1s [Retry 1/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a714751c0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: daceeedb-1de7-4d63-99b9-5195b3d735f3)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-02 01:44:02,978 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a714751c0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: daceeedb-1de7-4d63-99b9-5195b3d735f3)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 2s [Retry 2/5].
+2026-05-02 01:44:02,978 WARNING Retrying in 2s [Retry 2/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a714753a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 810cb9ad-3952-49b5-8da1-cb1a958e4404)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-02 01:44:14,997 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a714753a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 810cb9ad-3952-49b5-8da1-cb1a958e4404)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 4s [Retry 3/5].
+2026-05-02 01:44:14,997 WARNING Retrying in 4s [Retry 3/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71475910>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 82ec2519-505c-4971-b4b1-dd312157f779)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-02 01:44:29,013 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71475910>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 82ec2519-505c-4971-b4b1-dd312157f779)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 8s [Retry 4/5].
+2026-05-02 01:44:29,014 WARNING Retrying in 8s [Retry 4/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71475c40>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: e7d40c8f-f448-43c5-81ff-562986ae8491)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-02 01:44:47,032 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71475c40>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: e7d40c8f-f448-43c5-81ff-562986ae8491)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 8s [Retry 5/5].
+2026-05-02 01:44:47,032 WARNING Retrying in 8s [Retry 5/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71475ee0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 2466c0f3-5b99-43c8-afe5-387cdd8afa6e)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-02 01:45:05,043 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3a71475ee0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 2466c0f3-5b99-43c8-afe5-387cdd8afa6e)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Traceback (most recent call last):
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 2689, in <module>
+    main()
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 2679, in main
+    online_random_token_matched_main(args)
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 2067, in online_random_token_matched_main
+    raw_tasks, _ = load_dataset_from_config(cfg_copy)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/comm_gate_mas/src/trace_collection.py", line 81, in load_dataset_from_config
+    tasks = load_gsm8k(cfg)
+            ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/comm_gate_mas/src/trace_collection.py", line 45, in load_gsm8k
+    ds = load_dataset("gsm8k", "main", split=cfg["data"]["split"])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/datasets/load.py", line 1688, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/datasets/load.py", line 1315, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/datasets/load.py", line 1207, in dataset_module_factory
+    raise e1 from None
+  File "/root/miniconda3/lib/python3.12/site-packages/datasets/load.py", line 1133, in dataset_module_factory
+    raise ConnectionError(f"Couldn't reach '{path}' on the Hub ({e.__class__.__name__})") from e
+ConnectionError: Couldn't reach 'gsm8k' on the Hub (LocalEntryNotFoundError)

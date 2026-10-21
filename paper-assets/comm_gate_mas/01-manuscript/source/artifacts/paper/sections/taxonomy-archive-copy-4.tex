@@ -1,0 +1,28 @@
+We define five exhaustive, mutually exclusive communication function types (Table~\ref{tab:taxonomy}). Ambiguity is resolved by hierarchical priority: \textit{coordination} $\succ$ \textit{verification} $\succ$ \textit{reasoning\_guidance} $\succ$ \textit{information\_provision} $\succ$ \textit{acknowledgment}, reflecting the principle that structurally higher-level functions take precedence.
+
+\begin{table}[t]
+\centering
+\caption{Five-class taxonomy of communication functions in solver--checker dialogues, with definitions and GSM8K examples. Priority: coordination $\succ$ verification $\succ$ reasoning $\succ$ information $\succ$ acknowledgment.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{@{}p{2.8cm}p{4.2cm}p{4.8cm}@{}}
+\toprule
+\textbf{Function Type} & \textbf{Definition} & \textbf{Example} \\
+\midrule
+\textsc{Information Provision} & Supplies factual content, data, or intermediate results & ``The total cost is 3 \texttimes{} \$5 = \$15 for the shirts.'' \\
+\addlinespace
+\textsc{Reasoning Guidance} & Directs reasoning through decomposition or strategic suggestions & ``First calculate the weekly cost, then multiply by 4.'' \\
+\addlinespace
+\textsc{Verification} & Checks or corrects the correctness of prior messages & ``17 \texttimes{} 3 = 51, not 53. The corrected answer is \$51.'' \\
+\addlinespace
+\textsc{Coordination} & Manages dialogue flow, assigns roles, or delegates tasks & ``I'll solve first, then you verify step by step.'' \\
+\addlinespace
+\textsc{Acknowledgment} & Simple confirmations or agreements with no new content & ``Your solution is correct.'' \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Our categories map onto established dialogue act frameworks (DAMSL~\cite{core_damsl_1997}, ISO 24617-2~\cite{bunt_iso_2012}, FIPA ACL~\cite{fipa_acl_2002}; detailed mapping in Appendix~\ref{app:damsl-mapping}), collapsing 56+ fine-grained types into five categories operationalized via measurable perturbation sensitivity rather than speaker intent. The taxonomy was developed for two-agent solver-checker dialogue; applicability to other configurations remains untested.
+
+\label{sec:annotation_protocol}
+Each message is annotated by an LLM annotator using a structured prompt with taxonomy definitions and hierarchical decision rules (temperature~0, constrained JSON; Appendix~\ref{app:annotation-prompt}). Cross-model validation uses two independent annotator models per message ($\kappa \geq 0.4$ threshold; Section~\ref{sec:cross_domain}).

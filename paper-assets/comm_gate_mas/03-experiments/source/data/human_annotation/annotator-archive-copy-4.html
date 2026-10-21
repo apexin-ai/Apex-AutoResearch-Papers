@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message Function Annotator</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; line-height: 1.5; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+h1 { font-size: 1.4em; margin-bottom: 16px; }
+.load-section { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.load-section label { font-weight: 600; display: block; margin-bottom: 8px; }
+.load-section input[type=file] { margin-bottom: 12px; }
+.progress-bar { background: #e0e0e0; border-radius: 4px; height: 24px; margin-bottom: 8px; position: relative; overflow: hidden; }
+.progress-fill { background: #4caf50; height: 100%; transition: width .3s; }
+.progress-text { position: absolute; top: 0; left: 0; right: 0; text-align: center; line-height: 24px; font-size: 13px; font-weight: 600; color: #333; }
+.meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.meta-item { background: #e8f0fe; padding: 4px 10px; border-radius: 4px; font-size: 13px; }
+.meta-item b { margin-right: 4px; }
+.msg-box { background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.msg-box.prev { opacity: .6; border-left: 4px solid #999; }
+.msg-box.current { border-left: 4px solid #1a73e8; }
+.msg-box h3 { font-size: .85em; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.msg-content { font-size: 14px; max-height: 400px; overflow-y: auto; line-height: 1.6; }
+.msg-content p { margin: 0 0 8px 0; }
+.msg-content ul, .msg-content ol { margin: 4px 0 8px 20px; }
+.msg-content li { margin: 2px 0; }
+.msg-content code { background: #f0f0f0; padding: 1px 4px; border-radius: 3px; font-size: 13px; }
+.msg-content pre { background: #f5f5f5; padding: 8px 12px; border-radius: 4px; overflow-x: auto; margin: 8px 0; }
+.msg-content pre code { background: none; padding: 0; }
+.msg-content strong { font-weight: 700; }
+.msg-content em { font-style: italic; }
+.annotation-panel { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.cat-option { display: flex; align-items: flex-start; gap: 8px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px; cursor: pointer; transition: all .15s; }
+.cat-option:hover { border-color: #90caf9; background: #f5f9ff; }
+.cat-option.selected { border-color: #1a73e8; background: #e8f0fe; }
+.cat-option input[type=radio] { margin-top: 3px; }
+.cat-label { font-weight: 600; font-size: 14px; }
+.cat-key { background: #f0f0f0; border-radius: 3px; padding: 1px 6px; font-size: 12px; font-family: monospace; margin-left: 4px; }
+.cat-desc { font-size: 12px; color: #666; margin-top: 2px; }
+.confidence-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.confidence-row label { font-weight: 600; }
+.conf-option { display: flex; align-items: center; gap: 4px; cursor: pointer; padding: 6px 12px; border: 2px solid #e0e0e0; border-radius: 6px; }
+.conf-option:hover { border-color: #90caf9; }
+.conf-option.selected { border-color: #1a73e8; background: #e8f0fe; }
+.notes-row { margin-bottom: 16px; }
+.notes-row textarea { width: 100%; height: 50px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; resize: vertical; }
+.nav-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.nav-row button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; }
+.btn-primary { background: #1a73e8; color: #fff; }
+.btn-primary:hover { background: #1557b0; }
+.btn-secondary { background: #e0e0e0; color: #333; }
+.btn-secondary:hover { background: #ccc; }
+.btn-save { background: #4caf50; color: #fff; }
+.btn-save:hover { background: #388e3c; }
+.jump-input { width: 60px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center; }
+.unannotated-list { margin-top: 8px; font-size: 13px; color: #e65100; }
+.keyboard-help { background: #fff8e1; padding: 12px; border-radius: 8px; margin-bottom: 12px; font-size: 13px; }
+.keyboard-help kbd { background: #f0f0f0; border: 1px solid #ccc; border-radius: 3px; padding: 1px 5px; font-family: monospace; }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Message Function Annotator</h1>
+
+<div class="load-section" id="loadSection">
+  <p style="font-size:14px;">正在加载标注表...</p>
+</div>
+
+<div id="mainUI" class="hidden">
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+  </div>
+
+  <div class="keyboard-help">
+    <b>Keyboard shortcuts:</b>
+    <kbd>1</kbd>–<kbd>5</kbd> select category &nbsp;|&nbsp;
+    <kbd>Shift+1</kbd>–<kbd>3</kbd> set confidence &nbsp;|&nbsp;
+    <kbd>Enter</kbd> next &nbsp;|&nbsp;
+    <kbd>Shift+Enter</kbd> previous &nbsp;|&nbsp;
+    <kbd>Ctrl+S</kbd> save
+  </div>
+
+  <div class="meta" id="metaBar"></div>
+
+  <div class="msg-box prev">
+    <h3>Previous Message (context)</h3>
+    <div class="msg-content" id="prevMsg">—</div>
+  </div>
+
+  <div class="msg-box current">
+    <h3>Current Message (classify this)</h3>
+    <div class="msg-content" id="curMsg">—</div>
+  </div>
+
+  <div class="annotation-panel">
+    <div class="category-grid" id="catGrid"></div>
+
+    <div class="confidence-row">
+      <label>Confidence:</label>
+      <div class="conf-option" data-conf="1" onclick="setConf(1)">
+        <input type="radio" name="conf" value="1"> 1 — Unsure
+      </div>
+      <div class="conf-option" data-conf="2" onclick="setConf(2)">
+        <input type="radio" name="conf" value="2"> 2 — Moderate
+      </div>
+      <div class="conf-option" data-conf="3" onclick="setConf(3)">
+        <input type="radio" name="conf" value="3"> 3 — Confident
+      </div>
+    </div>
+
+    <div class="notes-row">
+      <label style="font-weight:600;display:block;margin-bottom:4px;">Notes (optional):</label>
+      <textarea id="notesInput" placeholder="Edge case notes..."></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-secondary" onclick="go(-1)">&#9664; Previous</button>
+      <button class="btn-primary" onclick="go(1)">Next &#9654;</button>
+      <span style="margin:0 8px;">|</span>
+      <label>Jump to #</label>
+      <input type="number" class="jump-input" id="jumpInput" min="1">
+      <button class="btn-secondary" onclick="jumpTo()">Go</button>
+      <span style="margin:0 8px;">|</span>
+      <button class="btn-secondary" onclick="goNextUnannotated()">Next Unannotated</button>
+      <span style="flex:1;"></span>
+      <button class="btn-save" onclick="saveCSV()">&#128190; Save CSV</button>
+    </div>
+    <div class="unannotated-list" id="unannotatedInfo"></div>
+  </div>
+</div>
+</div>
+
+<script>
+const LS_KEY = 'msgfn_annotations';
+
+function renderMd(text) {
+  let s = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  s = s.replace(/^```[\s\S]*?```/gm, m => {
+    const code = m.replace(/^```\w*\n?/, '').replace(/\n?```$/, '');
+    return '<pre><code>' + code + '</code></pre>';
+  });
+  s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+  s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  const lines = s.split('\n');
+  let html = '', inList = false;
+  for (const line of lines) {
+    const li = line.match(/^[\-\*]\s+(.*)/);
+    if (li) {
+      if (!inList) { html += '<ul>'; inList = true; }
+      html += '<li>' + li[1] + '</li>';
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (line.trim() === '') html += '';
+      else if (line.startsWith('<pre>')) html += line;
+      else html += '<p>' + line + '</p>';
+    }
+  }
+  if (inList) html += '</ul>';
+  return html;
+}
+
+function persistToLS() {
+  const data = rows.map(r => ({
+    id: r.msg_id,
+    human_label: r.human_label || '',
+    confidence: r.confidence || '',
+    notes: r.notes || ''
+  }));
+  try { localStorage.setItem(LS_KEY, JSON.stringify({ idx, data })); } catch(e) {}
+}
+
+function restoreFromLS() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    if (!saved.data || !Array.isArray(saved.data)) return;
+    const map = {};
+    saved.data.forEach(d => { map[d.id] = d; });
+    let restored = 0;
+    rows.forEach(r => {
+      const s = map[r.msg_id];
+      if (s) {
+        if (s.human_label && !r.human_label) { r.human_label = s.human_label; restored++; }
+        if (s.human_label) r.human_label = s.human_label;
+        if (s.confidence) r.confidence = s.confidence;
+        if (s.notes) r.notes = s.notes;
+      }
+    });
+    if (typeof saved.idx === 'number' && saved.idx >= 0 && saved.idx < rows.length) idx = saved.idx;
+    if (restored > 0) console.log(`Restored ${restored} annotations from localStorage`);
+  } catch(e) {}
+}
+
+const CATEGORIES = [
+  { key: 'coordination', label: 'Coordination', num: 1, desc: 'Manages roles, turn-taking, task delegation, or requests clarification' },
+  { key: 'verification', label: 'Verification', num: 2, desc: 'Checks, corrects, or confirms correctness of prior work' },
+  { key: 'reasoning_guidance', label: 'Reasoning Guidance', num: 3, desc: 'Provides step-by-step plans, strategies, or problem decomposition' },
+  { key: 'information_provision', label: 'Information Provision', num: 4, desc: 'Supplies facts, computations, or results without directing how to use them' },
+  { key: 'acknowledgment', label: 'Acknowledgment', num: 5, desc: 'Simple confirmation or restatement with no new content' },
+];
+
+let rows = [];
+let headers = [];
+let idx = 0;
+
+const catGrid = document.getElementById('catGrid');
+CATEGORIES.forEach(c => {
+  const div = document.createElement('div');
+  div.className = 'cat-option';
+  div.dataset.cat = c.key;
+  div.onclick = () => setCat(c.key);
+  div.innerHTML = `<input type="radio" name="cat" value="${c.key}">
+    <div><span class="cat-label">${c.label}</span><span class="cat-key">${c.num}</span>
+    <div class="cat-desc">${c.desc}</div></div>`;
+  catGrid.appendChild(div);
+});
+
+fetch('annotation_sheet.csv')
+  .then(r => { if (!r.ok) throw new Error('Failed to load annotation_sheet.csv'); return r.text(); })
+  .then(text => {
+    parseCSV(text);
+    restoreFromLS();
+    document.getElementById('loadSection').classList.add('hidden');
+    document.getElementById('mainUI').classList.remove('hidden');
+    render();
+  })
+  .catch(err => {
+    document.getElementById('loadSection').innerHTML =
+      '<p style="color:#c62828;">加载失败：' + err.message + '</p>' +
+      '<p style="font-size:13px;color:#666;margin-top:8px;">请确保 <code>annotation_sheet.csv</code> 与此 HTML 文件在同一目录下。</p>';
+  });
+
+function parseCSV(text) {
+  const lines = [];
+  let current = '';
+  let inQuote = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (inQuote && i + 1 < text.length && text[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuote = !inQuote;
+      }
+    } else if ((ch === '\n' || ch === '\r') && !inQuote) {
+      if (current.length > 0) lines.push(current);
+      current = '';
+      if (ch === '\r' && i + 1 < text.length && text[i + 1] === '\n') i++;
+    } else {
+      current += ch;
+    }
+  }
+  if (current.length > 0) lines.push(current);
+
+  headers = splitCSVLine(lines[0]);
+  rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const fields = splitCSVLine(lines[i]);
+    const obj = {};
+    headers.forEach((h, j) => obj[h] = fields[j] || '');
+    rows.push(obj);
+  }
+}
+
+function splitCSVLine(line) {
+  const fields = [];
+  let current = '';
+  let inQuote = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inQuote && i + 1 < line.length && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuote = !inQuote;
+      }
+    } else if (ch === ',' && !inQuote) {
+      fields.push(current);
+      current = '';
+    } else {
+      current += ch;
+    }
+  }
+  fields.push(current);
+  return fields;
+}
+
+function render() {
+  if (rows.length === 0) return;
+  const r = rows[idx];
+
+  const completed = rows.filter(r => r.human_label).length;
+  const pct = (completed / rows.length * 100).toFixed(1);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${completed} / ${rows.length} annotated (${pct}%)`;
+
+  document.getElementById('metaBar').innerHTML = [
+    ['#', (idx + 1) + ' / ' + rows.length],
+    ['ID', r.msg_id],
+    ['Backbone', r.backbone],
+    ['Task', r.task_id],
+    ['Sender', r.sender],
+    ['Round', r.round],
+  ].map(([k, v]) => `<div class="meta-item"><b>${k}:</b> ${v}</div>`).join('');
+
+  document.getElementById('prevMsg').innerHTML = renderMd(r.prev_message_text || '(no previous message)');
+  document.getElementById('curMsg').innerHTML = renderMd(r.message_text || '');
+
+  document.querySelectorAll('.cat-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.cat === r.human_label);
+    el.querySelector('input').checked = el.dataset.cat === r.human_label;
+  });
+
+  document.querySelectorAll('.conf-option').forEach(el => {
+    const sel = el.dataset.conf === r.confidence;
+    el.classList.toggle('selected', sel);
+    el.querySelector('input').checked = sel;
+  });
+
+  document.getElementById('notesInput').value = r.notes || '';
+  document.getElementById('jumpInput').value = idx + 1;
+
+  const unannotated = rows.reduce((acc, r, i) => { if (!r.human_label) acc.push(i + 1); return acc; }, []);
+  const infoEl = document.getElementById('unannotatedInfo');
+  if (unannotated.length > 0 && unannotated.length <= 20) {
+    infoEl.textContent = 'Unannotated: #' + unannotated.join(', #');
+  } else if (unannotated.length > 20) {
+    infoEl.textContent = `${unannotated.length} messages still unannotated`;
+  } else {
+    infoEl.textContent = 'All messages annotated!';
+    infoEl.style.color = '#4caf50';
+  }
+}
+
+function saveState() {
+  const r = rows[idx];
+  r.notes = document.getElementById('notesInput').value;
+  persistToLS();
+}
+
+function setCat(key) {
+  rows[idx].human_label = key;
+  persistToLS();
+  render();
+}
+
+function setConf(n) {
+  rows[idx].confidence = String(n);
+  persistToLS();
+  render();
+}
+
+function go(dir) {
+  saveState();
+  idx = Math.max(0, Math.min(rows.length - 1, idx + dir));
+  render();
+  window.scrollTo(0, 0);
+}
+
+function jumpTo() {
+  saveState();
+  const n = parseInt(document.getElementById('jumpInput').value);
+  if (n >= 1 && n <= rows.length) {
+    idx = n - 1;
+    render();
+    window.scrollTo(0, 0);
+  }
+}
+
+function goNextUnannotated() {
+  saveState();
+  for (let i = 1; i <= rows.length; i++) {
+    const j = (idx + i) % rows.length;
+    if (!rows[j].human_label) {
+      idx = j;
+      render();
+      window.scrollTo(0, 0);
+      return;
+    }
+  }
+  alert('All messages have been annotated!');
+}
+
+function saveCSV() {
+  saveState();
+  const csvRows = [headers.join(',')];
+  rows.forEach(r => {
+    csvRows.push(headers.map(h => {
+      const v = r[h] || '';
+      if (v.includes(',') || v.includes('"') || v.includes('\n') || v.includes('\r')) {
+        return '"' + v.replace(/"/g, '""') + '"';
+      }
+      return v;
+    }).join(','));
+  });
+  const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'annotation_sheet_completed.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+
+  if (e.key >= '1' && e.key <= '5' && !e.shiftKey && !e.ctrlKey) {
+    e.preventDefault();
+    setCat(CATEGORIES[parseInt(e.key) - 1].key);
+  }
+  if (e.shiftKey && e.key >= '!' && e.key <= '#') {
+    e.preventDefault();
+    const n = e.key === '!' ? 1 : e.key === '@' ? 2 : 3;
+    setConf(n);
+  }
+  if (e.key === 'Enter' && !e.ctrlKey) {
+    e.preventDefault();
+    go(e.shiftKey ? -1 : 1);
+  }
+  if (e.ctrlKey && e.key === 's') {
+    e.preventDefault();
+    saveCSV();
+  }
+});
+</script>
+</body>
+</html>

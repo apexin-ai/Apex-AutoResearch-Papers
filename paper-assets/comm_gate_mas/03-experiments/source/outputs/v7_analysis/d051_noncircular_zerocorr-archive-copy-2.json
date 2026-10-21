@@ -1,0 +1,56 @@
+{
+  "analysis": "non_circular_zero_correction_validation",
+  "method": "Content-agnostic heuristics (length/keyword-based) identify short/simple messages without using taxonomy labels. Strict regex patterns then check for genuine error correction (disagreement, recalculation, explicit error flagging). Patterns like \"the correct answer\" that indicate affirmation, not correction, are excluded.",
+  "heuristic_rules": {
+    "Qwen": "len(content) < 30 chars",
+    "Llama": "ACK_KEYWORDS present AND len < 300 AND no NONACK_KEYWORDS",
+    "Gemma": "Same composite rule as Llama"
+  },
+  "correction_detection": {
+    "method": "Strict regex: only patterns indicating sender corrects a prior error",
+    "patterns": [
+      "disagree", "thats_wrong", "this_is_wrong", "you_made_error",
+      "you_are_wrong", "let_me_correct", "recalculate", "reexamine",
+      "actually_should_be", "wait_should_be", "no_the_answer_is",
+      "instead_of_should", "there_is_error", "calc_is_wrong"
+    ]
+  },
+  "per_backbone": [
+    {
+      "backbone": "Qwen",
+      "total_messages": 1500,
+      "heuristic_identified": 854,
+      "heuristic_pct": 56.93,
+      "heuristic_with_correction": 0,
+      "correction_pct": 0.0
+    },
+    {
+      "backbone": "Llama",
+      "total_messages": 1470,
+      "heuristic_identified": 250,
+      "heuristic_pct": 17.01,
+      "heuristic_with_correction": 0,
+      "correction_pct": 0.0
+    },
+    {
+      "backbone": "Gemma",
+      "total_messages": 1520,
+      "heuristic_identified": 22,
+      "heuristic_pct": 1.45,
+      "heuristic_with_correction": 0,
+      "correction_pct": 0.0
+    }
+  ],
+  "taxonomy_comparison": {
+    "Qwen": {"ack_count": 719, "total": 1500},
+    "Llama": {"ack_count": 691, "total": 1470},
+    "Gemma": {"ack_count": 73, "total": 1520}
+  },
+  "overall": {
+    "total_messages": 4490,
+    "heuristic_identified": 1126,
+    "heuristic_with_correction": 0,
+    "correction_pct": 0.0
+  },
+  "paper_text": "To rule out circularity, we re-identified messages using content-agnostic heuristics (character length < 30 for Qwen; composite keyword + length rule for Llama/Gemma) that do not reference the taxonomy. Across three backbones (Qwen (854), Llama (250), Gemma (22); N=1126 total), 0% of heuristic-identified messages contained error-correction patterns (strict regex-based detection of disagreement, recalculation, and explicit error flagging). This confirms that the zero-correction finding for acknowledgment messages is not an artifact of the taxonomy definition."
+}

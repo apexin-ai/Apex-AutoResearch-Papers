@@ -1,0 +1,27 @@
+\section{Exploratory Multi-Agent and Alternative Topology Pilots}
+\label{app:multiagent}
+
+To probe whether acknowledgment patterns generalize beyond two-agent solver-checker configurations, we conduct two exploratory pilots using Qwen2.5-7B-Instruct on GSM8K and StrategyQA ($N = 100$ each, greedy decoding).
+
+\paragraph{Three-agent solver-checker-critic.}
+We extend the standard two-agent pipeline with a third agent (LogicCritic) that reviews the checker's verification for completeness, cycling in round-robin order over 7 rounds. The heuristic detector (char $< 30$) suppresses 37\% of agent messages (222/600), with suppression concentrated in checker and critic roles (Table~\ref{tab:pilot_results}). Pruned accuracy ($91\%$) is within 1\,pp of baseline ($92\%$; McNemar $p = 1.0$, 1 discordant pair). The ack distribution across agent positions---19\% (solver), 40\% (checker), 41\% (critic)---suggests that downstream agents produce more acknowledgments, consistent with the cascade dynamics observed in two-agent systems.
+
+\paragraph{Debate (advocate--challenger).}
+We replace the solver-checker topology with symmetric argumentation: an Advocate argues for an answer while a Challenger identifies weaknesses, cycling over 6 rounds on StrategyQA (yes/no). The heuristic detector suppresses only 0.21\% of messages (1/485), with 99 of 100 tasks producing zero suppressed messages. Baseline accuracy is 62\% (pruned 63\%, $\Delta = +1$\,pp). The near-zero suppression rate indicates that debate agents produce long argumentative responses rather than short acknowledgment-like messages, suggesting that ack prevalence is topology-dependent rather than a universal property of multi-agent LLM communication. An alternative explanation is that the heuristic (char $< 30$) is poorly calibrated for debate responses; oracle annotation was not performed for this pilot.
+
+\begin{table}[ht]
+\centering
+\caption{Exploratory topology pilots (Qwen2.5-7B, $N = 100$, greedy decoding). Suppression uses the heuristic detector (char $< 30$); no oracle annotation was performed for the debate pilot.}
+\label{tab:pilot_results}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Topology & Domain & Agents & Baseline & Pruned & $\Delta$ (pp) & Suppress \% \\
+\midrule
+3-Agent (S-C-Cr) & GSM8K & 3 & 92\% & 91\% & $-1.0$ & 37.0\% \\
+Debate (A-Ch) & StrategyQA & 2 & 62\% & 63\% & $+1.0$ & 0.21\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both pilots are exploratory ($N = 100$, single backbone, heuristic detection only). Definitive claims about multi-agent or alternative-topology pruning require larger-scale validation with oracle annotation.

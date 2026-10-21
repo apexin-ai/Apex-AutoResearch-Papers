@@ -1,0 +1,83 @@
+================================================================
+  LaTeX Compile Report — comm_gate_mas
+  Date: 2026-04-28
+  Server: westb-4x6000-a (root)
+  Compiler: pdfTeX 3.141592653-2.6-1.40.22 (TeX Live 2022)
+  Pipeline: pdflatex → bibtex → pdflatex → pdflatex
+================================================================
+
+1. COMPILATION STATUS: SUCCESS
+   Output: main.pdf (50 pages, 727,386 bytes)
+
+2. ERRORS: 0
+   No LaTeX errors detected.
+
+3. UNDEFINED REFERENCES / CITATIONS: 0
+   All \ref and \cite resolved correctly.
+
+4. MISSING FILES: 0
+   All 5 \includegraphics targets exist:
+   - figures/fig_pipeline.pdf    (28 KB)
+   - figures/fig_impact.pdf      (46 KB)
+   - figures/fig_forest.pdf      (41 KB)
+   - figures/fig_distribution.pdf (14 KB)
+   - figures/fig_crossover.pdf   (19 KB)
+
+5. BIBTEX: Clean
+   Style: plainnat, Database: references.bib
+   No missing entries, no warnings.
+
+6. WARNINGS: 10
+   All 10 are hyperref "Token not allowed in a PDF string (Unicode)"
+   — cosmetic only, affects PDF bookmarks when section titles
+     contain math/macros. Does not affect printed content.
+
+7. OVERFULL HBOX: 4 (all in appendix_examples.tex, DAMSL mapping table)
+   - Line 409:     7.8pt too wide
+   - Line 411:    30.8pt too wide  ← significant
+   - Line 413:    21.3pt too wide  ← significant
+   - Lines 405-420: 21.0pt too wide ← significant
+   Source: Table \ref{tab:damsl_mapping} — 5-column p{} table
+   with columns totaling 12.6cm + tabcolsep. Long descriptions
+   ("Supplies new task-relevant content", "Manages workflow and
+   role allocation") exceed column widths.
+
+8. UNDERFULL HBOX: 41
+   Mostly badness 10000 in appendix tables/descriptions (lines
+   263-298, 405-420). Typical for narrow p{} columns with short
+   content. Low priority.
+
+9. UNDERFULL VBOX: 1
+   During \output (page break). Normal.
+
+10. PAGE COUNT BREAKDOWN
+    Main body (title → conclusion):  Pages 1-12   (12 pages)
+    Bibliography:                    Pages 13-16  (4 pages)
+    Appendix A (examples):           Pages 17-27  (11 pages)
+    Appendix B (neutralize):         Page 28      (1 page)
+    Appendix C (statistical):        Pages 29-42  (14 pages)
+    Appendix D (info theory):        Pages 43-44  (2 pages)
+    Appendix E (scaling):            Pages 45-46  (2 pages)
+    Appendix F-H + NeurIPS checklist: Pages 47-50 (4 pages)
+    --------------------------------------------------------
+    TOTAL: 50 pages
+
+    ⚠️  NeurIPS 2026 main text limit: 9 pages
+        Current main text: 12 pages → 3 PAGES OVER LIMIT
+
+11. ACTION ITEMS (by priority)
+    [HIGH] Main text is 3 pages over the 9-page NeurIPS limit.
+           Must cut ~3 pages from sections 1-7 (intro through
+           conclusion). References and appendix are unlimited.
+
+    [MED]  DAMSL mapping table (appendix_examples.tex, ~line 405)
+           has 3 significant overfull hbox warnings (up to 30.8pt).
+           Fix: widen table to \textwidth, reduce column text,
+           or use \resizebox / \adjustbox.
+
+    [LOW]  10 hyperref bookmark warnings from math in section
+           titles. Fix: use \texorpdfstring{LaTeX}{plain} in
+           affected \section commands.
+
+    [LOW]  41 underfull hbox in appendix tables. Cosmetic only.
+================================================================

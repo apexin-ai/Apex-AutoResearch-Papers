@@ -1,0 +1,25 @@
+\section{ConvNeXt-T SGD Degradation Analysis}
+\label{sec:convnext_sgd_analysis}
+SGD exhibits severe degradation on ConvNeXt-T, reaching only 11.51\% validation accuracy at 20 epochs, a 63.11\,pp gap behind Muon ($74.62{\scriptstyle\pm 0.15}$\%) and 47.03\,pp behind AdamW ($58.54{\scriptstyle\pm 2.17}$\%) (3-seed mean$\pm$std; see Table~\ref{tab:main_results}). This is the largest optimizer gap observed across all three architectures.
+
+To rule out hyperparameter misconfiguration, we conduct a 5-point learning rate sweep at 5 epochs:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+Learning Rate & Val Acc (5\,ep) \\
+\midrule
+0.001 & 7.96\% \\
+0.005 & 9.02\% \\
+0.01 & 9.27\% \\
+0.05 & 9.22\% \\
+0.1 & 4.98\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The sweep reveals a flat response across $\mathrm{lr} \in [0.005, 0.05]$ with a peak at $\mathrm{lr}=0.01$ (9.27\%), and divergence at $\mathrm{lr}=0.1$ (4.98\%). The 20-epoch run at optimal $\mathrm{lr}=0.01$ improves only marginally to 11.51\% (+2.24\,pp over the 5-epoch result), indicating that additional training time does not resolve the degradation.
+
+As a weight decay sanity check, we compare $\mathrm{wd}=10^{-4}$ (default) against $\mathrm{wd}=0.01$ at 5 epochs: validation accuracy changes from 9.27\% to 9.18\% ($\Delta = -0.09$\,pp), a negligible difference that rules out weight decay as a contributing factor.
+
+We attribute the SGD degradation primarily to ConvNeXt's use of LayerNorm (replacing BatchNorm) and depthwise separable convolutions, which create an optimization landscape where first-order methods without adaptive step sizes fail to make progress; the use of GELU activations may also contribute, though we do not isolate this factor. Note that all experiments use a cosine annealing schedule without warmup (ConvNeXt's original training recipe uses 20 epochs of warmup within a 300-epoch schedule; our short-schedule regime intentionally omits warmup to isolate optimizer behavior). Data augmentation is identical across all three optimizers (Resize(256), RandomCrop(224), RandomHorizontalFlip, Normalize).

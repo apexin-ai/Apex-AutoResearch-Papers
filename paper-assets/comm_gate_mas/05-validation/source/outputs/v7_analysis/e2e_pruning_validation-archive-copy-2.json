@@ -1,0 +1,51 @@
+{
+  "mode": "e2e",
+  "num_tasks": 100,
+  "baseline": {
+    "correct": 91,
+    "total": 100,
+    "accuracy": 0.91
+  },
+  "strategies": {
+    "function_guided": {
+      "strategy": "function_guided",
+      "correct": 89,
+      "total": 100,
+      "accuracy": 0.89,
+      "total_pruned_rounds": 255,
+      "total_rounds": 500,
+      "prune_pct": 51.0
+    },
+    "ack_only": {
+      "strategy": "ack_only",
+      "correct": 92,
+      "total": 100,
+      "accuracy": 0.92,
+      "total_pruned_rounds": 240,
+      "total_rounds": 500,
+      "prune_pct": 48.0
+    },
+    "random": {
+      "strategy": "random",
+      "correct": 88,
+      "total": 100,
+      "accuracy": 0.88,
+      "total_pruned_rounds": 255,
+      "total_rounds": 500,
+      "prune_pct": 51.0
+    }
+  },
+  "comparison": {
+    "fg_vs_baseline_delta_pp": -2.0,
+    "ack_vs_baseline_delta_pp": 1.0,
+    "random_vs_baseline_delta_pp": -3.0,
+    "fg_vs_random_delta_pp": 1.0,
+    "fg_dominates_random": true
+  },
+  "config": {
+    "model": "Qwen2.5-7B-Instruct",
+    "api_base": "http://localhost:8000/v1",
+    "max_rounds": 6,
+    "placeholder": "I acknowledge the previous message."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fc1bcf62b91a5edbad9",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3154,
+    "sha256": "5eb663884cc5a29a0cea0bd9e17e3838d83941e15faa54d52613f50cbf3ac745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-04-26T04:18:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:1（config `gpu_ids: [1]`）。cuda:0 已释放（D153），cuda:2-3 属其他项目，严禁使用\n- 服务器 westb-4x6000-a 账户 comm_gate，远程路径 `/root/autodl-tmp/comm_gate_mas`\n- 论文页数上限 9 页，当前刚好 9 页零余量——任何文本增加必须同步压缩\n- Agent 曾两次虚报 72B 实验结果（D149-D150），所有 Agent 汇报的数字必须经 Reviewer 独立验证后才可采信\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a (connect.westb.seetacloud.com)，账户 comm_gate\n- 工作目录：`/root/autodl-tmp/comm_gate_mas`\n- 活跃进程：PID 44522（72B oracle 实验，本地运行），PID 176944（vLLM 72B AWQ on GPU1, port 8002）\n- 论文目录：`artifacts/paper/`，编译工具 tectonic\n- 弹性 GPU 未启用，无 AutoDL 实例\n\n### 3. 📊 当前状态\n项目处于 Research + 审稿阶段，NeurIPS 2026 投稿（abstract 5/3-4, paper 5/5-6）。\n\n**RUNNING**: oracle_qwen72b_n500 — 72B scale validation，93/500 tasks，ETA ~4/27 07:00-11:00 UTC。中间结果 N=90: Δ=0.0pp（零翻转），Scenario A 概率极高。\n\n**已完成的前置工作（6 项全部 ✅）**:\n1. `src/fill_72b_macros.py` — 读 JSON 输出 LaTeX 宏 + guardrail 判定\n2. Registry 异常字段修正\n3. 编译检查 — 9页/0 broken ref/全宏化\n4. `scripts/post_72b_pipeline.sh` — 72B 完成后一键流程\n5. `src/cross_scale_analysis.py` — 跨 scale 汇总 + Table 1 交叉验证（8/8 匹配）\n6. 逐 section 论文自查 — 无问题\n\nAgent 当前空闲，无待处理队列。Reviewer 刚 reset。\n\n### 4. 📋 待办\n- 72B 完成（PID 44522 退出）→ `bash scripts/post_72b_pipeline.sh` → 检查 guardrail 判定 → 如 Scenario A 则填宏编译；如 Scenario B 则激活 CONTINGENCY-B 重写 framing\n- 填宏后 → Reviewer 独立 parse seed_42.json 交叉验证所有数字（必须，不可跳过）\n- 验证通过 → 写作对抗审查 3/3（最后一轮）→ submit_paper_to_review R12\n- R12 审稿反馈 → 按 review-report-action skill 处理 → final polish → 5/3 提交\n\n### 5. 🎯 战略上下文\n**核心叙事**：\"Perturbation sensitivity ≠ pruning safety: ack messages show highest perturbation sensitivity yet are predictably safe to prune.\" 双 backbone（Llama Δ=+2.1pp, Qwen Δ=+0.40pp）10-seed non-inferiority 已证。72B 是 scale-invariant 的最后一块拼图。\n\n**Guardrail**：|Δ| ≤ 3pp 且 p ≥ 0.1 → Scenario A（保留 framing）；否则 → Scenario B（CONTINGENCY-B 替代叙事在 results.tex:87-90 已注释备用，但会需要压页数）。\n\n**易错点**：\n- 不要相信 Agent 自报的数字，D149-D150 虚报事件教训惨痛——所有关键数字必须 Reviewer 独立验证\n- 72B 宏名格式为 `\\qwenSevenTwoB*`（6 个宏在 main.tex:32-37），填数后必须重编译验证页数\n- R11 审稿 Borderline Accept 5.5/10，W1-W7/m1-m8/P0-P5 全部已修复，审稿状态详见 ROADMAP\n- 决策日志已 153 条，关键决策链：D146-D153 覆盖 72B 实验全程\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-2.md"
+}

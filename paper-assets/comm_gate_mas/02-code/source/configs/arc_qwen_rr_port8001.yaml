@@ -1,0 +1,71 @@
+# ARC-Challenge dataset: Qwen × round_robin
+# Cross-domain validation: science reasoning (non-math)
+# Annotation model_b: Llama@8001 (different model to avoid kappa=1.0)
+
+model:
+  name: "Qwen2.5-7B-Instruct"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "ScienceSolver"
+    system_message: |
+      You are a science problem solver. Analyze the given multiple-choice question step by step.
+      Consider the scientific principles involved. Evaluate each option carefully.
+      State your final answer as: The answer is (X).
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      You are a science answer checker. Review the solver's reasoning carefully.
+      Verify the scientific principles cited are correct. Check if any options were incorrectly eliminated.
+      If you agree, confirm the answer. If you disagree, explain why and provide the correct answer.
+      State your final answer as: The answer is (X).
+
+data:
+  source: "arc"
+  num_tasks: 250
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+local_impact:
+  embedding_model: "/root/autodl-tmp/.hf_cache/sentence-transformers/all-MiniLM-L6-v2"
+  logprobs_top_k: 20
+  ldim_max_tokens: 5
+  neutralize_text:
+    solver: "Let me think about this question."
+    checker: "I'll review the reasoning."
+    default: "Acknowledged."
+
+annotation:
+  model_b:
+    name: "meta-llama/Llama-3.1-8B-Instruct"
+    api_base: "http://localhost:8001/v1"
+    api_key: "[REDACTED]"
+  function_types:
+    - information_provision
+    - reasoning_guidance
+    - verification
+    - coordination
+    - acknowledgment
+
+correctness:
+  categories:
+    - correct
+    - partially_correct
+    - incorrect
+    - not_applicable
+
+output:
+  trace_dir: "outputs/arc/qwen_round_robin/traces"
+  impact_dir: "outputs/arc/qwen_round_robin/local_impact"
+  annotation_dir: "outputs/arc/qwen_round_robin/annotations"
+  correctness_dir: "outputs/arc/qwen_round_robin/correctness"
+  figure_dir: "outputs/arc/qwen_round_robin/figures"
+  analysis_dir: "outputs/arc/qwen_round_robin/analysis"

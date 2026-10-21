@@ -1,0 +1,113 @@
+{
+  "model": "Qwen2.5-7B-Instruct",
+  "dataset": "GSM8K",
+  "detection": "oracle_5class",
+  "n_seeds": 10,
+  "tasks_per_seed": 200,
+  "mean_delta_pp": 0.4,
+  "sd_delta_pp": 1.02,
+  "se_delta_pp": 0.3232,
+  "ci_95": [
+    -0.33,
+    1.13
+  ],
+  "mean_baseline_acc": 90.2,
+  "mean_pruned_acc": 90.6,
+  "mean_suppression_rate": 56.0,
+  "tost_1pp": 0.04817,
+  "tost_1_5pp": 0.003914,
+  "tost_3pp": 1.1e-05,
+  "non_inferiority_3pp_p": 1.17e-06,
+  "per_seed": [
+    {
+      "seed": 42,
+      "baseline_acc": 91.5,
+      "pruned_acc": 91.5,
+      "delta_pp": 0.0,
+      "suppression_rate": 56.1,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 123,
+      "baseline_acc": 93.5,
+      "pruned_acc": 92.5,
+      "delta_pp": -1.0,
+      "suppression_rate": 56.5,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 456,
+      "baseline_acc": 84.5,
+      "pruned_acc": 86.5,
+      "delta_pp": 2.0,
+      "suppression_rate": 55.6,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 789,
+      "baseline_acc": 90.5,
+      "pruned_acc": 91.5,
+      "delta_pp": 1.0,
+      "suppression_rate": 56.5,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 1024,
+      "baseline_acc": 88.5,
+      "pruned_acc": 90.5,
+      "delta_pp": 2.0,
+      "suppression_rate": 55.3,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 2048,
+      "baseline_acc": 89.5,
+      "pruned_acc": 89.0,
+      "delta_pp": -0.5,
+      "suppression_rate": 57.8,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 3072,
+      "baseline_acc": 92.0,
+      "pruned_acc": 92.5,
+      "delta_pp": 0.5,
+      "suppression_rate": 55.8,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 4096,
+      "baseline_acc": 92.5,
+      "pruned_acc": 92.0,
+      "delta_pp": -0.5,
+      "suppression_rate": 55.5,
+      "num_tasks": 200,
+      "num_skipped": 0
+    },
+    {
+      "seed": 5120,
+      "baseline_acc": 92.0,
+      "pruned_acc": 92.5,
+      "delta_pp": 0.5,
+      "suppression_rate": 54.8,
+      "num_tasks": 199,
+      "num_skipped": 1
+    },
+    {
+      "seed": 6144,
+      "baseline_acc": 88.0,
+      "pruned_acc": 88.0,
+      "delta_pp": 0.0,
+      "suppression_rate": 56.0,
+      "num_tasks": 200,
+      "num_skipped": 0
+    }
+  ]
+}

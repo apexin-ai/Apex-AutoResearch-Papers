@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9822c7735d920e93d092",
+  "project": "comm_gate_mas",
+  "kind": "history",
+  "title": "director / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_10.md",
+    "occurrence": 3,
+    "bytes": 3044,
+    "sha256": "c3e6ccb33dcc4fbfca47f7592945e5d1c848521e974f6945029edc371d155aff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-04-28T02:15:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:1**（gpu_ids=[1]），cuda:0/2/3 属于其他项目，严禁使用\n- 服务器 westb-4x6000-a，账号 comm_gate（不是 root）\n- P2 oracle 硬限 **4/29 00:00 UTC**，超时 fallback 到 existing baselines\n- DeepSeek key 已存储（key_id: deepseek_key），P2 oracle API 用 DeepSeek 替代 GPT-4o（AutoDL 连不上 OpenAI）\n- gpu_constraint 写着\"R12 终审中\"——但实际还在跑实验，不要被这个字段误导\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-4x6000-a (connect.westb.seetacloud.com)，SSH 账号 comm_gate\n- 工作目录：/root/autodl-tmp/comm_gate_mas\n- GPU：4× RTX PRO 6000 Blackwell (96GB)，本项目用 cuda:1\n- Secrets：deepseek_key (DeepSeek), openai_key (OpenAI), openrouter_key (OpenRouter) 均已存储\n- 活跃进程：length_only 实验 PID 30421（需重新确认，可能已完成或变化）\n- 最新 commit：47962cb（infra error fix for pruning_validation）\n\n### 3. 📊 当前状态\n刚完成 NotFoundError/ConnectionError infra 修复（commit 47962cb 已 push）。修复统一了 online_pruning/online_oracle/online_random 三种模式的基础设施错误处理。\n\n**RUNNING**: llama_length_only_gsm8k_5seed_v2（seeds 789/1011 待完成，PID 30421 需重新确认）\n**PENDING**: vllm_llama_8192_v2, p1_oracle_precompute 等 5 个（大部分是历史遗留，不一定需要跑）\n\n上一个 session 最后 spawn 了 worker 检查 PID 30421 存活状态 + 服务器代码同步，但 RESET 前未收到回调。**接手后第一件事：SSH 检查 length_only 实验是否还在跑、跑到哪了。**\n\n### 4. 📋 待办\n- length_only 仍在跑 → 等完成，收集 5-seed 结果\n- length_only 完成 → 启动 **Llama heuristic 3-seed**（~2h，ROADMAP 排期第 4 项）\n- heuristic 完成 → 启动 **P2 oracle_online**（用 DeepSeek key，infra fix 已就绪）\n- P2 oracle 成功 → 结果整合到论文，update_roadmap 标记完成\n- P2 oracle 在 4/29 00:00 UTC 前未完成 → fallback：提交 existing single-seed oracle + ≥3-seed heuristic + length-only + stochastic 10-seed\n\n### 5. 🎯 战略上下文\n- **核心发现**：Dissociation — ack messages 扰动敏感性最高但剪枝安全，跨 Qwen/Llama 一致\n- **D210**：Stochastic 10-seed 已确认 backbone-dependent boundary（Qwen 安全，Llama marginal）\n- **D212**：P2 oracle API 从 GPT-4o 切到 DeepSeek（AutoDL 无法连 OpenAI）。v3 失败原因是 vLLM model name mismatch，v4 失败原因是 API unreachable。infra fix 解决了错误处理但不解决连接问题本身——需确认 DeepSeek 在 AutoDL 上可达\n- **易错点**：ROADMAP \"当前状态\" 里 PID 999717 是旧的 P2 进程号，不要当成还在跑；真正在跑的是 length_only PID 30421（也需重新确认）\n- NeurIPS 2026：abstract DDL 5/3-4，paper DDL 5/5-6\n- 论文溯源覆盖率 74/74，写作修复已完成（8.6% provenance + Llama N标注）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-5.md"
+}

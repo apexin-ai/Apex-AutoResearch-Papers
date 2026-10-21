@@ -1,0 +1,50 @@
+\section{Spectral Analysis Framework}
+\label{sec:method}
+
+\subsection{Spectral Optimization via Orthogonalized Updates}
+
+Muon~\cite{jordan2024muon,liu2025muon} optimizes 2D weight matrices by orthogonalizing the gradient before applying the update, effectively performing a Newton-like step in the spectral domain.
+Given a gradient matrix $G \in \mathbb{R}^{m \times n}$ for a weight matrix $W$, the goal is to compute an approximation to $(GG^\top)^{-1/2} G$, which projects the gradient onto the Stiefel manifold of orthonormal row matrices.
+Rather than forming this matrix inverse explicitly, Muon uses Newton--Schulz iteration to approximate it efficiently.
+Five iterations of a quintic Newton--Schulz polynomial orthogonalize $G$ (starting from $X_0 = G/\|G\|_F$; iteration formula, coefficients, and convergence analysis in Appendix~\ref{sec:muon_background}).
+The orthogonalized gradient serves as the update direction, combined with Nesterov momentum ($\beta = 0.95$).
+
+This procedure captures inter-parameter curvature structure that first-order methods miss.
+SGD updates along the raw gradient direction; AdamW applies element-wise scaling via running second-moment estimates, which amounts to a diagonal approximation to the curvature.
+Muon's orthogonalization operates on the full gradient matrix, providing a non-diagonal second-order approximation related to K-FAC~\cite{martens2015kfac}, but without explicitly maintaining Kronecker-factored estimates.
+As described in Section~\ref{sec:experimental_setup}, Muon is applied exclusively to 2D weight matrices (convolution kernels reshaped to 2D and linear layers), while remaining parameters are handled by a separate AdamW instance (Appendix Table~\ref{tab:muon_routing} details the parameter routing).
+
+\subsection{Layer-wise Spectral Analysis Framework}
+
+Global accuracy differences between optimizers do not reveal \emph{where} in the network one optimizer outperforms another.
+We introduce two complementary analysis tools that localize optimizer effects to individual layers.
+
+\paragraph{Weight Swap Protocol.}
+Given a Muon-trained model with weights $\theta^{\text{Muon}} = \{W_l^M\}$ and an AdamW-trained model with weights $\theta^{\text{AdamW}} = \{W_l^A\}$, we construct a hybrid model $\theta^{\text{Muon} \setminus l \leftarrow \text{AdamW}_l}$ by replacing the weights of a single layer $l$ in the Muon model with the corresponding AdamW weights, keeping all other layers at their Muon-trained values.
+We define the per-layer Muon benefit:
+\begin{equation}
+    \Delta a_l = \mathrm{acc}(\theta^{\text{Muon}}) - \mathrm{acc}(\theta^{\text{Muon} \setminus l \leftarrow \text{AdamW}_l}),
+    \label{eq:layer_benefit}
+\end{equation}
+where $\mathrm{acc}(\cdot)$ denotes validation accuracy.
+$\Delta a_l > 0$ indicates that Muon's training at layer $l$ outperforms AdamW; $\Delta a_l < 0$ indicates the reverse.
+The beneficial layer ratio, the fraction of layers where $\Delta a_l > 0$, aggregates this across all eligible layers.
+
+\paragraph{Spectral Correlation Analysis.}
+To connect the weight swap results with spectral structure, we measure how each optimizer shapes the \emph{stable rank} of each layer's weight matrix:
+\begin{equation}
+    \mathrm{sr}(W_l) = \frac{\|W_l\|_F^2}{\sigma_1(W_l)^2},
+    \label{eq:spectral_response}
+\end{equation}
+where $\sigma_1(W_l)$ is the largest singular value.
+Stable rank captures the effective dimensionality of the weight matrix: higher values indicate a more uniform singular value distribution, meaning the matrix spreads its representational capacity across more directions.
+We choose stable rank over alternatives (effective rank, condition number, spectral gap) because it is bounded, well-defined for rank-deficient matrices, and permits direct cross-architecture comparison without architecture-specific normalization.
+For convolutional layers, we reshape the 4D kernel tensor to a 2D matrix before computing $\mathrm{sr}(W_l)$.
+We compute the per-layer stable rank divergence $\Delta \mathrm{sr}_l = \mathrm{sr}(W_l^{\text{Muon}}) - \mathrm{sr}(W_l^{\text{AdamW}})$: positive values indicate Muon spreads spectral energy more uniformly (higher effective rank), negative values indicate Muon concentrates energy into fewer directions.
+We evaluate the Spearman rank correlation between $\Delta \mathrm{sr}_l$ and $\Delta a_l$ (Eq.~\ref{eq:layer_benefit}); results are reported in Section~\ref{sec:spectral_analysis}.
+
+\subsection{Evaluation Metrics and Statistical Protocol}
+
+We report best validation accuracy (early-stopping checkpoint) throughout, in percentage points (pp), to decouple optimizer comparison from convergence speed.
+Key experiments use 3--4 seeds (from $\{42, 0, 1, 2\}$; Appendix Table~\ref{tab:multi_seed}), reporting mean $\pm$ std ($\text{ddof}=1$).
+Independent 50-epoch runs with cosine annealing ($T_{\max} = 50$) and the same per-pair learning rates test gap persistence without schedule-length confounding.

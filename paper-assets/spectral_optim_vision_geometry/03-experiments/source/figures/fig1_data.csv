@@ -1,0 +1,4 @@
+dataset,resnet50,deit_s,convnext_t
+CIFAR-100,10.40,13.44,16.08
+Tiny-ImageNet,5.90,7.69,15.00
+ImageNet-100,11.47,10.92,24.30

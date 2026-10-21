@@ -1,0 +1,238 @@
+  Auto-detected GroupNorm checkpoint (no running stats), num_groups=32
+Loaded /root/autodl-tmp/checkpoints/spectral_optim/resnet50_gn32_adamw_s42_lr3e-4_best.pt (original val_acc=55.73)
+  gaussian_noise sev=1: 24.36% (10.9s)
+  gaussian_noise sev=2: 13.92% (10.6s)
+  gaussian_noise sev=3: 7.03% (10.6s)
+  gaussian_noise sev=4: 4.25% (10.6s)
+  gaussian_noise sev=5: 3.10% (10.8s)
+  gaussian_noise mean: 10.53%
+  shot_noise sev=1: 22.15% (10.8s)
+  shot_noise sev=2: 12.27% (9.4s)
+  shot_noise sev=3: 6.96% (10.7s)
+  shot_noise sev=4: 3.76% (10.7s)
+  shot_noise sev=5: 3.12% (10.6s)
+  shot_noise mean: 9.65%
+  impulse_noise sev=1: 17.31% (10.7s)
+  impulse_noise sev=2: 9.98% (10.9s)
+  impulse_noise sev=3: 7.30% (10.8s)
+  impulse_noise sev=4: 3.93% (9.6s)
+  impulse_noise sev=5: 2.85% (10.9s)
+  impulse_noise mean: 8.27%
+  defocus_blur sev=1: 16.15% (10.7s)
+  defocus_blur sev=2: 11.55% (10.8s)
+  defocus_blur sev=3: 8.17% (10.7s)
+  defocus_blur sev=4: 6.42% (10.6s)
+  defocus_blur sev=5: 5.65% (10.7s)
+  defocus_blur mean: 9.59%
+  glass_blur sev=1: 27.70% (10.1s)
+  glass_blur sev=2: 18.27% (10.5s)
+  glass_blur sev=3: 13.49% (10.5s)
+  glass_blur sev=4: 11.46% (10.4s)
+  glass_blur sev=5: 7.58% (10.7s)
+  glass_blur mean: 15.70%
+  motion_blur sev=1: 32.34% (10.7s)
+  motion_blur sev=2: 22.29% (10.3s)
+  motion_blur sev=3: 14.38% (10.0s)
+  motion_blur sev=4: 10.21% (9.6s)
+  motion_blur sev=5: 8.13% (10.3s)
+  motion_blur mean: 17.47%
+  zoom_blur sev=1: 47.97% (10.2s)
+  zoom_blur sev=2: 45.61% (10.6s)
+  zoom_blur sev=3: 44.32% (10.4s)
+  zoom_blur sev=4: 41.76% (10.2s)
+  zoom_blur sev=5: 38.13% (10.5s)
+  zoom_blur mean: 43.56%
+  snow sev=1: 45.20% (9.5s)
+  snow sev=2: 27.76% (10.6s)
+  snow sev=3: 32.01% (10.4s)
+  snow sev=4: 22.81% (10.3s)
+  snow sev=5: 14.24% (10.3s)
+  snow mean: 28.40%
+  frost sev=1: 43.12% (10.4s)
+  frost sev=2: 29.45% (10.2s)
+  frost sev=3: 21.41% (9.9s)
+  frost sev=4: 20.17% (7.8s)
+  frost sev=5: 16.68% (7.1s)
+  frost mean: 26.17%
+  fog sev=1: 26.36% (10.0s)
+  fog sev=2: 18.06% (10.1s)
+  fog sev=3: 9.42% (10.1s)
+  fog sev=4: 6.11% (10.0s)
+  fog sev=5: 3.36% (10.2s)
+  fog mean: 12.66%
+  brightness sev=1: 54.53% (10.1s)
+  brightness sev=2: 49.50% (10.0s)
+  brightness sev=3: 42.63% (10.1s)
+  brightness sev=4: 34.35% (10.0s)
+  brightness sev=5: 26.74% (10.1s)
+  brightness mean: 41.55%
+  contrast sev=1: 47.91% (10.0s)
+  contrast sev=2: 42.28% (10.1s)
+  contrast sev=3: 31.89% (10.2s)
+  contrast sev=4: 16.18% (10.0s)
+  contrast sev=5: 7.73% (10.0s)
+  contrast mean: 29.20%
+  elastic_transform sev=1: 23.20% (10.0s)
+  elastic_transform sev=2: 17.56% (8.2s)
+  elastic_transform sev=3: 13.52% (10.1s)
+  elastic_transform sev=4: 11.57% (9.9s)
+  elastic_transform sev=5: 9.28% (9.9s)
+  elastic_transform mean: 15.03%
+  pixelate sev=1: 39.15% (9.9s)
+  pixelate sev=2: 35.45% (9.8s)
+  pixelate sev=3: 20.03% (9.9s)
+  pixelate sev=4: 13.52% (10.0s)
+  pixelate sev=5: 11.25% (10.2s)
+  pixelate mean: 23.88%
+  jpeg_compression sev=1: 40.36% (10.4s)
+  jpeg_compression sev=2: 37.04% (10.0s)
+  jpeg_compression sev=3: 34.39% (9.7s)
+  jpeg_compression sev=4: 28.82% (9.6s)
+  jpeg_compression sev=5: 22.68% (9.7s)
+  jpeg_compression mean: 32.66%
+  speckle_noise sev=1: 27.83% (9.7s)
+  speckle_noise sev=2: 20.35% (9.7s)
+  speckle_noise sev=3: 9.04% (9.7s)
+  speckle_noise sev=4: 6.32% (9.4s)
+  speckle_noise sev=5: 4.53% (8.3s)
+  speckle_noise mean: 13.61%
+  gaussian_blur sev=1: 30.89% (9.5s)
+  gaussian_blur sev=2: 12.27% (9.6s)
+  gaussian_blur sev=3: 8.47% (9.5s)
+  gaussian_blur sev=4: 6.97% (9.5s)
+  gaussian_blur sev=5: 5.36% (9.6s)
+  gaussian_blur mean: 12.79%
+  saturate sev=1: 39.70% (9.5s)
+  saturate sev=2: 32.23% (9.6s)
+  saturate sev=3: 47.87% (9.4s)
+  saturate sev=4: 30.25% (9.6s)
+  saturate sev=5: 21.56% (9.6s)
+  saturate mean: 34.32%
+  spatter sev=1: 53.16% (9.6s)
+  spatter sev=2: 50.36% (9.6s)
+  spatter sev=3: 46.81% (9.6s)
+  spatter sev=4: 39.11% (9.5s)
+  spatter sev=5: 30.22% (9.6s)
+  spatter mean: 43.93%
+
+Overall mean corruption accuracy: 22.58%
+Results saved to /root/autodl-tmp/checkpoints/spectral_optim/cifar100c_results/resnet50_gn32_adamw.csv
+  Auto-detected GroupNorm checkpoint (no running stats), num_groups=32
+Loaded /root/autodl-tmp/checkpoints/spectral_optim/resnet50_gn32_sgd_s42_lr1e-1_best.pt (original val_acc=23.9)
+  gaussian_noise sev=1: 19.32% (9.8s)
+  gaussian_noise sev=2: 14.54% (9.2s)
+  gaussian_noise sev=3: 9.65% (8.2s)
+  gaussian_noise sev=4: 6.59% (9.6s)
+  gaussian_noise sev=5: 4.52% (9.7s)
+  gaussian_noise mean: 10.92%
+  shot_noise sev=1: 17.67% (9.6s)
+  shot_noise sev=2: 12.68% (9.6s)
+  shot_noise sev=3: 8.73% (9.6s)
+  shot_noise sev=4: 5.87% (9.6s)
+  shot_noise sev=5: 4.41% (9.6s)
+  shot_noise mean: 9.87%
+  impulse_noise sev=1: 13.64% (9.7s)
+  impulse_noise sev=2: 9.56% (9.5s)
+  impulse_noise sev=3: 7.62% (9.5s)
+  impulse_noise sev=4: 5.18% (9.5s)
+  impulse_noise sev=5: 3.88% (9.6s)
+  impulse_noise mean: 7.98%
+  defocus_blur sev=1: 19.37% (9.5s)
+  defocus_blur sev=2: 15.73% (9.5s)
+  defocus_blur sev=3: 10.96% (9.6s)
+  defocus_blur sev=4: 8.64% (9.5s)
+  defocus_blur sev=5: 6.77% (9.6s)
+  defocus_blur mean: 12.29%
+  glass_blur sev=1: 21.96% (9.2s)
+  glass_blur sev=2: 19.06% (8.3s)
+  glass_blur sev=3: 14.51% (9.6s)
+  glass_blur sev=4: 13.20% (9.6s)
+  glass_blur sev=5: 10.35% (9.6s)
+  glass_blur mean: 15.82%
+  motion_blur sev=1: 22.02% (9.6s)
+  motion_blur sev=2: 18.22% (9.6s)
+  motion_blur sev=3: 13.82% (9.6s)
+  motion_blur sev=4: 10.18% (9.6s)
+  motion_blur sev=5: 7.91% (9.5s)
+  motion_blur mean: 14.43%
+  zoom_blur sev=1: 23.47% (9.6s)
+  zoom_blur sev=2: 23.31% (9.6s)
+  zoom_blur sev=3: 23.05% (9.5s)
+  zoom_blur sev=4: 22.77% (9.6s)
+  zoom_blur sev=5: 22.20% (9.6s)
+  zoom_blur mean: 22.96%
+  snow sev=1: 18.69% (9.5s)
+  snow sev=2: 12.09% (9.7s)
+  snow sev=3: 11.91% (9.6s)
+  snow sev=4: 8.53% (9.3s)
+  snow sev=5: 6.15% (8.0s)
+  snow mean: 11.47%
+  frost sev=1: 17.00% (9.3s)
+  frost sev=2: 11.62% (9.6s)
+  frost sev=3: 8.34% (9.6s)
+  frost sev=4: 8.85% (9.5s)
+  frost sev=5: 7.21% (9.6s)
+  frost mean: 10.60%
+  fog sev=1: 7.33% (9.6s)
+  fog sev=2: 5.14% (9.5s)
+  fog sev=3: 3.79% (9.5s)
+  fog sev=4: 3.01% (9.6s)
+  fog sev=5: 2.52% (9.5s)
+  fog mean: 4.36%
+  brightness sev=1: 23.44% (9.5s)
+  brightness sev=2: 20.81% (9.6s)
+  brightness sev=3: 17.74% (9.6s)
+  brightness sev=4: 14.27% (9.5s)
+  brightness sev=5: 11.65% (9.6s)
+  brightness mean: 17.58%
+  contrast sev=1: 20.47% (9.5s)
+  contrast sev=2: 17.90% (9.6s)
+  contrast sev=3: 13.80% (9.5s)
+  contrast sev=4: 8.31% (8.4s)
+  contrast sev=5: 5.08% (9.1s)
+  contrast mean: 13.11%
+  elastic_transform sev=1: 22.93% (9.5s)
+  elastic_transform sev=2: 21.32% (9.5s)
+  elastic_transform sev=3: 19.58% (9.6s)
+  elastic_transform sev=4: 18.35% (9.6s)
+  elastic_transform sev=5: 17.23% (9.6s)
+  elastic_transform mean: 19.88%
+  pixelate sev=1: 23.94% (9.6s)
+  pixelate sev=2: 23.83% (9.8s)
+  pixelate sev=3: 22.26% (9.6s)
+  pixelate sev=4: 21.66% (9.7s)
+  pixelate sev=5: 17.83% (9.6s)
+  pixelate mean: 21.90%
+  jpeg_compression sev=1: 22.37% (9.6s)
+  jpeg_compression sev=2: 22.03% (9.6s)
+  jpeg_compression sev=3: 21.74% (9.6s)
+  jpeg_compression sev=4: 20.78% (9.6s)
+  jpeg_compression sev=5: 19.71% (9.6s)
+  jpeg_compression mean: 21.33%
+  speckle_noise sev=1: 18.37% (9.6s)
+  speckle_noise sev=2: 15.72% (9.3s)
+  speckle_noise sev=3: 9.45% (8.3s)
+  speckle_noise sev=4: 7.10% (9.6s)
+  speckle_noise sev=5: 5.58% (9.6s)
+  speckle_noise mean: 11.24%
+  gaussian_blur sev=1: 23.11% (9.6s)
+  gaussian_blur sev=2: 17.01% (9.5s)
+  gaussian_blur sev=3: 12.04% (9.6s)
+  gaussian_blur sev=4: 9.83% (9.6s)
+  gaussian_blur sev=5: 6.96% (9.6s)
+  gaussian_blur mean: 13.79%
+  saturate sev=1: 17.56% (9.5s)
+  saturate sev=2: 14.96% (9.7s)
+  saturate sev=3: 19.54% (9.6s)
+  saturate sev=4: 13.17% (9.6s)
+  saturate sev=5: 10.12% (9.6s)
+  saturate mean: 15.07%
+  spatter sev=1: 22.66% (9.6s)
+  spatter sev=2: 21.03% (9.6s)
+  spatter sev=3: 19.99% (9.5s)
+  spatter sev=4: 14.98% (9.4s)
+  spatter sev=5: 12.35% (9.4s)
+  spatter mean: 18.20%
+
+Overall mean corruption accuracy: 14.36%
+Results saved to /root/autodl-tmp/checkpoints/spectral_optim/cifar100c_results/resnet50_gn32_sgd.csv

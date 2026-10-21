@@ -1,0 +1,38 @@
+PATCH_OK
+=== SOAP ResNet50 TinyIN lr=3e-3 ===
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 31, in <module>
+    from heavyball import PaLMForeachSOAP as SoapOptimizer
+ImportError: cannot import name 'PaLMForeachSOAP' from 'heavyball' (/root/miniconda3/lib/python3.12/site-packages/heavyball/__init__.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 33, in <module>
+    from distributed_shampoo import SOAP as SoapOptimizer
+ModuleNotFoundError: No module named 'distributed_shampoo'
+=== SOAP ResNet50 TinyIN lr=1e-2 ===
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 31, in <module>
+    from heavyball import PaLMForeachSOAP as SoapOptimizer
+ImportError: cannot import name 'PaLMForeachSOAP' from 'heavyball' (/root/miniconda3/lib/python3.12/site-packages/heavyball/__init__.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 33, in <module>
+    from distributed_shampoo import SOAP as SoapOptimizer
+ModuleNotFoundError: No module named 'distributed_shampoo'
+=== SOAP ResNet50 TinyIN lr=3e-2 ===
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 31, in <module>
+    from heavyball import PaLMForeachSOAP as SoapOptimizer
+ImportError: cannot import name 'PaLMForeachSOAP' from 'heavyball' (/root/miniconda3/lib/python3.12/site-packages/heavyball/__init__.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/spectral_optim_vision_geometry/soap_tinyin_sweep_auto.py", line 33, in <module>
+    from distributed_shampoo import SOAP as SoapOptimizer
+ModuleNotFoundError: No module named 'distributed_shampoo'
+EXIT_CODE=1

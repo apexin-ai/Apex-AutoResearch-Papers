@@ -1,0 +1,120 @@
+{
+  "category_robustness": {
+    "acknowledgment": {
+      "f1": 0.7313,
+      "precision": 0.7313,
+      "recall": 0.7313,
+      "support_llm": 67,
+      "support_gpt4o": 67,
+      "group": "robust",
+      "main_disagreement": "LLM-labeled acknowledgment most often mapped to verification by GPT-4o (12/67 = 17.9%)"
+    },
+    "coordination": {
+      "f1": 0.4167,
+      "precision": 0.2632,
+      "recall": 1.0,
+      "support_llm": 15,
+      "support_gpt4o": 57,
+      "group": "sensitive",
+      "main_disagreement": "LLM-labeled coordination most often mapped to acknowledgment by GPT-4o (0/15 = 0.0%)"
+    },
+    "information_provision": {
+      "f1": 0.3333,
+      "precision": 0.7778,
+      "recall": 0.2121,
+      "support_llm": 66,
+      "support_gpt4o": 18,
+      "group": "sensitive",
+      "main_disagreement": "LLM-labeled information_provision most often mapped to coordination by GPT-4o (31/66 = 47.0%)"
+    },
+    "reasoning_guidance": {
+      "f1": 0.7379,
+      "precision": 0.76,
+      "recall": 0.717,
+      "support_llm": 53,
+      "support_gpt4o": 50,
+      "group": "robust",
+      "main_disagreement": "LLM-labeled reasoning_guidance most often mapped to acknowledgment by GPT-4o (5/53 = 9.4%)"
+    },
+    "verification": {
+      "f1": 0.5965,
+      "precision": 0.5152,
+      "recall": 0.7083,
+      "support_llm": 24,
+      "support_gpt4o": 33,
+      "group": "sensitive",
+      "main_disagreement": "LLM-labeled verification most often mapped to coordination by GPT-4o (4/24 = 16.7%)"
+    }
+  },
+  "claim_analysis": [
+    {
+      "claim": "Impact gradient: acknowledgment has highest impact (66%), reasoning_guidance lowest (29%)",
+      "depends_on": [
+        "acknowledgment",
+        "reasoning_guidance"
+      ],
+      "robustness": "robust",
+      "explanation": "Both acknowledgment (F1=0.73) and reasoning_guidance (F1=0.74) are annotator-robust (F1>=0.6). The impact gradient finding does not depend on any sensitive category, making this the strongest claim in the paper."
+    },
+    {
+      "claim": "Three communication modes: Qwen function-driven, Gemma position-driven, Llama minimally-differentiated",
+      "depends_on": [
+        "acknowledgment",
+        "reasoning_guidance",
+        "information_provision",
+        "coordination",
+        "verification"
+      ],
+      "robustness": "partially_sensitive",
+      "explanation": "Mode characterization depends on all 5 categories. information_provision (F1=0.33) and coordination (F1=0.42) are sensitive. Gemma has especially low agreement (kappa=0.28): its information_provision agreement is only 16.3%. Qwen mode is most reliable (kappa=0.65). The Gemma position-driven pattern may partly reflect annotator disagreement about information_provision vs coordination boundaries rather than a true behavioral signal."
+    },
+    {
+      "claim": "Crossover interaction: selector topology acts as mode perturbator",
+      "depends_on": [
+        "acknowledgment",
+        "reasoning_guidance",
+        "coordination",
+        "verification"
+      ],
+      "robustness": "partially_sensitive",
+      "explanation": "Coordination (F1=0.42) is sensitive with very low precision (0.26)\u2014GPT-4o assigns coordination 3.8x more often than LLM annotator (57 vs 15). If crossover effects are driven by coordination category shifts, the finding is fragile. Effects visible in robust categories (ack, reasoning) are more trustworthy."
+    }
+  ],
+  "per_backbone_agreement": {
+    "gemma": {
+      "acknowledgment": 0.5,
+      "coordination": 1.0,
+      "information_provision": 0.1628,
+      "reasoning_guidance": 0.9231,
+      "verification": 0.0
+    },
+    "llama": {
+      "acknowledgment": 0.5,
+      "coordination": 1.0,
+      "information_provision": 0.5,
+      "reasoning_guidance": 0.5294,
+      "verification": 1.0
+    },
+    "qwen": {
+      "acknowledgment": 1.0,
+      "coordination": null,
+      "information_provision": 0.0,
+      "reasoning_guidance": 0.7391,
+      "verification": 0.8333
+    }
+  },
+  "overall_kappa": 0.4908,
+  "per_backbone_kappa": {
+    "gemma": 0.281,
+    "llama": 0.4783,
+    "qwen": 0.6526
+  },
+  "writing_recommendations": [
+    "Impact gradient claim (ack highest, reasoning lowest) is annotator-robust: both endpoints have F1>=0.73. Report with full confidence.",
+    "Coordination category has severe annotator sensitivity (F1=0.42, precision=0.26). GPT-4o labels 3.8x more messages as coordination than the LLM annotator. Any claim relying on coordination counts requires a caveat.",
+    "information_provision is the most sensitive category (F1=0.33, recall=0.21). The LLM annotator assigns it to 66 messages but GPT-4o only to 18. Claims about information flow patterns should acknowledge this boundary ambiguity.",
+    "Qwen communication mode is the most annotator-robust (per-backbone kappa=0.65, ack agreement=100%). Gemma is least robust (kappa=0.28). Consider framing Gemma patterns as \"tentative\" or \"requiring further validation\".",
+    "For the crossover interaction claim, focus reporting on effects visible in robust categories (acknowledgment, reasoning_guidance, verification). Effects only visible in coordination or information_provision should be noted as potentially annotator-dependent.",
+    "Consider reporting a \"robustness-weighted\" version of key findings: show that core claims hold even when restricting analysis to the 3 robust categories (ack, reasoning, verification)."
+  ]
+}

@@ -1,0 +1,119 @@
+\section{Hyperparameter Configurations}
+\label{sec:hyperparams}\label{app:hyperparams}
+
+This appendix provides the complete optimizer configurations for all 27 experiments described in Section~\ref{sec:experimental_setup}, including Muon's hybrid parameter routing strategy.
+
+\begin{table*}[t]
+\centering
+\caption{Complete optimizer configurations across all architectures and datasets. All experiments use batch size 128, cosine annealing scheduler (no warmup), and dataset-specific augmentation (Section~\ref{sec:datasets_archs}). Learning rates are selected via per-pair 5-epoch sweeps (Section~\ref{sec:optim_protocol}).}
+\label{tab:optimizer_config}
+\small
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Architecture & Optimizer & lr & wd & Momentum & Scheduler & Epochs \\
+\midrule
+\multicolumn{7}{l}{\textit{CIFAR-100} (50K train / 10K test, 100 classes, $32\times32 \to 224\times224$)} \\
+\midrule
+ResNet-50   & Muon  & 0.02  & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+ResNet-50   & AdamW & 1e-3  & 0.05  & ---           & Cosine & 20 \\
+ResNet-50   & SGD   & 0.1   & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+DeiT-S      & Muon  & 0.003 & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+DeiT-S      & AdamW & 1e-4  & 0.05  & ---           & Cosine & 20 \\
+DeiT-S      & SGD   & 0.05  & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+ConvNeXt-T  & Muon  & 0.02  & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+ConvNeXt-T  & AdamW & 1e-3  & 0.05  & ---           & Cosine & 20 \\
+ConvNeXt-T  & SGD   & 0.01  & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+ResNet-50   & SOAP  & 1e-2  & 0.01  & ---           & Cosine & 20 \\
+DeiT-S      & SOAP  & 1e-3  & 0.01  & ---           & Cosine & 20 \\
+ConvNeXt-T  & SOAP  & 1e-2  & 0.01  & ---           & Cosine & 20 \\
+\midrule
+ResNet-50   & Shampoo & 5e-2 & 0.01 & ---           & Cosine & 20 \\
+DeiT-S      & Shampoo & 1e-3 & 0.01 & ---           & Cosine & 20 \\
+ConvNeXt-T  & Shampoo & 7e-3 & 0.01 & ---           & Cosine & 20 \\
+\midrule
+\midrule
+\multicolumn{7}{l}{\textit{Tiny-ImageNet} (100K train / 10K val, 200 classes, $64\times64 \to 224\times224$)} \\
+\midrule
+ResNet-50   & Muon  & 0.04  & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+ResNet-50   & AdamW & 2e-3  & 0.05  & ---           & Cosine & 20 \\
+ResNet-50   & SGD   & 0.1   & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+DeiT-S      & Muon  & 0.003 & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+DeiT-S      & AdamW & 1e-4  & 0.05  & ---           & Cosine & 20 \\
+DeiT-S      & SGD   & 0.05  & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+ConvNeXt-T  & Muon  & 0.08  & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+ConvNeXt-T  & AdamW & 1e-3  & 0.05  & ---           & Cosine & 20 \\
+ConvNeXt-T  & SGD   & 0.01  & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+\midrule
+\multicolumn{7}{l}{\textit{ImageNet-100} (55{,}218 train / 5K val, 100 classes, $224\times224$)} \\
+\midrule
+ResNet-50   & Muon  & 0.05  & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+ResNet-50   & AdamW & 3e-3  & 0.05  & ---           & Cosine & 20 \\
+ResNet-50   & SGD   & 0.1   & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+DeiT-S      & Muon  & 0.005 & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+DeiT-S      & AdamW & 1e-4  & 0.05  & ---           & Cosine & 20 \\
+DeiT-S      & SGD   & 0.01  & 1e-4  & 0.9           & Cosine & 20 \\
+\midrule
+ConvNeXt-T  & Muon  & 0.08  & 0.05* & $\beta=0.95$ & Cosine & 20 \\
+ConvNeXt-T  & AdamW & 3e-4  & 0.05  & ---           & Cosine & 20 \\
+ConvNeXt-T  & SGD   & 0.05  & 1e-4  & 0.9           & Cosine & 20 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+\par\noindent\footnotesize{* Muon applies spectral (Newton-Schulz) updates with no weight decay to 2D+ weight matrices. The listed wd=0.05 applies to the separate AdamW sub-optimizer handling 1D parameters (biases, normalization, embeddings) with $\text{lr}=3\times10^{-4}$. SOAP and Shampoo use the \texttt{heavyball} library implementation. Shampoo learning rates were determined by extended LR sweeps: ResNet-50 from $\text{lr}{=}10^{-2}$ to $5{\times}10^{-2}$; ConvNeXt-T from $3{\times}10^{-3}$ to $7{\times}10^{-3}$.}
+\end{table*}
+
+\begin{table}[h]
+\centering
+\caption{Muon hybrid optimizer parameter routing. Muon optimizes weight matrices of Conv2d/Linear layers (ndim $\geq$ 2, excluding classifier head and embeddings); all remaining parameters use a companion AdamW optimizer.}
+\label{tab:muon_routing}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Architecture & Total Params & Muon Groups & AdamW Groups & Muon lr & AdamW lr \\
+\midrule
+ResNet-50 & 23.7M & 53 & 108 & 0.02 & 3e-4 \\
+DeiT-S & 21.7M & 48 & 104 & 0.003 & 3e-4 \\
+ConvNeXt-T & 27.9M & 57 & 125 & 0.02 & 3e-4 \\
+\bottomrule
+\end{tabular}
+\vspace{0.3em}
+\par\noindent\footnotesize{Parameter counts reflect the 100-class configuration used in our experiments; standard ImageNet-1K counts differ.}
+\end{table}
+
+Muon selects all weight parameters with $\mathrm{ndim} \geq 2$ from Conv2d and Linear layers, excluding the final classifier head and any embedding layers. These parameter groups receive spectral (Newton--Schulz) updates. All remaining parameters (biases, LayerNorm/BatchNorm weights and biases, positional embeddings, and the classifier head) are routed to a companion AdamW optimizer with a fixed learning rate of $3 \times 10^{-4}$ and weight decay $0.05$.
+
+\begin{table}[h]
+\centering
+\caption{Selected learning rates per optimizer--architecture pair on each dataset, determined by 5-epoch sweeps. For most configurations, the peak is confirmed by observing accuracy decline at higher rates; exceptions are noted in Section~\ref{sec:optim_protocol}. SOAP and Shampoo evaluated on CIFAR-100 only; `---' indicates not tested.}
+\label{tab:lr_selected}
+\small
+\begin{tabular}{lccccc}
+\toprule
+& \textbf{Muon} & \textbf{SOAP} & \textbf{Shampoo} & \textbf{AdamW} & \textbf{SGD} \\
+\midrule
+\multicolumn{6}{l}{\textit{CIFAR-100}} \\
+ResNet-50   & 0.02  & $10^{-2}$ & $5 \times 10^{-2}$ & $10^{-3}$ & 0.1  \\
+DeiT-S      & 0.003 & $10^{-3}$          & $10^{-3}$          & $10^{-4}$ & 0.05 \\
+ConvNeXt-T  & 0.02  & $10^{-2}$          & $7 \times 10^{-3}$ & $10^{-3}$ & 0.01 \\
+\midrule
+\multicolumn{6}{l}{\textit{Tiny-ImageNet}} \\
+ResNet-50   & 0.04  & --- & --- & $2 \times 10^{-3}$ & 0.1$^\dagger$ \\
+DeiT-S      & 0.003 & --- & --- & $10^{-4}$          & 0.05 \\
+ConvNeXt-T  & 0.08  & --- & --- & $10^{-3}$          & 0.01 \\
+\midrule
+\multicolumn{6}{l}{\textit{ImageNet-100}} \\
+ResNet-50   & 0.05  & --- & --- & $3 \times 10^{-3}$ & 0.1  \\
+DeiT-S      & 0.005 & --- & --- & $10^{-4}$          & 0.01 \\
+ConvNeXt-T  & 0.08  & --- & --- & $3 \times 10^{-4}$ & 0.05 \\
+\bottomrule
+\end{tabular}
+\vspace{0.3em}
+\par\noindent\footnotesize{$\dagger$ Literature default, not formally swept.}
+\end{table}

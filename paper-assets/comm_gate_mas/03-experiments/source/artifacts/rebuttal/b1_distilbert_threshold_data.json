@@ -1,0 +1,37 @@
+[
+  {
+    "threshold": 0.3,
+    "baseline": 83.67,
+    "pruned": 82.33,
+    "delta": -1.3400000000000034,
+    "suppress_pct": 0
+  },
+  {
+    "threshold": 0.4,
+    "baseline": 83.67,
+    "pruned": 82.67,
+    "delta": -1.0,
+    "suppress_pct": 0
+  },
+  {
+    "threshold": 0.5,
+    "baseline": 81.67,
+    "pruned": 81.33,
+    "delta": -0.3400000000000034,
+    "suppress_pct": 0
+  },
+  {
+    "threshold": 0.6,
+    "baseline": 81.0,
+    "pruned": 81.67,
+    "delta": 0.6700000000000017,
+    "suppress_pct": 0
+  },
+  {
+    "threshold": 0.7,
+    "baseline": 81.33,
+    "pruned": 81.67,
+    "delta": 0.3400000000000034,
+    "suppress_pct": 0
+  }
+]

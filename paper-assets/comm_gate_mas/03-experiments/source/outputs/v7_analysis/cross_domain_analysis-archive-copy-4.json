@@ -1,0 +1,538 @@
+{
+  "function_distributions": {
+    "gsm8k": {
+      "qwen": {
+        "acknowledgment": 47.93,
+        "information_provision": 12.33,
+        "reasoning_guidance": 29.8,
+        "verification": 9.47,
+        "coordination": 0.4,
+        "_total": 1500
+      },
+      "llama": {
+        "acknowledgment": 47.01,
+        "information_provision": 13.2,
+        "reasoning_guidance": 23.81,
+        "verification": 8.23,
+        "coordination": 7.76,
+        "_total": 1470
+      },
+      "gemma": {
+        "acknowledgment": 4.8,
+        "information_provision": 56.25,
+        "reasoning_guidance": 15.46,
+        "verification": 4.41,
+        "coordination": 19.08,
+        "_total": 1520
+      }
+    },
+    "arc": {
+      "qwen": {
+        "acknowledgment": 14.64,
+        "information_provision": 6.96,
+        "reasoning_guidance": 45.92,
+        "verification": 31.2,
+        "coordination": 1.28,
+        "_total": 1250
+      },
+      "llama": {
+        "acknowledgment": 49.84,
+        "information_provision": 12.96,
+        "reasoning_guidance": 19.92,
+        "verification": 14.56,
+        "coordination": 2.72,
+        "_total": 1250
+      },
+      "gemma": {
+        "acknowledgment": 19.6,
+        "information_provision": 36.4,
+        "reasoning_guidance": 3.52,
+        "verification": 3.44,
+        "coordination": 34.72,
+        "_total": 1250
+      }
+    },
+    "stratqa": {
+      "qwen": {
+        "acknowledgment": 8.56,
+        "information_provision": 0.56,
+        "reasoning_guidance": 65.6,
+        "verification": 25.12,
+        "coordination": 0.16,
+        "_total": 1250
+      }
+    }
+  },
+  "distribution_tests": {
+    "chi_squared": {
+      "qwen": {
+        "domains": [
+          "gsm8k",
+          "arc",
+          "stratqa"
+        ],
+        "chi2": 1005.7492,
+        "p_value": 8.573698e-212,
+        "dof": 8,
+        "significant": true,
+        "types_used": [
+          "acknowledgment",
+          "information_provision",
+          "reasoning_guidance",
+          "verification",
+          "coordination"
+        ]
+      },
+      "llama": {
+        "domains": [
+          "gsm8k",
+          "arc"
+        ],
+        "chi2": 61.5578,
+        "p_value": 1.364657e-12,
+        "dof": 4,
+        "significant": true,
+        "types_used": [
+          "acknowledgment",
+          "information_provision",
+          "reasoning_guidance",
+          "verification",
+          "coordination"
+        ]
+      },
+      "gemma": {
+        "domains": [
+          "gsm8k",
+          "arc"
+        ],
+        "chi2": 351.3672,
+        "p_value": 8.887363e-75,
+        "dof": 4,
+        "significant": true,
+        "types_used": [
+          "acknowledgment",
+          "information_provision",
+          "reasoning_guidance",
+          "verification",
+          "coordination"
+        ]
+      }
+    },
+    "jensen_shannon": {
+      "qwen_gsm8k_vs_arc": 0.3015,
+      "qwen_gsm8k_vs_stratqa": 0.4024,
+      "qwen_arc_vs_stratqa": 0.1816,
+      "llama_gsm8k_vs_arc": 0.1089,
+      "gemma_gsm8k_vs_arc": 0.26
+    }
+  },
+  "cross_model_kappa": {
+    "gsm8k": {
+      "qwen": {
+        "kappa": 0.6416,
+        "n": 1500,
+        "agreement_rate": 0.7813,
+        "status": "PASS"
+      },
+      "llama": {
+        "kappa": 0.4585,
+        "n": 1470,
+        "agreement_rate": 0.5898,
+        "status": "PASS"
+      },
+      "gemma": {
+        "kappa": 0.3502,
+        "n": 1520,
+        "agreement_rate": 0.6487,
+        "status": "FAIL"
+      }
+    },
+    "arc": {
+      "qwen": {
+        "kappa": 0.3914,
+        "n": 1250,
+        "agreement_rate": 0.54,
+        "status": "FAIL"
+      },
+      "llama": {
+        "kappa": 0.505,
+        "n": 1250,
+        "agreement_rate": 0.6344,
+        "status": "PASS"
+      },
+      "gemma": {
+        "kappa": 0.3962,
+        "n": 1250,
+        "agreement_rate": 0.528,
+        "status": "FAIL"
+      }
+    },
+    "stratqa": {
+      "qwen": {
+        "kappa": null,
+        "n": 1250,
+        "note": "single-annotator format",
+        "status": "N/A"
+      }
+    }
+  },
+  "impact_gradient": {
+    "gsm8k": {
+      "qwen": {
+        "acknowledgment": {
+          "total": 450,
+          "remove_change_rate": 99.78,
+          "neutralize_change_rate": 99.78
+        },
+        "information_provision": {
+          "total": 177,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 158,
+          "remove_change_rate": 82.91,
+          "neutralize_change_rate": 99.37
+        },
+        "verification": {
+          "total": 110,
+          "remove_change_rate": 90.0,
+          "neutralize_change_rate": 94.55
+        },
+        "coordination": {
+          "total": 5,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 900,
+          "remove_change_rate": 95.67,
+          "neutralize_change_rate": 99.11
+        }
+      },
+      "llama": {
+        "acknowledgment": {
+          "total": 596,
+          "remove_change_rate": 98.83,
+          "neutralize_change_rate": 100.0
+        },
+        "information_provision": {
+          "total": 40,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 123,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "verification": {
+          "total": 109,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "coordination": {
+          "total": 14,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 882,
+          "remove_change_rate": 99.21,
+          "neutralize_change_rate": 100.0
+        }
+      },
+      "gemma": {
+        "acknowledgment": {
+          "total": 71,
+          "remove_change_rate": 73.24,
+          "neutralize_change_rate": 100.0
+        },
+        "information_provision": {
+          "total": 635,
+          "remove_change_rate": 54.65,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 35,
+          "remove_change_rate": 82.86,
+          "neutralize_change_rate": 100.0
+        },
+        "verification": {
+          "total": 17,
+          "remove_change_rate": 29.41,
+          "neutralize_change_rate": 100.0
+        },
+        "coordination": {
+          "total": 142,
+          "remove_change_rate": 98.59,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 900,
+          "remove_change_rate": 63.67,
+          "neutralize_change_rate": 100.0
+        }
+      }
+    },
+    "arc": {
+      "qwen": {
+        "acknowledgment": {
+          "total": 70,
+          "remove_change_rate": 94.29,
+          "neutralize_change_rate": 98.57
+        },
+        "information_provision": {
+          "total": 38,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 370,
+          "remove_change_rate": 84.59,
+          "neutralize_change_rate": 99.19
+        },
+        "verification": {
+          "total": 257,
+          "remove_change_rate": 87.16,
+          "neutralize_change_rate": 97.67
+        },
+        "coordination": {
+          "total": 15,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 750,
+          "remove_change_rate": 87.47,
+          "neutralize_change_rate": 98.67
+        }
+      },
+      "llama": {
+        "acknowledgment": {
+          "total": 436,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "information_provision": {
+          "total": 66,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 55,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "verification": {
+          "total": 175,
+          "remove_change_rate": 99.43,
+          "neutralize_change_rate": 100.0
+        },
+        "coordination": {
+          "total": 18,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 750,
+          "remove_change_rate": 99.87,
+          "neutralize_change_rate": 100.0
+        }
+      },
+      "gemma": {
+        "acknowledgment": {
+          "total": 222,
+          "remove_change_rate": 96.4,
+          "neutralize_change_rate": 100.0
+        },
+        "information_provision": {
+          "total": 125,
+          "remove_change_rate": 59.2,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 17,
+          "remove_change_rate": 58.82,
+          "neutralize_change_rate": 100.0
+        },
+        "verification": {
+          "total": 11,
+          "remove_change_rate": 90.91,
+          "neutralize_change_rate": 100.0
+        },
+        "coordination": {
+          "total": 346,
+          "remove_change_rate": 95.38,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 721,
+          "remove_change_rate": 88.49,
+          "neutralize_change_rate": 100.0
+        }
+      }
+    },
+    "stratqa": {
+      "qwen": {
+        "acknowledgment": {
+          "total": 47,
+          "remove_change_rate": 89.36,
+          "neutralize_change_rate": 91.49
+        },
+        "information_provision": {
+          "total": 1,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "reasoning_guidance": {
+          "total": 489,
+          "remove_change_rate": 81.39,
+          "neutralize_change_rate": 96.93
+        },
+        "verification": {
+          "total": 211,
+          "remove_change_rate": 81.04,
+          "neutralize_change_rate": 92.89
+        },
+        "coordination": {
+          "total": 2,
+          "remove_change_rate": 100.0,
+          "neutralize_change_rate": 100.0
+        },
+        "_overall": {
+          "total": 750,
+          "remove_change_rate": 81.87,
+          "neutralize_change_rate": 95.47
+        }
+      }
+    }
+  },
+  "remove_vs_neutralize_gap": {
+    "gsm8k/qwen": {
+      "remove": 95.67,
+      "neutralize": 99.11,
+      "gap_pp": 3.44
+    },
+    "gsm8k/llama": {
+      "remove": 99.21,
+      "neutralize": 100.0,
+      "gap_pp": 0.79
+    },
+    "gsm8k/gemma": {
+      "remove": 63.67,
+      "neutralize": 100.0,
+      "gap_pp": 36.33
+    },
+    "arc/qwen": {
+      "remove": 87.47,
+      "neutralize": 98.67,
+      "gap_pp": 11.2
+    },
+    "arc/llama": {
+      "remove": 99.87,
+      "neutralize": 100.0,
+      "gap_pp": 0.13
+    },
+    "arc/gemma": {
+      "remove": 88.49,
+      "neutralize": 100.0,
+      "gap_pp": 11.51
+    },
+    "stratqa/qwen": {
+      "remove": 81.87,
+      "neutralize": 95.47,
+      "gap_pp": 13.6
+    }
+  },
+  "anova": {
+    "ack_pct": {
+      "backbone_effect": {
+        "F": 493.8289,
+        "p_value": 2.800601e-203
+      },
+      "domain_effect": {
+        "F": 24.075,
+        "p_value": 9.443411e-07
+      },
+      "interaction_approx": {
+        "F": 311.3568,
+        "p_value": 2.990612e-306,
+        "note": "One-way ANOVA on 6 cells as interaction proxy"
+      }
+    },
+    "reasoning_pct": {
+      "backbone_effect": {
+        "F": 307.2022,
+        "p_value": 2.114647e-129
+      },
+      "domain_effect": {
+        "F": 0.0212,
+        "p_value": 0.8843
+      },
+      "interaction_approx": {
+        "F": 160.7422,
+        "p_value": 1.588038e-163,
+        "note": "One-way ANOVA on 6 cells as interaction proxy"
+      }
+    },
+    "info_provision_pct": {
+      "backbone_effect": {
+        "F": 784.7549,
+        "p_value": 1.102961e-312
+      },
+      "domain_effect": {
+        "F": 87.0695,
+        "p_value": 1.323572e-20
+      },
+      "interaction_approx": {
+        "F": 360.5449,
+        "p_value": 0.0,
+        "note": "One-way ANOVA on 6 cells as interaction proxy"
+      }
+    },
+    "verification_pct": {
+      "backbone_effect": {
+        "F": 167.3224,
+        "p_value": 5.889943e-72
+      },
+      "domain_effect": {
+        "F": 168.1698,
+        "p_value": 4.375587e-38
+      },
+      "interaction_approx": {
+        "F": 144.847,
+        "p_value": 8.547198e-148,
+        "note": "One-way ANOVA on 6 cells as interaction proxy"
+      }
+    }
+  },
+  "conclusions": {
+    "backbone_intrinsic": [
+      "reasoning_pct: backbone-only effect (p=2.114647e-129)"
+    ],
+    "domain_dependent": [
+      "qwen function distribution significantly differs across domains (chi2=1005.7492, p=8.573698e-212)",
+      "llama function distribution significantly differs across domains (chi2=61.5578, p=1.364657e-12)",
+      "gemma function distribution significantly differs across domains (chi2=351.3672, p=8.887363e-75)",
+      "gsm8k/gemma cross-model kappa=0.3502 FAIL",
+      "arc/qwen cross-model kappa=0.3914 FAIL",
+      "arc/gemma cross-model kappa=0.3962 FAIL",
+      "gsm8k/llama action-change ceiling (all types >98.83%)",
+      "arc/llama action-change ceiling (all types >99.43%)",
+      "ack_pct: backbone\u00d7domain interaction (backbone p=2.800601e-203, domain p=9.443411e-07)",
+      "info_provision_pct: backbone\u00d7domain interaction (backbone p=1.102961e-312, domain p=1.323572e-20)",
+      "verification_pct: backbone\u00d7domain interaction (backbone p=5.889943e-72, domain p=4.375587e-38)"
+    ],
+    "cross_domain_consistent": [
+      "gsm8k/qwen real impact gradient: information_provision=100.0% vs reasoning_guidance=82.91% (spread=17.1pp)",
+      "gsm8k/gemma real impact gradient: coordination=98.59% vs verification=29.41% (spread=69.2pp)",
+      "arc/qwen real impact gradient: information_provision=100.0% vs reasoning_guidance=84.59% (spread=15.4pp)",
+      "arc/gemma real impact gradient: acknowledgment=96.4% vs reasoning_guidance=58.82% (spread=37.6pp)",
+      "gsm8k/gemma: neutralize(100.0%) > remove(63.67%) by 36.33pp",
+      "arc/qwen: neutralize(98.67%) > remove(87.47%) by 11.2pp",
+      "arc/gemma: neutralize(100.0%) > remove(88.49%) by 11.51pp",
+      "stratqa/qwen: neutralize(95.47%) > remove(81.87%) by 13.6pp"
+    ]
+  }
+}

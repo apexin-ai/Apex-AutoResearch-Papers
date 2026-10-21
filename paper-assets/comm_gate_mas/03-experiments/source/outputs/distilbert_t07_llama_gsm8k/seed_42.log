@@ -1,0 +1,915 @@
+2026-05-04 12:54:36,559 INFO Raised fd limit from 1024 to 65535
+2026-05-04 12:54:40,531 INFO DistilBERT loaded from artifacts/classifier/distilbert_ack/checkpoint-810 (tokenizer=artifacts/classifier/distilbert_ack, device=cpu)
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440cdd0a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 3f99ac84-e0fc-4f5e-a945-7c25135d7d36)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-04 12:54:50,988 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440cdd0a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 3f99ac84-e0fc-4f5e-a945-7c25135d7d36)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 1s [Retry 1/5].
+2026-05-04 12:54:50,988 WARNING Retrying in 1s [Retry 1/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440ce9670>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 1ad53e56-8205-4a43-90e3-48a5cedf13f3)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-04 12:55:02,035 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440ce9670>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 1ad53e56-8205-4a43-90e3-48a5cedf13f3)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 2s [Retry 2/5].
+2026-05-04 12:55:02,036 WARNING Retrying in 2s [Retry 2/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440199d90>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 47d10e06-6c9d-4e78-985b-1428efc68c41)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-04 12:55:14,085 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440199d90>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 47d10e06-6c9d-4e78-985b-1428efc68c41)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 4s [Retry 3/5].
+2026-05-04 12:55:14,085 WARNING Retrying in 4s [Retry 3/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a330>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 40b19788-d6e1-4135-b1bc-44a342ab2d63)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-04 12:55:28,133 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a330>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 40b19788-d6e1-4135-b1bc-44a342ab2d63)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 8s [Retry 4/5].
+2026-05-04 12:55:28,133 WARNING Retrying in 8s [Retry 4/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a4e0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 2af166dc-7e9c-49b0-88c0-901d631e637f)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-04 12:55:46,176 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a4e0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 2af166dc-7e9c-49b0-88c0-901d631e637f)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+Retrying in 8s [Retry 5/5].
+2026-05-04 12:55:46,176 WARNING Retrying in 8s [Retry 5/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a8a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 2b6902af-03b2-4cd0-a4ee-6934c7776e0f)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+2026-05-04 12:56:04,223 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/main/README.md (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a8a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 2b6902af-03b2-4cd0-a4ee-6934c7776e0f)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/main/README.md
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440ce9370>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: ee98e252-c0e5-458b-b894-c7c07fbdfbe4)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+2026-05-04 12:56:14,271 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440ce9370>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: ee98e252-c0e5-458b-b894-c7c07fbdfbe4)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+Retrying in 1s [Retry 1/5].
+2026-05-04 12:56:14,271 WARNING Retrying in 1s [Retry 1/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440cded80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 064d5753-9c99-44b5-8035-d4c4f31d0b7b)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+2026-05-04 12:56:25,319 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440cded80>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 064d5753-9c99-44b5-8035-d4c4f31d0b7b)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+Retrying in 2s [Retry 2/5].
+2026-05-04 12:56:25,319 WARNING Retrying in 2s [Retry 2/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440c80740>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 933c2e63-4e93-47b2-b4eb-4511c1b54556)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+2026-05-04 12:56:37,368 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe440c80740>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 933c2e63-4e93-47b2-b4eb-4511c1b54556)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+Retrying in 4s [Retry 3/5].
+2026-05-04 12:56:37,369 WARNING Retrying in 4s [Retry 3/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a870>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: f59d4201-61cc-47fa-a386-39b3b94e5e28)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+2026-05-04 12:56:51,415 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a870>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: f59d4201-61cc-47fa-a386-39b3b94e5e28)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+Retrying in 8s [Retry 4/5].
+2026-05-04 12:56:51,415 WARNING Retrying in 8s [Retry 4/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a6c0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 8e096253-ece3-4e92-814f-a7e00908717c)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+2026-05-04 12:57:09,460 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a6c0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 8e096253-ece3-4e92-814f-a7e00908717c)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+Retrying in 8s [Retry 5/5].
+2026-05-04 12:57:09,460 WARNING Retrying in 8s [Retry 5/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a390>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: bca63a3a-c1fe-4566-a01a-5a0f8435c996)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+2026-05-04 12:57:27,504 WARNING '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe44019a390>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: bca63a3a-c1fe-4566-a01a-5a0f8435c996)')' thrown while requesting HEAD https://huggingface.co/datasets/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py
+Using the latest cached version of the dataset since gsm8k couldn't be found on the Hugging Face Hub
+2026-05-04 12:57:38,671 WARNING Using the latest cached version of the dataset since gsm8k couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Thu Apr 30 23:54:06 2026).
+2026-05-04 12:57:38,672 WARNING Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Thu Apr 30 23:54:06 2026).
+2026-05-04 12:57:38,742 INFO Online pruning: 100 tasks, domain=gsm8k, char_threshold=30, pruning_mode=skip, detection=distilbert
+2026-05-04 12:57:42,050 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:42,815 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:43,368 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:44,196 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:44,907 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:47,490 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:49,280 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:50,636 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:52,531 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:54,246 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:57:54,664 INFO [online] 1/100 task=gsm8k_0000 baseline=True pruned=True suppressed=3/5
+2026-05-04 12:57:58,334 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:00,366 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:00,742 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:01,286 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:02,474 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:07,768 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:13,818 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:15,346 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:17,129 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:18,418 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:20,938 INFO [online] 2/100 task=gsm8k_0001 baseline=False pruned=False suppressed=1/5
+2026-05-04 12:58:22,744 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:24,791 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:25,665 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:27,766 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:28,135 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:29,844 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:32,013 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:33,153 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:34,798 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:36,508 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:37,189 INFO [online] 3/100 task=gsm8k_0002 baseline=True pruned=True suppressed=3/5
+2026-05-04 12:58:39,265 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:41,270 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:43,321 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:45,263 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:45,815 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:48,130 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:50,744 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:51,003 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:51,207 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:53,132 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:53,545 INFO [online] 4/100 task=gsm8k_0003 baseline=True pruned=True suppressed=2/5
+2026-05-04 12:58:55,870 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:58,545 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:59,017 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:58:59,716 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:00,617 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:03,007 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:06,832 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:06,969 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:09,410 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:11,639 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:12,638 INFO [online] 5/100 task=gsm8k_0004 baseline=True pruned=True suppressed=3/5
+2026-05-04 12:59:15,946 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:20,412 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:23,623 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:26,349 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:28,495 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:32,634 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:35,982 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:36,655 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:37,325 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:40,532 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:41,151 INFO [online] 6/100 task=gsm8k_0005 baseline=True pruned=True suppressed=3/5
+2026-05-04 12:59:43,226 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:45,521 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:45,742 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:46,074 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:47,125 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:49,449 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:52,095 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:52,733 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:55,948 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:57,157 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 12:59:57,738 INFO [online] 7/100 task=gsm8k_0006 baseline=True pruned=True suppressed=3/5
+2026-05-04 12:59:59,908 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:02,093 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:03,298 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:04,165 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:06,040 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:09,481 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:12,406 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:13,677 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:17,995 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:18,665 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:19,185 INFO [online] 8/100 task=gsm8k_0007 baseline=True pruned=False suppressed=1/5
+2026-05-04 13:00:21,252 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:22,711 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:23,243 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:23,648 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:24,813 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:26,750 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:29,138 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:29,365 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:31,533 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:31,779 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:32,215 INFO [online] 9/100 task=gsm8k_0008 baseline=True pruned=True suppressed=4/5
+2026-05-04 13:00:34,930 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:37,549 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:41,495 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:44,090 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:46,633 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:50,227 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:53,010 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:55,016 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:57,713 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:00:59,940 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:00,693 INFO [online] 10/100 task=gsm8k_0009 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:01:03,340 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:05,958 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:09,134 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:12,183 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:15,556 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:19,468 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:23,442 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:23,998 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:25,044 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:25,702 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:26,271 INFO [online] 11/100 task=gsm8k_0010 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:01:27,693 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:28,756 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:29,675 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:30,594 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:31,562 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:33,556 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:35,236 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:37,773 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:39,855 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:40,275 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:01:40,996 INFO [online] 12/100 task=gsm8k_0011 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:01:43,847 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:04,040 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:04,065 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-04 13:02:04,066 ERROR Baseline failed on gsm8k_0012
+Traceback (most recent call last):
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 1539, in online_main
+    bl_msgs, _, _ = run_online_pruned_pipeline(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 1380, in run_online_pruned_pipeline
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 4096 tokens. However, you requested 2048 output tokens and your prompt contains at least 2049 input tokens, for a total of at least 4097 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=2049)", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}
+2026-05-04 13:02:06,040 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:07,928 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:09,694 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:11,474 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:12,847 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:14,674 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:16,877 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:17,818 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:18,738 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:20,549 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:22,335 INFO [online] 14/100 task=gsm8k_0013 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:02:24,872 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:27,396 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:27,987 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:28,460 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:29,730 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:35,882 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:41,278 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:46,650 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:52,821 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:53,123 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-04 13:02:53,124 ERROR Online pruning failed on gsm8k_0014
+Traceback (most recent call last):
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 1570, in online_main
+    messages, suppressed_rounds, task_oracle_decs = run_online_pruned_pipeline(
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/comm_gate_mas/src/pruning_validation.py", line 1380, in run_online_pruned_pipeline
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 4096 tokens. However, you requested 2048 output tokens and your prompt contains at least 2049 input tokens, for a total of at least 4097 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_tokens, value=2049)", 'type': 'BadRequestError', 'param': 'input_tokens', 'code': 400}}
+2026-05-04 13:02:54,611 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:55,864 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:57,250 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:58,610 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:02:58,941 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:00,956 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:02,973 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:03,646 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:06,307 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:07,873 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:08,369 INFO [online] 16/100 task=gsm8k_0015 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:03:09,992 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:12,008 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:12,630 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:13,718 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:14,722 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:17,514 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:20,799 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:23,302 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:25,266 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:26,915 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:27,832 INFO [online] 17/100 task=gsm8k_0016 baseline=True pruned=False suppressed=1/5
+2026-05-04 13:03:29,127 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:30,724 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:31,424 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:32,077 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:33,363 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:34,800 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:36,350 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:36,908 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:38,083 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:39,696 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:40,652 INFO [online] 18/100 task=gsm8k_0017 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:03:42,859 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:44,541 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:46,426 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:48,521 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:50,623 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:53,136 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:55,558 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:56,391 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:57,123 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:57,950 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:03:58,291 INFO [online] 19/100 task=gsm8k_0018 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:04:00,208 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:01,089 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:02,393 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:03,459 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:04,955 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:07,197 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:10,179 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:11,427 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:13,024 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:16,117 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:16,901 INFO [online] 20/100 task=gsm8k_0019 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:04:18,616 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:21,426 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:22,176 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:23,176 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:24,425 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:26,262 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:27,971 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:29,487 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:32,756 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:33,529 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:34,953 INFO [online] 21/100 task=gsm8k_0020 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:04:35,899 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:37,463 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:37,949 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:38,538 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:40,028 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:42,013 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:44,508 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:45,602 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:47,683 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:48,014 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:48,649 INFO [online] 22/100 task=gsm8k_0021 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:04:49,843 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:52,882 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:54,624 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:55,073 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:04:56,305 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:00,266 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:01,898 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:02,000 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:04,031 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:04,582 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:05,555 INFO [online] 23/100 task=gsm8k_0022 baseline=True pruned=True suppressed=4/5
+2026-05-04 13:05:07,788 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:09,901 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:10,823 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:11,277 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:12,309 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:15,217 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:19,104 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:19,755 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:20,415 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:22,165 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:22,501 INFO [online] 24/100 task=gsm8k_0023 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:05:24,333 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:25,906 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:26,867 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:27,272 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:27,761 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:30,167 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:32,614 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:35,529 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:37,137 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:37,255 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:38,283 INFO [online] 25/100 task=gsm8k_0024 baseline=True pruned=False suppressed=1/5
+2026-05-04 13:05:40,384 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:42,728 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:45,062 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:47,684 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:50,191 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:55,681 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:05:58,725 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:01,975 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:11,072 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:13,902 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:14,890 INFO [online] 26/100 task=gsm8k_0025 baseline=False pruned=False suppressed=2/5
+2026-05-04 13:06:17,218 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:19,127 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:20,503 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:20,941 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:21,622 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:24,807 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:27,979 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:28,164 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:31,418 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:32,122 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:32,765 INFO [online] 27/100 task=gsm8k_0026 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:06:36,763 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:40,777 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:44,717 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:48,795 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:50,125 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:53,934 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:57,278 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:06:59,868 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:03,344 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:05,995 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:06,455 INFO [online] 28/100 task=gsm8k_0027 baseline=True pruned=True suppressed=0/5
+2026-05-04 13:07:08,624 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:11,276 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:12,201 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:12,851 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:13,795 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:17,852 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:20,938 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:21,734 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:22,307 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:22,956 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:24,640 INFO [online] 29/100 task=gsm8k_0028 baseline=True pruned=False suppressed=2/5
+2026-05-04 13:07:26,313 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:26,889 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:27,288 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:28,325 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:31,371 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:33,660 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:36,017 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:38,651 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:39,574 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:40,926 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:42,338 INFO [online] 30/100 task=gsm8k_0029 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:07:44,907 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:46,608 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:46,826 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:46,919 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:47,025 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:48,994 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:50,748 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:53,976 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:57,222 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:58,509 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:07:59,818 INFO [online] 31/100 task=gsm8k_0030 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:08:02,238 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:03,995 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:04,382 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:04,620 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:05,566 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:07,949 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:10,081 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:11,681 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:13,691 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:14,604 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:15,100 INFO [online] 32/100 task=gsm8k_0031 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:08:18,938 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:23,525 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:24,548 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:25,435 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:27,945 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:31,355 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:38,442 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:42,217 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:48,627 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:49,473 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:50,747 INFO [online] 33/100 task=gsm8k_0032 baseline=True pruned=True suppressed=0/5
+2026-05-04 13:08:53,478 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:08:58,049 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:03,852 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:05,841 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:09,208 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:14,814 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:24,820 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:31,107 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:38,940 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:43,835 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:09:47,926 INFO [online] 34/100 task=gsm8k_0033 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:09:54,414 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:01,039 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:06,031 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:13,145 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:15,914 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:22,040 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:35,340 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:44,312 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:51,921 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:55,914 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:10:58,350 INFO [online] 35/100 task=gsm8k_0034 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:11:04,227 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:11:10,751 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:11:16,655 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:11:22,625 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:11:28,652 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:11:39,418 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:11:53,731 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:02,229 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:07,844 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:15,207 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:21,430 INFO [online] 36/100 task=gsm8k_0035 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:12:26,648 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:33,740 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:37,829 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:43,934 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:46,430 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:50,913 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:53,914 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:12:58,806 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:04,960 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:11,748 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:17,854 INFO [online] 37/100 task=gsm8k_0036 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:13:24,526 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:31,043 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:32,116 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:33,109 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:34,147 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:42,443 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:13:58,937 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:06,352 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:15,336 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:20,711 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:24,430 INFO [online] 38/100 task=gsm8k_0037 baseline=True pruned=False suppressed=4/5
+2026-05-04 13:14:27,516 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:30,851 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:37,820 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:42,610 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:45,412 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:14:50,145 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:15:01,743 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:15:25,745 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:15:42,025 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:15:59,208 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:07,815 INFO [online] 39/100 task=gsm8k_0038 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:16:13,310 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:18,621 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:19,711 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:20,308 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:21,507 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:28,131 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:41,238 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:16:50,316 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:00,708 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:12,252 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:22,355 INFO [online] 40/100 task=gsm8k_0039 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:17:29,648 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:30,741 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:31,024 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:31,341 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:31,837 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:39,749 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:17:52,653 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:07,520 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:19,330 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:31,559 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:37,645 INFO [online] 41/100 task=gsm8k_0040 baseline=False pruned=False suppressed=1/5
+2026-05-04 13:18:41,197 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:43,121 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:44,246 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:45,404 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:46,603 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:48,747 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:50,269 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:50,972 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:52,846 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:53,064 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:53,468 INFO [online] 42/100 task=gsm8k_0041 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:18:54,470 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:55,348 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:55,903 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:56,382 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:58,419 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:18:59,817 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:00,886 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:01,050 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:02,259 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:03,602 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:04,077 INFO [online] 43/100 task=gsm8k_0042 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:19:06,552 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:08,110 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:09,938 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:11,274 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:12,656 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:14,425 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:15,832 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:17,281 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:18,135 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:20,227 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:23,170 INFO [online] 44/100 task=gsm8k_0043 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:19:26,323 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:31,088 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:32,350 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:33,113 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:34,447 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:37,668 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:42,516 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:43,143 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:47,847 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:48,292 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:48,708 INFO [online] 45/100 task=gsm8k_0044 baseline=True pruned=True suppressed=4/5
+2026-05-04 13:19:51,660 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:53,938 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:54,423 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:54,823 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:56,108 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:19:59,224 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:04,030 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:05,829 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:08,610 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:11,502 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:12,258 INFO [online] 46/100 task=gsm8k_0045 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:20:15,050 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:18,223 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:18,808 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:19,246 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:20,545 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:22,817 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:23,889 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:25,946 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:26,947 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:27,761 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:28,177 INFO [online] 47/100 task=gsm8k_0046 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:20:30,054 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:31,808 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:32,593 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:35,397 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:35,882 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:37,760 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:39,523 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:40,181 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:40,924 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:41,450 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:41,926 INFO [online] 48/100 task=gsm8k_0047 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:20:44,603 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:44,972 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:45,085 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:45,191 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:45,479 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:48,419 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:51,243 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:53,984 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:57,960 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:58,653 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:20:59,066 INFO [online] 49/100 task=gsm8k_0048 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:21:00,825 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:03,082 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:04,005 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:04,466 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:05,317 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:07,535 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:10,063 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:13,527 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:14,214 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:15,810 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:16,150 INFO [online] 50/100 task=gsm8k_0049 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:21:17,692 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:19,401 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:19,730 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:20,226 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:20,845 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:23,318 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:26,085 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:28,475 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:29,214 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:30,913 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:31,508 INFO [online] 51/100 task=gsm8k_0050 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:21:33,399 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:33,729 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:34,048 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:42,447 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:47,868 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:50,211 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:53,129 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:54,807 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:55,439 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:56,831 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:21:57,441 INFO [online] 52/100 task=gsm8k_0051 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:21:59,718 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:01,802 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:02,505 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:02,917 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:03,794 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:05,592 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:07,575 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:09,184 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:11,367 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:13,316 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:14,458 INFO [online] 53/100 task=gsm8k_0052 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:22:16,225 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:18,012 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:18,755 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:19,178 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:20,651 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:22,764 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:24,779 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:26,686 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:27,832 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:30,055 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:31,438 INFO [online] 54/100 task=gsm8k_0053 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:22:33,311 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:34,888 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:35,417 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:35,635 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:36,298 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:38,244 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:39,883 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:42,928 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:46,001 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:48,853 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:49,638 INFO [online] 55/100 task=gsm8k_0054 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:22:52,179 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:55,021 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:56,200 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:56,944 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:22:58,491 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:00,192 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:01,592 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:02,168 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:02,711 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:03,122 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:03,837 INFO [online] 56/100 task=gsm8k_0055 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:23:05,612 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:07,350 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:07,849 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:08,262 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:09,003 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:11,265 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:12,841 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:14,618 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:16,552 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:18,657 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:19,190 INFO [online] 57/100 task=gsm8k_0056 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:23:20,868 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:22,309 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:23,224 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:23,931 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:24,050 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:26,177 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:28,085 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:30,850 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:33,440 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:33,871 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:34,244 INFO [online] 58/100 task=gsm8k_0057 baseline=False pruned=True suppressed=1/5
+2026-05-04 13:23:37,397 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:40,576 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:42,991 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:43,913 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:44,533 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:47,666 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:51,939 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:53,271 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:53,893 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:54,134 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:54,738 INFO [online] 59/100 task=gsm8k_0058 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:23:55,759 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:56,722 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:57,530 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:58,050 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:23:58,582 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:00,162 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:01,487 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:01,925 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:03,544 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:04,308 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:05,122 INFO [online] 60/100 task=gsm8k_0059 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:24:07,309 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:09,740 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:10,107 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:10,704 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:11,811 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:13,893 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:16,537 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:19,393 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:22,141 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:23,151 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:23,709 INFO [online] 61/100 task=gsm8k_0060 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:24:25,218 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:26,443 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:26,818 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:27,482 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:28,026 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:29,388 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:30,942 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:31,671 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:32,487 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:33,038 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:33,377 INFO [online] 62/100 task=gsm8k_0061 baseline=True pruned=True suppressed=2/5
+2026-05-04 13:24:34,632 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:35,817 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:37,003 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:38,103 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:40,126 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:41,807 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:43,598 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:44,053 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:45,378 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:47,545 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:47,890 INFO [online] 63/100 task=gsm8k_0062 baseline=True pruned=False suppressed=1/5
+2026-05-04 13:24:50,985 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:52,045 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:52,818 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:54,143 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:24:55,616 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:01,007 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:04,868 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:07,706 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:09,077 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:33,374 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:33,908 INFO [online] 64/100 task=gsm8k_0063 baseline=True pruned=True suppressed=1/5
+2026-05-04 13:25:35,999 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:38,323 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:38,724 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:39,257 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:40,130 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:42,326 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:45,110 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:46,434 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:46,892 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:49,692 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:50,185 INFO [online] 65/100 task=gsm8k_0064 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:25:51,695 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:52,783 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:53,413 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:53,663 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:54,140 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:55,848 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:57,757 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:58,309 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:25:59,785 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:26:00,114 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:26:00,663 INFO [online] 66/100 task=gsm8k_0065 baseline=True pruned=True suppressed=3/5
+2026-05-04 13:26:02,829 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:26:04,386 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-04 13:26:05,481 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions "HTTP/1.1 500 Internal Server Error"
+2026-05-04 13:26:05,481 INFO Retrying request to /chat/completions in 0.457972 seconds
+2026-05-04 13:26:05,940 INFO Retrying request to /chat/completions in 0.872849 seconds
+2026-05-04 13:26:06,814 WARNING Infrastructure error on gsm8k_0066 (skipped): Connection error.
+2026-05-04 13:26:07,077 INFO Retrying request to /chat/completions in 0.460588 seconds
+2026-05-04 13:26:07,539 INFO Retrying request to /chat/completions in 0.764961 seconds
+2026-05-04 13:26:08,304 WARNING Infrastructure error on gsm8k_0067 (skipped): Connection error.
+2026-05-04 13:26:08,546 INFO Retrying request to /chat/completions in 0.437523 seconds
+2026-05-04 13:26:08,985 INFO Retrying request to /chat/completions in 0.957569 seconds
+2026-05-04 13:26:09,944 WARNING Infrastructure error on gsm8k_0068 (skipped): Connection error.
+2026-05-04 13:26:10,203 INFO Retrying request to /chat/completions in 0.492463 seconds
+2026-05-04 13:26:10,697 INFO Retrying request to /chat/completions in 0.928461 seconds
+2026-05-04 13:26:11,626 WARNING Infrastructure error on gsm8k_0069 (skipped): Connection error.
+2026-05-04 13:26:11,889 INFO Retrying request to /chat/completions in 0.457011 seconds
+2026-05-04 13:26:12,347 INFO Retrying request to /chat/completions in 0.852178 seconds
+2026-05-04 13:26:13,200 WARNING Infrastructure error on gsm8k_0070 (skipped): Connection error.
+2026-05-04 13:26:13,464 INFO Retrying request to /chat/completions in 0.403640 seconds
+2026-05-04 13:26:13,868 INFO Retrying request to /chat/completions in 0.765618 seconds
+2026-05-04 13:26:14,634 WARNING Infrastructure error on gsm8k_0071 (skipped): Connection error.
+2026-05-04 13:26:14,897 INFO Retrying request to /chat/completions in 0.416095 seconds
+2026-05-04 13:26:15,314 INFO Retrying request to /chat/completions in 0.865730 seconds
+2026-05-04 13:26:16,181 WARNING Infrastructure error on gsm8k_0072 (skipped): Connection error.
+2026-05-04 13:26:16,430 INFO Retrying request to /chat/completions in 0.497309 seconds
+2026-05-04 13:26:16,929 INFO Retrying request to /chat/completions in 0.811303 seconds
+2026-05-04 13:26:17,741 WARNING Infrastructure error on gsm8k_0073 (skipped): Connection error.
+2026-05-04 13:26:17,982 INFO Retrying request to /chat/completions in 0.426014 seconds
+2026-05-04 13:26:18,409 INFO Retrying request to /chat/completions in 0.975923 seconds
+2026-05-04 13:26:19,386 WARNING Infrastructure error on gsm8k_0074 (skipped): Connection error.
+2026-05-04 13:26:19,628 INFO Retrying request to /chat/completions in 0.379277 seconds
+2026-05-04 13:26:20,008 INFO Retrying request to /chat/completions in 0.898233 seconds
+2026-05-04 13:26:20,907 WARNING Infrastructure error on gsm8k_0075 (skipped): Connection error.
+2026-05-04 13:26:21,173 INFO Retrying request to /chat/completions in 0.427638 seconds
+2026-05-04 13:26:21,601 INFO Retrying request to /chat/completions in 0.863299 seconds
+2026-05-04 13:26:22,466 WARNING Infrastructure error on gsm8k_0076 (skipped): Connection error.
+2026-05-04 13:26:22,822 INFO Retrying request to /chat/completions in 0.425744 seconds
+2026-05-04 13:26:23,248 INFO Retrying request to /chat/completions in 0.855515 seconds
+2026-05-04 13:26:24,105 WARNING Infrastructure error on gsm8k_0077 (skipped): Connection error.
+2026-05-04 13:26:24,365 INFO Retrying request to /chat/completions in 0.415364 seconds
+2026-05-04 13:26:24,781 INFO Retrying request to /chat/completions in 0.981322 seconds
+2026-05-04 13:26:25,764 WARNING Infrastructure error on gsm8k_0078 (skipped): Connection error.
+2026-05-04 13:26:26,012 INFO Retrying request to /chat/completions in 0.394676 seconds
+2026-05-04 13:26:26,408 INFO Retrying request to /chat/completions in 0.904273 seconds
+2026-05-04 13:26:27,314 WARNING Infrastructure error on gsm8k_0079 (skipped): Connection error.
+2026-05-04 13:26:27,553 INFO Retrying request to /chat/completions in 0.473143 seconds
+2026-05-04 13:26:28,027 INFO Retrying request to /chat/completions in 0.931186 seconds
+2026-05-04 13:26:28,960 WARNING Infrastructure error on gsm8k_0080 (skipped): Connection error.
+2026-05-04 13:26:29,205 INFO Retrying request to /chat/completions in 0.413875 seconds
+2026-05-04 13:26:29,621 INFO Retrying request to /chat/completions in 0.932294 seconds
+2026-05-04 13:26:30,554 WARNING Infrastructure error on gsm8k_0081 (skipped): Connection error.
+2026-05-04 13:26:30,796 INFO Retrying request to /chat/completions in 0.466574 seconds
+2026-05-04 13:26:31,264 INFO Retrying request to /chat/completions in 0.939647 seconds
+2026-05-04 13:26:32,205 WARNING Infrastructure error on gsm8k_0082 (skipped): Connection error.
+2026-05-04 13:26:32,443 INFO Retrying request to /chat/completions in 0.424159 seconds
+2026-05-04 13:26:32,868 INFO Retrying request to /chat/completions in 0.929570 seconds
+2026-05-04 13:26:33,799 WARNING Infrastructure error on gsm8k_0083 (skipped): Connection error.
+2026-05-04 13:26:34,045 INFO Retrying request to /chat/completions in 0.414078 seconds
+2026-05-04 13:26:34,461 INFO Retrying request to /chat/completions in 0.948047 seconds
+2026-05-04 13:26:35,410 WARNING Infrastructure error on gsm8k_0084 (skipped): Connection error.
+2026-05-04 13:26:35,653 INFO Retrying request to /chat/completions in 0.472047 seconds
+2026-05-04 13:26:36,126 INFO Retrying request to /chat/completions in 0.852961 seconds
+2026-05-04 13:26:36,980 WARNING Infrastructure error on gsm8k_0085 (skipped): Connection error.
+2026-05-04 13:26:37,270 INFO Retrying request to /chat/completions in 0.442616 seconds
+2026-05-04 13:26:37,714 INFO Retrying request to /chat/completions in 0.824412 seconds
+2026-05-04 13:26:38,540 WARNING Infrastructure error on gsm8k_0086 (skipped): Connection error.
+2026-05-04 13:26:38,772 INFO Retrying request to /chat/completions in 0.463724 seconds
+2026-05-04 13:26:39,237 INFO Retrying request to /chat/completions in 0.782896 seconds
+2026-05-04 13:26:40,021 WARNING Infrastructure error on gsm8k_0087 (skipped): Connection error.
+2026-05-04 13:26:40,252 INFO Retrying request to /chat/completions in 0.400797 seconds
+2026-05-04 13:26:40,654 INFO Retrying request to /chat/completions in 0.803212 seconds
+2026-05-04 13:26:41,459 WARNING Infrastructure error on gsm8k_0088 (skipped): Connection error.
+2026-05-04 13:26:41,703 INFO Retrying request to /chat/completions in 0.466893 seconds
+2026-05-04 13:26:42,171 INFO Retrying request to /chat/completions in 0.755431 seconds
+2026-05-04 13:26:42,928 WARNING Infrastructure error on gsm8k_0089 (skipped): Connection error.
+2026-05-04 13:26:43,179 INFO Retrying request to /chat/completions in 0.404284 seconds
+2026-05-04 13:26:43,584 INFO Retrying request to /chat/completions in 0.989534 seconds
+2026-05-04 13:26:44,575 WARNING Infrastructure error on gsm8k_0090 (skipped): Connection error.
+2026-05-04 13:26:44,814 INFO Retrying request to /chat/completions in 0.443256 seconds
+2026-05-04 13:26:45,259 INFO Retrying request to /chat/completions in 0.984696 seconds
+2026-05-04 13:26:46,245 WARNING Infrastructure error on gsm8k_0091 (skipped): Connection error.
+2026-05-04 13:26:46,483 INFO Retrying request to /chat/completions in 0.429893 seconds
+2026-05-04 13:26:46,914 INFO Retrying request to /chat/completions in 0.967984 seconds
+2026-05-04 13:26:47,883 WARNING Infrastructure error on gsm8k_0092 (skipped): Connection error.
+2026-05-04 13:26:48,140 INFO Retrying request to /chat/completions in 0.413387 seconds
+2026-05-04 13:26:48,555 INFO Retrying request to /chat/completions in 0.868040 seconds
+2026-05-04 13:26:49,424 WARNING Infrastructure error on gsm8k_0093 (skipped): Connection error.
+2026-05-04 13:26:49,659 INFO Retrying request to /chat/completions in 0.429863 seconds
+2026-05-04 13:26:50,090 INFO Retrying request to /chat/completions in 0.974189 seconds
+2026-05-04 13:26:51,065 WARNING Infrastructure error on gsm8k_0094 (skipped): Connection error.
+2026-05-04 13:26:51,307 INFO Retrying request to /chat/completions in 0.402115 seconds
+2026-05-04 13:26:51,710 INFO Retrying request to /chat/completions in 0.837467 seconds
+2026-05-04 13:26:52,550 WARNING Infrastructure error on gsm8k_0095 (skipped): Connection error.
+2026-05-04 13:26:52,808 INFO Retrying request to /chat/completions in 0.422358 seconds
+2026-05-04 13:26:53,231 INFO Retrying request to /chat/completions in 0.806829 seconds
+2026-05-04 13:26:54,039 WARNING Infrastructure error on gsm8k_0096 (skipped): Connection error.
+2026-05-04 13:26:54,295 INFO Retrying request to /chat/completions in 0.485931 seconds
+2026-05-04 13:26:54,782 INFO Retrying request to /chat/completions in 0.955492 seconds
+2026-05-04 13:26:55,739 WARNING Infrastructure error on gsm8k_0097 (skipped): Connection error.
+2026-05-04 13:26:55,973 INFO Retrying request to /chat/completions in 0.476773 seconds
+2026-05-04 13:26:56,451 INFO Retrying request to /chat/completions in 0.798797 seconds
+2026-05-04 13:26:57,251 WARNING Infrastructure error on gsm8k_0098 (skipped): Connection error.
+2026-05-04 13:26:57,483 INFO Retrying request to /chat/completions in 0.441054 seconds
+2026-05-04 13:26:57,925 INFO Retrying request to /chat/completions in 0.960001 seconds
+2026-05-04 13:26:58,886 WARNING Infrastructure error on gsm8k_0099 (skipped): Connection error.
+2026-05-04 13:26:59,228 INFO Online pruning results saved to outputs/distilbert_t07_llama_gsm8k/seed_42.json
+2026-05-04 13:26:59,228 INFO Completed: 66/100 (skipped: 34, infra_errors: 34) | Baseline: 92.4% | Online-pruned: 83.3% | Delta: -9.1pp | Suppress: 40.0% | Time: 1760s

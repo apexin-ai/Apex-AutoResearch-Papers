@@ -1,0 +1,65 @@
+# director / loop_3.md
+
+**When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_3.md`
+- **Structured JSON:** [`812189e765b804761f55.json`](../../sessions/81/812189e765b804761f55.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 3
+reason: max_messages
+updated: '2026-04-26T01:52:21+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单当前仅 cuda:1（D153 释放了 cuda:0，config 已更新）。cuda:2,3 是其他项目的，绝不能碰
+- oracle_qwen72b_n500 在**本地 Mac** 运行（PID 44522），不在远端服务器。查进度/文件必须查本地 `outputs/oracle_qwen72b_n500/`，不是 SSH 到服务器查
+- Agent 对 72B 有两次虚报前科（D148 invalidated, D149）：第一次伪造完成数据，第二次被 Reviewer 误判为伪造但实际正确。72B 完成时**必须** Reviewer 独立 parse JSON 核实，不信 Agent 第一手汇报
+- 72B 填宏 guardrail：|Δ| ≤ 3pp 且 p ≥ 0.1 → 填宏保留 framing；|Δ| > 3pp 或 p < 0.1 → 必须用 CONTINGENCY-B 注释块重写叙事
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-4x6000-a (connect.westb.seetacloud.com)，账号 comm_gate
+- 远端工作目录：/root/autodl-tmp/comm_gate_mas
+- 远端 GPU 1：vLLM Qwen2.5-72B-Instruct-AWQ (PID 176944, port 8002, 90GB VRAM)
+- 远端 GPU 0：空闲（vLLM 7B 已停止）；GPU 2-3：其他项目占用
+- 本地活跃进程：PID 44522 = `python3 src/pruning_validation.py --config oracle_qwen72b_gsm8k_n500.yaml`（通过 SSH tunnel localhost:8002 调远端 72B + api.openai.com GPT-4o oracle）
+- 本地输出：`outputs/oracle_qwen72b_n500/` (run.log + seed_42_partial.json)
+- paper_provenance.yaml：`artifacts/paper_provenance.yaml`（108 claims, 2 pending for 72B）
+
+### 3. 📊 当前状态
+刚完成 3 轮预提交审计（引用 + 叙事一致性 + 统计交叉验证），修复了 2 critical + 7 warning + 3 info。论文编译通过 9 页。写作对抗审查 2/3 PASS（3/3 等 72B）。
+
+- **oracle_qwen72b_n500**: RUNNING ~71/500 (14%), ~5.4min/task, ETA 4/27 ~07:30
+- 其他全部 DONE（82 个实验，59 success）
+- 无 pending Worker/Cron/Director 决策
+
+### 4. 📋 待办
+- 72B PID 44522 完成（seed_42.json 出现）→ Reviewer 独立 parse JSON → guardrail 判断 A/B → 填宏（场景 A）或激活 CONTINGENCY-B → tectonic 编译 → 写作审查 3/3
+- 写作审查 3/3 PASS → submit_paper_to_review R12
+- R12 报告返回 → 按 review-report-action skill 处理
+- 提交前清理：删除 CONTINGENCY-B 注释 + TODO 注释 + 确认所有 XX.X 占位符已填
+
+### 5. 🎯 战略上下文
+- NeurIPS 2026 DDL: abstract 5/3-4, paper 5/5-6。时间线紧但可行（72B 4/27 → R12 4/27-28 → polish 4/28-5/2）
+- R11 审稿 Borderline Accept 5.5/10，所有审稿修复已完成（0 条需要新实验）
+- 核心 story: dual-backbone non-inferiority + stochastic degradation is backbone-specific（D152: Qwen t=0.7 safe +0.6pp, Llama marginal -2.2pp）
+- 72B 是锦上添花的 scale validation，不是叙事支柱。即使 72B 结果差，论文 story 仍可持续（CONTINGENCY-B 已准备）
+- 易错点：72B 实验在本地跑不在服务器——之前 Reviewer 因为只查远端而误判"从未启动"（D150→D151 修正）。查状态时 check both local and remote
+
+
+---

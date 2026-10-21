@@ -1,0 +1,358 @@
+=== Starting deit_small_muon Wed May  6 01:17:31 CST 2026 ===
+Loaded /root/autodl-tmp/checkpoints/spectral_optim/deit_small_muon_s42_best.pt (original val_acc=72.08)
+  gaussian_noise sev=1: 24.31% (7.0s)
+  gaussian_noise sev=2: 11.29% (7.2s)
+  gaussian_noise sev=3: 4.65% (7.4s)
+  gaussian_noise sev=4: 2.92% (7.6s)
+  gaussian_noise sev=5: 2.05% (7.3s)
+  gaussian_noise mean: 9.04%
+  shot_noise sev=1: 21.43% (7.9s)
+  shot_noise sev=2: 8.91% (8.1s)
+  shot_noise sev=3: 4.51% (7.9s)
+  shot_noise sev=4: 2.61% (8.4s)
+  shot_noise sev=5: 2.07% (7.9s)
+  shot_noise mean: 7.91%
+  impulse_noise sev=1: 60.53% (7.6s)
+  impulse_noise sev=2: 37.98% (7.5s)
+  impulse_noise sev=3: 18.09% (7.8s)
+  impulse_noise sev=4: 4.17% (7.7s)
+  impulse_noise sev=5: 2.72% (7.7s)
+  impulse_noise mean: 24.70%
+  defocus_blur sev=1: 14.97% (7.5s)
+  defocus_blur sev=2: 9.26% (7.8s)
+  defocus_blur sev=3: 5.92% (7.5s)
+  defocus_blur sev=4: 4.63% (7.9s)
+  defocus_blur sev=5: 3.80% (7.9s)
+  defocus_blur mean: 7.72%
+  glass_blur sev=1: 32.43% (8.0s)
+  glass_blur sev=2: 16.45% (9.4s)
+  glass_blur sev=3: 10.51% (8.5s)
+  glass_blur sev=4: 7.79% (9.7s)
+  glass_blur sev=5: 6.02% (7.9s)
+  glass_blur mean: 14.64%
+  motion_blur sev=1: 42.18% (7.8s)
+  motion_blur sev=2: 26.38% (8.5s)
+  motion_blur sev=3: 14.81% (8.5s)
+  motion_blur sev=4: 9.23% (9.0s)
+  motion_blur sev=5: 7.30% (7.7s)
+  motion_blur mean: 19.98%
+  zoom_blur sev=1: 63.04% (8.5s)
+  zoom_blur sev=2: 59.80% (7.8s)
+  zoom_blur sev=3: 57.13% (7.7s)
+  zoom_blur sev=4: 53.15% (7.7s)
+  zoom_blur sev=5: 47.48% (7.2s)
+  zoom_blur mean: 56.12%
+  snow sev=1: 63.53% (8.7s)
+  snow sev=2: 46.12% (9.0s)
+  snow sev=3: 50.80% (6.7s)
+  snow sev=4: 41.37% (10.4s)
+  snow sev=5: 28.76% (9.2s)
+  snow mean: 46.12%
+  frost sev=1: 61.89% (7.7s)
+  frost sev=2: 50.25% (8.3s)
+  frost sev=3: 40.40% (8.0s)
+  frost sev=4: 40.00% (8.5s)
+  frost sev=5: 33.50% (9.4s)
+  frost mean: 45.21%
+  fog sev=1: 40.96% (9.3s)
+  fog sev=2: 28.77% (8.7s)
+  fog sev=3: 15.23% (9.1s)
+  fog sev=4: 10.58% (8.5s)
+  fog sev=5: 5.05% (8.8s)
+  fog mean: 20.12%
+  brightness sev=1: 71.15% (9.8s)
+  brightness sev=2: 67.13% (8.7s)
+  brightness sev=3: 61.77% (9.0s)
+  brightness sev=4: 52.26% (8.8s)
+  brightness sev=5: 40.38% (9.8s)
+  brightness mean: 58.54%
+  contrast sev=1: 61.95% (8.9s)
+  contrast sev=2: 52.47% (9.6s)
+  contrast sev=3: 32.24% (9.3s)
+  contrast sev=4: 8.05% (9.2s)
+  contrast sev=5: 3.12% (8.9s)
+  contrast mean: 31.57%
+  elastic_transform sev=1: 17.31% (9.6s)
+  elastic_transform sev=2: 13.47% (9.0s)
+  elastic_transform sev=3: 10.22% (8.7s)
+  elastic_transform sev=4: 9.04% (9.3s)
+  elastic_transform sev=5: 7.55% (9.3s)
+  elastic_transform mean: 11.52%
+  pixelate sev=1: 40.62% (8.6s)
+  pixelate sev=2: 11.47% (8.9s)
+  pixelate sev=3: 17.44% (8.9s)
+  pixelate sev=4: 8.50% (9.0s)
+  pixelate sev=5: 5.30% (9.0s)
+  pixelate mean: 16.67%
+  jpeg_compression sev=1: 44.09% (8.6s)
+  jpeg_compression sev=2: 39.33% (8.6s)
+  jpeg_compression sev=3: 34.97% (8.6s)
+  jpeg_compression sev=4: 26.87% (9.5s)
+  jpeg_compression sev=5: 19.44% (8.8s)
+  jpeg_compression mean: 32.94%
+  speckle_noise sev=1: 31.60% (7.9s)
+  speckle_noise sev=2: 19.66% (8.3s)
+  speckle_noise sev=3: 6.86% (7.8s)
+  speckle_noise sev=4: 4.81% (8.2s)
+  speckle_noise sev=5: 3.61% (9.1s)
+  speckle_noise mean: 13.31%
+  gaussian_blur sev=1: 39.27% (9.4s)
+  gaussian_blur sev=2: 10.81% (8.4s)
+  gaussian_blur sev=3: 6.91% (8.6s)
+  gaussian_blur sev=4: 5.38% (8.3s)
+  gaussian_blur sev=5: 3.93% (7.3s)
+  gaussian_blur mean: 13.26%
+  saturate sev=1: 56.60% (7.2s)
+  saturate sev=2: 42.78% (8.3s)
+  saturate sev=3: 64.14% (8.6s)
+  saturate sev=4: 39.36% (8.9s)
+  saturate sev=5: 24.34% (9.9s)
+  saturate mean: 45.44%
+  spatter sev=1: 69.46% (9.3s)
+  spatter sev=2: 66.88% (8.8s)
+  spatter sev=3: 64.50% (8.8s)
+  spatter sev=4: 61.32% (10.0s)
+  spatter sev=5: 52.30% (8.9s)
+  spatter mean: 62.89%
+
+Overall mean corruption accuracy: 28.30%
+Results saved to /root/autodl-tmp/checkpoints/spectral_optim/cifar100c_results/deit_small_muon.csv
+=== Starting deit_small_soap Wed May  6 01:31:05 CST 2026 ===
+Loaded /root/autodl-tmp/checkpoints/spectral_optim/deit_small_soap_s42_lr1e-3_best.pt (original val_acc=67.17)
+  gaussian_noise sev=1: 8.86% (9.0s)
+  gaussian_noise sev=2: 4.08% (8.6s)
+  gaussian_noise sev=3: 2.01% (8.3s)
+  gaussian_noise sev=4: 1.45% (8.7s)
+  gaussian_noise sev=5: 1.07% (9.2s)
+  gaussian_noise mean: 3.49%
+  shot_noise sev=1: 9.01% (9.4s)
+  shot_noise sev=2: 4.37% (10.0s)
+  shot_noise sev=3: 2.57% (9.7s)
+  shot_noise sev=4: 1.30% (8.9s)
+  shot_noise sev=5: 1.14% (9.1s)
+  shot_noise mean: 3.68%
+  impulse_noise sev=1: 24.09% (9.6s)
+  impulse_noise sev=2: 8.85% (9.5s)
+  impulse_noise sev=3: 3.93% (8.7s)
+  impulse_noise sev=4: 1.63% (8.5s)
+  impulse_noise sev=5: 1.02% (9.0s)
+  impulse_noise mean: 7.90%
+  defocus_blur sev=1: 13.72% (9.2s)
+  defocus_blur sev=2: 9.71% (9.1s)
+  defocus_blur sev=3: 6.22% (9.3s)
+  defocus_blur sev=4: 4.65% (9.9s)
+  defocus_blur sev=5: 3.52% (10.1s)
+  defocus_blur mean: 7.56%
+  glass_blur sev=1: 27.75% (8.9s)
+  glass_blur sev=2: 16.24% (10.0s)
+  glass_blur sev=3: 11.43% (8.3s)
+  glass_blur sev=4: 8.97% (8.3s)
+  glass_blur sev=5: 6.15% (9.9s)
+  glass_blur mean: 14.11%
+  motion_blur sev=1: 35.17% (8.4s)
+  motion_blur sev=2: 21.46% (9.1s)
+  motion_blur sev=3: 12.33% (8.6s)
+  motion_blur sev=4: 8.15% (9.6s)
+  motion_blur sev=5: 6.11% (8.5s)
+  motion_blur mean: 16.64%
+  zoom_blur sev=1: 55.14% (8.6s)
+  zoom_blur sev=2: 51.56% (8.9s)
+  zoom_blur sev=3: 48.70% (9.1s)
+  zoom_blur sev=4: 45.11% (10.6s)
+  zoom_blur sev=5: 40.29% (10.1s)
+  zoom_blur mean: 48.16%
+  snow sev=1: 53.75% (10.5s)
+  snow sev=2: 31.23% (8.2s)
+  snow sev=3: 36.53% (8.7s)
+  snow sev=4: 26.98% (9.2s)
+  snow sev=5: 15.12% (9.3s)
+  snow mean: 32.72%
+  frost sev=1: 49.37% (8.7s)
+  frost sev=2: 34.40% (8.8s)
+  frost sev=3: 25.64% (9.8s)
+  frost sev=4: 25.59% (9.0s)
+  frost sev=5: 20.13% (8.6s)
+  frost mean: 31.03%
+  fog sev=1: 25.39% (8.6s)
+  fog sev=2: 15.58% (8.9s)
+  fog sev=3: 8.50% (9.5s)
+  fog sev=4: 5.80% (8.8s)
+  fog sev=5: 2.96% (9.6s)
+  fog mean: 11.65%
+  brightness sev=1: 64.79% (8.7s)
+  brightness sev=2: 58.35% (9.5s)
+  brightness sev=3: 48.44% (8.9s)
+  brightness sev=4: 36.29% (9.0s)
+  brightness sev=5: 25.20% (9.4s)
+  brightness mean: 46.61%
+  contrast sev=1: 35.33% (8.7s)
+  contrast sev=2: 19.23% (8.1s)
+  contrast sev=3: 8.09% (8.3s)
+  contrast sev=4: 2.14% (8.9s)
+  contrast sev=5: 1.60% (8.8s)
+  contrast mean: 13.28%
+  elastic_transform sev=1: 16.00% (9.2s)
+  elastic_transform sev=2: 11.97% (9.1s)
+  elastic_transform sev=3: 9.31% (9.1s)
+  elastic_transform sev=4: 7.90% (9.6s)
+  elastic_transform sev=5: 6.89% (8.9s)
+  elastic_transform mean: 10.41%
+  pixelate sev=1: 45.25% (8.8s)
+  pixelate sev=2: 24.96% (9.8s)
+  pixelate sev=3: 25.09% (9.3s)
+  pixelate sev=4: 13.56% (8.5s)
+  pixelate sev=5: 9.39% (9.0s)
+  pixelate mean: 23.65%
+  jpeg_compression sev=1: 40.80% (8.6s)
+  jpeg_compression sev=2: 35.86% (9.0s)
+  jpeg_compression sev=3: 32.72% (8.8s)
+  jpeg_compression sev=4: 25.80% (9.3s)
+  jpeg_compression sev=5: 20.33% (9.3s)
+  jpeg_compression mean: 31.10%
+  speckle_noise sev=1: 13.51% (10.0s)
+  speckle_noise sev=2: 8.86% (9.8s)
+  speckle_noise sev=3: 3.92% (9.1s)
+  speckle_noise sev=4: 2.66% (9.2s)
+  speckle_noise sev=5: 2.00% (9.2s)
+  speckle_noise mean: 6.19%
+  gaussian_blur sev=1: 30.37% (9.1s)
+  gaussian_blur sev=2: 10.99% (8.4s)
+  gaussian_blur sev=3: 7.32% (6.9s)
+  gaussian_blur sev=4: 5.50% (8.3s)
+  gaussian_blur sev=5: 3.70% (7.5s)
+  gaussian_blur mean: 11.58%
+  saturate sev=1: 47.10% (7.7s)
+  saturate sev=2: 35.37% (8.5s)
+  saturate sev=3: 53.60% (8.0s)
+  saturate sev=4: 24.00% (8.1s)
+  saturate sev=5: 14.18% (7.5s)
+  saturate mean: 34.85%
+  spatter sev=1: 63.71% (7.6s)
+  spatter sev=2: 59.80% (7.7s)
+  spatter sev=3: 56.44% (8.0s)
+  spatter sev=4: 48.00% (7.8s)
+  spatter sev=5: 38.86% (7.9s)
+  spatter mean: 53.36%
+
+Overall mean corruption accuracy: 21.47%
+Results saved to /root/autodl-tmp/checkpoints/spectral_optim/cifar100c_results/deit_small_soap.csv
+=== Starting resnet50_ln_muon Wed May  6 01:45:20 CST 2026 ===
+Loaded /root/autodl-tmp/checkpoints/spectral_optim/resnet50_ln_muon_s42_best.pt (original val_acc=78.31)
+  gaussian_noise sev=1: 13.45% (8.5s)
+  gaussian_noise sev=2: 4.99% (8.9s)
+  gaussian_noise sev=3: 2.20% (9.3s)
+  gaussian_noise sev=4: 1.45% (8.7s)
+  gaussian_noise sev=5: 1.29% (10.1s)
+  gaussian_noise mean: 4.68%
+  shot_noise sev=1: 11.45% (9.4s)
+  shot_noise sev=2: 3.70% (6.2s)
+  shot_noise sev=3: 1.97% (6.1s)
+  shot_noise sev=4: 1.49% (6.0s)
+  shot_noise sev=5: 1.38% (6.1s)
+  shot_noise mean: 4.00%
+  impulse_noise sev=1: 13.36% (6.2s)
+  impulse_noise sev=2: 4.83% (6.2s)
+  impulse_noise sev=3: 2.36% (6.2s)
+  impulse_noise sev=4: 1.36% (6.2s)
+  impulse_noise sev=5: 1.28% (6.3s)
+  impulse_noise mean: 4.64%
+  defocus_blur sev=1: 13.63% (6.3s)
+  defocus_blur sev=2: 7.51% (6.3s)
+  defocus_blur sev=3: 4.61% (6.3s)
+  defocus_blur sev=4: 3.28% (6.3s)
+  defocus_blur sev=5: 2.69% (6.3s)
+  defocus_blur mean: 6.34%
+  glass_blur sev=1: 24.37% (6.3s)
+  glass_blur sev=2: 10.49% (6.3s)
+  glass_blur sev=3: 5.19% (6.2s)
+  glass_blur sev=4: 3.79% (6.2s)
+  glass_blur sev=5: 3.18% (6.2s)
+  glass_blur mean: 9.40%
+  motion_blur sev=1: 43.58% (6.2s)
+  motion_blur sev=2: 25.90% (6.2s)
+  motion_blur sev=3: 15.04% (6.2s)
+  motion_blur sev=4: 9.38% (6.2s)
+  motion_blur sev=5: 7.68% (6.3s)
+  motion_blur mean: 20.32%
+  zoom_blur sev=1: 66.91% (6.4s)
+  zoom_blur sev=2: 62.07% (6.3s)
+  zoom_blur sev=3: 59.41% (6.3s)
+  zoom_blur sev=4: 54.52% (6.3s)
+  zoom_blur sev=5: 48.94% (6.3s)
+  zoom_blur mean: 58.37%
+  snow sev=1: 66.49% (6.3s)
+  snow sev=2: 44.49% (6.3s)
+  snow sev=3: 52.17% (6.2s)
+  snow sev=4: 41.06% (6.2s)
+  snow sev=5: 27.50% (6.2s)
+  snow mean: 46.34%
+  frost sev=1: 66.94% (6.2s)
+  frost sev=2: 52.37% (6.2s)
+  frost sev=3: 41.77% (6.2s)
+  frost sev=4: 40.61% (6.2s)
+  frost sev=5: 33.81% (6.2s)
+  frost mean: 47.10%
+  fog sev=1: 55.24% (6.2s)
+  fog sev=2: 41.72% (6.2s)
+  fog sev=3: 18.83% (6.2s)
+  fog sev=4: 7.40% (6.2s)
+  fog sev=5: 2.94% (6.3s)
+  fog mean: 25.23%
+  brightness sev=1: 77.20% (6.3s)
+  brightness sev=2: 73.54% (6.2s)
+  brightness sev=3: 67.52% (6.2s)
+  brightness sev=4: 58.13% (6.2s)
+  brightness sev=5: 46.96% (6.2s)
+  brightness mean: 64.67%
+  contrast sev=1: 73.51% (6.2s)
+  contrast sev=2: 69.17% (6.1s)
+  contrast sev=3: 59.53% (6.2s)
+  contrast sev=4: 36.94% (6.2s)
+  contrast sev=5: 17.77% (6.2s)
+  contrast mean: 51.38%
+  elastic_transform sev=1: 10.62% (6.2s)
+  elastic_transform sev=2: 7.60% (6.1s)
+  elastic_transform sev=3: 5.36% (6.1s)
+  elastic_transform sev=4: 4.46% (6.1s)
+  elastic_transform sev=5: 3.50% (6.1s)
+  elastic_transform mean: 6.31%
+  pixelate sev=1: 24.68% (6.2s)
+  pixelate sev=2: 15.86% (6.2s)
+  pixelate sev=3: 9.50% (6.2s)
+  pixelate sev=4: 6.15% (6.3s)
+  pixelate sev=5: 4.53% (6.3s)
+  pixelate mean: 12.14%
+  jpeg_compression sev=1: 38.62% (6.3s)
+  jpeg_compression sev=2: 30.40% (6.2s)
+  jpeg_compression sev=3: 25.52% (6.3s)
+  jpeg_compression sev=4: 16.08% (6.3s)
+  jpeg_compression sev=5: 10.20% (6.2s)
+  jpeg_compression mean: 24.16%
+  speckle_noise sev=1: 20.37% (6.2s)
+  speckle_noise sev=2: 10.89% (6.2s)
+  speckle_noise sev=3: 3.08% (6.2s)
+  speckle_noise sev=4: 2.17% (6.2s)
+  speckle_noise sev=5: 1.77% (6.2s)
+  speckle_noise mean: 7.66%
+  gaussian_blur sev=1: 33.31% (6.2s)
+  gaussian_blur sev=2: 8.87% (6.2s)
+  gaussian_blur sev=3: 4.89% (6.2s)
+  gaussian_blur sev=4: 3.48% (6.2s)
+  gaussian_blur sev=5: 2.88% (6.2s)
+  gaussian_blur mean: 10.69%
+  saturate sev=1: 66.68% (6.2s)
+  saturate sev=2: 55.53% (6.2s)
+  saturate sev=3: 72.90% (6.2s)
+  saturate sev=4: 53.80% (6.2s)
+  saturate sev=5: 41.24% (6.2s)
+  saturate mean: 58.03%
+  spatter sev=1: 74.94% (6.2s)
+  spatter sev=2: 70.76% (6.2s)
+  spatter sev=3: 65.89% (6.2s)
+  spatter sev=4: 49.52% (6.1s)
+  spatter sev=5: 38.13% (6.1s)
+  spatter mean: 59.85%
+
+Overall mean corruption accuracy: 27.44%
+Results saved to /root/autodl-tmp/checkpoints/spectral_optim/cifar100c_results/resnet50_ln_muon.csv
+=== All done Wed May  6 01:55:35 CST 2026 ===

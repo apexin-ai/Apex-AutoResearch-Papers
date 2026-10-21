@@ -1,0 +1,965 @@
+{
+  "per_config": {
+    "qwen_round_robin": {
+      "acknowledgment": {
+        "token_count": {
+          "mean": 39.184,
+          "std": 55.0415,
+          "n": 951
+        },
+        "char_count": {
+          "mean": 232.3807,
+          "std": 338.766,
+          "n": 951
+        },
+        "type_token_ratio": {
+          "mean": 0.8204,
+          "std": 0.2599,
+          "n": 951
+        },
+        "bigram_overlap": {
+          "mean": 0.7568,
+          "std": 0.3603,
+          "n": 951
+        },
+        "trigram_overlap": {
+          "mean": 0.733,
+          "std": 0.3895,
+          "n": 951
+        }
+      },
+      "verification": {
+        "token_count": {
+          "mean": 86.7358,
+          "std": 42.66,
+          "n": 106
+        },
+        "char_count": {
+          "mean": 504.4151,
+          "std": 253.1898,
+          "n": 106
+        },
+        "type_token_ratio": {
+          "mean": 0.5289,
+          "std": 0.1615,
+          "n": 106
+        },
+        "bigram_overlap": {
+          "mean": 0.8586,
+          "std": 0.1905,
+          "n": 106
+        },
+        "trigram_overlap": {
+          "mean": 0.8127,
+          "std": 0.2417,
+          "n": 106
+        }
+      },
+      "information_provision": {
+        "token_count": {
+          "mean": 99.9024,
+          "std": 45.4018,
+          "n": 82
+        },
+        "char_count": {
+          "mean": 579.2073,
+          "std": 272.6235,
+          "n": 82
+        },
+        "type_token_ratio": {
+          "mean": 0.5203,
+          "std": 0.1382,
+          "n": 82
+        },
+        "bigram_overlap": {
+          "mean": 0.2554,
+          "std": 0.2424,
+          "n": 66
+        },
+        "trigram_overlap": {
+          "mean": 0.1847,
+          "std": 0.2323,
+          "n": 66
+        }
+      },
+      "reasoning_guidance": {
+        "token_count": {
+          "mean": 59.1773,
+          "std": 33.3716,
+          "n": 361
+        },
+        "char_count": {
+          "mean": 318.7424,
+          "std": 206.5684,
+          "n": 361
+        },
+        "type_token_ratio": {
+          "mean": 0.654,
+          "std": 0.1349,
+          "n": 361
+        },
+        "bigram_overlap": {
+          "mean": 0.3491,
+          "std": 0.2982,
+          "n": 77
+        },
+        "trigram_overlap": {
+          "mean": 0.297,
+          "std": 0.3182,
+          "n": 77
+        }
+      },
+      "coordination": {
+        "token_count": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "char_count": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "type_token_ratio": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "bigram_overlap": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "trigram_overlap": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        }
+      }
+    },
+    "llama_round_robin": {
+      "acknowledgment": {
+        "token_count": {
+          "mean": 82.7254,
+          "std": 58.7674,
+          "n": 670
+        },
+        "char_count": {
+          "mean": 448.0552,
+          "std": 319.0926,
+          "n": 670
+        },
+        "type_token_ratio": {
+          "mean": 0.5951,
+          "std": 0.2226,
+          "n": 670
+        },
+        "bigram_overlap": {
+          "mean": 0.4258,
+          "std": 0.284,
+          "n": 670
+        },
+        "trigram_overlap": {
+          "mean": 0.3632,
+          "std": 0.3123,
+          "n": 670
+        }
+      },
+      "verification": {
+        "token_count": {
+          "mean": 115.75,
+          "std": 45.6352,
+          "n": 112
+        },
+        "char_count": {
+          "mean": 604.6875,
+          "std": 243.3042,
+          "n": 112
+        },
+        "type_token_ratio": {
+          "mean": 0.4219,
+          "std": 0.1007,
+          "n": 112
+        },
+        "bigram_overlap": {
+          "mean": 0.4195,
+          "std": 0.3466,
+          "n": 112
+        },
+        "trigram_overlap": {
+          "mean": 0.3686,
+          "std": 0.3762,
+          "n": 112
+        }
+      },
+      "information_provision": {
+        "token_count": {
+          "mean": 62.1458,
+          "std": 41.9857,
+          "n": 192
+        },
+        "char_count": {
+          "mean": 319.0521,
+          "std": 222.783,
+          "n": 192
+        },
+        "type_token_ratio": {
+          "mean": 0.665,
+          "std": 0.1638,
+          "n": 192
+        },
+        "bigram_overlap": {
+          "mean": 0.2347,
+          "std": 0.2581,
+          "n": 69
+        },
+        "trigram_overlap": {
+          "mean": 0.1842,
+          "std": 0.27,
+          "n": 69
+        }
+      },
+      "reasoning_guidance": {
+        "token_count": {
+          "mean": 69.1995,
+          "std": 42.166,
+          "n": 376
+        },
+        "char_count": {
+          "mean": 362.3245,
+          "std": 228.6141,
+          "n": 376
+        },
+        "type_token_ratio": {
+          "mean": 0.6239,
+          "std": 0.1978,
+          "n": 376
+        },
+        "bigram_overlap": {
+          "mean": 0.1681,
+          "std": 0.1348,
+          "n": 205
+        },
+        "trigram_overlap": {
+          "mean": 0.1053,
+          "std": 0.1372,
+          "n": 205
+        }
+      },
+      "coordination": {
+        "token_count": {
+          "mean": 37.4,
+          "std": 12.7737,
+          "n": 120
+        },
+        "char_count": {
+          "mean": 185.7583,
+          "std": 74.2951,
+          "n": 120
+        },
+        "type_token_ratio": {
+          "mean": 0.845,
+          "std": 0.0581,
+          "n": 120
+        },
+        "bigram_overlap": {
+          "mean": 0.1046,
+          "std": 0.1288,
+          "n": 120
+        },
+        "trigram_overlap": {
+          "mean": 0.0643,
+          "std": 0.1148,
+          "n": 120
+        }
+      }
+    },
+    "gemma_round_robin": {
+      "acknowledgment": {
+        "token_count": {
+          "mean": 51.0909,
+          "std": 45.2779,
+          "n": 11
+        },
+        "char_count": {
+          "mean": 293.0,
+          "std": 250.701,
+          "n": 11
+        },
+        "type_token_ratio": {
+          "mean": 0.7286,
+          "std": 0.23,
+          "n": 11
+        },
+        "bigram_overlap": {
+          "mean": 0.288,
+          "std": 0.2071,
+          "n": 11
+        },
+        "trigram_overlap": {
+          "mean": 0.1923,
+          "std": 0.1963,
+          "n": 11
+        }
+      },
+      "verification": {
+        "token_count": {
+          "mean": 89.0,
+          "std": 27.1846,
+          "n": 3
+        },
+        "char_count": {
+          "mean": 540.0,
+          "std": 153.7953,
+          "n": 3
+        },
+        "type_token_ratio": {
+          "mean": 0.5115,
+          "std": 0.0164,
+          "n": 3
+        },
+        "bigram_overlap": {
+          "mean": 0.1725,
+          "std": 0.1473,
+          "n": 3
+        },
+        "trigram_overlap": {
+          "mean": 0.1005,
+          "std": 0.1051,
+          "n": 3
+        }
+      },
+      "information_provision": {
+        "token_count": {
+          "mean": 58.288,
+          "std": 25.6431,
+          "n": 309
+        },
+        "char_count": {
+          "mean": 330.3948,
+          "std": 153.5799,
+          "n": 309
+        },
+        "type_token_ratio": {
+          "mean": 0.5852,
+          "std": 0.1286,
+          "n": 309
+        },
+        "bigram_overlap": {
+          "mean": 0.1145,
+          "std": 0.0702,
+          "n": 193
+        },
+        "trigram_overlap": {
+          "mean": 0.0366,
+          "std": 0.0505,
+          "n": 193
+        }
+      },
+      "reasoning_guidance": {
+        "token_count": {
+          "mean": 53.1847,
+          "std": 23.7165,
+          "n": 287
+        },
+        "char_count": {
+          "mean": 285.0836,
+          "std": 137.0818,
+          "n": 287
+        },
+        "type_token_ratio": {
+          "mean": 0.649,
+          "std": 0.1385,
+          "n": 287
+        },
+        "bigram_overlap": {
+          "mean": 0.1168,
+          "std": 0.0662,
+          "n": 103
+        },
+        "trigram_overlap": {
+          "mean": 0.0454,
+          "std": 0.0508,
+          "n": 103
+        }
+      },
+      "coordination": {
+        "token_count": {
+          "mean": 30.7143,
+          "std": 14.5913,
+          "n": 7
+        },
+        "char_count": {
+          "mean": 157.0,
+          "std": 79.097,
+          "n": 7
+        },
+        "type_token_ratio": {
+          "mean": 0.8519,
+          "std": 0.0548,
+          "n": 7
+        },
+        "bigram_overlap": {
+          "mean": 0.1784,
+          "std": 0.2366,
+          "n": 7
+        },
+        "trigram_overlap": {
+          "mean": 0.1214,
+          "std": 0.1748,
+          "n": 7
+        }
+      }
+    }
+  },
+  "per_backbone": {
+    "qwen": {
+      "acknowledgment": {
+        "token_count": {
+          "mean": 39.184,
+          "std": 55.0415,
+          "n": 951
+        },
+        "char_count": {
+          "mean": 232.3807,
+          "std": 338.766,
+          "n": 951
+        },
+        "type_token_ratio": {
+          "mean": 0.8204,
+          "std": 0.2599,
+          "n": 951
+        },
+        "bigram_overlap": {
+          "mean": 0.7568,
+          "std": 0.3603,
+          "n": 951
+        },
+        "trigram_overlap": {
+          "mean": 0.733,
+          "std": 0.3895,
+          "n": 951
+        }
+      },
+      "verification": {
+        "token_count": {
+          "mean": 86.7358,
+          "std": 42.66,
+          "n": 106
+        },
+        "char_count": {
+          "mean": 504.4151,
+          "std": 253.1898,
+          "n": 106
+        },
+        "type_token_ratio": {
+          "mean": 0.5289,
+          "std": 0.1615,
+          "n": 106
+        },
+        "bigram_overlap": {
+          "mean": 0.8586,
+          "std": 0.1905,
+          "n": 106
+        },
+        "trigram_overlap": {
+          "mean": 0.8127,
+          "std": 0.2417,
+          "n": 106
+        }
+      },
+      "information_provision": {
+        "token_count": {
+          "mean": 99.9024,
+          "std": 45.4018,
+          "n": 82
+        },
+        "char_count": {
+          "mean": 579.2073,
+          "std": 272.6235,
+          "n": 82
+        },
+        "type_token_ratio": {
+          "mean": 0.5203,
+          "std": 0.1382,
+          "n": 82
+        },
+        "bigram_overlap": {
+          "mean": 0.2554,
+          "std": 0.2424,
+          "n": 66
+        },
+        "trigram_overlap": {
+          "mean": 0.1847,
+          "std": 0.2323,
+          "n": 66
+        }
+      },
+      "reasoning_guidance": {
+        "token_count": {
+          "mean": 59.1773,
+          "std": 33.3716,
+          "n": 361
+        },
+        "char_count": {
+          "mean": 318.7424,
+          "std": 206.5684,
+          "n": 361
+        },
+        "type_token_ratio": {
+          "mean": 0.654,
+          "std": 0.1349,
+          "n": 361
+        },
+        "bigram_overlap": {
+          "mean": 0.3491,
+          "std": 0.2982,
+          "n": 77
+        },
+        "trigram_overlap": {
+          "mean": 0.297,
+          "std": 0.3182,
+          "n": 77
+        }
+      },
+      "coordination": {
+        "token_count": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "char_count": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "type_token_ratio": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "bigram_overlap": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        },
+        "trigram_overlap": {
+          "mean": null,
+          "std": null,
+          "n": 0
+        }
+      }
+    },
+    "llama": {
+      "acknowledgment": {
+        "token_count": {
+          "mean": 82.7254,
+          "std": 58.7674,
+          "n": 670
+        },
+        "char_count": {
+          "mean": 448.0552,
+          "std": 319.0926,
+          "n": 670
+        },
+        "type_token_ratio": {
+          "mean": 0.5951,
+          "std": 0.2226,
+          "n": 670
+        },
+        "bigram_overlap": {
+          "mean": 0.4258,
+          "std": 0.284,
+          "n": 670
+        },
+        "trigram_overlap": {
+          "mean": 0.3632,
+          "std": 0.3123,
+          "n": 670
+        }
+      },
+      "verification": {
+        "token_count": {
+          "mean": 115.75,
+          "std": 45.6352,
+          "n": 112
+        },
+        "char_count": {
+          "mean": 604.6875,
+          "std": 243.3042,
+          "n": 112
+        },
+        "type_token_ratio": {
+          "mean": 0.4219,
+          "std": 0.1007,
+          "n": 112
+        },
+        "bigram_overlap": {
+          "mean": 0.4195,
+          "std": 0.3466,
+          "n": 112
+        },
+        "trigram_overlap": {
+          "mean": 0.3686,
+          "std": 0.3762,
+          "n": 112
+        }
+      },
+      "information_provision": {
+        "token_count": {
+          "mean": 62.1458,
+          "std": 41.9857,
+          "n": 192
+        },
+        "char_count": {
+          "mean": 319.0521,
+          "std": 222.783,
+          "n": 192
+        },
+        "type_token_ratio": {
+          "mean": 0.665,
+          "std": 0.1638,
+          "n": 192
+        },
+        "bigram_overlap": {
+          "mean": 0.2347,
+          "std": 0.2581,
+          "n": 69
+        },
+        "trigram_overlap": {
+          "mean": 0.1842,
+          "std": 0.27,
+          "n": 69
+        }
+      },
+      "reasoning_guidance": {
+        "token_count": {
+          "mean": 69.1995,
+          "std": 42.166,
+          "n": 376
+        },
+        "char_count": {
+          "mean": 362.3245,
+          "std": 228.6141,
+          "n": 376
+        },
+        "type_token_ratio": {
+          "mean": 0.6239,
+          "std": 0.1978,
+          "n": 376
+        },
+        "bigram_overlap": {
+          "mean": 0.1681,
+          "std": 0.1348,
+          "n": 205
+        },
+        "trigram_overlap": {
+          "mean": 0.1053,
+          "std": 0.1372,
+          "n": 205
+        }
+      },
+      "coordination": {
+        "token_count": {
+          "mean": 37.4,
+          "std": 12.7737,
+          "n": 120
+        },
+        "char_count": {
+          "mean": 185.7583,
+          "std": 74.2951,
+          "n": 120
+        },
+        "type_token_ratio": {
+          "mean": 0.845,
+          "std": 0.0581,
+          "n": 120
+        },
+        "bigram_overlap": {
+          "mean": 0.1046,
+          "std": 0.1288,
+          "n": 120
+        },
+        "trigram_overlap": {
+          "mean": 0.0643,
+          "std": 0.1148,
+          "n": 120
+        }
+      }
+    },
+    "gemma": {
+      "acknowledgment": {
+        "token_count": {
+          "mean": 51.0909,
+          "std": 45.2779,
+          "n": 11
+        },
+        "char_count": {
+          "mean": 293.0,
+          "std": 250.701,
+          "n": 11
+        },
+        "type_token_ratio": {
+          "mean": 0.7286,
+          "std": 0.23,
+          "n": 11
+        },
+        "bigram_overlap": {
+          "mean": 0.288,
+          "std": 0.2071,
+          "n": 11
+        },
+        "trigram_overlap": {
+          "mean": 0.1923,
+          "std": 0.1963,
+          "n": 11
+        }
+      },
+      "verification": {
+        "token_count": {
+          "mean": 89.0,
+          "std": 27.1846,
+          "n": 3
+        },
+        "char_count": {
+          "mean": 540.0,
+          "std": 153.7953,
+          "n": 3
+        },
+        "type_token_ratio": {
+          "mean": 0.5115,
+          "std": 0.0164,
+          "n": 3
+        },
+        "bigram_overlap": {
+          "mean": 0.1725,
+          "std": 0.1473,
+          "n": 3
+        },
+        "trigram_overlap": {
+          "mean": 0.1005,
+          "std": 0.1051,
+          "n": 3
+        }
+      },
+      "information_provision": {
+        "token_count": {
+          "mean": 58.288,
+          "std": 25.6431,
+          "n": 309
+        },
+        "char_count": {
+          "mean": 330.3948,
+          "std": 153.5799,
+          "n": 309
+        },
+        "type_token_ratio": {
+          "mean": 0.5852,
+          "std": 0.1286,
+          "n": 309
+        },
+        "bigram_overlap": {
+          "mean": 0.1145,
+          "std": 0.0702,
+          "n": 193
+        },
+        "trigram_overlap": {
+          "mean": 0.0366,
+          "std": 0.0505,
+          "n": 193
+        }
+      },
+      "reasoning_guidance": {
+        "token_count": {
+          "mean": 53.1847,
+          "std": 23.7165,
+          "n": 287
+        },
+        "char_count": {
+          "mean": 285.0836,
+          "std": 137.0818,
+          "n": 287
+        },
+        "type_token_ratio": {
+          "mean": 0.649,
+          "std": 0.1385,
+          "n": 287
+        },
+        "bigram_overlap": {
+          "mean": 0.1168,
+          "std": 0.0662,
+          "n": 103
+        },
+        "trigram_overlap": {
+          "mean": 0.0454,
+          "std": 0.0508,
+          "n": 103
+        }
+      },
+      "coordination": {
+        "token_count": {
+          "mean": 30.7143,
+          "std": 14.5913,
+          "n": 7
+        },
+        "char_count": {
+          "mean": 157.0,
+          "std": 79.097,
+          "n": 7
+        },
+        "type_token_ratio": {
+          "mean": 0.8519,
+          "std": 0.0548,
+          "n": 7
+        },
+        "bigram_overlap": {
+          "mean": 0.1784,
+          "std": 0.2366,
+          "n": 7
+        },
+        "trigram_overlap": {
+          "mean": 0.1214,
+          "std": 0.1748,
+          "n": 7
+        }
+      }
+    }
+  },
+  "grand_aggregate": {
+    "acknowledgment": {
+      "token_count": {
+        "mean": 57.1397,
+        "std": 60.4229,
+        "n": 1632
+      },
+      "char_count": {
+        "mean": 321.3321,
+        "std": 346.7138,
+        "n": 1632
+      },
+      "type_token_ratio": {
+        "mean": 0.7273,
+        "std": 0.2687,
+        "n": 1632
+      },
+      "bigram_overlap": {
+        "mean": 0.6178,
+        "std": 0.3689,
+        "n": 1632
+      },
+      "trigram_overlap": {
+        "mean": 0.5775,
+        "std": 0.4032,
+        "n": 1632
+      }
+    },
+    "verification": {
+      "token_count": {
+        "mean": 101.4706,
+        "std": 46.2231,
+        "n": 221
+      },
+      "char_count": {
+        "mean": 555.7149,
+        "std": 251.3374,
+        "n": 221
+      },
+      "type_token_ratio": {
+        "mean": 0.4745,
+        "std": 0.1429,
+        "n": 221
+      },
+      "bigram_overlap": {
+        "mean": 0.6268,
+        "std": 0.3587,
+        "n": 221
+      },
+      "trigram_overlap": {
+        "mean": 0.5779,
+        "std": 0.3891,
+        "n": 221
+      }
+    },
+    "information_provision": {
+      "token_count": {
+        "mean": 65.4117,
+        "std": 37.5694,
+        "n": 583
+      },
+      "char_count": {
+        "mean": 361.6552,
+        "std": 216.5653,
+        "n": 583
+      },
+      "type_token_ratio": {
+        "mean": 0.6024,
+        "std": 0.1504,
+        "n": 583
+      },
+      "bigram_overlap": {
+        "mean": 0.1682,
+        "std": 0.1805,
+        "n": 328
+      },
+      "trigram_overlap": {
+        "mean": 0.0974,
+        "std": 0.1808,
+        "n": 328
+      }
+    },
+    "reasoning_guidance": {
+      "token_count": {
+        "mean": 61.1777,
+        "std": 35.2688,
+        "n": 1024
+      },
+      "char_count": {
+        "mean": 325.3115,
+        "std": 200.9995,
+        "n": 1024
+      },
+      "type_token_ratio": {
+        "mean": 0.6416,
+        "std": 0.1621,
+        "n": 1024
+      },
+      "bigram_overlap": {
+        "mean": 0.1905,
+        "std": 0.1876,
+        "n": 385
+      },
+      "trigram_overlap": {
+        "mean": 0.1276,
+        "std": 0.1964,
+        "n": 385
+      }
+    },
+    "coordination": {
+      "token_count": {
+        "mean": 37.0315,
+        "std": 12.9068,
+        "n": 127
+      },
+      "char_count": {
+        "mean": 184.1732,
+        "std": 74.5282,
+        "n": 127
+      },
+      "type_token_ratio": {
+        "mean": 0.8454,
+        "std": 0.0578,
+        "n": 127
+      },
+      "bigram_overlap": {
+        "mean": 0.1087,
+        "std": 0.1365,
+        "n": 127
+      },
+      "trigram_overlap": {
+        "mean": 0.0675,
+        "std": 0.1187,
+        "n": 127
+      }
+    }
+  }
+}

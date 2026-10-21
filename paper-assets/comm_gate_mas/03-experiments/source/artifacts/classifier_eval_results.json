@@ -1,0 +1,42 @@
+{
+  "heuristic_qwen": {
+    "accuracy": 0.481,
+    "f1_macro": 0.4772,
+    "f1_ack": 0.4324,
+    "f1_non_ack": 0.5219,
+    "precision_ack": 0.341,
+    "recall_ack": 0.5909
+  },
+  "heuristic_llama": {
+    "accuracy": 0.4734,
+    "f1_macro": 0.463,
+    "f1_ack": 0.5376,
+    "f1_non_ack": 0.3885,
+    "precision_ack": 0.3806,
+    "recall_ack": 0.9148
+  },
+  "heuristic_combined": {
+    "accuracy": 0.4962,
+    "f1_macro": 0.491,
+    "f1_ack": 0.5423,
+    "f1_non_ack": 0.4397,
+    "precision_ack": 0.3896,
+    "recall_ack": 0.892
+  },
+  "tfidf_lr": {
+    "accuracy": 0.8745,
+    "f1_macro": 0.8587,
+    "f1_ack": 0.8114,
+    "f1_non_ack": 0.906,
+    "precision_ack": 0.8161,
+    "recall_ack": 0.8068
+  },
+  "distilbert": {
+    "accuracy": 0.884,
+    "f1_macro": 0.871,
+    "f1_ack": 0.8301,
+    "f1_non_ack": 0.912,
+    "precision_ack": 0.8142,
+    "recall_ack": 0.8466
+  }
+}

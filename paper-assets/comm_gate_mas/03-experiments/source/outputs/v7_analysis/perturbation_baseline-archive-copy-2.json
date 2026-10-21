@@ -1,0 +1,266 @@
+{
+  "qwen_round_robin": {
+    "combo": "qwen_round_robin",
+    "n_tasks": 300,
+    "n_tasks_with_ack_in_impact_range": 232,
+    "n_correct_baseline": 269,
+    "baseline_accuracy": 0.8967,
+    "k_distribution": {
+      "1": 62,
+      "0": 68,
+      "2": 122,
+      "3": 48
+    },
+    "strategies": {
+      "ack_only": {
+        "accuracy": 0.8067,
+        "delta_vs_baseline_pp": -9.0,
+        "n_at_risk": 27,
+        "accuracy_risk_pct": 10.04,
+        "mean_sim_remove": 0.3518,
+        "std_sim_remove": 0.1358,
+        "func_type_distribution": {
+          "acknowledgment": 1.0
+        },
+        "func_type_counts": {
+          "acknowledgment": 450
+        },
+        "n_messages_selected": 450
+      },
+      "perturbation_guided": {
+        "accuracy": 0.82,
+        "delta_vs_baseline_pp": -7.67,
+        "n_at_risk": 23,
+        "accuracy_risk_pct": 8.55,
+        "mean_sim_remove": 0.3955,
+        "std_sim_remove": 0.165,
+        "func_type_distribution": {
+          "acknowledgment": 0.6933,
+          "information_provision": 0.2333,
+          "reasoning_guidance": 0.0667,
+          "verification": 0.0044,
+          "coordination": 0.0022
+        },
+        "func_type_counts": {
+          "reasoning_guidance": 30,
+          "acknowledgment": 312,
+          "information_provision": 105,
+          "verification": 2,
+          "coordination": 1
+        },
+        "n_messages_selected": 450
+      },
+      "random": {
+        "accuracy_mean": 0.8159,
+        "accuracy_std": 0.0233,
+        "delta_vs_baseline_pp": -8.08,
+        "n_at_risk_mean": 24.24,
+        "accuracy_risk_pct_mean": 9.01,
+        "func_type_distribution": {
+          "acknowledgment": 0.7143,
+          "information_provision": 0.2188,
+          "reasoning_guidance": 0.0402,
+          "verification": 0.0246,
+          "coordination": 0.0022
+        },
+        "n_trials": 100
+      }
+    },
+    "mcnemar_p_values": {
+      "perturbation_vs_ack_only": 0.288844,
+      "perturbation_vs_random": 0.288844,
+      "ack_only_vs_random": 0.4795
+    },
+    "per_functype_diagnostics": {
+      "acknowledgment": {
+        "n": 450,
+        "sim_remove_mean": 0.3518,
+        "sim_remove_std": 0.1358,
+        "final_answer_risk_pct": 8.7,
+        "action_level_counts": {
+          "reasoning_step": 410,
+          "final_answer": 39,
+          "surface_only": 1
+        }
+      },
+      "coordination": {
+        "n": 5,
+        "sim_remove_mean": 0.3365,
+        "sim_remove_std": 0.0414,
+        "final_answer_risk_pct": 20.0,
+        "action_level_counts": {
+          "reasoning_step": 4,
+          "final_answer": 1
+        }
+      },
+      "information_provision": {
+        "n": 177,
+        "sim_remove_mean": 0.4096,
+        "sim_remove_std": 0.1817,
+        "final_answer_risk_pct": 7.9,
+        "action_level_counts": {
+          "reasoning_step": 163,
+          "final_answer": 14
+        }
+      },
+      "reasoning_guidance": {
+        "n": 158,
+        "sim_remove_mean": 0.7778,
+        "sim_remove_std": 0.215,
+        "final_answer_risk_pct": 6.3,
+        "action_level_counts": {
+          "reasoning_step": 121,
+          "surface_only": 27,
+          "final_answer": 10
+        }
+      },
+      "verification": {
+        "n": 110,
+        "sim_remove_mean": 0.6158,
+        "sim_remove_std": 0.2799,
+        "final_answer_risk_pct": 7.3,
+        "action_level_counts": {
+          "reasoning_step": 91,
+          "final_answer": 8,
+          "surface_only": 11
+        }
+      }
+    },
+    "overlap_analysis": {
+      "mean_overlap_frac": 0.6013,
+      "std_overlap_frac": 0.3764,
+      "interpretation": "Fraction of perturbation-selected messages that are also ack messages"
+    }
+  },
+  "llama_round_robin": {
+    "combo": "llama_round_robin",
+    "n_tasks": 294,
+    "n_tasks_with_ack_in_impact_range": 292,
+    "n_correct_baseline": 220,
+    "baseline_accuracy": 0.7483,
+    "k_distribution": {
+      "1": 63,
+      "3": 75,
+      "2": 154,
+      "0": 2
+    },
+    "strategies": {
+      "ack_only": {
+        "accuracy": 0.4014,
+        "delta_vs_baseline_pp": -34.69,
+        "n_at_risk": 102,
+        "accuracy_risk_pct": 46.36,
+        "mean_sim_remove": 0.321,
+        "std_sim_remove": 0.1989,
+        "func_type_distribution": {
+          "acknowledgment": 1.0
+        },
+        "func_type_counts": {
+          "acknowledgment": 596
+        },
+        "n_messages_selected": 596
+      },
+      "perturbation_guided": {
+        "accuracy": 0.4116,
+        "delta_vs_baseline_pp": -33.67,
+        "n_at_risk": 99,
+        "accuracy_risk_pct": 45.0,
+        "mean_sim_remove": 0.3607,
+        "std_sim_remove": 0.2092,
+        "func_type_distribution": {
+          "acknowledgment": 0.8003,
+          "verification": 0.0839,
+          "reasoning_guidance": 0.0805,
+          "information_provision": 0.0319,
+          "coordination": 0.0034
+        },
+        "func_type_counts": {
+          "verification": 50,
+          "acknowledgment": 477,
+          "reasoning_guidance": 48,
+          "information_provision": 19,
+          "coordination": 2
+        },
+        "n_messages_selected": 596
+      },
+      "random": {
+        "accuracy_mean": 0.4654,
+        "accuracy_std": 0.0667,
+        "delta_vs_baseline_pp": -28.29,
+        "n_at_risk_mean": 83.18,
+        "accuracy_risk_pct_mean": 37.81,
+        "func_type_distribution": {
+          "acknowledgment": 0.7492,
+          "reasoning_guidance": 0.1162,
+          "verification": 0.0909,
+          "information_provision": 0.0354,
+          "coordination": 0.0084
+        },
+        "n_trials": 100
+      }
+    },
+    "mcnemar_p_values": {
+      "perturbation_vs_ack_only": 0.627626,
+      "perturbation_vs_random": 0.522431,
+      "ack_only_vs_random": 0.19043
+    },
+    "per_functype_diagnostics": {
+      "acknowledgment": {
+        "n": 596,
+        "sim_remove_mean": 0.321,
+        "sim_remove_std": 0.1989,
+        "final_answer_risk_pct": 27.0,
+        "action_level_counts": {
+          "reasoning_step": 428,
+          "final_answer": 161,
+          "surface_only": 7
+        }
+      },
+      "coordination": {
+        "n": 14,
+        "sim_remove_mean": 0.1299,
+        "sim_remove_std": 0.086,
+        "final_answer_risk_pct": 7.1,
+        "action_level_counts": {
+          "reasoning_step": 13,
+          "final_answer": 1
+        }
+      },
+      "information_provision": {
+        "n": 40,
+        "sim_remove_mean": 0.4005,
+        "sim_remove_std": 0.2925,
+        "final_answer_risk_pct": 15.0,
+        "action_level_counts": {
+          "reasoning_step": 34,
+          "final_answer": 6
+        }
+      },
+      "reasoning_guidance": {
+        "n": 123,
+        "sim_remove_mean": 0.2743,
+        "sim_remove_std": 0.2307,
+        "final_answer_risk_pct": 9.8,
+        "action_level_counts": {
+          "reasoning_step": 111,
+          "final_answer": 12
+        }
+      },
+      "verification": {
+        "n": 109,
+        "sim_remove_mean": 0.3186,
+        "sim_remove_std": 0.2159,
+        "final_answer_risk_pct": 8.3,
+        "action_level_counts": {
+          "reasoning_step": 100,
+          "final_answer": 9
+        }
+      }
+    },
+    "overlap_analysis": {
+      "mean_overlap_frac": 0.7397,
+      "std_overlap_frac": 0.3448,
+      "interpretation": "Fraction of perturbation-selected messages that are also ack messages"
+    }
+  }
+}

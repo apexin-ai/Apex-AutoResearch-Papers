@@ -1,0 +1,95 @@
+{
+  "mode": "simulate_offline_reconstructed",
+  "note": "Reconstructed from server log (per-task correctness) + local annotations. traces.jsonl unavailable \u2014 ack-only accuracy uses analytical bound (ack removal cannot change extracted answer for MCQ).",
+  "model": "google/gemma-2-9b-it",
+  "dataset": "ARC-Challenge",
+  "topology": "round_robin",
+  "N": 250,
+  "baseline": {
+    "correct": 162,
+    "total": 250,
+    "accuracy": 0.648,
+    "accuracy_pct": 64.8
+  },
+  "ack_only": {
+    "correct": 162,
+    "total": 250,
+    "accuracy": 0.648,
+    "accuracy_pct": 64.8,
+    "delta_pp": 0.0,
+    "mcnemar_b": 0,
+    "mcnemar_c": 0,
+    "mcnemar_p": 1.0,
+    "suppress_pct": 19.6,
+    "ack_messages": 245,
+    "total_messages": 1250,
+    "tasks_with_ack": 148
+  },
+  "type_distribution": {
+    "information_provision": {
+      "count": 455,
+      "pct": 36.4
+    },
+    "coordination": {
+      "count": 434,
+      "pct": 34.7
+    },
+    "acknowledgment": {
+      "count": 245,
+      "pct": 19.6
+    },
+    "reasoning_guidance": {
+      "count": 44,
+      "pct": 3.5
+    },
+    "verification": {
+      "count": 43,
+      "pct": 3.4
+    },
+    "question_provision": {
+      "count": 13,
+      "pct": 1.0
+    },
+    "question_asking": {
+      "count": 6,
+      "pct": 0.5
+    },
+    "question_presentation": {
+      "count": 6,
+      "pct": 0.5
+    },
+    "question": {
+      "count": 4,
+      "pct": 0.3
+    }
+  },
+  "fg_suppress_pct": {
+    "acknowledgment": {
+      "count": 245,
+      "suppress_pct": 19.6
+    },
+    "information_provision": {
+      "count": 455,
+      "suppress_pct": 36.4
+    },
+    "reasoning_guidance": {
+      "count": 44,
+      "suppress_pct": 3.52
+    },
+    "verification": {
+      "count": 43,
+      "suppress_pct": 3.44
+    },
+    "coordination": {
+      "count": 434,
+      "suppress_pct": 34.72
+    }
+  },
+  "comparison_qwen_arc": {
+    "note": "Reference: Qwen ARC e2e results",
+    "baseline_acc": 0.908,
+    "ack_only_acc": 0.916,
+    "delta_pp": 0.8,
+    "suppress_pct": 14.6
+  }
+}

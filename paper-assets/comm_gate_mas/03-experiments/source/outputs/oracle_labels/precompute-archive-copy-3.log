@@ -1,0 +1,98 @@
+2026-04-27 03:11:58,847 INFO Loaded 297 tasks from outputs/oracle_labels/llama_n300_traces.jsonl
+2026-04-27 03:11:58,849 INFO Messages: 1782 total, 0 cached, 1782 pending
+2026-04-27 03:11:59,342 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:11:59,343 INFO Retrying request to /chat/completions in 0.488560 seconds
+2026-04-27 03:12:00,220 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:12:00,220 INFO Retrying request to /chat/completions in 0.841242 seconds
+2026-04-27 03:12:01,223 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:12:01,226 WARNING Rate limit hit (attempt 1) for gsm8k_0000, backing off 30s
+2026-04-27 03:12:31,472 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:12:31,473 INFO Retrying request to /chat/completions in 0.411891 seconds
+2026-04-27 03:12:32,216 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:12:32,217 INFO Retrying request to /chat/completions in 0.805788 seconds
+2026-04-27 03:12:33,178 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:12:33,179 WARNING Rate limit hit (attempt 2) for gsm8k_0000, backing off 60s
+2026-04-27 03:13:33,533 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:13:33,533 INFO Retrying request to /chat/completions in 0.406528 seconds
+2026-04-27 03:13:34,093 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:13:34,094 INFO Retrying request to /chat/completions in 0.912218 seconds
+2026-04-27 03:13:35,104 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:13:35,104 WARNING Rate limit hit (attempt 3) for gsm8k_0000, backing off 120s
+2026-04-27 03:15:35,628 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:15:35,628 INFO Retrying request to /chat/completions in 0.417512 seconds
+2026-04-27 03:15:36,472 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:15:36,473 INFO Retrying request to /chat/completions in 0.939803 seconds
+2026-04-27 03:15:37,721 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:15:37,723 WARNING Rate limit hit (attempt 4) for gsm8k_0000, backing off 240s
+2026-04-27 03:19:38,084 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:19:38,085 INFO Retrying request to /chat/completions in 0.456874 seconds
+2026-04-27 03:19:38,691 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:19:38,691 INFO Retrying request to /chat/completions in 0.754462 seconds
+2026-04-27 03:19:39,676 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:19:39,678 WARNING Rate limit hit (attempt 5) for gsm8k_0000, backing off 240s
+2026-04-27 03:23:40,204 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:23:40,204 INFO Retrying request to /chat/completions in 0.443423 seconds
+2026-04-27 03:23:40,843 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:23:40,844 INFO Retrying request to /chat/completions in 0.805393 seconds
+2026-04-27 03:23:41,782 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:23:41,783 WARNING Rate limit hit (attempt 6) for gsm8k_0000, backing off 240s
+2026-04-27 03:27:44,767 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:27:44,768 INFO Retrying request to /chat/completions in 0.393918 seconds
+2026-04-27 03:27:45,516 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:27:45,517 INFO Retrying request to /chat/completions in 0.832109 seconds
+2026-04-27 03:27:46,620 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:27:46,621 WARNING Rate limit hit (attempt 1) for gsm8k_0000, backing off 30s
+2026-04-27 03:28:16,846 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:28:16,846 INFO Retrying request to /chat/completions in 0.390309 seconds
+2026-04-27 03:28:17,385 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:28:17,385 INFO Retrying request to /chat/completions in 0.993694 seconds
+2026-04-27 03:28:18,522 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:28:18,523 WARNING Rate limit hit (attempt 2) for gsm8k_0000, backing off 60s
+2026-04-27 03:29:18,869 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:29:18,870 INFO Retrying request to /chat/completions in 0.462597 seconds
+2026-04-27 03:29:19,499 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:29:19,500 INFO Retrying request to /chat/completions in 0.842134 seconds
+2026-04-27 03:29:20,686 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:29:20,688 WARNING Rate limit hit (attempt 3) for gsm8k_0000, backing off 120s
+2026-04-27 03:31:20,969 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:31:20,970 INFO Retrying request to /chat/completions in 0.499954 seconds
+2026-04-27 03:31:21,609 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:31:21,609 INFO Retrying request to /chat/completions in 0.791768 seconds
+2026-04-27 03:31:22,544 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:31:22,546 WARNING Rate limit hit (attempt 4) for gsm8k_0000, backing off 240s
+2026-04-27 03:35:23,175 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:35:23,175 INFO Retrying request to /chat/completions in 0.461885 seconds
+2026-04-27 03:35:23,786 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:35:23,786 INFO Retrying request to /chat/completions in 0.783928 seconds
+2026-04-27 03:35:24,913 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:35:24,914 WARNING Rate limit hit (attempt 5) for gsm8k_0000, backing off 240s
+2026-04-27 03:39:25,766 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:39:25,767 INFO Retrying request to /chat/completions in 0.476495 seconds
+2026-04-27 03:39:26,394 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:39:26,394 INFO Retrying request to /chat/completions in 0.958128 seconds
+2026-04-27 03:39:27,484 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:39:27,484 WARNING Rate limit hit (attempt 6) for gsm8k_0000, backing off 240s
+2026-04-27 03:43:30,403 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:43:30,403 INFO Retrying request to /chat/completions in 0.456902 seconds
+2026-04-27 03:43:30,977 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:43:30,977 INFO Retrying request to /chat/completions in 0.836965 seconds
+2026-04-27 03:43:31,937 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:43:31,940 WARNING Rate limit hit (attempt 1) for gsm8k_0000, backing off 30s
+2026-04-27 03:44:02,140 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:44:02,142 INFO Retrying request to /chat/completions in 0.448662 seconds
+2026-04-27 03:44:02,988 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:44:02,989 INFO Retrying request to /chat/completions in 0.807257 seconds
+2026-04-27 03:44:04,152 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:44:04,153 WARNING Rate limit hit (attempt 2) for gsm8k_0000, backing off 60s
+2026-04-27 03:45:04,497 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:45:04,498 INFO Retrying request to /chat/completions in 0.427014 seconds
+2026-04-27 03:45:05,119 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:45:05,121 INFO Retrying request to /chat/completions in 0.824680 seconds
+2026-04-27 03:45:06,087 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:45:06,089 WARNING Rate limit hit (attempt 3) for gsm8k_0000, backing off 120s
+2026-04-27 03:47:06,845 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:47:06,846 INFO Retrying request to /chat/completions in 0.381423 seconds
+2026-04-27 03:47:07,358 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:47:07,359 INFO Retrying request to /chat/completions in 0.884488 seconds
+2026-04-27 03:47:08,377 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-27 03:47:08,378 WARNING Rate limit hit (attempt 4) for gsm8k_0000, backing off 240s

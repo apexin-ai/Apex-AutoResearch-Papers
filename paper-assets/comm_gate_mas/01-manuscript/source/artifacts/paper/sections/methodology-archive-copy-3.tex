@@ -1,0 +1,89 @@
+\begin{figure}[t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\definecolor{pipegray}{HTML}{333333}%
+\definecolor{pipefill}{HTML}{F5F5F5}%
+\begin{tikzpicture}[
+  stepbox/.style={
+    rectangle, rounded corners=4pt, draw=pipegray,
+    minimum width=2.4cm, minimum height=1.5cm,
+    text centered, text width=2.2cm,
+    font=\small
+  },
+  arrow/.style={-{Stealth[length=2.5mm]}, thick, black!60},
+  seclabel/.style={font=\footnotesize, pipegray},
+  flowlabel/.style={font=\tiny, fill=white, inner sep=0.5pt}
+]
+
+% Step boxes
+\node[stepbox, fill=pipefill] (trace)
+  {\textbf{Trace Collection}\\[2pt]{\footnotesize 3 backbones $\times$ 4 domains}};
+
+\node[stepbox, fill=pipefill, right=1.7cm of trace] (taxonomy)
+  {\textbf{Function Taxonomy}\\[2pt]{\footnotesize GPT-4o 5-class, $\kappa{=}0.721$}};
+
+\node[stepbox, fill=pipefill, right=1.7cm of taxonomy] (perturb)
+  {\textbf{Perturbation Analysis}\\[2pt]{\footnotesize inject / remove / control}};
+
+\node[stepbox, fill=pipefill, right=1.7cm of perturb] (prune)
+  {\textbf{Online Pruning}\\[2pt]{\footnotesize heuristic + DistilBERT}};
+
+\node[stepbox, fill=pipefill, right=1.7cm of prune] (eval)
+  {\textbf{Statistical Evaluation}\\[2pt]{\footnotesize bootstrap CI, TOST}};
+
+% Section references above boxes
+\node[seclabel, above=4pt of trace] {\S\ref{sec:cross_domain_design}};
+\node[seclabel, above=4pt of taxonomy] {\S\ref{sec:taxonomy}};
+\node[seclabel, above=4pt of perturb] {\S\ref{sec:perturbation}};
+\node[seclabel, above=4pt of prune] {\S\ref{sec:pruning_protocol}};
+\node[seclabel, above=4pt of eval] {\S\ref{sec:statistical_framework}};
+
+% Arrows with data-flow labels
+\draw[arrow] (trace) -- (taxonomy) node[flowlabel, midway, above=3pt] {1{,}247 msgs};
+\draw[arrow] (taxonomy) -- (perturb) node[flowlabel, midway, above=3pt] {5 types};
+\draw[arrow] (perturb) -- (prune) node[flowlabel, midway, above=3pt] {impact scores};
+\draw[arrow] (prune) -- (eval) node[flowlabel, midway, above=3pt] {pruning runs};
+
+\end{tikzpicture}%
+}
+\caption{Experimental pipeline. Multi-agent conversations (2{+}1 backbones $\times$ 4 domains, 18 configurations) are annotated into a 5-class taxonomy (cross-model $\kappa{=}0.721$), subjected to single-message perturbation analysis (remove and neutralize ablation), then pruned online under oracle or heuristic detection, and evaluated via McNemar exact tests and TOST equivalence.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Annotation Protocol}
+\label{sec:methodology}
+\label{sec:taxonomy_method}
+
+The annotation pipeline (Figure~\ref{fig:pipeline}) assigns exactly one function type per message using the cross-model protocol and constrained decoding described in \S\ref{sec:taxonomy}. Our core claims depend on the ack/non-ack binary distinction (cross-model pipeline $\kappa{=}0.721$~\citep{cohen_1960}; human validation $N = 225$, binary $\kappa = 0.81$, five-class $\kappa = 0.76$); fine-grained per-type agreement varies, so sub-category analyses should be treated as preliminary rather than definitive.
+
+\subsection{Perturbation-Based Impact Measurement}
+\label{sec:perturbation}
+
+We isolate each message's contribution via two ablation procedures. \emph{Remove ablation} deletes message $m_i$ and regenerates all subsequent messages. Impact is the cosine similarity between original and regenerated final-answer embeddings (\texttt{all-MiniLM-L6-v2}~\citep{reimers_sentence_bert_2019}):
+\begin{equation}
+\text{sim}(m_i) = \frac{\mathbf{e}_{\text{orig}} \cdot \mathbf{e}_{\text{regen}}}{\|\mathbf{e}_{\text{orig}}\| \, \|\mathbf{e}_{\text{regen}}\|}
+\label{eq:cosine_sim}
+\end{equation}
+Perturbation sensitivity measures trajectory change, not correctness; accuracy is evaluated separately via E2E pruning (\S\ref{sec:e2e_pruning}). \emph{Neutralize ablation} replaces $m_i$ with a generic placeholder (``Acknowledged.'') to disentangle content from conversational position. Metric robustness is validated with three alternative measures (Appendix~\ref{app:metric-robustness}; mean Spearman $\rho > 0.91$).
+
+\subsection{Statistical Framework}
+\label{sec:statistical_framework}
+
+We assess pruning safety via three complementary tests. (1)~McNemar's exact test~\citep{mcnemar_1947} detects per-task paired accuracy differences in single-seed designs. (2)~Non-inferiority testing rejects the null that pruning degrades accuracy beyond margin $\delta = -3$\,pp. Following clinical non-inferiority conventions~\citep{lakens_equivalence_2017}, this margin represents a 30\% relative increase in error rate at ${\sim}$90\% baseline accuracy, calibrated at ${\sim}1.25\times$ the largest seed-to-seed SD (2.4\,pp; sensitivity analysis across $\delta \in [-1, -5]$\,pp: Appendix~\ref{app:margin_selection}). (3)~TOST equivalence~\citep{schuirmann_tost_1987} declares practical equivalence at $\varepsilon = 1$\,pp when the 90\% CI falls within $\pm\varepsilon$. Formal definitions appear in Appendix~\ref{app:stat_framework_details}.
+Function type significance is tested via likelihood-ratio tests with Benjamini--Hochberg correction ($\alpha = 0.05$). The full framework, including ANCOVA specifications, mixed-effects models, and the multiple comparison hierarchy, appears in Appendix~\ref{app:stat_framework_details}.
+
+\subsection{End-to-End Pruning Protocol}
+\label{sec:pruning_protocol}
+
+Pruning operates at three granularities: (1)~remove-one for local impact; (2)~offline replay removing all messages of a type; (3)~online suppression intercepting messages in real time. Four strategies are compared: Baseline, Ack-only, Function-Guided (FG; lowest-impact type), and Random (matched count, 10 seeds). Oracle pipelines (GPT-4o labels) establish upper bounds; GPT-4o-mini ($\kappa = 0.822$) confirms a cost-effective substitute.
+
+\subsection{Detection Methods}
+\label{sec:heuristic}
+\label{sec:learned_classifier}
+
+To deploy without oracle labels, we develop two detector families. \emph{Heuristic detectors} combine character-length thresholds with keyword rules, adapted per backbone (Qwen F1 $= 0.845$; Llama F1 $= 0.805$). \emph{Learned classifiers} fine-tune DistilBERT~\citep{sanh_distilbert_2019} on a 6{,}069-message subset of the full 21{,}661-message corpus, spanning 3 backbones and 4 datasets, split by \texttt{task\_id} hash (F1 $= 0.867$). Details in Appendix~\ref{app:heuristic_details}.
+
+\subsection{Cross-Domain Experimental Design}
+\label{sec:cross_domain_design}
+
+A $3 \times 4$ factorial design (two primary backbones + one exploratory $\times$ four domains: GSM8K~\citep{cobbe_gsm8k_2021}, ARC-Challenge~\citep{clark_arc_2018}, StrategyQA~\citep{geva_strategyqa_2021}, MATH~\citep{hendrycks_math_2021}) forms 12 cells; topology variants expand to 18 configurations. MATH serves as a boundary-probe domain where pruning consistently fails, validating the protocol's diagnostic capability. Topology invariance (Kruskal--Wallis $p = 0.963$) is established on GSM8K; full matrix in Appendix~\ref{app:methodology_details}.

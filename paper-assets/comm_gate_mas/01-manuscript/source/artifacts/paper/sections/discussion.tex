@@ -1,0 +1,8 @@
+\paragraph{Practical implications.}
+Communicative function predicts pruning safety more reliably than message content alone. Models with terse acknowledgments (Qwen, median 4 tokens) tolerate aggressive pruning; models with verbose, error-carrying acknowledgments (Llama, 59.8 tokens) benefit from pruning because removal eliminates an error-injection pathway. Latency gains are most pronounced in API-mediated deployments where fixed per-call costs dominate; post-hoc pruning is more practical than instructing agents to suppress emergent acknowledgments (Appendix~\ref{app:boundary_conditions}).
+
+\paragraph{Information-theoretic interpretation.}
+For Qwen, acknowledgment content and task outcome share near-zero mutual information ($H(Y \mid m_{\mathrm{ack}}) \approx H(Y)$; 5.7\% bigram novelty), placing acknowledgments outside the task-relevant channel. For Llama, acknowledgments carry positive mutual information with error introduction. This connects to \citet{rizvi_martel_communication_2026}: their bounds characterize when communication helps; our protocol identifies which messages consume capacity without contributing. The perturbation-pruning dissociation echoes classical results where local effects fail to predict global outcomes~\citep{lecun_obd_1990, braess_1968}.
+
+\paragraph{Limitations.}
+Key limitations include single-seed causal evidence, greedy-only decoding, and domain scope restricted to closed-form QA; a HumanEval pilot ($N{=}50$) confirms code generation as a boundary (Appendix~\ref{app:humaneval-pilot}). Extended discussion in Appendix~\ref{app:extended_limitations}.

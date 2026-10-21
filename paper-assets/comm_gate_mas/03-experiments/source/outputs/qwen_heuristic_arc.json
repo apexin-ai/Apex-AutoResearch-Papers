@@ -1,0 +1,2340 @@
+{
+  "mode": "online_pruning",
+  "pruning_mode": "skip",
+  "detection_mode": "heuristic",
+  "char_threshold": 30,
+  "num_tasks": 200,
+  "total_attempted": 200,
+  "total_completed": 200,
+  "total_skipped": 0,
+  "total_infra_errors": 0,
+  "baseline": {
+    "correct": 33,
+    "total": 200,
+    "accuracy": 0.165
+  },
+  "online_pruned": {
+    "correct": 31,
+    "total": 200,
+    "accuracy": 0.155,
+    "total_suppressed_msgs": 173,
+    "total_agent_rounds": 1000,
+    "suppress_pct": 17.3
+  },
+  "delta_pp": -1.0,
+  "elapsed_seconds": 2455.8,
+  "per_task": [
+    {
+      "task_id": "arc_0000",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0001",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0002",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0003",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0004",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0005",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0006",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0007",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0008",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0009",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0010",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0011",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0012",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0013",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0014",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0015",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0016",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0017",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0018",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0019",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0020",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0021",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0022",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        2,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0023",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0024",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0025",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0026",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "E",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0027",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0028",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0029",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0030",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0031",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0032",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0033",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0034",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0035",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0036",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0037",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0038",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0039",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0040",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0041",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0042",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0043",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0044",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0045",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0046",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0047",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0048",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0049",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0050",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0051",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0052",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0053",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0054",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0055",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0056",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0057",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0058",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0059",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0060",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0061",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0062",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0063",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0064",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0065",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0066",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0067",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0068",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0069",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0070",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0071",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0072",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0073",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0074",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0075",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0076",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0077",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0078",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0079",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0080",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0081",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0082",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0083",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0084",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "E",
+      "baseline_answer": "E"
+    },
+    {
+      "task_id": "arc_0085",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0086",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0087",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0088",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "E",
+      "baseline_answer": "E"
+    },
+    {
+      "task_id": "arc_0089",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0090",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0091",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0092",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0093",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0094",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0095",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0096",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0097",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0098",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0099",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0100",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0101",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0102",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0103",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0104",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0105",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0106",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0107",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0108",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0109",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0110",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0111",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0112",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0113",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0114",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0115",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0116",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0117",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0118",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0119",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0120",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0121",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0122",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0123",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0124",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0125",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0126",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0127",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0128",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0129",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0130",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0131",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0132",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0133",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0134",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0135",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0136",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0137",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0138",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0139",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0140",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0141",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0142",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0143",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0144",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0145",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0146",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0147",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0148",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0149",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0150",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0151",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0152",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0153",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0154",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0155",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0156",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0157",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0158",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0159",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0160",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0161",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0162",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0163",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0164",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0165",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0166",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0167",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0168",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0169",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0170",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0171",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0172",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0173",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0174",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0175",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0176",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0177",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0178",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0179",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0180",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0181",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0182",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "D",
+      "baseline_answer": "D"
+    },
+    {
+      "task_id": "arc_0183",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0184",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0185",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0186",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0187",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0188",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0189",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0190",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0191",
+      "baseline_correct": true,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0192",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0193",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "B",
+      "baseline_answer": "B"
+    },
+    {
+      "task_id": "arc_0194",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0195",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "C",
+      "baseline_answer": "C"
+    },
+    {
+      "task_id": "arc_0196",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "None"
+    },
+    {
+      "task_id": "arc_0197",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 0,
+      "suppressed_rounds": [],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0198",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "None",
+      "baseline_answer": "A"
+    },
+    {
+      "task_id": "arc_0199",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "A",
+      "baseline_answer": "C"
+    }
+  ],
+  "config": {
+    "model": "Qwen2.5-7B-Instruct",
+    "api_base": "http://localhost:8001/v1",
+    "max_rounds": 6
+  }
+}

@@ -1,0 +1,55 @@
+\section{Neutralize Ablation Results}
+\label{app:neutralize-detail}
+
+We complement the remove-ablation analysis (Section~\ref{sec:impact_gradient}) with a neutralize ablation, in which each target message is replaced by the generic response ``Acknowledged.''\ rather than deleted entirely.  This tests whether downstream behavior changes stem from losing the message's \emph{informational content} (captured by neutralize) versus losing its \emph{structural presence} in the conversation (captured by remove).
+
+\paragraph{Neutralize produces stronger disruption than remove.}
+Across all nine backbone--topology configurations, neutralize yields significantly lower semantic similarity than remove (paired Wilcoxon $p < 0.001$ in 11/11 runs; Table~\ref{tab:neut_vs_rm}).  The pooled gap is substantial: neutralize mean $= 0.196$ vs.\ remove mean $= 0.466$.  Replacing a message with vacuous content is more disruptive than deleting it, suggesting that the presence of a low-information placeholder actively misleads downstream agents rather than merely removing a signal.
+
+\begin{table}[t]
+\centering
+\caption{Pooled neutralize vs.\ remove semantic similarity by function type ($N = 8{,}479$). All Wilcoxon signed-rank tests $p < 0.001$. $\Delta$ = remove $-$ neutralize (positive = neutralize more disruptive).}
+\label{tab:neut_vs_rm}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Function type} & \textbf{Neut.\ $\bar{s}$} & \textbf{Rem.\ $\bar{s}$} & \textbf{$\Delta$} & $n$ \\
+\midrule
+\textsc{information\_provision} & 0.047 & 0.515 & 0.468 & 2{,}141 \\
+\textsc{reasoning\_guidance}    & 0.136 & 0.518 & 0.382 & 737 \\
+\textsc{acknowledgment}         & 0.223 & 0.434 & 0.211 & 3{,}661 \\
+\textsc{coordination}           & 0.246 & 0.311 & 0.065 & 585 \\
+\textsc{verification}           & 0.498 & 0.571 & 0.073 & 1{,}355 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Impact gradients diverge between ablation methods.}
+Under neutralize, \textsc{information\_provision} is the most impacted type (mean similarity $0.047$), followed by \textsc{reasoning\_guidance} ($0.136$).  Under remove, \textsc{acknowledgment} and \textsc{coordination} rank as most impacted.  The Kruskal--Wallis $H$ test confirms significant between-type differences under neutralize for all configurations ($p < 0.01$).
+
+This divergence is interpretable.  Neutralize specifically strips \emph{content} while preserving conversational structure---content-rich types (\textsc{information\_provision}, \textsc{reasoning\_guidance}) suffer the most because their value lies in what they say.  Remove strips both content \emph{and} structural presence---structurally important types (\textsc{acknowledgment}, \textsc{coordination}) suffer the most because their value lies in their role as conversational scaffolding.
+
+\paragraph{Informational vs.\ structural value.}
+The gap $\Delta = \text{remove} - \text{neutralize}$ isolates the \emph{informational} component of message impact.  \textsc{Information\_provision} shows the largest $\Delta = 0.468$: nearly all of its behavioral effect comes from its content, not its presence.  Conversely, \textsc{coordination} shows the smallest $\Delta = 0.065$: its impact is almost entirely structural.  This decomposition validates the paper's theoretical distinction between informational and structural communication functions.
+
+\paragraph{Per-message correlation is weak.}
+The Spearman correlation between remove and neutralize similarity is near zero across most configurations (pooled $\rho \approx 0.07$), indicating that the two ablation methods measure distinct aspects of message importance.  Messages that are highly impactful under remove are not necessarily impactful under neutralize, and vice versa.
+
+\paragraph{Action-level changes are concordant.}
+Despite the difference in similarity magnitudes, both methods produce action-level behavioral changes on essentially the same messages.  No McNemar discordance was observed: whenever remove changes the downstream action level, neutralize does too (and vice versa).  The methods differ in \emph{degree} of semantic disruption, not in whether disruption occurs.
+
+\begin{table}[t]
+\centering
+\caption{Neutralize Kruskal--Wallis $H$ statistics for semantic similarity across function types (cf.\ Table~\ref{tab:kruskal_wallis} for remove). All $p < 0.01$.}
+\label{tab:neut_kruskal}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Backbone} & \textbf{RR} & \textbf{SEQ} & \textbf{Selector} \\
+\midrule
+Qwen2.5-7B  & 97.2 & 104.0 & 148.9 \\
+Gemma-2-9B  & 292.7 & 301.2 & 95.8 \\
+Llama-3.1-8B & 108.7 & 74.0 & 118.8 \\
+\bottomrule
+\end{tabular}
+\end{table}

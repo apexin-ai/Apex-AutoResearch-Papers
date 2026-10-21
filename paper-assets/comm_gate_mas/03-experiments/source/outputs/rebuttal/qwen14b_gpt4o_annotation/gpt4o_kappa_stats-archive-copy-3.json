@@ -1,0 +1,102 @@
+{
+  "overall": {
+    "cohens_kappa": 0.1889,
+    "percent_agreement": 0.2783,
+    "n_total": 600,
+    "n_unknown": 0
+  },
+  "per_backbone": {
+    "qwen2.5-14b": {
+      "kappa": 0.1889,
+      "agreement": 0.2783,
+      "n": 600
+    }
+  },
+  "per_category": {
+    "acknowledgment": {
+      "precision": 0.8789,
+      "recall": 0.799,
+      "f1": 0.8371,
+      "support_llm": 209,
+      "support_gpt4o": 190
+    },
+    "information_provision": {
+      "precision": 0.0,
+      "recall": 0,
+      "f1": 0,
+      "support_llm": 0,
+      "support_gpt4o": 57
+    },
+    "reasoning_guidance": {
+      "precision": 0.0,
+      "recall": 0,
+      "f1": 0,
+      "support_llm": 0,
+      "support_gpt4o": 162
+    },
+    "unknown": {
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0,
+      "support_llm": 391,
+      "support_gpt4o": 0
+    },
+    "verification": {
+      "precision": 0.0,
+      "recall": 0,
+      "f1": 0,
+      "support_llm": 0,
+      "support_gpt4o": 191
+    }
+  },
+  "confusion_matrix": {
+    "acknowledgment": {
+      "acknowledgment": 167,
+      "information_provision": 0,
+      "reasoning_guidance": 1,
+      "unknown": 0,
+      "verification": 41
+    },
+    "information_provision": {
+      "acknowledgment": 0,
+      "information_provision": 0,
+      "reasoning_guidance": 0,
+      "unknown": 0,
+      "verification": 0
+    },
+    "reasoning_guidance": {
+      "acknowledgment": 0,
+      "information_provision": 0,
+      "reasoning_guidance": 0,
+      "unknown": 0,
+      "verification": 0
+    },
+    "unknown": {
+      "acknowledgment": 23,
+      "information_provision": 57,
+      "reasoning_guidance": 161,
+      "unknown": 0,
+      "verification": 150
+    },
+    "verification": {
+      "acknowledgment": 0,
+      "information_provision": 0,
+      "reasoning_guidance": 0,
+      "unknown": 0,
+      "verification": 0
+    }
+  },
+  "token_usage": {
+    "prompt_tokens": 367258,
+    "completion_tokens": 31059,
+    "total_tokens": 398317,
+    "api_calls": 600,
+    "avg_tokens_per_message": 663.9,
+    "cost_usd": {
+      "input": 0.9181,
+      "output": 0.3106,
+      "total": 1.2287
+    },
+    "pricing_note": "GPT-4o: $2.50/M input, $10.00/M output"
+  }
+}

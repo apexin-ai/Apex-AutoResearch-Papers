@@ -1,0 +1,38 @@
+# Cross-domain oracle: Llama/StrategyQA, oracle_5class ack-only pruning
+# Fills the missing cell in the 2x2 oracle cross-domain x cross-backbone matrix
+model:
+  name: "Llama-3.1-8B-Instruct"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "ReasoningSolver"
+    system_message: |
+      You are a reasoning expert. Answer the given yes/no question by reasoning step by step.
+      Think carefully about the facts needed and provide your final answer on the last line
+      in the format: "The answer is [yes/no]."
+  checker:
+    name: "ReasoningChecker"
+    system_message: |
+      You are a reasoning checker. Review the solver's reasoning carefully.
+      Check each logical step for correctness and completeness.
+      If correct, confirm the answer. If incorrect, show the correct reasoning.
+      End with: "The answer is [yes/no]."
+
+data:
+  source: "strategyqa"
+  split: "test"
+  num_tasks: 250
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+output:
+  trace_dir: "outputs/oracle_llama_stratqa/traces"
+  analysis_dir: "outputs/oracle_llama_stratqa"

@@ -1,0 +1,2224 @@
+{
+  "mode": "online_pruning",
+  "pruning_mode": "skip",
+  "detection_mode": "distilbert",
+  "char_threshold": 30,
+  "num_tasks": 300,
+  "total_attempted": 300,
+  "total_completed": 58,
+  "total_skipped": 242,
+  "total_infra_errors": 242,
+  "baseline": {
+    "correct": 46,
+    "total": 58,
+    "accuracy": 0.7931
+  },
+  "online_pruned": {
+    "correct": 49,
+    "total": 58,
+    "accuracy": 0.8448,
+    "total_suppressed_msgs": 116,
+    "total_agent_rounds": 275,
+    "suppress_pct": 42.18
+  },
+  "delta_pp": 5.17,
+  "elapsed_seconds": 1288.5,
+  "per_task": [
+    {
+      "task_id": "gsm8k_0000",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "109.",
+      "baseline_answer": "109."
+    },
+    {
+      "task_id": "gsm8k_0001",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0
+    },
+    {
+      "task_id": "gsm8k_0002",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "13.",
+      "baseline_answer": "13."
+    },
+    {
+      "task_id": "gsm8k_0003",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "5.",
+      "baseline_answer": "5."
+    },
+    {
+      "task_id": "gsm8k_0004",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "40.",
+      "baseline_answer": "40."
+    },
+    {
+      "task_id": "gsm8k_0005",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "452.",
+      "baseline_answer": "462."
+    },
+    {
+      "task_id": "gsm8k_0006",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        3
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "43.",
+      "baseline_answer": "43."
+    },
+    {
+      "task_id": "gsm8k_0007",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "34.",
+      "baseline_answer": "34."
+    },
+    {
+      "task_id": "gsm8k_0008",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "120.",
+      "baseline_answer": "120."
+    },
+    {
+      "task_id": "gsm8k_0009",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "11.",
+      "baseline_answer": "11."
+    },
+    {
+      "task_id": "gsm8k_0010",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "34.",
+      "baseline_answer": "34."
+    },
+    {
+      "task_id": "gsm8k_0011",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "12.",
+      "baseline_answer": "4."
+    },
+    {
+      "task_id": "gsm8k_0012",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "15.",
+      "baseline_answer": "14.33."
+    },
+    {
+      "task_id": "gsm8k_0013",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "24.",
+      "baseline_answer": "24."
+    },
+    {
+      "task_id": "gsm8k_0014",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0
+    },
+    {
+      "task_id": "gsm8k_0015",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "120.",
+      "baseline_answer": "120."
+    },
+    {
+      "task_id": "gsm8k_0016",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "17.",
+      "baseline_answer": "17."
+    },
+    {
+      "task_id": "gsm8k_0017",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "36.",
+      "baseline_answer": "36."
+    },
+    {
+      "task_id": "gsm8k_0018",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "12.",
+      "baseline_answer": "12."
+    },
+    {
+      "task_id": "gsm8k_0019",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "45.",
+      "baseline_answer": "45."
+    },
+    {
+      "task_id": "gsm8k_0020",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "45.",
+      "baseline_answer": "45."
+    },
+    {
+      "task_id": "gsm8k_0021",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "8.",
+      "baseline_answer": "8."
+    },
+    {
+      "task_id": "gsm8k_0022",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "36.",
+      "baseline_answer": "36."
+    },
+    {
+      "task_id": "gsm8k_0023",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        2
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "1.",
+      "baseline_answer": "1."
+    },
+    {
+      "task_id": "gsm8k_0024",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "18.",
+      "baseline_answer": "18."
+    },
+    {
+      "task_id": "gsm8k_0025",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "33.00.",
+      "baseline_answer": "33.00."
+    },
+    {
+      "task_id": "gsm8k_0026",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "1248.",
+      "baseline_answer": "1248."
+    },
+    {
+      "task_id": "gsm8k_0027",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 0
+    },
+    {
+      "task_id": "gsm8k_0028",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "1.00.",
+      "baseline_answer": "1.00."
+    },
+    {
+      "task_id": "gsm8k_0029",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "32.",
+      "baseline_answer": "32."
+    },
+    {
+      "task_id": "gsm8k_0030",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "2.",
+      "baseline_answer": "2."
+    },
+    {
+      "task_id": "gsm8k_0031",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "30.",
+      "baseline_answer": "30."
+    },
+    {
+      "task_id": "gsm8k_0032",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "4.",
+      "baseline_answer": "4."
+    },
+    {
+      "task_id": "gsm8k_0033",
+      "baseline_correct": false,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "54.",
+      "baseline_answer": "0."
+    },
+    {
+      "task_id": "gsm8k_0034",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "250.",
+      "baseline_answer": "250."
+    },
+    {
+      "task_id": "gsm8k_0035",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "324.00.",
+      "baseline_answer": "324.00."
+    },
+    {
+      "task_id": "gsm8k_0036",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "129200.",
+      "baseline_answer": "129200."
+    },
+    {
+      "task_id": "gsm8k_0037",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "4400.",
+      "baseline_answer": "4400."
+    },
+    {
+      "task_id": "gsm8k_0038",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "70.",
+      "baseline_answer": "70."
+    },
+    {
+      "task_id": "gsm8k_0039",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "276000.",
+      "baseline_answer": "276000."
+    },
+    {
+      "task_id": "gsm8k_0040",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "12.",
+      "baseline_answer": "12."
+    },
+    {
+      "task_id": "gsm8k_0041",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "160.",
+      "baseline_answer": "160."
+    },
+    {
+      "task_id": "gsm8k_0042",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "90.",
+      "baseline_answer": "90."
+    },
+    {
+      "task_id": "gsm8k_0043",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "20.",
+      "baseline_answer": "20."
+    },
+    {
+      "task_id": "gsm8k_0044",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "296.",
+      "baseline_answer": "296."
+    },
+    {
+      "task_id": "gsm8k_0045",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "4800.",
+      "baseline_answer": "4800."
+    },
+    {
+      "task_id": "gsm8k_0046",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "30.",
+      "baseline_answer": "30."
+    },
+    {
+      "task_id": "gsm8k_0047",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "8.",
+      "baseline_answer": "8."
+    },
+    {
+      "task_id": "gsm8k_0048",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "1920.",
+      "baseline_answer": "1920."
+    },
+    {
+      "task_id": "gsm8k_0049",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "6.",
+      "baseline_answer": "6."
+    },
+    {
+      "task_id": "gsm8k_0050",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "13.",
+      "baseline_answer": "13."
+    },
+    {
+      "task_id": "gsm8k_0051",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        2,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "420.",
+      "baseline_answer": "420."
+    },
+    {
+      "task_id": "gsm8k_0052",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 1,
+      "suppressed_rounds": [
+        4
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "10.",
+      "baseline_answer": "10."
+    },
+    {
+      "task_id": "gsm8k_0053",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        3,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "12.",
+      "baseline_answer": "12."
+    },
+    {
+      "task_id": "gsm8k_0054",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "50.",
+      "baseline_answer": "50."
+    },
+    {
+      "task_id": "gsm8k_0055",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 3,
+      "suppressed_rounds": [
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "92.",
+      "baseline_answer": "92."
+    },
+    {
+      "task_id": "gsm8k_0056",
+      "baseline_correct": true,
+      "pruned_correct": true,
+      "suppressed": 4,
+      "suppressed_rounds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "623.",
+      "baseline_answer": "623."
+    },
+    {
+      "task_id": "gsm8k_0057",
+      "baseline_correct": false,
+      "pruned_correct": false,
+      "suppressed": 2,
+      "suppressed_rounds": [
+        4,
+        5
+      ],
+      "total_agent_msgs": 5,
+      "final_answer": "38.4.",
+      "baseline_answer": "38.4."
+    },
+    {
+      "task_id": "gsm8k_0058",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0059",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0060",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0061",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0062",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0063",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0064",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0065",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0066",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0067",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0068",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0069",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0070",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0071",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0072",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0073",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0074",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0075",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0076",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0077",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0078",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0079",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0080",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0081",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0082",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0083",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0084",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0085",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0086",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0087",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0088",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0089",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0090",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0091",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0092",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0093",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0094",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0095",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0096",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0097",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0098",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0099",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0100",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0101",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0102",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0103",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0104",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0105",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0106",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0107",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0108",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0109",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0110",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0111",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0112",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0113",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0114",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0115",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0116",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0117",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0118",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0119",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0120",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0121",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0122",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0123",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0124",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0125",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0126",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0127",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0128",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0129",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0130",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0131",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0132",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0133",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0134",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0135",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0136",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0137",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0138",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0139",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0140",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0141",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0142",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0143",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0144",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0145",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0146",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0147",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0148",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0149",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0150",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0151",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0152",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0153",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0154",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0155",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0156",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0157",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0158",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0159",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0160",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0161",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0162",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0163",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0164",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0165",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0166",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0167",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0168",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0169",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0170",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0171",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0172",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0173",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0174",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0175",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0176",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0177",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0178",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0179",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0180",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0181",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0182",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0183",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0184",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0185",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0186",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0187",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0188",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0189",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0190",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0191",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0192",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0193",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0194",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0195",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0196",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0197",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0198",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0199",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0200",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0201",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0202",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0203",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0204",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0205",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0206",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0207",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0208",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0209",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0210",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0211",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0212",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0213",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0214",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0215",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0216",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0217",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0218",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0219",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0220",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0221",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0222",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0223",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0224",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0225",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0226",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0227",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0228",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0229",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0230",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0231",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0232",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0233",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0234",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0235",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0236",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0237",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0238",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0239",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0240",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0241",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0242",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0243",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0244",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0245",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0246",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0247",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0248",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0249",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0250",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0251",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0252",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0253",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0254",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0255",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0256",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0257",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0258",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0259",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0260",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0261",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0262",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0263",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0264",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0265",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0266",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0267",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0268",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0269",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0270",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0271",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0272",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0273",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0274",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0275",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0276",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0277",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0278",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0279",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0280",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0281",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0282",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0283",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0284",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0285",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0286",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0287",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0288",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0289",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0290",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0291",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0292",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0293",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0294",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0295",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0296",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0297",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0298",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "gsm8k_0299",
+      "skipped": true,
+      "infra_error": true,
+      "skip_reason": "APIConnectionError"
+    }
+  ],
+  "config": {
+    "model": "Llama-3.1-8B-Instruct",
+    "api_base": "http://localhost:8000/v1",
+    "max_rounds": 6
+  }
+}

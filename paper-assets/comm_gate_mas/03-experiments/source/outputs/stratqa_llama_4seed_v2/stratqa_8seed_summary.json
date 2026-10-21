@@ -1,0 +1,39 @@
+{
+  "analysis": "stratqa_llama_heuristic_8seed",
+  "seeds_loaded": [42, 0, 1, 2, 3, 4, 5, 6],
+  "n_seeds": 8,
+  "original_4seed": {
+    "mean_delta_pp": 4.875,
+    "sd_delta_pp": 1.797
+  },
+  "combined": {
+    "mean_delta_pp": 2.8125,
+    "sd_delta_pp": 3.936,
+    "ci_95_low": -0.479,
+    "ci_95_high": 6.104,
+    "all_positive": false,
+    "ni_p_value": 0.002079
+  },
+  "excl_discovery": {
+    "mean_delta_pp": 2.286,
+    "sd_delta_pp": 3.935,
+    "ci_95_low": -1.354,
+    "ci_95_high": 5.926,
+    "ni_p_value": 0.006014
+  },
+  "new_seeds": {
+    "mean_delta_pp": 0.75,
+    "sd_delta_pp": 4.646,
+    "ni_p_value": 0.102466
+  },
+  "per_seed_deltas": {
+    "seed_42": 6.5,
+    "seed_0": 6.0,
+    "seed_1": 4.5,
+    "seed_2": 2.5,
+    "seed_3": 2.5,
+    "seed_4": 0.5,
+    "seed_5": -5.5,
+    "seed_6": 5.5
+  }
+}

@@ -1,0 +1,28 @@
+设置成功
+注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证
+=== Qwen-72B 5-seed oracle pruning starting at Wed May  6 03:07:16 CST 2026 ===
+Model: /root/autodl-tmp/models/Qwen2.5-72B-Instruct-AWQ-ms/Qwen/Qwen2___5-72B-Instruct-AWQ
+Tasks per seed: 265
+GPU 0 pipeline PID: 28496 (seeds 42, 456, 1024)
+GPU 1 pipeline PID: 28497 (seeds 123, 789)
+Waiting for both pipelines...
+GPU 0 pipeline finished (exit 0)
+GPU 1 pipeline finished (exit 0)
+
+=== TOST Equivalence Analysis ===
+  Seed 42: baseline=0.924 pruned=0.924 delta=+0.0000 (+0.00pp)
+  Seed 123: baseline=0.928 pruned=0.932 delta=+0.0038 (+0.38pp)
+  Seed 456: baseline=0.894 pruned=0.902 delta=+0.0076 (+0.76pp)
+  Seed 789: baseline=0.902 pruned=0.913 delta=+0.0113 (+1.13pp)
+  Seed 1024: baseline=0.905 pruned=0.901 delta=-0.0038 (-0.38pp)
+
+Summary (5 seeds):
+  Mean baseline acc: 0.911
+  Mean pruned acc:   0.915
+  Mean delta:        +0.0038 (+0.38pp)
+  SE(delta):         0.0027
+  90% CI:            [-0.19pp, +0.95pp]
+  TOST (eps=5pp):    p=0.0000 EQUIVALENT
+  Saved to outputs/oracle_qwen72b_5seed/tost_summary.json
+
+=== ALL DONE at Wed May  6 10:58:56 CST 2026 ===

@@ -1,0 +1,3057 @@
+{
+  "mode": "e2e",
+  "num_tasks": 250,
+  "baseline": {
+    "correct": 167,
+    "total": 250,
+    "accuracy": 0.668
+  },
+  "strategies": {
+    "function_guided": {
+      "strategy": "function_guided",
+      "correct": 70,
+      "total": 250,
+      "accuracy": 0.28,
+      "total_pruned_rounds": 1141,
+      "total_rounds": 1250,
+      "prune_pct": 91.28,
+      "per_task": [
+        {
+          "task_id": "stratqa_0000",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0001",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0002",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0003",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0004",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0005",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0006",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0007",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0008",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0009",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0010",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0011",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0012",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0013",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0014",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0015",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0016",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0017",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0018",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0019",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0020",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0021",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0022",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0023",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0024",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0025",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0026",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0027",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0028",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0029",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0030",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0031",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0032",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0033",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0034",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0035",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0036",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0037",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0038",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0039",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0040",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0041",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0042",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0043",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0044",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0045",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0046",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0047",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0048",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0049",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0050",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0051",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0052",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0053",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0054",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0055",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0056",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0057",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0058",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0059",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0060",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0061",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0062",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0063",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0064",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0065",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0066",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0067",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0068",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0069",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0070",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0071",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0072",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0073",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0074",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0075",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0076",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0077",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0078",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0079",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0080",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0081",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0082",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0083",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0084",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0085",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0086",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0087",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0088",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0089",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0090",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0091",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0092",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0093",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0094",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0095",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0096",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0097",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0098",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0099",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0100",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0101",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0102",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0103",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0104",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0105",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0106",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0107",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0108",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0109",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0110",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0111",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0112",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0113",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0114",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0115",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0116",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0117",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0118",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0119",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0120",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0121",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0122",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0123",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0124",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0125",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0126",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0127",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0128",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0129",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0130",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0131",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0132",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0133",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0134",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0135",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0136",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0137",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0138",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0139",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0140",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0141",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0142",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0143",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0144",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0145",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0146",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0147",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0148",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0149",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0150",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0151",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0152",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0153",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0154",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0155",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0156",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0157",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0158",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0159",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0160",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0161",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0162",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0163",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0164",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0165",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0166",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0167",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0168",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0169",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0170",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0171",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0172",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0173",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0174",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0175",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0176",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0177",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0178",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0179",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0180",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0181",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0182",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0183",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0184",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0185",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0186",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0187",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0188",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0189",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0190",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0191",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0192",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0193",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0194",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0195",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0196",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0197",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0198",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0199",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0200",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0201",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0202",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0203",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0204",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0205",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0206",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0207",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0208",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0209",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0210",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0211",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0212",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0213",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0214",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0215",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0216",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0217",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0218",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0219",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0220",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0221",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0222",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0223",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0224",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0225",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0226",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0227",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0228",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0229",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0230",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0231",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0232",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0233",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0234",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0235",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0236",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0237",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0238",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0239",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0240",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0241",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0242",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0243",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0244",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0245",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0246",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0247",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0248",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0249",
+          "correct": false
+        }
+      ]
+    },
+    "ack_only": {
+      "strategy": "ack_only",
+      "correct": 178,
+      "total": 250,
+      "accuracy": 0.712,
+      "total_pruned_rounds": 107,
+      "total_rounds": 1250,
+      "prune_pct": 8.56,
+      "per_task": [
+        {
+          "task_id": "stratqa_0000",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0001",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0002",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0003",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0004",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0005",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0006",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0007",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0008",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0009",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0010",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0011",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0012",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0013",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0014",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0015",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0016",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0017",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0018",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0019",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0020",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0021",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0022",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0023",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0024",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0025",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0026",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0027",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0028",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0029",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0030",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0031",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0032",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0033",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0034",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0035",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0036",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0037",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0038",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0039",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0040",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0041",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0042",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0043",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0044",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0045",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0046",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0047",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0048",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0049",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0050",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0051",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0052",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0053",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0054",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0055",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0056",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0057",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0058",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0059",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0060",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0061",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0062",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0063",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0064",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0065",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0066",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0067",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0068",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0069",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0070",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0071",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0072",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0073",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0074",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0075",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0076",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0077",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0078",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0079",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0080",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0081",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0082",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0083",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0084",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0085",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0086",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0087",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0088",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0089",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0090",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0091",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0092",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0093",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0094",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0095",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0096",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0097",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0098",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0099",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0100",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0101",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0102",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0103",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0104",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0105",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0106",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0107",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0108",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0109",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0110",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0111",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0112",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0113",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0114",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0115",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0116",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0117",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0118",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0119",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0120",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0121",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0122",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0123",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0124",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0125",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0126",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0127",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0128",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0129",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0130",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0131",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0132",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0133",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0134",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0135",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0136",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0137",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0138",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0139",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0140",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0141",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0142",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0143",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0144",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0145",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0146",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0147",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0148",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0149",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0150",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0151",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0152",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0153",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0154",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0155",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0156",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0157",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0158",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0159",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0160",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0161",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0162",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0163",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0164",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0165",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0166",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0167",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0168",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0169",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0170",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0171",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0172",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0173",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0174",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0175",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0176",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0177",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0178",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0179",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0180",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0181",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0182",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0183",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0184",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0185",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0186",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0187",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0188",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0189",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0190",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0191",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0192",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0193",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0194",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0195",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0196",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0197",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0198",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0199",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0200",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0201",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0202",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0203",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0204",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0205",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0206",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0207",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0208",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0209",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0210",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0211",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0212",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0213",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0214",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0215",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0216",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0217",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0218",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0219",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0220",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0221",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0222",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0223",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0224",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0225",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0226",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0227",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0228",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0229",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0230",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0231",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0232",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0233",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0234",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0235",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0236",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0237",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0238",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0239",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0240",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0241",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0242",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0243",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0244",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0245",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0246",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0247",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0248",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0249",
+          "correct": true
+        }
+      ]
+    },
+    "random": {
+      "strategy": "random",
+      "correct": 66,
+      "total": 250,
+      "accuracy": 0.264,
+      "total_pruned_rounds": 1141,
+      "total_rounds": 1250,
+      "prune_pct": 91.28,
+      "per_task": [
+        {
+          "task_id": "stratqa_0000",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0001",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0002",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0003",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0004",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0005",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0006",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0007",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0008",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0009",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0010",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0011",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0012",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0013",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0014",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0015",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0016",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0017",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0018",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0019",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0020",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0021",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0022",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0023",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0024",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0025",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0026",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0027",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0028",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0029",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0030",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0031",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0032",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0033",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0034",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0035",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0036",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0037",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0038",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0039",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0040",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0041",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0042",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0043",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0044",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0045",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0046",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0047",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0048",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0049",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0050",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0051",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0052",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0053",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0054",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0055",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0056",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0057",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0058",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0059",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0060",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0061",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0062",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0063",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0064",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0065",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0066",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0067",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0068",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0069",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0070",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0071",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0072",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0073",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0074",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0075",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0076",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0077",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0078",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0079",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0080",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0081",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0082",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0083",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0084",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0085",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0086",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0087",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0088",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0089",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0090",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0091",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0092",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0093",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0094",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0095",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0096",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0097",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0098",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0099",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0100",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0101",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0102",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0103",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0104",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0105",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0106",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0107",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0108",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0109",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0110",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0111",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0112",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0113",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0114",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0115",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0116",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0117",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0118",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0119",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0120",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0121",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0122",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0123",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0124",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0125",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0126",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0127",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0128",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0129",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0130",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0131",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0132",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0133",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0134",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0135",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0136",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0137",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0138",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0139",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0140",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0141",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0142",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0143",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0144",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0145",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0146",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0147",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0148",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0149",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0150",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0151",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0152",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0153",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0154",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0155",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0156",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0157",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0158",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0159",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0160",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0161",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0162",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0163",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0164",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0165",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0166",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0167",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0168",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0169",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0170",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0171",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0172",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0173",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0174",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0175",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0176",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0177",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0178",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0179",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0180",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0181",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0182",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0183",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0184",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0185",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0186",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0187",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0188",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0189",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0190",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0191",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0192",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0193",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0194",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0195",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0196",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0197",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0198",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0199",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0200",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0201",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0202",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0203",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0204",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0205",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0206",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0207",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0208",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0209",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0210",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0211",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0212",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0213",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0214",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0215",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0216",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0217",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0218",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0219",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0220",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0221",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0222",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0223",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0224",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0225",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0226",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0227",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0228",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0229",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0230",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0231",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0232",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0233",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0234",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0235",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0236",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0237",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0238",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0239",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0240",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0241",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0242",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0243",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0244",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0245",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0246",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0247",
+          "correct": true
+        },
+        {
+          "task_id": "stratqa_0248",
+          "correct": false
+        },
+        {
+          "task_id": "stratqa_0249",
+          "correct": false
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "fg_vs_baseline_delta_pp": -38.8,
+    "ack_vs_baseline_delta_pp": 4.4,
+    "random_vs_baseline_delta_pp": -40.4,
+    "fg_vs_random_delta_pp": 1.6,
+    "fg_dominates_random": true
+  },
+  "config": {
+    "model": "Qwen2.5-7B-Instruct",
+    "api_base": "http://localhost:8003/v1",
+    "max_rounds": 6,
+    "placeholder": "I acknowledge the previous message."
+  }
+}

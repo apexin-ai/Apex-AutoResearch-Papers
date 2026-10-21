@@ -1,0 +1,64 @@
+n≥30 Corrected ME & OLS Values (from me_debug_report.json corrected_me_values)
+================================================================================
+Source: /root/autodl-tmp/comm_gate_mas/outputs/v7_analysis/me_debug_report.json
+Filter: function types with <30 observations dropped
+DV: rem_sim (removal similarity)
+
+Config: qwen_rr (n=895, tasks=300, 4 func types: ack/info/reason/verif)
+  OLS: F=239.64, p<.001
+  ME:  LRT χ²=188.90, p<.001, R²m=.341, ICC=.292
+  OLS-ME consistent: yes
+
+Config: qwen_seq (n=894, tasks=300, 4 func types: ack/info/reason/verif)
+  OLS: F=230.22, p<.001
+  ME:  LRT χ²=195.30, p<.001, R²m=.359, ICC=.245
+  OLS-ME consistent: yes
+
+Config: qwen_sel (n=891, tasks=299, 2 func types: ack/verif)
+  OLS: F=58.21, p<.001
+  ME:  LRT χ²=0.07, p=.789, R²m=.004, ICC=.716
+  OLS-ME consistent: NO (high ICC absorbs variance)
+
+Config: gemma_rr (n=883, tasks=300, 4 func types: ack/coord/info/reason)
+  OLS: F=7.82, p<.001
+  ME:  LRT χ²=23.28, p<.001, R²m=.113, ICC=.000
+  OLS-ME consistent: yes
+
+Config: gemma_seq (n=882, tasks=300, 4 func types: ack/coord/info/reason)
+  OLS: F=9.04, p<.001
+  ME:  LRT χ²=26.86, p<.001, R²m=.120, ICC=.000
+  OLS-ME consistent: yes
+
+Config: gemma_sel (n=861, tasks=295, 2 func types: ack/info)
+  OLS: F=7.45, p=.006
+  ME:  LRT χ²=3.66, p=.056, R²m=.004, ICC=.225
+  OLS-ME consistent: NO (ICC absorbs variance)
+
+Config: llama_rr (n=868, tasks=294, 4 func types: ack/info/reason/verif)
+  OLS: F=3.98, p=.008
+  ME:  LRT χ²=16.31, p<.001, R²m=.023, ICC=.297
+  OLS-ME consistent: yes
+
+Config: llama_seq (n=870, tasks=296, 4 func types: ack/info/reason/verif)
+  OLS: F=4.83, p=.002
+  ME:  LRT χ²=15.44, p=.001, R²m=.019, ICC=.205
+  OLS-ME consistent: yes
+
+Config: llama_sel (n=865, tasks=299, 3 func types: ack/coord/verif)
+  OLS: F=21.61, p<.001
+  ME:  LRT χ²=36.89, p<.001, R²m=.042, ICC=.126
+  OLS-ME consistent: yes
+
+================================================================================
+Verification checks:
+  Gemma/RR OLS F = 7.82  ✓ (expected ~7.82)
+  Llama/RR OLS F = 3.98  ✓ (expected ~3.98, not 6.42)
+  Gemma/Sel R²m  = .004  ✓ (expected .004, not .05)
+  Llama/Sel R²m  = .042  ✓ (expected ~.04, not .06)
+
+Note: OLS R² (full model) is NOT in the n≥30 corrected data.
+  The ols_rem_sim_all9.json has R² but for ALL 5 func types (not n≥30 filtered).
+  All-types OLS R² for reference:
+    qwen_rr=.450, qwen_seq=.440, qwen_sel=.073
+    gemma_rr=.120, gemma_seq=.133, gemma_sel=.075
+    llama_rr=.033, llama_seq=.030, llama_sel=.089

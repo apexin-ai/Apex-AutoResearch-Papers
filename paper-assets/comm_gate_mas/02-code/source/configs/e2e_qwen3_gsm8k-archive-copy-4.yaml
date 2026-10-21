@@ -1,0 +1,42 @@
+# P5: Qwen3-8B cross-generational heuristic validation on GSM8K N=300
+# Validates that heuristic (length<30) pruning transfers from Qwen2.5 to Qwen3.
+# Run with: --mode online_pruning --detection-mode heuristic --data-seed 42
+# CUDA_VISIBLE_DEVICES=1 (only GPU allocated to comm_gate_mas)
+model:
+  name: "/root/autodl-tmp/models/Qwen3-8B"
+  api_base: "http://localhost:8001/v1"
+  api_key: "[REDACTED]"
+  temperature: 0
+  top_p: 1.0
+  max_tokens: 2048
+
+agents:
+  solver:
+    name: "MathSolver"
+    system_message: |
+      /no_think
+      You are a mathematical problem solver. Solve the given math problem step by step.
+      Show your work clearly and provide the final numerical answer on the last line
+      in the format: "The answer is [NUMBER]."
+  checker:
+    name: "AnswerChecker"
+    system_message: |
+      /no_think
+      You are a math answer checker. Review the solver's solution carefully.
+      Check each calculation step for correctness.
+      If correct, confirm the answer. If incorrect, show the correct solution.
+      End with: "The answer is [NUMBER]."
+
+data:
+  source: "gsm8k"
+  split: "test"
+  num_tasks: 300
+  seed: 42
+
+trace_collection:
+  topology: "round_robin"
+  max_rounds: 6
+
+output:
+  trace_dir: "outputs/e2e_qwen3_gsm8k/traces"
+  analysis_dir: "outputs/e2e_qwen3_gsm8k"

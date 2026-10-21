@@ -1,0 +1,4907 @@
+{
+  "resnet50_muon": {
+    "model": "resnet50",
+    "optimizer": "muon",
+    "val_acc": 77.02,
+    "overall_consistency": 0.07240592137741243,
+    "overall_ns_alignment": 0.3822691843465524,
+    "depth_summary": {
+      "stem": {
+        "n_layers": 1,
+        "n_params": 9408,
+        "consistency_mean": 0.023285825561643356,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.27883007923762004,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 1.8960468292236328
+      },
+      "layer1": {
+        "n_layers": 10,
+        "n_params": 212992,
+        "consistency_mean": 0.09529425134272537,
+        "consistency_std": 0.03653318118170859,
+        "ns_alignment_mean": 0.48316274066766096,
+        "ns_alignment_std": 0.04099965857636674,
+        "grad_norm_mean": 0.10151789895569285
+      },
+      "layer2": {
+        "n_layers": 13,
+        "n_params": 1212416,
+        "consistency_mean": 0.0954131344717078,
+        "consistency_std": 0.04707691113064816,
+        "ns_alignment_mean": 0.4137162916171245,
+        "ns_alignment_std": 0.04619424933794956,
+        "grad_norm_mean": 0.16862881581943767
+      },
+      "layer3": {
+        "n_layers": 19,
+        "n_params": 7077888,
+        "consistency_mean": 0.058838957954267565,
+        "consistency_std": 0.008430459528878375,
+        "ns_alignment_mean": 0.3718958251308977,
+        "ns_alignment_std": 0.04927435613737402,
+        "grad_norm_mean": 0.4873000594084723
+      },
+      "layer4": {
+        "n_layers": 10,
+        "n_params": 14942208,
+        "consistency_mean": 0.053583591784699826,
+        "consistency_std": 0.012599719165442572,
+        "ns_alignment_mean": 0.2604464091857274,
+        "ns_alignment_std": 0.026909680820400805,
+        "grad_norm_mean": 0.5826286879181862
+      },
+      "head": {
+        "n_layers": 1,
+        "n_params": 204800,
+        "consistency_mean": 0.03954454828109149,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.4832819084326426,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 2.6922630230585733
+      }
+    },
+    "per_layer": {
+      "conv1": {
+        "depth": "stem",
+        "shape": [
+          64,
+          3,
+          7,
+          7
+        ],
+        "n_params": 9408,
+        "grad_consistency_mean": 0.023285825561643356,
+        "grad_consistency_std": 0.2509855123704999,
+        "ns_alignment_mean": 0.27883007923762004,
+        "ns_alignment_std": 0.020620323891845094,
+        "ns_alignment_of_mean_grad": 0.2651713788509369,
+        "grad_norm_mean": 1.8960468292236328,
+        "grad_norm_cv": 0.19507707444248482
+      },
+      "fc": {
+        "depth": "head",
+        "shape": [
+          100,
+          2048
+        ],
+        "n_params": 204800,
+        "grad_consistency_mean": 0.03954454828109149,
+        "grad_consistency_std": 0.0903636036495077,
+        "ns_alignment_mean": 0.4832819084326426,
+        "ns_alignment_std": 0.03294580157006915,
+        "ns_alignment_of_mean_grad": 0.4009431004524231,
+        "grad_norm_mean": 2.6922630230585733,
+        "grad_norm_cv": 0.14871738348104885
+      },
+      "layer1.0.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          1,
+          1
+        ],
+        "n_params": 4096,
+        "grad_consistency_mean": 0.063529828310545,
+        "grad_consistency_std": 0.17206124183977656,
+        "ns_alignment_mean": 0.4296789805094401,
+        "ns_alignment_std": 0.03831704414580203,
+        "ns_alignment_of_mean_grad": 0.39376401901245117,
+        "grad_norm_mean": 0.04218648994962374,
+        "grad_norm_cv": 0.15508263341924297
+      },
+      "layer1.0.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.1102245896012478,
+        "grad_consistency_std": 0.260445177818653,
+        "ns_alignment_mean": 0.43298651178677877,
+        "ns_alignment_std": 0.06254103731556188,
+        "ns_alignment_of_mean_grad": 0.3110354542732239,
+        "grad_norm_mean": 0.07830920194586118,
+        "grad_norm_cv": 0.21467626048294294
+      },
+      "layer1.0.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.07359948278005635,
+        "grad_consistency_std": 0.12054316106658151,
+        "ns_alignment_mean": 0.515895030895869,
+        "ns_alignment_std": 0.022029626082258186,
+        "ns_alignment_of_mean_grad": 0.40674611926078796,
+        "grad_norm_mean": 0.047040029615163806,
+        "grad_norm_cv": 0.14794373250038637
+      },
+      "layer1.0.downsample.0": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.05578133952582166,
+        "grad_consistency_std": 0.09713737676265796,
+        "ns_alignment_mean": 0.43766148686408995,
+        "ns_alignment_std": 0.0172198312680965,
+        "ns_alignment_of_mean_grad": 0.40931248664855957,
+        "grad_norm_mean": 0.6517691175142925,
+        "grad_norm_cv": 0.12884186133652661
+      },
+      "layer1.1.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.09195263224676074,
+        "grad_consistency_std": 0.1370638207676129,
+        "ns_alignment_mean": 0.5404265642166137,
+        "ns_alignment_std": 0.029287598304980532,
+        "ns_alignment_of_mean_grad": 0.4526292085647583,
+        "grad_norm_mean": 0.019615560645858447,
+        "grad_norm_cv": 0.14535883752902515
+      },
+      "layer1.1.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.18243167469100582,
+        "grad_consistency_std": 0.2443085189762448,
+        "ns_alignment_mean": 0.4614957590897878,
+        "ns_alignment_std": 0.05817191577920038,
+        "ns_alignment_of_mean_grad": 0.2796880602836609,
+        "grad_norm_mean": 0.03745674056311448,
+        "grad_norm_cv": 0.19906758011980105
+      },
+      "layer1.1.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.0779897437475267,
+        "grad_consistency_std": 0.11734917634984776,
+        "ns_alignment_mean": 0.5240651448567708,
+        "ns_alignment_std": 0.026961834754369123,
+        "ns_alignment_of_mean_grad": 0.41015467047691345,
+        "grad_norm_mean": 0.022606051154434682,
+        "grad_norm_cv": 0.14740810001047341
+      },
+      "layer1.2.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.08447699426185518,
+        "grad_consistency_std": 0.13632834865689444,
+        "ns_alignment_mean": 0.5265380064646403,
+        "ns_alignment_std": 0.04003292671363731,
+        "ns_alignment_of_mean_grad": 0.4688827395439148,
+        "grad_norm_mean": 0.02771035668750604,
+        "grad_norm_cv": 0.15870403539932973
+      },
+      "layer1.2.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.13657955051444115,
+        "grad_consistency_std": 0.2189937083928881,
+        "ns_alignment_mean": 0.45929468274116514,
+        "ns_alignment_std": 0.05638591333787037,
+        "ns_alignment_of_mean_grad": 0.29731887578964233,
+        "grad_norm_mean": 0.05527848278482755,
+        "grad_norm_cv": 0.2156348261170523
+      },
+      "layer1.2.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.07637667774799324,
+        "grad_consistency_std": 0.1157069074563591,
+        "ns_alignment_mean": 0.5035852392514547,
+        "ns_alignment_std": 0.02905414365822774,
+        "ns_alignment_of_mean_grad": 0.3814586400985718,
+        "grad_norm_mean": 0.033206958696246146,
+        "grad_norm_cv": 0.1432477132369043
+      },
+      "layer2.0.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          256,
+          1,
+          1
+        ],
+        "n_params": 32768,
+        "grad_consistency_mean": 0.05553314490798151,
+        "grad_consistency_std": 0.12803052689429312,
+        "ns_alignment_mean": 0.4047530949115753,
+        "ns_alignment_std": 0.02364543135547004,
+        "ns_alignment_of_mean_grad": 0.3627593517303467,
+        "grad_norm_mean": 0.04344519761701425,
+        "grad_norm_cv": 0.1577186948710139
+      },
+      "layer2.0.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.1215691765182696,
+        "grad_consistency_std": 0.24327048732344883,
+        "ns_alignment_mean": 0.3734009583791097,
+        "ns_alignment_std": 0.06868184112229382,
+        "ns_alignment_of_mean_grad": 0.25101420283317566,
+        "grad_norm_mean": 0.09300786902507147,
+        "grad_norm_cv": 0.25808296515220264
+      },
+      "layer2.0.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.08874444647559097,
+        "grad_consistency_std": 0.1373941626583182,
+        "ns_alignment_mean": 0.4354304075241089,
+        "ns_alignment_std": 0.0454792288813979,
+        "ns_alignment_of_mean_grad": 0.3038467764854431,
+        "grad_norm_mean": 0.06559578354159991,
+        "grad_norm_cv": 0.18050429584326452
+      },
+      "layer2.0.downsample.0": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          256,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.04749320706219545,
+        "grad_consistency_std": 0.08499642599259233,
+        "ns_alignment_mean": 0.318018231789271,
+        "ns_alignment_std": 0.014305129705005129,
+        "ns_alignment_of_mean_grad": 0.29037240147590637,
+        "grad_norm_mean": 0.6204868157704672,
+        "grad_norm_cv": 0.13506496817663594
+      },
+      "layer2.1.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.023046003233286597,
+        "grad_consistency_std": 0.10252514789326851,
+        "ns_alignment_mean": 0.49633229374885557,
+        "ns_alignment_std": 0.018545069747741894,
+        "ns_alignment_of_mean_grad": 0.4994259476661682,
+        "grad_norm_mean": 0.06891337409615517,
+        "grad_norm_cv": 0.12402623039016922
+      },
+      "layer2.1.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.12782645795849107,
+        "grad_consistency_std": 0.1928901606053805,
+        "ns_alignment_mean": 0.4181515336036682,
+        "ns_alignment_std": 0.041566630003344075,
+        "ns_alignment_of_mean_grad": 0.267605721950531,
+        "grad_norm_mean": 0.216143528620402,
+        "grad_norm_cv": 0.18362802586154142
+      },
+      "layer2.1.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.08304716244872128,
+        "grad_consistency_std": 0.12829480193893772,
+        "ns_alignment_mean": 0.46737561424573265,
+        "ns_alignment_std": 0.035970973159782926,
+        "ns_alignment_of_mean_grad": 0.34271493554115295,
+        "grad_norm_mean": 0.13514650464057923,
+        "grad_norm_cv": 0.14547540588863345
+      },
+      "layer2.2.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.029916110866525698,
+        "grad_consistency_std": 0.11951531654699636,
+        "ns_alignment_mean": 0.4742820998032888,
+        "ns_alignment_std": 0.028724607474271673,
+        "ns_alignment_of_mean_grad": 0.4556926488876343,
+        "grad_norm_mean": 0.07829027945796649,
+        "grad_norm_cv": 0.12803658507717716
+      },
+      "layer2.2.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.1713010038914425,
+        "grad_consistency_std": 0.23964055607976442,
+        "ns_alignment_mean": 0.3671442608038584,
+        "ns_alignment_std": 0.05299923789522176,
+        "ns_alignment_of_mean_grad": 0.23175838589668274,
+        "grad_norm_mean": 0.24649851123491923,
+        "grad_norm_cv": 0.22959848869514907
+      },
+      "layer2.2.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.09890473144838498,
+        "grad_consistency_std": 0.1535004640630887,
+        "ns_alignment_mean": 0.40123594999313356,
+        "ns_alignment_std": 0.04514447501492436,
+        "ns_alignment_of_mean_grad": 0.2901361286640167,
+        "grad_norm_mean": 0.15222047915061315,
+        "grad_norm_cv": 0.16139000481642843
+      },
+      "layer2.3.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.11457300559905846,
+        "grad_consistency_std": 0.1395217472424104,
+        "ns_alignment_mean": 0.41471818486849465,
+        "ns_alignment_std": 0.03157172350222732,
+        "ns_alignment_of_mean_grad": 0.2907434105873108,
+        "grad_norm_mean": 0.09927161931991577,
+        "grad_norm_cv": 0.16161722950597207
+      },
+      "layer2.3.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.1809876268374778,
+        "grad_consistency_std": 0.2407413444426842,
+        "ns_alignment_mean": 0.3881152788798014,
+        "ns_alignment_std": 0.06600923923284538,
+        "ns_alignment_of_mean_grad": 0.24158073961734772,
+        "grad_norm_mean": 0.23138225177923838,
+        "grad_norm_cv": 0.2267071546128907
+      },
+      "layer2.3.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.09742867088477526,
+        "grad_consistency_std": 0.14056099984960696,
+        "ns_alignment_mean": 0.4193538824717204,
+        "ns_alignment_std": 0.04467241879052815,
+        "ns_alignment_of_mean_grad": 0.304149329662323,
+        "grad_norm_mean": 0.14177239139874775,
+        "grad_norm_cv": 0.14789771410912309
+      },
+      "layer3.0.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          512,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.07855485659536152,
+        "grad_consistency_std": 0.11776759012804397,
+        "ns_alignment_mean": 0.28529976805051166,
+        "ns_alignment_std": 0.024685225485079603,
+        "ns_alignment_of_mean_grad": 0.2288791388273239,
+        "grad_norm_mean": 0.24873442451159158,
+        "grad_norm_cv": 0.15825155485866724
+      },
+      "layer3.0.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.06933377373497933,
+        "grad_consistency_std": 0.12522551315531572,
+        "ns_alignment_mean": 0.3933767060438792,
+        "ns_alignment_std": 0.03294926555701562,
+        "ns_alignment_of_mean_grad": 0.29879453778266907,
+        "grad_norm_mean": 0.38508190512657164,
+        "grad_norm_cv": 0.13623893176269544
+      },
+      "layer3.0.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05883642131507042,
+        "grad_consistency_std": 0.08659053718591131,
+        "ns_alignment_mean": 0.41621790528297425,
+        "ns_alignment_std": 0.02320767466417937,
+        "ns_alignment_of_mean_grad": 0.3303096890449524,
+        "grad_norm_mean": 0.29290665984153746,
+        "grad_norm_cv": 0.13025210436961732
+      },
+      "layer3.0.downsample.0": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          512,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.05260634679469236,
+        "grad_consistency_std": 0.08256282175702738,
+        "ns_alignment_mean": 0.25596999327341713,
+        "ns_alignment_std": 0.015109905303256142,
+        "ns_alignment_of_mean_grad": 0.22150230407714844,
+        "grad_norm_mean": 0.9093028585116069,
+        "grad_norm_cv": 0.12530952293957356
+      },
+      "layer3.1.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05445124534280261,
+        "grad_consistency_std": 0.08574194309647191,
+        "ns_alignment_mean": 0.4008731524149577,
+        "ns_alignment_std": 0.028357046228026414,
+        "ns_alignment_of_mean_grad": 0.34243306517601013,
+        "grad_norm_mean": 0.26561915278434756,
+        "grad_norm_cv": 0.14145783781503843
+      },
+      "layer3.1.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.05350981545301953,
+        "grad_consistency_std": 0.11093140134754513,
+        "ns_alignment_mean": 0.43022214571634926,
+        "ns_alignment_std": 0.021401984999600835,
+        "ns_alignment_of_mean_grad": 0.36155813932418823,
+        "grad_norm_mean": 0.6074429611365001,
+        "grad_norm_cv": 0.13458325895399798
+      },
+      "layer3.1.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.0592275382440892,
+        "grad_consistency_std": 0.09168095125014691,
+        "ns_alignment_mean": 0.4219870368639628,
+        "ns_alignment_std": 0.024174556298740525,
+        "ns_alignment_of_mean_grad": 0.3451184332370758,
+        "grad_norm_mean": 0.44320866266886394,
+        "grad_norm_cv": 0.13210157259288924
+      },
+      "layer3.2.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.035436975223100964,
+        "grad_consistency_std": 0.08660018570293404,
+        "ns_alignment_mean": 0.3871860345204671,
+        "ns_alignment_std": 0.02697621436237897,
+        "ns_alignment_of_mean_grad": 0.3616102337837219,
+        "grad_norm_mean": 0.3309922566016515,
+        "grad_norm_cv": 0.12600481336266
+      },
+      "layer3.2.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.05171343461787772,
+        "grad_consistency_std": 0.10178048498748732,
+        "ns_alignment_mean": 0.4282224714756012,
+        "ns_alignment_std": 0.023083104335342827,
+        "ns_alignment_of_mean_grad": 0.36914369463920593,
+        "grad_norm_mean": 0.611430549621582,
+        "grad_norm_cv": 0.12832300479444886
+      },
+      "layer3.2.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.059589365416295115,
+        "grad_consistency_std": 0.0950508081230188,
+        "ns_alignment_mean": 0.40235196352005004,
+        "ns_alignment_std": 0.02235224696293099,
+        "ns_alignment_of_mean_grad": 0.3328787684440613,
+        "grad_norm_mean": 0.43857310016949974,
+        "grad_norm_cv": 0.12937726790568926
+      },
+      "layer3.3.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05762958802571077,
+        "grad_consistency_std": 0.10376674619904541,
+        "ns_alignment_mean": 0.34844963749249774,
+        "ns_alignment_std": 0.028406576854900206,
+        "ns_alignment_of_mean_grad": 0.293011337518692,
+        "grad_norm_mean": 0.40714249610900877,
+        "grad_norm_cv": 0.13239238659812283
+      },
+      "layer3.3.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.07018384364588807,
+        "grad_consistency_std": 0.12170857227340436,
+        "ns_alignment_mean": 0.40299801031748456,
+        "ns_alignment_std": 0.025097726280474037,
+        "ns_alignment_of_mean_grad": 0.3216889500617981,
+        "grad_norm_mean": 0.6602745215098064,
+        "grad_norm_cv": 0.12558768239106316
+      },
+      "layer3.3.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.06253295562762234,
+        "grad_consistency_std": 0.09862722710968061,
+        "ns_alignment_mean": 0.385226970911026,
+        "ns_alignment_std": 0.022102086392952254,
+        "ns_alignment_of_mean_grad": 0.32347720861434937,
+        "grad_norm_mean": 0.4546752790609995,
+        "grad_norm_cv": 0.12660190243644656
+      },
+      "layer3.4.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05911619345036646,
+        "grad_consistency_std": 0.11055088150391174,
+        "ns_alignment_mean": 0.30976691643397014,
+        "ns_alignment_std": 0.028570213136102047,
+        "ns_alignment_of_mean_grad": 0.27126607298851013,
+        "grad_norm_mean": 0.4834303478399912,
+        "grad_norm_cv": 0.11870266128100211
+      },
+      "layer3.4.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.05912933526588382,
+        "grad_consistency_std": 0.11139006485348885,
+        "ns_alignment_mean": 0.3901447554429372,
+        "ns_alignment_std": 0.02547589493466271,
+        "ns_alignment_of_mean_grad": 0.3298257887363434,
+        "grad_norm_mean": 0.6657434940338135,
+        "grad_norm_cv": 0.12581415294559295
+      },
+      "layer3.4.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05787079177264656,
+        "grad_consistency_std": 0.09460365746977402,
+        "ns_alignment_mean": 0.37304704387982685,
+        "ns_alignment_std": 0.018561378770657676,
+        "ns_alignment_of_mean_grad": 0.32601305842399597,
+        "grad_norm_mean": 0.4660293380419413,
+        "grad_norm_cv": 0.12612808961003258
+      },
+      "layer3.5.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.06069005940641676,
+        "grad_consistency_std": 0.10501262993672096,
+        "ns_alignment_mean": 0.29761771361033124,
+        "ns_alignment_std": 0.02265614948860473,
+        "ns_alignment_of_mean_grad": 0.2659984529018402,
+        "grad_norm_mean": 0.5006990094979604,
+        "grad_norm_cv": 0.1279450938002089
+      },
+      "layer3.5.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.061724764784421064,
+        "grad_consistency_std": 0.09531901359071632,
+        "ns_alignment_mean": 0.37979799111684165,
+        "ns_alignment_std": 0.02000277455156335,
+        "ns_alignment_of_mean_grad": 0.33961641788482666,
+        "grad_norm_mean": 0.6225928088029226,
+        "grad_norm_cv": 0.13776151187812424
+      },
+      "layer3.5.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.055802896414839084,
+        "grad_consistency_std": 0.09331621402987485,
+        "ns_alignment_mean": 0.3572644611199697,
+        "ns_alignment_std": 0.015949205495937938,
+        "ns_alignment_of_mean_grad": 0.33304473757743835,
+        "grad_norm_mean": 0.4648213028907776,
+        "grad_norm_cv": 0.13422539773253223
+      },
+      "layer4.0.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.03998672182594116,
+        "grad_consistency_std": 0.10907264505258063,
+        "ns_alignment_mean": 0.22912630836168926,
+        "ns_alignment_std": 0.009894604647469357,
+        "ns_alignment_of_mean_grad": 0.22491076588630676,
+        "grad_norm_mean": 0.35045839150746666,
+        "grad_norm_cv": 0.13935972736079996
+      },
+      "layer4.0.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.041468113556592946,
+        "grad_consistency_std": 0.10058009694299556,
+        "ns_alignment_mean": 0.2951741655667623,
+        "ns_alignment_std": 0.011146845027597102,
+        "ns_alignment_of_mean_grad": 0.2921804189682007,
+        "grad_norm_mean": 0.3742734173933665,
+        "grad_norm_cv": 0.1396188784330397
+      },
+      "layer4.0.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.043316177405150876,
+        "grad_consistency_std": 0.09369392941054773,
+        "ns_alignment_mean": 0.304084982474645,
+        "ns_alignment_std": 0.009422950947498943,
+        "ns_alignment_of_mean_grad": 0.3122451603412628,
+        "grad_norm_mean": 0.23231931428114574,
+        "grad_norm_cv": 0.13820495908063088
+      },
+      "layer4.0.downsample.0": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 2097152,
+        "grad_consistency_mean": 0.05208307276978823,
+        "grad_consistency_std": 0.11247534409009335,
+        "ns_alignment_mean": 0.2235633800427119,
+        "ns_alignment_std": 0.010410967641656948,
+        "ns_alignment_of_mean_grad": 0.20133750140666962,
+        "grad_norm_mean": 1.2962701559066772,
+        "grad_norm_cv": 0.13416017133462346
+      },
+      "layer4.1.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.04270399568402874,
+        "grad_consistency_std": 0.1113992969697704,
+        "ns_alignment_mean": 0.2739471932252248,
+        "ns_alignment_std": 0.011237900681086873,
+        "ns_alignment_of_mean_grad": 0.2613292336463928,
+        "grad_norm_mean": 0.7735778093338013,
+        "grad_norm_cv": 0.13577304811070823
+      },
+      "layer4.1.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.07433939551258283,
+        "grad_consistency_std": 0.1174132443731027,
+        "ns_alignment_mean": 0.28148900270462035,
+        "ns_alignment_std": 0.014403956550360662,
+        "ns_alignment_of_mean_grad": 0.25392279028892517,
+        "grad_norm_mean": 0.8882752577463786,
+        "grad_norm_cv": 0.13467597387399438
+      },
+      "layer4.1.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.06896652235272563,
+        "grad_consistency_std": 0.10536558726317313,
+        "ns_alignment_mean": 0.2647627393404643,
+        "ns_alignment_std": 0.009894168839890612,
+        "ns_alignment_of_mean_grad": 0.24490894377231598,
+        "grad_norm_mean": 0.4493098219235738,
+        "grad_norm_cv": 0.1402002198344559
+      },
+      "layer4.2.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.07106634954522763,
+        "grad_consistency_std": 0.10841159838678252,
+        "ns_alignment_mean": 0.23052728772163392,
+        "ns_alignment_std": 0.013927330804521933,
+        "ns_alignment_of_mean_grad": 0.2109953612089157,
+        "grad_norm_mean": 0.694251024723053,
+        "grad_norm_cv": 0.1443721031248616
+      },
+      "layer4.2.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.055584497313247994,
+        "grad_consistency_std": 0.09685255864856059,
+        "ns_alignment_mean": 0.25673988858858743,
+        "ns_alignment_std": 0.010747205400427813,
+        "ns_alignment_of_mean_grad": 0.25536829233169556,
+        "grad_norm_mean": 0.5221194883187612,
+        "grad_norm_cv": 0.1360009829540214
+      },
+      "layer4.2.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.046321071881712195,
+        "grad_consistency_std": 0.09250193506164317,
+        "ns_alignment_mean": 0.24504914383093515,
+        "ns_alignment_std": 0.008349987591054398,
+        "ns_alignment_of_mean_grad": 0.24629707634449005,
+        "grad_norm_mean": 0.24543219804763794,
+        "grad_norm_cv": 0.1354237432466222
+      }
+    }
+  },
+  "resnet50_adamw": {
+    "model": "resnet50",
+    "optimizer": "adamw",
+    "val_acc": 68.13,
+    "overall_consistency": 0.2961994346461589,
+    "overall_ns_alignment": 0.33108060277170603,
+    "depth_summary": {
+      "stem": {
+        "n_layers": 1,
+        "n_params": 9408,
+        "consistency_mean": 0.1705941269041172,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.30716094772020974,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 5.151502974828085
+      },
+      "layer1": {
+        "n_layers": 10,
+        "n_params": 212992,
+        "consistency_mean": 0.198109070841733,
+        "consistency_std": 0.03281814774233761,
+        "ns_alignment_mean": 0.44033000687758134,
+        "ns_alignment_std": 0.05581898287684502,
+        "grad_norm_mean": 0.150184076577425
+      },
+      "layer2": {
+        "n_layers": 13,
+        "n_params": 1212416,
+        "consistency_mean": 0.3534975495696027,
+        "consistency_std": 0.08480090385975382,
+        "ns_alignment_mean": 0.33487828282209536,
+        "ns_alignment_std": 0.04423784593735864,
+        "grad_norm_mean": 0.1757110515848184
+      },
+      "layer3": {
+        "n_layers": 19,
+        "n_params": 7077888,
+        "consistency_mean": 0.31971231958511426,
+        "consistency_std": 0.06916872703394103,
+        "ns_alignment_mean": 0.28763657541651483,
+        "ns_alignment_std": 0.03975233232562138,
+        "grad_norm_mean": 0.19452534537566332
+      },
+      "layer4": {
+        "n_layers": 10,
+        "n_params": 14942208,
+        "consistency_mean": 0.31534909722295457,
+        "consistency_std": 0.11826561171067727,
+        "ns_alignment_mean": 0.280366047223409,
+        "ns_alignment_std": 0.040853005799800675,
+        "grad_norm_mean": 0.19120574645698069
+      },
+      "head": {
+        "n_layers": 1,
+        "n_params": 204800,
+        "consistency_mean": 0.019591446819582154,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.5457184513409933,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 0.968649133046468
+      }
+    },
+    "per_layer": {
+      "conv1": {
+        "depth": "stem",
+        "shape": [
+          64,
+          3,
+          7,
+          7
+        ],
+        "n_params": 9408,
+        "grad_consistency_mean": 0.1705941269041172,
+        "grad_consistency_std": 0.39158189751550737,
+        "ns_alignment_mean": 0.30716094772020974,
+        "ns_alignment_std": 0.03927753080297477,
+        "ns_alignment_of_mean_grad": 0.2721775770187378,
+        "grad_norm_mean": 5.151502974828085,
+        "grad_norm_cv": 0.2781050676641368
+      },
+      "fc": {
+        "depth": "head",
+        "shape": [
+          100,
+          2048
+        ],
+        "n_params": 204800,
+        "grad_consistency_mean": 0.019591446819582154,
+        "grad_consistency_std": 0.07718854734670667,
+        "ns_alignment_mean": 0.5457184513409933,
+        "ns_alignment_std": 0.024144802260781896,
+        "ns_alignment_of_mean_grad": 0.5559366941452026,
+        "grad_norm_mean": 0.968649133046468,
+        "grad_norm_cv": 0.08191785017218356
+      },
+      "layer1.0.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          1,
+          1
+        ],
+        "n_params": 4096,
+        "grad_consistency_mean": 0.2357829156908251,
+        "grad_consistency_std": 0.2347225109435329,
+        "ns_alignment_mean": 0.35046383142471316,
+        "ns_alignment_std": 0.04090966501155826,
+        "ns_alignment_of_mean_grad": 0.2744886875152588,
+        "grad_norm_mean": 0.12185600847005844,
+        "grad_norm_cv": 0.13573245145446858
+      },
+      "layer1.0.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.2549457712542443,
+        "grad_consistency_std": 0.2187524132672335,
+        "ns_alignment_mean": 0.4397144416968028,
+        "ns_alignment_std": 0.06340629555358171,
+        "ns_alignment_of_mean_grad": 0.27858713269233704,
+        "grad_norm_mean": 0.06912189349532127,
+        "grad_norm_cv": 0.1489412035457898
+      },
+      "layer1.0.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.20656079934643848,
+        "grad_consistency_std": 0.16301557636661324,
+        "ns_alignment_mean": 0.44709949096043905,
+        "ns_alignment_std": 0.029773906377538004,
+        "ns_alignment_of_mean_grad": 0.35643208026885986,
+        "grad_norm_mean": 0.062257855633894604,
+        "grad_norm_cv": 0.12010198774984757
+      },
+      "layer1.0.downsample.0": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.2055590894139771,
+        "grad_consistency_std": 0.16194728625783808,
+        "ns_alignment_mean": 0.36934656699498497,
+        "ns_alignment_std": 0.010293491536554702,
+        "ns_alignment_of_mean_grad": 0.27726027369499207,
+        "grad_norm_mean": 0.8573798775672913,
+        "grad_norm_cv": 0.1238248941086226
+      },
+      "layer1.1.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.1629140970518901,
+        "grad_consistency_std": 0.1834828637300712,
+        "ns_alignment_mean": 0.41059772769610087,
+        "ns_alignment_std": 0.04554797614191519,
+        "ns_alignment_of_mean_grad": 0.35458871722221375,
+        "grad_norm_mean": 0.0789636010924975,
+        "grad_norm_cv": 0.19070469872211215
+      },
+      "layer1.1.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.2291732062142165,
+        "grad_consistency_std": 0.1584335720896073,
+        "ns_alignment_mean": 0.5122457802295685,
+        "ns_alignment_std": 0.03353928468699244,
+        "ns_alignment_of_mean_grad": 0.3948591351509094,
+        "grad_norm_mean": 0.07423524782061577,
+        "grad_norm_cv": 0.1607140407846698
+      },
+      "layer1.1.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.1766230492143049,
+        "grad_consistency_std": 0.1489189260821325,
+        "ns_alignment_mean": 0.4565420230229696,
+        "ns_alignment_std": 0.022532069109633398,
+        "ns_alignment_of_mean_grad": 0.3941068649291992,
+        "grad_norm_mean": 0.06571741079290708,
+        "grad_norm_cv": 0.1210103831129696
+      },
+      "layer1.2.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.14527557699808052,
+        "grad_consistency_std": 0.22741541094016884,
+        "ns_alignment_mean": 0.4033973534901937,
+        "ns_alignment_std": 0.05757712914826503,
+        "ns_alignment_of_mean_grad": 0.28476589918136597,
+        "grad_norm_mean": 0.06037208065390587,
+        "grad_norm_cv": 0.17485368614144078
+      },
+      "layer1.2.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.18574528167068605,
+        "grad_consistency_std": 0.16097140747041447,
+        "ns_alignment_mean": 0.5337659478187561,
+        "ns_alignment_std": 0.04002897527224778,
+        "ns_alignment_of_mean_grad": 0.398068368434906,
+        "grad_norm_mean": 0.059444834291934964,
+        "grad_norm_cv": 0.19481958604681415
+      },
+      "layer1.2.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.17851092156266704,
+        "grad_consistency_std": 0.14399427472271997,
+        "ns_alignment_mean": 0.48012690544128417,
+        "ns_alignment_std": 0.02702086153454178,
+        "ns_alignment_of_mean_grad": 0.40064355731010437,
+        "grad_norm_mean": 0.05249195595582326,
+        "grad_norm_cv": 0.1406879507216844
+      },
+      "layer2.0.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          256,
+          1,
+          1
+        ],
+        "n_params": 32768,
+        "grad_consistency_mean": 0.22710484581156856,
+        "grad_consistency_std": 0.21800361709345725,
+        "ns_alignment_mean": 0.2929154386123021,
+        "ns_alignment_std": 0.03428142747053109,
+        "ns_alignment_of_mean_grad": 0.21891376376152039,
+        "grad_norm_mean": 0.08875015179316202,
+        "grad_norm_cv": 0.18396142065683396
+      },
+      "layer2.0.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.3200958532170348,
+        "grad_consistency_std": 0.17862372048323355,
+        "ns_alignment_mean": 0.34451033075650533,
+        "ns_alignment_std": 0.04905872696823136,
+        "ns_alignment_of_mean_grad": 0.2305487096309662,
+        "grad_norm_mean": 0.0842446764310201,
+        "grad_norm_cv": 0.2172821123814646
+      },
+      "layer2.0.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.27785527116752096,
+        "grad_consistency_std": 0.13113460603962657,
+        "ns_alignment_mean": 0.40656235416730246,
+        "ns_alignment_std": 0.031523039901266835,
+        "ns_alignment_of_mean_grad": 0.31523844599723816,
+        "grad_norm_mean": 0.07495754435658455,
+        "grad_norm_cv": 0.17909165702502675
+      },
+      "layer2.0.downsample.0": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          256,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.3006946171146064,
+        "grad_consistency_std": 0.1342425041701881,
+        "ns_alignment_mean": 0.25584794680277506,
+        "ns_alignment_std": 0.019804908451032433,
+        "ns_alignment_of_mean_grad": 0.19840660691261292,
+        "grad_norm_mean": 0.5437885800997416,
+        "grad_norm_cv": 0.16826187035234583
+      },
+      "layer2.1.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.2989306173154286,
+        "grad_consistency_std": 0.1747966747282588,
+        "ns_alignment_mean": 0.38003772099812827,
+        "ns_alignment_std": 0.037864969725946614,
+        "ns_alignment_of_mean_grad": 0.27760186791419983,
+        "grad_norm_mean": 0.08110847696661949,
+        "grad_norm_cv": 0.20437402417200964
+      },
+      "layer2.1.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.35814326183781736,
+        "grad_consistency_std": 0.15424882789083108,
+        "ns_alignment_mean": 0.38875245054562885,
+        "ns_alignment_std": 0.045953949536069925,
+        "ns_alignment_of_mean_grad": 0.24638383090496063,
+        "grad_norm_mean": 0.17725220719973248,
+        "grad_norm_cv": 0.22009320045730027
+      },
+      "layer2.1.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.4048212993003073,
+        "grad_consistency_std": 0.14865389071414217,
+        "ns_alignment_mean": 0.3602237602074941,
+        "ns_alignment_std": 0.030169296043568144,
+        "ns_alignment_of_mean_grad": 0.24720562994480133,
+        "grad_norm_mean": 0.17071324785550435,
+        "grad_norm_cv": 0.19534570452838615
+      },
+      "layer2.2.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.26623111305137476,
+        "grad_consistency_std": 0.21282601509483656,
+        "ns_alignment_mean": 0.3495364288489024,
+        "ns_alignment_std": 0.04064754721567748,
+        "ns_alignment_of_mean_grad": 0.24846336245536804,
+        "grad_norm_mean": 0.10855324318011601,
+        "grad_norm_cv": 0.19776314213533736
+      },
+      "layer2.2.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.3062699041506719,
+        "grad_consistency_std": 0.25622956999871965,
+        "ns_alignment_mean": 0.33583456377188364,
+        "ns_alignment_std": 0.0543810546638609,
+        "ns_alignment_of_mean_grad": 0.2632264196872711,
+        "grad_norm_mean": 0.23517056703567504,
+        "grad_norm_cv": 0.21884991382117655
+      },
+      "layer2.2.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.3948815970725956,
+        "grad_consistency_std": 0.17527243598266604,
+        "ns_alignment_mean": 0.3398160497347514,
+        "ns_alignment_std": 0.03093277278643055,
+        "ns_alignment_of_mean_grad": 0.2779560089111328,
+        "grad_norm_mean": 0.17312505096197128,
+        "grad_norm_cv": 0.19769689021577738
+      },
+      "layer2.3.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.5055880770796821,
+        "grad_consistency_std": 0.22593406284179912,
+        "ns_alignment_mean": 0.2581551343202591,
+        "ns_alignment_std": 0.05019203938082097,
+        "ns_alignment_of_mean_grad": 0.19184496998786926,
+        "grad_norm_mean": 0.16888584395249684,
+        "grad_norm_cv": 0.2622095046218531
+      },
+      "layer2.3.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.49572953787587937,
+        "grad_consistency_std": 0.18448576164887734,
+        "ns_alignment_mean": 0.32713082830111184,
+        "ns_alignment_std": 0.05694818628454075,
+        "ns_alignment_of_mean_grad": 0.21193444728851318,
+        "grad_norm_mean": 0.22887984812259674,
+        "grad_norm_cv": 0.22184407556062408
+      },
+      "layer2.3.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.43912214941034716,
+        "grad_consistency_std": 0.15554541484122456,
+        "ns_alignment_mean": 0.314094669620196,
+        "ns_alignment_std": 0.04022876161926268,
+        "ns_alignment_of_mean_grad": 0.21840758621692657,
+        "grad_norm_mean": 0.14881423264741897,
+        "grad_norm_cv": 0.19267307055122207
+      },
+      "layer3.0.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          512,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.5116492109062771,
+        "grad_consistency_std": 0.22318324487596597,
+        "ns_alignment_mean": 0.20077784856160483,
+        "ns_alignment_std": 0.021227457550628603,
+        "ns_alignment_of_mean_grad": 0.1742999106645584,
+        "grad_norm_mean": 0.24861177305380502,
+        "grad_norm_cv": 0.2865345953047321
+      },
+      "layer3.0.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.38634599560783023,
+        "grad_consistency_std": 0.20310259516975515,
+        "ns_alignment_mean": 0.26631370186805725,
+        "ns_alignment_std": 0.03620601713518276,
+        "ns_alignment_of_mean_grad": 0.1970522552728653,
+        "grad_norm_mean": 0.20731503665447235,
+        "grad_norm_cv": 0.24660020478038777
+      },
+      "layer3.0.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.3556182704865932,
+        "grad_consistency_std": 0.14590906905027473,
+        "ns_alignment_mean": 0.29330966571966804,
+        "ns_alignment_std": 0.038324264920113524,
+        "ns_alignment_of_mean_grad": 0.18626618385314941,
+        "grad_norm_mean": 0.2006858597199122,
+        "grad_norm_cv": 0.20933550594398756
+      },
+      "layer3.0.downsample.0": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          512,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.3147303548796723,
+        "grad_consistency_std": 0.12970699563684937,
+        "ns_alignment_mean": 0.2022371272246043,
+        "ns_alignment_std": 0.010694938632452366,
+        "ns_alignment_of_mean_grad": 0.16046111285686493,
+        "grad_norm_mean": 0.628486164410909,
+        "grad_norm_cv": 0.17329608920578635
+      },
+      "layer3.1.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.2674162036961033,
+        "grad_consistency_std": 0.14386511348385794,
+        "ns_alignment_mean": 0.3013079325358073,
+        "ns_alignment_std": 0.022558132458886493,
+        "ns_alignment_of_mean_grad": 0.1980597972869873,
+        "grad_norm_mean": 0.07551322976748148,
+        "grad_norm_cv": 0.15189220734448872
+      },
+      "layer3.1.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.34485922297019334,
+        "grad_consistency_std": 0.16372608009836065,
+        "ns_alignment_mean": 0.28687522411346433,
+        "ns_alignment_std": 0.04285460306924781,
+        "ns_alignment_of_mean_grad": 0.1797194480895996,
+        "grad_norm_mean": 0.17368807295958202,
+        "grad_norm_cv": 0.22802318094685278
+      },
+      "layer3.1.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.27130064461380243,
+        "grad_consistency_std": 0.1234846215151668,
+        "ns_alignment_mean": 0.31516615947087606,
+        "ns_alignment_std": 0.029674217016112555,
+        "ns_alignment_of_mean_grad": 0.20602399110794067,
+        "grad_norm_mean": 0.14876714100440344,
+        "grad_norm_cv": 0.16074102442801352
+      },
+      "layer3.2.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.22203189398915996,
+        "grad_consistency_std": 0.16162111328619094,
+        "ns_alignment_mean": 0.31489505171775817,
+        "ns_alignment_std": 0.029755108355906636,
+        "ns_alignment_of_mean_grad": 0.20747849345207214,
+        "grad_norm_mean": 0.09892731755971909,
+        "grad_norm_cv": 0.1482665750145127
+      },
+      "layer3.2.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.29547942179654324,
+        "grad_consistency_std": 0.17783975123749524,
+        "ns_alignment_mean": 0.29832685391108194,
+        "ns_alignment_std": 0.04459743168788081,
+        "ns_alignment_of_mean_grad": 0.19318385422229767,
+        "grad_norm_mean": 0.19689456820487977,
+        "grad_norm_cv": 0.2266084609194574
+      },
+      "layer3.2.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.2751000770855518,
+        "grad_consistency_std": 0.12504138372490992,
+        "ns_alignment_mean": 0.32093903024991355,
+        "ns_alignment_std": 0.027977292355796865,
+        "ns_alignment_of_mean_grad": 0.20948174595832825,
+        "grad_norm_mean": 0.15636397103468577,
+        "grad_norm_cv": 0.15733127219463633
+      },
+      "layer3.3.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.21445459948763962,
+        "grad_consistency_std": 0.172301578631891,
+        "ns_alignment_mean": 0.2954241077105204,
+        "ns_alignment_std": 0.03693326735971728,
+        "ns_alignment_of_mean_grad": 0.20395265519618988,
+        "grad_norm_mean": 0.14215659896532695,
+        "grad_norm_cv": 0.16412220811838357
+      },
+      "layer3.3.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.2914873469798338,
+        "grad_consistency_std": 0.15303913841950234,
+        "ns_alignment_mean": 0.3269453008969625,
+        "ns_alignment_std": 0.04394648298209952,
+        "ns_alignment_of_mean_grad": 0.19979017972946167,
+        "grad_norm_mean": 0.1885273426771164,
+        "grad_norm_cv": 0.18517407878829303
+      },
+      "layer3.3.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.30326826607010193,
+        "grad_consistency_std": 0.11637804721159467,
+        "ns_alignment_mean": 0.322148193915685,
+        "ns_alignment_std": 0.03202185864110527,
+        "ns_alignment_of_mean_grad": 0.20660611987113953,
+        "grad_norm_mean": 0.14715419312318165,
+        "grad_norm_cv": 0.155363537656922
+      },
+      "layer3.4.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.4183740495925858,
+        "grad_consistency_std": 0.14034709929109723,
+        "ns_alignment_mean": 0.2500782738129298,
+        "ns_alignment_std": 0.029577692289223287,
+        "ns_alignment_of_mean_grad": 0.17210885882377625,
+        "grad_norm_mean": 0.19610482851664227,
+        "grad_norm_cv": 0.25780893304451236
+      },
+      "layer3.4.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.32968367687648253,
+        "grad_consistency_std": 0.14551783037676805,
+        "ns_alignment_mean": 0.30964475870132446,
+        "ns_alignment_std": 0.04726986023702091,
+        "ns_alignment_of_mean_grad": 0.19482606649398804,
+        "grad_norm_mean": 0.20784095029036204,
+        "grad_norm_cv": 0.23665182470645307
+      },
+      "layer3.4.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.34515535428765276,
+        "grad_consistency_std": 0.12362948370115226,
+        "ns_alignment_mean": 0.28047783275445304,
+        "ns_alignment_std": 0.032358366100936106,
+        "ns_alignment_of_mean_grad": 0.18551495671272278,
+        "grad_norm_mean": 0.16751912534236907,
+        "grad_norm_cv": 0.17572993326053463
+      },
+      "layer3.5.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.3756421584680322,
+        "grad_consistency_std": 0.16825539349558702,
+        "ns_alignment_mean": 0.2356044352054596,
+        "ns_alignment_std": 0.02875775866781702,
+        "ns_alignment_of_mean_grad": 0.1653800904750824,
+        "grad_norm_mean": 0.2131143162647883,
+        "grad_norm_cv": 0.20493031239503276
+      },
+      "layer3.5.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.2548043232211577,
+        "grad_consistency_std": 0.13178655249198057,
+        "ns_alignment_mean": 0.3534039358297984,
+        "ns_alignment_std": 0.03406042503493994,
+        "ns_alignment_of_mean_grad": 0.21648657321929932,
+        "grad_norm_mean": 0.15958073337872822,
+        "grad_norm_cv": 0.13154867817830018
+      },
+      "layer3.5.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.2971330011019572,
+        "grad_consistency_std": 0.11540870763686412,
+        "ns_alignment_mean": 0.29121949871381125,
+        "ns_alignment_std": 0.027185018425969324,
+        "ns_alignment_of_mean_grad": 0.1999812126159668,
+        "grad_norm_mean": 0.1387303392092387,
+        "grad_norm_cv": 0.15124679761821938
+      },
+      "layer4.0.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.34644795953340474,
+        "grad_consistency_std": 0.18266353726867385,
+        "ns_alignment_mean": 0.20455365777015685,
+        "ns_alignment_std": 0.020367781420143647,
+        "ns_alignment_of_mean_grad": 0.1557113081216812,
+        "grad_norm_mean": 0.13539472917715709,
+        "grad_norm_cv": 0.23077495991192357
+      },
+      "layer4.0.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.2405288334448068,
+        "grad_consistency_std": 0.12475853814899332,
+        "ns_alignment_mean": 0.31869328022003174,
+        "ns_alignment_std": 0.024771958687011486,
+        "ns_alignment_of_mean_grad": 0.20439590513706207,
+        "grad_norm_mean": 0.06664896234869958,
+        "grad_norm_cv": 0.14618608985626988
+      },
+      "layer4.0.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.2601893871667839,
+        "grad_consistency_std": 0.07868786940727807,
+        "ns_alignment_mean": 0.31692511240641275,
+        "ns_alignment_std": 0.011316783050460598,
+        "ns_alignment_of_mean_grad": 0.21002046763896942,
+        "grad_norm_mean": 0.07490106026331583,
+        "grad_norm_cv": 0.08792834369880444
+      },
+      "layer4.0.downsample.0": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 2097152,
+        "grad_consistency_mean": 0.2991352591663599,
+        "grad_consistency_std": 0.09183011306984432,
+        "ns_alignment_mean": 0.20682085355122884,
+        "ns_alignment_std": 0.007503795981660524,
+        "ns_alignment_of_mean_grad": 0.156572625041008,
+        "grad_norm_mean": 0.5220751206080119,
+        "grad_norm_cv": 0.08439749410631686
+      },
+      "layer4.1.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.3864684769085475,
+        "grad_consistency_std": 0.10918114843586789,
+        "ns_alignment_mean": 0.2967062453428904,
+        "ns_alignment_std": 0.015268887745637923,
+        "ns_alignment_of_mean_grad": 0.21434704959392548,
+        "grad_norm_mean": 0.12091337144374847,
+        "grad_norm_cv": 0.09110575618410927
+      },
+      "layer4.1.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.45043594610123405,
+        "grad_consistency_std": 0.08822151206741877,
+        "ns_alignment_mean": 0.28769991795221966,
+        "ns_alignment_std": 0.01857809284437147,
+        "ns_alignment_of_mean_grad": 0.18438221514225006,
+        "grad_norm_mean": 0.2326590875784556,
+        "grad_norm_cv": 0.06634081163504839
+      },
+      "layer4.1.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.4539589393706549,
+        "grad_consistency_std": 0.0837200774153572,
+        "ns_alignment_mean": 0.28106448650360105,
+        "ns_alignment_std": 0.01513574505967064,
+        "ns_alignment_of_mean_grad": 0.1775858998298645,
+        "grad_norm_mean": 0.21656368573506674,
+        "grad_norm_cv": 0.06445556332574132
+      },
+      "layer4.2.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.44479412677742186,
+        "grad_consistency_std": 0.08877682244105518,
+        "ns_alignment_mean": 0.2647179126739502,
+        "ns_alignment_std": 0.013388882385149337,
+        "ns_alignment_of_mean_grad": 0.17587745189666748,
+        "grad_norm_mean": 0.20213949580987295,
+        "grad_norm_cv": 0.06480347293529343
+      },
+      "layer4.2.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.19154042032480773,
+        "grad_consistency_std": 0.09064863126245548,
+        "ns_alignment_mean": 0.3135980010032654,
+        "ns_alignment_std": 0.008142566963496968,
+        "ns_alignment_of_mean_grad": 0.2230565994977951,
+        "grad_norm_mean": 0.18511110842227935,
+        "grad_norm_cv": 0.06063767867169177
+      },
+      "layer4.2.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.07999162343552425,
+        "grad_consistency_std": 0.06949788604123155,
+        "ns_alignment_mean": 0.31288100481033326,
+        "ns_alignment_std": 0.010080699962838714,
+        "ns_alignment_of_mean_grad": 0.29499655961990356,
+        "grad_norm_mean": 0.15565084318319958,
+        "grad_norm_cv": 0.07324265375714245
+      }
+    }
+  },
+  "resnet50_soap": {
+    "model": "resnet50",
+    "optimizer": "soap",
+    "val_acc": 77.47,
+    "overall_consistency": 0.0997175141245966,
+    "overall_ns_alignment": 0.3593751797521556,
+    "depth_summary": {
+      "stem": {
+        "n_layers": 1,
+        "n_params": 9408,
+        "consistency_mean": -0.010197139621180082,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.2798829237620036,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 3.469552818934123
+      },
+      "layer1": {
+        "n_layers": 10,
+        "n_params": 212992,
+        "consistency_mean": 0.06536059715851608,
+        "consistency_std": 0.04583087588836299,
+        "ns_alignment_mean": 0.37577981501817703,
+        "ns_alignment_std": 0.059204584022252045,
+        "grad_norm_mean": 0.1929901724246641
+      },
+      "layer2": {
+        "n_layers": 13,
+        "n_params": 1212416,
+        "consistency_mean": 0.10314437957274158,
+        "consistency_std": 0.02773532487695239,
+        "ns_alignment_mean": 0.31590846899228225,
+        "ns_alignment_std": 0.062277258043864116,
+        "grad_norm_mean": 0.28617629985778764
+      },
+      "layer3": {
+        "n_layers": 19,
+        "n_params": 7077888,
+        "consistency_mean": 0.1564866557966347,
+        "consistency_std": 0.04394617089472637,
+        "ns_alignment_mean": 0.3622992380146395,
+        "ns_alignment_std": 0.07523820350562717,
+        "grad_norm_mean": 0.26221610914196886
+      },
+      "layer4": {
+        "n_layers": 10,
+        "n_params": 14942208,
+        "consistency_mean": 0.042112717914264755,
+        "consistency_std": 0.029998314913307518,
+        "ns_alignment_mean": 0.37988686114549636,
+        "ns_alignment_std": 0.06847584375922758,
+        "grad_norm_mean": 0.381743615269661
+      },
+      "head": {
+        "n_layers": 1,
+        "n_params": 204800,
+        "consistency_mean": 0.006086357039887281,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.5792144020398458,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 0.9232481042544047
+      }
+    },
+    "per_layer": {
+      "conv1": {
+        "depth": "stem",
+        "shape": [
+          64,
+          3,
+          7,
+          7
+        ],
+        "n_params": 9408,
+        "grad_consistency_mean": -0.010197139621180082,
+        "grad_consistency_std": 0.32913667006653446,
+        "ns_alignment_mean": 0.2798829237620036,
+        "ns_alignment_std": 0.03432080485924059,
+        "ns_alignment_of_mean_grad": 0.2702486217021942,
+        "grad_norm_mean": 3.469552818934123,
+        "grad_norm_cv": 0.2827562306831351
+      },
+      "fc": {
+        "depth": "head",
+        "shape": [
+          100,
+          2048
+        ],
+        "n_params": 204800,
+        "grad_consistency_mean": 0.006086357039887281,
+        "grad_consistency_std": 0.08783748776668103,
+        "ns_alignment_mean": 0.5792144020398458,
+        "ns_alignment_std": 0.05276271704305659,
+        "ns_alignment_of_mean_grad": 0.516402006149292,
+        "grad_norm_mean": 0.9232481042544047,
+        "grad_norm_cv": 0.08440348607340645
+      },
+      "layer1.0.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          1,
+          1
+        ],
+        "n_params": 4096,
+        "grad_consistency_mean": 0.015481622774331343,
+        "grad_consistency_std": 0.3706645066184643,
+        "ns_alignment_mean": 0.29261442124843595,
+        "ns_alignment_std": 0.04968184267403509,
+        "ns_alignment_of_mean_grad": 0.27906569838523865,
+        "grad_norm_mean": 0.24637400607268015,
+        "grad_norm_cv": 0.3739103116864796
+      },
+      "layer1.0.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.07509864933700079,
+        "grad_consistency_std": 0.2577168358447075,
+        "ns_alignment_mean": 0.40883811712265017,
+        "ns_alignment_std": 0.07265431307411317,
+        "ns_alignment_of_mean_grad": 0.36593398451805115,
+        "grad_norm_mean": 0.1530461698770523,
+        "grad_norm_cv": 0.25639576111293216
+      },
+      "layer1.0.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.07124792520134222,
+        "grad_consistency_std": 0.18968077549301857,
+        "ns_alignment_mean": 0.3939870258172353,
+        "ns_alignment_std": 0.06357056401087854,
+        "ns_alignment_of_mean_grad": 0.3340620696544647,
+        "grad_norm_mean": 0.13087396174669266,
+        "grad_norm_cv": 0.21493728630476777
+      },
+      "layer1.0.downsample.0": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.09998908330287253,
+        "grad_consistency_std": 0.18792838538443332,
+        "ns_alignment_mean": 0.26380903720855714,
+        "ns_alignment_std": 0.019383810072615897,
+        "ns_alignment_of_mean_grad": 0.23759472370147705,
+        "grad_norm_mean": 0.931779666741689,
+        "grad_norm_cv": 0.193268199382455
+      },
+      "layer1.1.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.05262356484974069,
+        "grad_consistency_std": 0.3516557631251354,
+        "ns_alignment_mean": 0.4092159569263458,
+        "ns_alignment_std": 0.07972735975697665,
+        "ns_alignment_of_mean_grad": 0.38531386852264404,
+        "grad_norm_mean": 0.09389662643273672,
+        "grad_norm_cv": 0.3646659723260133
+      },
+      "layer1.1.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.13198597212987287,
+        "grad_consistency_std": 0.43106779993780703,
+        "ns_alignment_mean": 0.3505380352338155,
+        "ns_alignment_std": 0.0703067879329285,
+        "ns_alignment_of_mean_grad": 0.27273914217948914,
+        "grad_norm_mean": 0.17521662165721258,
+        "grad_norm_cv": 0.4628275530757219
+      },
+      "layer1.1.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.14051211859498705,
+        "grad_consistency_std": 0.307040213510748,
+        "ns_alignment_mean": 0.4073724647363027,
+        "ns_alignment_std": 0.05489906103825648,
+        "ns_alignment_of_mean_grad": 0.2966970205307007,
+        "grad_norm_mean": 0.12068342864513397,
+        "grad_norm_cv": 0.2972918997782343
+      },
+      "layer1.2.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.04337747281505948,
+        "grad_consistency_std": 0.3745892343461775,
+        "ns_alignment_mean": 0.33867608904838564,
+        "ns_alignment_std": 0.0703695384565307,
+        "ns_alignment_of_mean_grad": 0.34649306535720825,
+        "grad_norm_mean": 0.04128645832339923,
+        "grad_norm_cv": 0.3190786845311678
+      },
+      "layer1.2.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": -0.006864650844640675,
+        "grad_consistency_std": 0.31504186169029363,
+        "ns_alignment_mean": 0.45256599187850954,
+        "ns_alignment_std": 0.07929585646662496,
+        "ns_alignment_of_mean_grad": 0.5027970671653748,
+        "grad_norm_mean": 0.018509086159368356,
+        "grad_norm_cv": 0.23351353488389384
+      },
+      "layer1.2.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.03015421342459463,
+        "grad_consistency_std": 0.2721479868249484,
+        "ns_alignment_mean": 0.4401810109615326,
+        "ns_alignment_std": 0.06471890454248144,
+        "ns_alignment_of_mean_grad": 0.36692938208580017,
+        "grad_norm_mean": 0.01823569859067599,
+        "grad_norm_cv": 0.2193329020076278
+      },
+      "layer2.0.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          256,
+          1,
+          1
+        ],
+        "n_params": 32768,
+        "grad_consistency_mean": 0.060969898419543395,
+        "grad_consistency_std": 0.2564594755130161,
+        "ns_alignment_mean": 0.21386158963044485,
+        "ns_alignment_std": 0.02029432622403043,
+        "ns_alignment_of_mean_grad": 0.19024506211280823,
+        "grad_norm_mean": 0.33820351362228396,
+        "grad_norm_cv": 0.24325404752012583
+      },
+      "layer2.0.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.08534411726674686,
+        "grad_consistency_std": 0.18376001425763516,
+        "ns_alignment_mean": 0.3219735751549403,
+        "ns_alignment_std": 0.05131561611344029,
+        "ns_alignment_of_mean_grad": 0.2455155998468399,
+        "grad_norm_mean": 0.22608512938022612,
+        "grad_norm_cv": 0.15936464271357947
+      },
+      "layer2.0.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.1001319462921293,
+        "grad_consistency_std": 0.13759102996035028,
+        "ns_alignment_mean": 0.3584082027276357,
+        "ns_alignment_std": 0.03740630072091912,
+        "ns_alignment_of_mean_grad": 0.2581714689731598,
+        "grad_norm_mean": 0.19405811528364816,
+        "grad_norm_cv": 0.1311905275063536
+      },
+      "layer2.0.downsample.0": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          256,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.10663894554821864,
+        "grad_consistency_std": 0.13436378603669563,
+        "ns_alignment_mean": 0.18610016902287801,
+        "ns_alignment_std": 0.010650456287793387,
+        "ns_alignment_of_mean_grad": 0.16445280611515045,
+        "grad_norm_mean": 0.7290782729784647,
+        "grad_norm_cv": 0.1361265634410067
+      },
+      "layer2.1.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.07558373028323764,
+        "grad_consistency_std": 0.18389614466344487,
+        "ns_alignment_mean": 0.4019361237684886,
+        "ns_alignment_std": 0.049547528517958184,
+        "ns_alignment_of_mean_grad": 0.2941509187221527,
+        "grad_norm_mean": 0.17136257489522297,
+        "grad_norm_cv": 0.1524736559247617
+      },
+      "layer2.1.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.07220787120805609,
+        "grad_consistency_std": 0.2660093236764181,
+        "ns_alignment_mean": 0.2927690307299296,
+        "ns_alignment_std": 0.04368660000641774,
+        "ns_alignment_of_mean_grad": 0.23139533400535583,
+        "grad_norm_mean": 0.40324979027112323,
+        "grad_norm_cv": 0.17372607514551777
+      },
+      "layer2.1.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.1078812966034526,
+        "grad_consistency_std": 0.18575451962578568,
+        "ns_alignment_mean": 0.359713347752889,
+        "ns_alignment_std": 0.04288714637915324,
+        "ns_alignment_of_mean_grad": 0.2633339464664459,
+        "grad_norm_mean": 0.27593634724617006,
+        "grad_norm_cv": 0.1380387122489509
+      },
+      "layer2.2.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.17592355740877488,
+        "grad_consistency_std": 0.2584344163499578,
+        "ns_alignment_mean": 0.338422159353892,
+        "ns_alignment_std": 0.05909846884173653,
+        "ns_alignment_of_mean_grad": 0.2223585695028305,
+        "grad_norm_mean": 0.17631872047980626,
+        "grad_norm_cv": 0.20081360130356557
+      },
+      "layer2.2.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.10649037394850026,
+        "grad_consistency_std": 0.3203405021045603,
+        "ns_alignment_mean": 0.31360084712505343,
+        "ns_alignment_std": 0.05638625456416755,
+        "ns_alignment_of_mean_grad": 0.22253760695457458,
+        "grad_norm_mean": 0.3075833827257156,
+        "grad_norm_cv": 0.2920359300552313
+      },
+      "layer2.2.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.1104817473152209,
+        "grad_consistency_std": 0.22440535734205774,
+        "ns_alignment_mean": 0.3517708381017049,
+        "ns_alignment_std": 0.04777606093182991,
+        "ns_alignment_of_mean_grad": 0.25474515557289124,
+        "grad_norm_mean": 0.22169478038946788,
+        "grad_norm_cv": 0.19076864582148054
+      },
+      "layer2.3.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.0970834453634563,
+        "grad_consistency_std": 0.21431095194877955,
+        "ns_alignment_mean": 0.2508161634206772,
+        "ns_alignment_std": 0.01881448065119585,
+        "ns_alignment_of_mean_grad": 0.20046350359916687,
+        "grad_norm_mean": 0.24814627965291342,
+        "grad_norm_cv": 0.12472483418847392
+      },
+      "layer2.3.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.11389097978493996,
+        "grad_consistency_std": 0.19645826091838478,
+        "ns_alignment_mean": 0.32907690008481344,
+        "ns_alignment_std": 0.04571275717300558,
+        "ns_alignment_of_mean_grad": 0.23452025651931763,
+        "grad_norm_mean": 0.25622382064660393,
+        "grad_norm_cv": 0.14156616100171845
+      },
+      "layer2.3.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.1282490250033637,
+        "grad_consistency_std": 0.14823306073880516,
+        "ns_alignment_mean": 0.38836115002632143,
+        "ns_alignment_std": 0.037267820182972186,
+        "ns_alignment_of_mean_grad": 0.26312482357025146,
+        "grad_norm_mean": 0.1723511705795924,
+        "grad_norm_cv": 0.12705537012154183
+      },
+      "layer3.0.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          512,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.12079576373188979,
+        "grad_consistency_std": 0.15529231952835662,
+        "ns_alignment_mean": 0.2007128894329071,
+        "ns_alignment_std": 0.015133696225476239,
+        "ns_alignment_of_mean_grad": 0.15947140753269196,
+        "grad_norm_mean": 0.4613454818725586,
+        "grad_norm_cv": 0.14422255880456147
+      },
+      "layer3.0.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.10786226309968956,
+        "grad_consistency_std": 0.12570893762462457,
+        "ns_alignment_mean": 0.3136850039164225,
+        "ns_alignment_std": 0.03665435484883749,
+        "ns_alignment_of_mean_grad": 0.2169366478919983,
+        "grad_norm_mean": 0.27981381913026177,
+        "grad_norm_cv": 0.12857976231944493
+      },
+      "layer3.0.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.13752100857506905,
+        "grad_consistency_std": 0.0930582956727966,
+        "ns_alignment_mean": 0.3390596866607666,
+        "ns_alignment_std": 0.025399066305168933,
+        "ns_alignment_of_mean_grad": 0.22523243725299835,
+        "grad_norm_mean": 0.26541787485281626,
+        "grad_norm_cv": 0.09844605401970055
+      },
+      "layer3.0.downsample.0": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          512,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.14498283668155118,
+        "grad_consistency_std": 0.09657508624769658,
+        "ns_alignment_mean": 0.18341143627961476,
+        "ns_alignment_std": 0.007655487748544037,
+        "ns_alignment_of_mean_grad": 0.14600521326065063,
+        "grad_norm_mean": 0.6792415698369344,
+        "grad_norm_cv": 0.10137570378958519
+      },
+      "layer3.1.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05868236591063795,
+        "grad_consistency_std": 0.08247613535448624,
+        "ns_alignment_mean": 0.3901268204053243,
+        "ns_alignment_std": 0.01901337106234777,
+        "ns_alignment_of_mean_grad": 0.32194456458091736,
+        "grad_norm_mean": 0.1816865473985672,
+        "grad_norm_cv": 0.09832493429964433
+      },
+      "layer3.1.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.09994730910679903,
+        "grad_consistency_std": 0.09754976466830939,
+        "ns_alignment_mean": 0.38256736000378927,
+        "ns_alignment_std": 0.030222048518644438,
+        "ns_alignment_of_mean_grad": 0.26746100187301636,
+        "grad_norm_mean": 0.2568833023309708,
+        "grad_norm_cv": 0.10403058497102508
+      },
+      "layer3.1.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.1396625498586911,
+        "grad_consistency_std": 0.09268875186635518,
+        "ns_alignment_mean": 0.4396577874819438,
+        "ns_alignment_std": 0.02555929822289329,
+        "ns_alignment_of_mean_grad": 0.2817150950431824,
+        "grad_norm_mean": 0.1938935379187266,
+        "grad_norm_cv": 0.0997563919390548
+      },
+      "layer3.2.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.12506433657503555,
+        "grad_consistency_std": 0.0917766420621902,
+        "ns_alignment_mean": 0.3706530471642812,
+        "ns_alignment_std": 0.027262061425550828,
+        "ns_alignment_of_mean_grad": 0.25034990906715393,
+        "grad_norm_mean": 0.21177773276964823,
+        "grad_norm_cv": 0.09316194922224154
+      },
+      "layer3.2.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.17068535636755683,
+        "grad_consistency_std": 0.10651000896324007,
+        "ns_alignment_mean": 0.36116161147753395,
+        "ns_alignment_std": 0.028359023524433768,
+        "ns_alignment_of_mean_grad": 0.22477099299430847,
+        "grad_norm_mean": 0.2745726356903712,
+        "grad_norm_cv": 0.11327263945988929
+      },
+      "layer3.2.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.17657185500221592,
+        "grad_consistency_std": 0.09000309221077615,
+        "ns_alignment_mean": 0.40258847872416176,
+        "ns_alignment_std": 0.023199451128299027,
+        "ns_alignment_of_mean_grad": 0.2464345395565033,
+        "grad_norm_mean": 0.21977098882198334,
+        "grad_norm_cv": 0.09987900265705592
+      },
+      "layer3.3.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.15627666535853807,
+        "grad_consistency_std": 0.12250724046552704,
+        "ns_alignment_mean": 0.3274884363015493,
+        "ns_alignment_std": 0.029820931272760393,
+        "ns_alignment_of_mean_grad": 0.21921807527542114,
+        "grad_norm_mean": 0.2379892865816752,
+        "grad_norm_cv": 0.11688357634405092
+      },
+      "layer3.3.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.18830138558433168,
+        "grad_consistency_std": 0.11661855818884945,
+        "ns_alignment_mean": 0.4245779812335968,
+        "ns_alignment_std": 0.024506975233998963,
+        "ns_alignment_of_mean_grad": 0.2515248656272888,
+        "grad_norm_mean": 0.21949760218461353,
+        "grad_norm_cv": 0.10212028105602551
+      },
+      "layer3.3.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.17168350283588682,
+        "grad_consistency_std": 0.0845173422353769,
+        "ns_alignment_mean": 0.4392166256904602,
+        "ns_alignment_std": 0.02499263798597349,
+        "ns_alignment_of_mean_grad": 0.26897957921028137,
+        "grad_norm_mean": 0.1912836750348409,
+        "grad_norm_cv": 0.0971791124179969
+      },
+      "layer3.4.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.19437354345517677,
+        "grad_consistency_std": 0.1037427968791804,
+        "ns_alignment_mean": 0.3011973520119985,
+        "ns_alignment_std": 0.030578576627218107,
+        "ns_alignment_of_mean_grad": 0.19546552002429962,
+        "grad_norm_mean": 0.26649459401766457,
+        "grad_norm_cv": 0.12578351324015463
+      },
+      "layer3.4.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.18622260985097716,
+        "grad_consistency_std": 0.10066916733455004,
+        "ns_alignment_mean": 0.4243835767110189,
+        "ns_alignment_std": 0.030413457469093057,
+        "ns_alignment_of_mean_grad": 0.25384101271629333,
+        "grad_norm_mean": 0.2163707733154297,
+        "grad_norm_cv": 0.10132075636520102
+      },
+      "layer3.4.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.1611980001364524,
+        "grad_consistency_std": 0.07517981385174237,
+        "ns_alignment_mean": 0.44117623964945474,
+        "ns_alignment_std": 0.022482469851864622,
+        "ns_alignment_of_mean_grad": 0.27839410305023193,
+        "grad_norm_mean": 0.18688617249329884,
+        "grad_norm_cv": 0.09584578335120017
+      },
+      "layer3.5.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.2587692768268642,
+        "grad_consistency_std": 0.11988092040503578,
+        "ns_alignment_mean": 0.29191386302312217,
+        "ns_alignment_std": 0.03181538078321967,
+        "ns_alignment_of_mean_grad": 0.18154947459697723,
+        "grad_norm_mean": 0.26683581471443174,
+        "grad_norm_cv": 0.11227597312155209
+      },
+      "layer3.5.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.21876771079287644,
+        "grad_consistency_std": 0.09987868485618148,
+        "ns_alignment_mean": 0.42893840074539186,
+        "ns_alignment_std": 0.03318970118043776,
+        "ns_alignment_of_mean_grad": 0.24427711963653564,
+        "grad_norm_mean": 0.19449257751305898,
+        "grad_norm_cv": 0.09358621726385903
+      },
+      "layer3.5.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.15587812038581997,
+        "grad_consistency_std": 0.07168802104716274,
+        "ns_alignment_mean": 0.4211689253648122,
+        "ns_alignment_std": 0.019878059399329396,
+        "ns_alignment_of_mean_grad": 0.2729875445365906,
+        "grad_norm_mean": 0.17785208721955617,
+        "grad_norm_cv": 0.09656596580322263
+      },
+      "layer4.0.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.11993108057816114,
+        "grad_consistency_std": 0.08016559054826974,
+        "ns_alignment_mean": 0.2664829929669698,
+        "ns_alignment_std": 0.01682163305642475,
+        "ns_alignment_of_mean_grad": 0.20007866621017456,
+        "grad_norm_mean": 0.3979334612687429,
+        "grad_norm_cv": 0.10569230168072846
+      },
+      "layer4.0.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.05188723909834932,
+        "grad_consistency_std": 0.05350763962920692,
+        "ns_alignment_mean": 0.4224195937315623,
+        "ns_alignment_std": 0.01781720623227196,
+        "ns_alignment_of_mean_grad": 0.41493672132492065,
+        "grad_norm_mean": 0.25479450325171155,
+        "grad_norm_cv": 0.09006329996882295
+      },
+      "layer4.0.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.03254997167414764,
+        "grad_consistency_std": 0.04567301897403362,
+        "ns_alignment_mean": 0.41448488434155784,
+        "ns_alignment_std": 0.014613080861139542,
+        "ns_alignment_of_mean_grad": 0.4323556125164032,
+        "grad_norm_mean": 0.2651327798763911,
+        "grad_norm_cv": 0.09056818621221174
+      },
+      "layer4.0.downsample.0": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 2097152,
+        "grad_consistency_mean": 0.04827429275693638,
+        "grad_consistency_std": 0.06244193036036694,
+        "ns_alignment_mean": 0.2429709404706955,
+        "ns_alignment_std": 0.007487343473194168,
+        "ns_alignment_of_mean_grad": 0.2080511450767517,
+        "grad_norm_mean": 0.5763614694277446,
+        "grad_norm_cv": 0.08857736110667098
+      },
+      "layer4.1.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.05133828219813517,
+        "grad_consistency_std": 0.04606438195971592,
+        "ns_alignment_mean": 0.45843967199325564,
+        "ns_alignment_std": 0.016115198295636086,
+        "ns_alignment_of_mean_grad": 0.44943690299987793,
+        "grad_norm_mean": 0.27428638537724814,
+        "grad_norm_cv": 0.09390909779526856
+      },
+      "layer4.1.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.049274324524421466,
+        "grad_consistency_std": 0.06743952270359621,
+        "ns_alignment_mean": 0.39032543301582334,
+        "ns_alignment_std": 0.01630453520886284,
+        "ns_alignment_of_mean_grad": 0.3865543603897095,
+        "grad_norm_mean": 0.4039261400699615,
+        "grad_norm_cv": 0.09875101016061319
+      },
+      "layer4.1.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.02004879245068878,
+        "grad_consistency_std": 0.05145659213862605,
+        "ns_alignment_mean": 0.41426000793774925,
+        "ns_alignment_std": 0.014839668828637891,
+        "ns_alignment_of_mean_grad": 0.4823336899280548,
+        "grad_norm_mean": 0.3296763877073924,
+        "grad_norm_cv": 0.09903343626636048
+      },
+      "layer4.2.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.019714441899919794,
+        "grad_consistency_std": 0.04519137762180948,
+        "ns_alignment_mean": 0.4408423821131388,
+        "ns_alignment_std": 0.0186612888515385,
+        "ns_alignment_of_mean_grad": 0.5267170667648315,
+        "grad_norm_mean": 0.4106902996699015,
+        "grad_norm_cv": 0.0985051873174604
+      },
+      "layer4.2.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.017128365545067935,
+        "grad_consistency_std": 0.06027090943759624,
+        "ns_alignment_mean": 0.39710733691851297,
+        "ns_alignment_std": 0.0213257908306032,
+        "ns_alignment_of_mean_grad": 0.5125528573989868,
+        "grad_norm_mean": 0.498390265305837,
+        "grad_norm_cv": 0.08827972320636565
+      },
+      "layer4.2.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.010980388416819984,
+        "grad_consistency_std": 0.06397077172761484,
+        "ns_alignment_mean": 0.35153536796569823,
+        "ns_alignment_std": 0.014760342143361183,
+        "ns_alignment_of_mean_grad": 0.4525456428527832,
+        "grad_norm_mean": 0.40624446074167886,
+        "grad_norm_cv": 0.09068802075292287
+      }
+    }
+  },
+  "resnet50_ln_muon": {
+    "model": "resnet50_ln",
+    "optimizer": "muon",
+    "val_acc": 78.31,
+    "overall_consistency": 0.03077245503068595,
+    "overall_ns_alignment": 0.3604655522439215,
+    "depth_summary": {
+      "stem": {
+        "n_layers": 1,
+        "n_params": 9408,
+        "consistency_mean": 0.018211494967164028,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.2552991489569346,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 0.5328609605630239
+      },
+      "layer1": {
+        "n_layers": 10,
+        "n_params": 212992,
+        "consistency_mean": 0.015042287419616645,
+        "consistency_std": 0.026079098052594417,
+        "ns_alignment_mean": 0.3525984386603037,
+        "ns_alignment_std": 0.079362344658432,
+        "grad_norm_mean": 0.07570949169496695
+      },
+      "layer2": {
+        "n_layers": 13,
+        "n_params": 1212416,
+        "consistency_mean": 0.06461804020086358,
+        "consistency_std": 0.04683291311595863,
+        "ns_alignment_mean": 0.3680873266397378,
+        "ns_alignment_std": 0.06435925645084015,
+        "grad_norm_mean": 0.10822393687871784
+      },
+      "layer3": {
+        "n_layers": 19,
+        "n_params": 7077888,
+        "consistency_mean": 0.03614471904728631,
+        "consistency_std": 0.026214734747188054,
+        "ns_alignment_mean": 0.3916971915646603,
+        "ns_alignment_std": 0.05622068817221184,
+        "grad_norm_mean": 0.24142282790782157
+      },
+      "layer4": {
+        "n_layers": 10,
+        "n_params": 14942208,
+        "consistency_mean": -0.0026039308883870644,
+        "consistency_std": 0.004955782500113028,
+        "ns_alignment_mean": 0.2946620895465215,
+        "ns_alignment_std": 0.04119992559451702,
+        "grad_norm_mean": 0.7858146840333938
+      },
+      "head": {
+        "n_layers": 1,
+        "n_params": 204800,
+        "consistency_mean": -0.0076666731320853745,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.5098535041014354,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 4.314971303939819
+      }
+    },
+    "per_layer": {
+      "conv1": {
+        "depth": "stem",
+        "shape": [
+          64,
+          3,
+          7,
+          7
+        ],
+        "n_params": 9408,
+        "grad_consistency_mean": 0.018211494967164028,
+        "grad_consistency_std": 0.22936662658672155,
+        "ns_alignment_mean": 0.2552991489569346,
+        "ns_alignment_std": 0.02061420075952081,
+        "ns_alignment_of_mean_grad": 0.24039112031459808,
+        "grad_norm_mean": 0.5328609605630239,
+        "grad_norm_cv": 0.2201782449191996
+      },
+      "fc": {
+        "depth": "head",
+        "shape": [
+          100,
+          2048
+        ],
+        "n_params": 204800,
+        "grad_consistency_mean": -0.0076666731320853745,
+        "grad_consistency_std": 0.09101715023809284,
+        "ns_alignment_mean": 0.5098535041014354,
+        "ns_alignment_std": 0.051333370993265376,
+        "ns_alignment_of_mean_grad": 0.514458954334259,
+        "grad_norm_mean": 4.314971303939819,
+        "grad_norm_cv": 0.10637999748203368
+      },
+      "layer1.0.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          1,
+          1
+        ],
+        "n_params": 4096,
+        "grad_consistency_mean": 0.011598772338281075,
+        "grad_consistency_std": 0.15629604979275846,
+        "ns_alignment_mean": 0.44305369853973386,
+        "ns_alignment_std": 0.02735864395858559,
+        "ns_alignment_of_mean_grad": 0.4694935083389282,
+        "grad_norm_mean": 0.06672254949808121,
+        "grad_norm_cv": 0.16932834834295393
+      },
+      "layer1.0.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.015251400537921914,
+        "grad_consistency_std": 0.16517801716792269,
+        "ns_alignment_mean": 0.44336265126864116,
+        "ns_alignment_std": 0.02505564691109806,
+        "ns_alignment_of_mean_grad": 0.47450822591781616,
+        "grad_norm_mean": 0.08013460288445155,
+        "grad_norm_cv": 0.16602130271895293
+      },
+      "layer1.0.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.002925665889467512,
+        "grad_consistency_std": 0.1894062438606824,
+        "ns_alignment_mean": 0.35489485661188763,
+        "ns_alignment_std": 0.04642031960247835,
+        "ns_alignment_of_mean_grad": 0.3926578462123871,
+        "grad_norm_mean": 0.08720974673827489,
+        "grad_norm_cv": 0.16389920190338336
+      },
+      "layer1.0.downsample.0": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.008276925315814358,
+        "grad_consistency_std": 0.12761049061106117,
+        "ns_alignment_mean": 0.4201871593793233,
+        "ns_alignment_std": 0.021852696431768015,
+        "ns_alignment_of_mean_grad": 0.427968829870224,
+        "grad_norm_mean": 0.14271676192680996,
+        "grad_norm_cv": 0.14643185143746915
+      },
+      "layer1.1.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": -0.01805671210001622,
+        "grad_consistency_std": 0.2833048057051165,
+        "ns_alignment_mean": 0.3495815396308899,
+        "ns_alignment_std": 0.04497740326937888,
+        "ns_alignment_of_mean_grad": 0.39662882685661316,
+        "grad_norm_mean": 0.04808625280857086,
+        "grad_norm_cv": 0.18322112764179244
+      },
+      "layer1.1.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.0008122194957520281,
+        "grad_consistency_std": 0.16985879853792848,
+        "ns_alignment_mean": 0.39145084222157794,
+        "ns_alignment_std": 0.04442670176260999,
+        "ns_alignment_of_mean_grad": 0.4260644018650055,
+        "grad_norm_mean": 0.049767673512299854,
+        "grad_norm_cv": 0.16908858976018262
+      },
+      "layer1.1.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": -0.00663571920955465,
+        "grad_consistency_std": 0.18228699455362382,
+        "ns_alignment_mean": 0.23304427166779837,
+        "ns_alignment_std": 0.01697094053450308,
+        "ns_alignment_of_mean_grad": 0.23721933364868164,
+        "grad_norm_mean": 0.09623997708161672,
+        "grad_norm_cv": 0.18806770042468723
+      },
+      "layer1.2.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.017812961836655934,
+        "grad_consistency_std": 0.20289495791757156,
+        "ns_alignment_mean": 0.34953967928886415,
+        "ns_alignment_std": 0.02973145019773051,
+        "ns_alignment_of_mean_grad": 0.35976406931877136,
+        "grad_norm_mean": 0.032395736997326216,
+        "grad_norm_cv": 0.2522800461339468
+      },
+      "layer1.2.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.08064239173240605,
+        "grad_consistency_std": 0.22409103530537414,
+        "ns_alignment_mean": 0.3500185549259186,
+        "ns_alignment_std": 0.017956000691163546,
+        "ns_alignment_of_mean_grad": 0.3257198929786682,
+        "grad_norm_mean": 0.040113453691204386,
+        "grad_norm_cv": 0.16164463094045642
+      },
+      "layer1.2.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.037794968359438436,
+        "grad_consistency_std": 0.20053655281337526,
+        "ns_alignment_mean": 0.1908511330684026,
+        "ns_alignment_std": 0.00812687397245318,
+        "ns_alignment_of_mean_grad": 0.20646384358406067,
+        "grad_norm_mean": 0.11370816181103388,
+        "grad_norm_cv": 0.1787599506339295
+      },
+      "layer2.0.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          256,
+          1,
+          1
+        ],
+        "n_params": 32768,
+        "grad_consistency_mean": 0.02273621109447309,
+        "grad_consistency_std": 0.18259215717647595,
+        "ns_alignment_mean": 0.33980154593785605,
+        "ns_alignment_std": 0.019595616740853177,
+        "ns_alignment_of_mean_grad": 0.34766241908073425,
+        "grad_norm_mean": 0.057163670162359875,
+        "grad_norm_cv": 0.1795012895962981
+      },
+      "layer2.0.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.041762794971111274,
+        "grad_consistency_std": 0.13695976036244212,
+        "ns_alignment_mean": 0.34629743099212645,
+        "ns_alignment_std": 0.023539889518511846,
+        "ns_alignment_of_mean_grad": 0.30851176381111145,
+        "grad_norm_mean": 0.08235406378904979,
+        "grad_norm_cv": 0.1745200589587541
+      },
+      "layer2.0.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.056519268571199585,
+        "grad_consistency_std": 0.15887981692395367,
+        "ns_alignment_mean": 0.23287466367085774,
+        "ns_alignment_std": 0.014775874505940322,
+        "ns_alignment_of_mean_grad": 0.2115687131881714,
+        "grad_norm_mean": 0.1305656264225642,
+        "grad_norm_cv": 0.15460143807082993
+      },
+      "layer2.0.downsample.0": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          256,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.04102038261369758,
+        "grad_consistency_std": 0.11562124791928462,
+        "ns_alignment_mean": 0.27556800842285156,
+        "ns_alignment_std": 0.021817909992405425,
+        "ns_alignment_of_mean_grad": 0.23329317569732666,
+        "grad_norm_mean": 0.1897647798061371,
+        "grad_norm_cv": 0.15464691703912573
+      },
+      "layer2.1.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.04668373404115084,
+        "grad_consistency_std": 0.15468894510807224,
+        "ns_alignment_mean": 0.36630819042523705,
+        "ns_alignment_std": 0.02059753875548008,
+        "ns_alignment_of_mean_grad": 0.3386278450489044,
+        "grad_norm_mean": 0.05374982679883639,
+        "grad_norm_cv": 0.16070907450463928
+      },
+      "layer2.1.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.057917882430012384,
+        "grad_consistency_std": 0.13111663818255875,
+        "ns_alignment_mean": 0.4324615478515625,
+        "ns_alignment_std": 0.04775867634669081,
+        "ns_alignment_of_mean_grad": 0.3668062388896942,
+        "grad_norm_mean": 0.10641474823156992,
+        "grad_norm_cv": 0.15114829225006818
+      },
+      "layer2.1.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.06967796446932924,
+        "grad_consistency_std": 0.14397019443619227,
+        "ns_alignment_mean": 0.352718178431193,
+        "ns_alignment_std": 0.03731796599124015,
+        "ns_alignment_of_mean_grad": 0.2674785554409027,
+        "grad_norm_mean": 0.12775036344925564,
+        "grad_norm_cv": 0.13697880912870983
+      },
+      "layer2.2.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.031015799471753695,
+        "grad_consistency_std": 0.11717240253167771,
+        "ns_alignment_mean": 0.3912331163883209,
+        "ns_alignment_std": 0.01929380586851381,
+        "ns_alignment_of_mean_grad": 0.361274778842926,
+        "grad_norm_mean": 0.07393872415026029,
+        "grad_norm_cv": 0.16599598486762404
+      },
+      "layer2.2.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.02660956500718991,
+        "grad_consistency_std": 0.1285535158971275,
+        "ns_alignment_mean": 0.5080264250437418,
+        "ns_alignment_std": 0.03928820234810304,
+        "ns_alignment_of_mean_grad": 0.47173893451690674,
+        "grad_norm_mean": 0.11918051342169443,
+        "grad_norm_cv": 0.18099109238317346
+      },
+      "layer2.2.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.07760779450514486,
+        "grad_consistency_std": 0.13193657090863176,
+        "ns_alignment_mean": 0.3799258331457774,
+        "ns_alignment_std": 0.0520425283929224,
+        "ns_alignment_of_mean_grad": 0.2742024064064026,
+        "grad_norm_mean": 0.13266224215428035,
+        "grad_norm_cv": 0.16975449091033332
+      },
+      "layer2.3.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.06685803032568878,
+        "grad_consistency_std": 0.11283203416455,
+        "ns_alignment_mean": 0.3908878266811371,
+        "ns_alignment_std": 0.027399080576154963,
+        "ns_alignment_of_mean_grad": 0.33662885427474976,
+        "grad_norm_mean": 0.05839094320933024,
+        "grad_norm_cv": 0.20821773059440724
+      },
+      "layer2.3.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.21252019234179031,
+        "grad_consistency_std": 0.19800668060290294,
+        "ns_alignment_mean": 0.3882832358280818,
+        "ns_alignment_std": 0.07075877225108045,
+        "ns_alignment_of_mean_grad": 0.21022948622703552,
+        "grad_norm_mean": 0.14643689393997192,
+        "grad_norm_cv": 0.2864951755653985
+      },
+      "layer2.3.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.08910490276868499,
+        "grad_consistency_std": 0.1367247751803891,
+        "ns_alignment_mean": 0.3807492434978485,
+        "ns_alignment_std": 0.04551187948626339,
+        "ns_alignment_of_mean_grad": 0.26388049125671387,
+        "grad_norm_mean": 0.12853878388802212,
+        "grad_norm_cv": 0.14599298267287053
+      },
+      "layer3.0.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          512,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.07779501331970096,
+        "grad_consistency_std": 0.15105489646412532,
+        "ns_alignment_mean": 0.30282032589117686,
+        "ns_alignment_std": 0.029450434457909472,
+        "ns_alignment_of_mean_grad": 0.21920228004455566,
+        "grad_norm_mean": 0.16492267499367397,
+        "grad_norm_cv": 0.18498990460793638
+      },
+      "layer3.0.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.0891868881171658,
+        "grad_consistency_std": 0.14902704938782563,
+        "ns_alignment_mean": 0.4174683670202891,
+        "ns_alignment_std": 0.057168543663503164,
+        "ns_alignment_of_mean_grad": 0.2751397490501404,
+        "grad_norm_mean": 0.2719476064046224,
+        "grad_norm_cv": 0.16863458758518918
+      },
+      "layer3.0.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.05015666161752528,
+        "grad_consistency_std": 0.11550513348930554,
+        "ns_alignment_mean": 0.39922494093577066,
+        "ns_alignment_std": 0.033636588949017325,
+        "ns_alignment_of_mean_grad": 0.32018378376960754,
+        "grad_norm_mean": 0.24673114915688832,
+        "grad_norm_cv": 0.1133894214474103
+      },
+      "layer3.0.downsample.0": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          512,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.08218392919571627,
+        "grad_consistency_std": 0.12599960824306186,
+        "ns_alignment_mean": 0.24866131246089934,
+        "ns_alignment_std": 0.02194293492278588,
+        "ns_alignment_of_mean_grad": 0.19364680349826813,
+        "grad_norm_mean": 0.3305835425853729,
+        "grad_norm_cv": 0.1316505050300616
+      },
+      "layer3.1.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.055662209016736595,
+        "grad_consistency_std": 0.11995505624947476,
+        "ns_alignment_mean": 0.3610105593999227,
+        "ns_alignment_std": 0.029352771667698167,
+        "ns_alignment_of_mean_grad": 0.28898996114730835,
+        "grad_norm_mean": 0.13734610974788666,
+        "grad_norm_cv": 0.14578600113033816
+      },
+      "layer3.1.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.05744932715647987,
+        "grad_consistency_std": 0.10511377544717918,
+        "ns_alignment_mean": 0.46488075852394106,
+        "ns_alignment_std": 0.03886917414792755,
+        "ns_alignment_of_mean_grad": 0.3548380732536316,
+        "grad_norm_mean": 0.2796639064947764,
+        "grad_norm_cv": 0.1344020224517988
+      },
+      "layer3.1.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.049367034046112424,
+        "grad_consistency_std": 0.10207453518215165,
+        "ns_alignment_mean": 0.4140005191167196,
+        "ns_alignment_std": 0.04114431343266828,
+        "ns_alignment_of_mean_grad": 0.32012471556663513,
+        "grad_norm_mean": 0.2695226063330968,
+        "grad_norm_cv": 0.12533989314987515
+      },
+      "layer3.2.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.032673307996065847,
+        "grad_consistency_std": 0.11186213648847808,
+        "ns_alignment_mean": 0.36236682335535686,
+        "ns_alignment_std": 0.02326629133674596,
+        "ns_alignment_of_mean_grad": 0.3203364312648773,
+        "grad_norm_mean": 0.16083106497923533,
+        "grad_norm_cv": 0.14421552918169256
+      },
+      "layer3.2.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.029820674298597232,
+        "grad_consistency_std": 0.10114952041454182,
+        "ns_alignment_mean": 0.4550378541151682,
+        "ns_alignment_std": 0.033540369881120385,
+        "ns_alignment_of_mean_grad": 0.4229181110858917,
+        "grad_norm_mean": 0.2869696497917175,
+        "grad_norm_cv": 0.1253625793561573
+      },
+      "layer3.2.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.033043768134943786,
+        "grad_consistency_std": 0.09053366006901828,
+        "ns_alignment_mean": 0.4093674600124359,
+        "ns_alignment_std": 0.02619755561214533,
+        "ns_alignment_of_mean_grad": 0.36393699049949646,
+        "grad_norm_mean": 0.26703155438105264,
+        "grad_norm_cv": 0.10135858151875683
+      },
+      "layer3.3.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.023783682606049947,
+        "grad_consistency_std": 0.11116480064200124,
+        "ns_alignment_mean": 0.3653064807256063,
+        "ns_alignment_std": 0.029612025248445528,
+        "ns_alignment_of_mean_grad": 0.33344483375549316,
+        "grad_norm_mean": 0.1656978944937388,
+        "grad_norm_cv": 0.10542312818711916
+      },
+      "layer3.3.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.010641632169219,
+        "grad_consistency_std": 0.09734703794736835,
+        "ns_alignment_mean": 0.472870272397995,
+        "ns_alignment_std": 0.03233156312555102,
+        "ns_alignment_of_mean_grad": 0.4780629873275757,
+        "grad_norm_mean": 0.2701131522655487,
+        "grad_norm_cv": 0.0966593638180818
+      },
+      "layer3.3.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.023779631113367422,
+        "grad_consistency_std": 0.09473266328522048,
+        "ns_alignment_mean": 0.40731276671091715,
+        "ns_alignment_std": 0.029989927600058135,
+        "ns_alignment_of_mean_grad": 0.3724339008331299,
+        "grad_norm_mean": 0.2589485466480255,
+        "grad_norm_cv": 0.09297078107090403
+      },
+      "layer3.4.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.02822569293258268,
+        "grad_consistency_std": 0.11937570618901497,
+        "ns_alignment_mean": 0.36787530183792116,
+        "ns_alignment_std": 0.03346036996071535,
+        "ns_alignment_of_mean_grad": 0.32761210203170776,
+        "grad_norm_mean": 0.18661337792873384,
+        "grad_norm_cv": 0.09430598497646184
+      },
+      "layer3.4.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.010770807041609216,
+        "grad_consistency_std": 0.12075439856372674,
+        "ns_alignment_mean": 0.4593485116958618,
+        "ns_alignment_std": 0.03103463202069092,
+        "ns_alignment_of_mean_grad": 0.46090587973594666,
+        "grad_norm_mean": 0.29425583680470785,
+        "grad_norm_cv": 0.0924640981127737
+      },
+      "layer3.4.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.0187029679084108,
+        "grad_consistency_std": 0.09760738147755812,
+        "ns_alignment_mean": 0.40060582558314006,
+        "ns_alignment_std": 0.02973195560495098,
+        "ns_alignment_of_mean_grad": 0.3757230341434479,
+        "grad_norm_mean": 0.25810888707637786,
+        "grad_norm_cv": 0.09933095254774525
+      },
+      "layer3.5.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.004162189147124688,
+        "grad_consistency_std": 0.1292652494066734,
+        "ns_alignment_mean": 0.3439682046572367,
+        "ns_alignment_std": 0.028963750365754343,
+        "ns_alignment_of_mean_grad": 0.3637823760509491,
+        "grad_norm_mean": 0.19297416309515636,
+        "grad_norm_cv": 0.10916972984282595
+      },
+      "layer3.5.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": -0.004010430883084025,
+        "grad_consistency_std": 0.12035016019982285,
+        "ns_alignment_mean": 0.4394576489925385,
+        "ns_alignment_std": 0.03722964203995095,
+        "ns_alignment_of_mean_grad": 0.4898621439933777,
+        "grad_norm_mean": 0.27917108635107674,
+        "grad_norm_cv": 0.11325909788066053
+      },
+      "layer3.5.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.013354676964116238,
+        "grad_consistency_std": 0.1056102773800938,
+        "ns_alignment_mean": 0.3506627062956492,
+        "ns_alignment_std": 0.03489314044538566,
+        "ns_alignment_of_mean_grad": 0.34623706340789795,
+        "grad_norm_mean": 0.2656009207169215,
+        "grad_norm_cv": 0.11733793142382537
+      },
+      "layer4.0.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.007814897410571574,
+        "grad_consistency_std": 0.10242059033539404,
+        "ns_alignment_mean": 0.2647810091574987,
+        "ns_alignment_std": 0.02167099749959972,
+        "ns_alignment_of_mean_grad": 0.2656145393848419,
+        "grad_norm_mean": 0.5464188436667125,
+        "grad_norm_cv": 0.11463031260641755
+      },
+      "layer4.0.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.004903152199195964,
+        "grad_consistency_std": 0.07941679415838439,
+        "ns_alignment_mean": 0.3703857441743215,
+        "ns_alignment_std": 0.019315122882277373,
+        "ns_alignment_of_mean_grad": 0.44694066047668457,
+        "grad_norm_mean": 0.7366339286168416,
+        "grad_norm_cv": 0.11061760304040144
+      },
+      "layer4.0.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": -0.0011540952335400063,
+        "grad_consistency_std": 0.07652939719835095,
+        "ns_alignment_mean": 0.3346008817354838,
+        "ns_alignment_std": 0.013250093279163096,
+        "ns_alignment_of_mean_grad": 0.4020055830478668,
+        "grad_norm_mean": 0.6970758477846781,
+        "grad_norm_cv": 0.10204940473942954
+      },
+      "layer4.0.downsample.0": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 2097152,
+        "grad_consistency_mean": -0.0022569767332502773,
+        "grad_consistency_std": 0.08864058546512327,
+        "ns_alignment_mean": 0.2558334519465764,
+        "ns_alignment_std": 0.015879780496704337,
+        "ns_alignment_of_mean_grad": 0.2625330984592438,
+        "grad_norm_mean": 0.7092132727305095,
+        "grad_norm_cv": 0.10318282679071966
+      },
+      "layer4.1.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": -0.005585830276166754,
+        "grad_consistency_std": 0.08828629562286217,
+        "ns_alignment_mean": 0.3219476918379466,
+        "ns_alignment_std": 0.014418577235046652,
+        "ns_alignment_of_mean_grad": 0.3899601697921753,
+        "grad_norm_mean": 0.7106321851412455,
+        "grad_norm_cv": 0.11060039160294179
+      },
+      "layer4.1.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": -0.006666127421582738,
+        "grad_consistency_std": 0.08956145372455473,
+        "ns_alignment_mean": 0.33542855381965636,
+        "ns_alignment_std": 0.014178120318846639,
+        "ns_alignment_of_mean_grad": 0.4564250409603119,
+        "grad_norm_mean": 1.166506334145864,
+        "grad_norm_cv": 0.11486669109181058
+      },
+      "layer4.1.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": -0.005744104719598822,
+        "grad_consistency_std": 0.08926439619775083,
+        "ns_alignment_mean": 0.2975703398386637,
+        "ns_alignment_std": 0.012325568530106029,
+        "ns_alignment_of_mean_grad": 0.38219648599624634,
+        "grad_norm_mean": 0.8175242106119792,
+        "grad_norm_cv": 0.111119506013669
+      },
+      "layer4.2.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": -0.00871171592734754,
+        "grad_consistency_std": 0.10358710357521285,
+        "ns_alignment_mean": 0.24832314252853394,
+        "ns_alignment_std": 0.015422733494783509,
+        "ns_alignment_of_mean_grad": 0.32120850682258606,
+        "grad_norm_mean": 1.091591187318166,
+        "grad_norm_cv": 0.11497243783393747
+      },
+      "layer4.2.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": -0.004427789524197578,
+        "grad_consistency_std": 0.09592020720769334,
+        "ns_alignment_mean": 0.2666540890932083,
+        "ns_alignment_std": 0.014414913078783159,
+        "ns_alignment_of_mean_grad": 0.3626673221588135,
+        "grad_norm_mean": 0.9441051959991456,
+        "grad_norm_cv": 0.11322069762441417
+      },
+      "layer4.2.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": -0.004210718657954463,
+        "grad_consistency_std": 0.08399304490607491,
+        "ns_alignment_mean": 0.2510959913333257,
+        "ns_alignment_std": 0.011270301022055805,
+        "ns_alignment_of_mean_grad": 0.3194567859172821,
+        "grad_norm_mean": 0.4384458343187968,
+        "grad_norm_cv": 0.10879853160196847
+      }
+    }
+  },
+  "resnet50_ln_adamw": {
+    "model": "resnet50_ln",
+    "optimizer": "adamw",
+    "val_acc": 51.94,
+    "overall_consistency": 0.10186243233041704,
+    "overall_ns_alignment": 0.2734651408445688,
+    "depth_summary": {
+      "stem": {
+        "n_layers": 1,
+        "n_params": 9408,
+        "consistency_mean": -0.030975355265573375,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.2739071567853292,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 1.00204043785731
+      },
+      "layer1": {
+        "n_layers": 10,
+        "n_params": 212992,
+        "consistency_mean": 0.03501306064626468,
+        "consistency_std": 0.032149542002133165,
+        "ns_alignment_mean": 0.3519180443882942,
+        "ns_alignment_std": 0.04446542483231833,
+        "grad_norm_mean": 0.19689634342988332
+      },
+      "layer2": {
+        "n_layers": 13,
+        "n_params": 1212416,
+        "consistency_mean": 0.14642701879369296,
+        "consistency_std": 0.0823061471702719,
+        "ns_alignment_mean": 0.24631299216013686,
+        "ns_alignment_std": 0.03456834892863813,
+        "grad_norm_mean": 0.12703910012466785
+      },
+      "layer3": {
+        "n_layers": 19,
+        "n_params": 7077888,
+        "consistency_mean": 0.11255351917717238,
+        "consistency_std": 0.052707988618094566,
+        "ns_alignment_mean": 0.2417080855160429,
+        "ns_alignment_std": 0.03123967657669327,
+        "grad_norm_mean": 0.12307621346492514
+      },
+      "layer4": {
+        "n_layers": 10,
+        "n_params": 14942208,
+        "consistency_mean": 0.11158024904007713,
+        "consistency_std": 0.040453836691702084,
+        "ns_alignment_mean": 0.27052329540252684,
+        "ns_alignment_std": 0.03242395627354892,
+        "grad_norm_mean": 0.30461705694595975
+      },
+      "head": {
+        "n_layers": 1,
+        "n_params": 204800,
+        "consistency_mean": 0.02354549556039274,
+        "consistency_std": 0.0,
+        "ns_alignment_mean": 0.4742745280265808,
+        "ns_alignment_std": 0.0,
+        "grad_norm_mean": 1.9529064178466797
+      }
+    },
+    "per_layer": {
+      "conv1": {
+        "depth": "stem",
+        "shape": [
+          64,
+          3,
+          7,
+          7
+        ],
+        "n_params": 9408,
+        "grad_consistency_mean": -0.030975355265573375,
+        "grad_consistency_std": 0.31749950381654624,
+        "ns_alignment_mean": 0.2739071567853292,
+        "ns_alignment_std": 0.019834652551523998,
+        "ns_alignment_of_mean_grad": 0.40040382742881775,
+        "grad_norm_mean": 1.00204043785731,
+        "grad_norm_cv": 0.22264862033043736
+      },
+      "fc": {
+        "depth": "head",
+        "shape": [
+          100,
+          2048
+        ],
+        "n_params": 204800,
+        "grad_consistency_mean": 0.02354549556039274,
+        "grad_consistency_std": 0.07635278327304852,
+        "ns_alignment_mean": 0.4742745280265808,
+        "ns_alignment_std": 0.03637598433724422,
+        "ns_alignment_of_mean_grad": 0.4249766170978546,
+        "grad_norm_mean": 1.9529064178466797,
+        "grad_norm_cv": 0.07102327407027205
+      },
+      "layer1.0.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          1,
+          1
+        ],
+        "n_params": 4096,
+        "grad_consistency_mean": 0.012184675534566243,
+        "grad_consistency_std": 0.2507123053359156,
+        "ns_alignment_mean": 0.36348162293434144,
+        "ns_alignment_std": 0.022598224556595263,
+        "ns_alignment_of_mean_grad": 0.37123844027519226,
+        "grad_norm_mean": 0.2763937960068385,
+        "grad_norm_cv": 0.18502149827016637
+      },
+      "layer1.0.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.02724191832489201,
+        "grad_consistency_std": 0.18674485265664428,
+        "ns_alignment_mean": 0.389262451728185,
+        "ns_alignment_std": 0.027584526683264967,
+        "ns_alignment_of_mean_grad": 0.36643368005752563,
+        "grad_norm_mean": 0.15618235617876053,
+        "grad_norm_cv": 0.19514544959134822
+      },
+      "layer1.0.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.036892507469192856,
+        "grad_consistency_std": 0.19987736272285603,
+        "ns_alignment_mean": 0.31493990619977313,
+        "ns_alignment_std": 0.048999242191886304,
+        "ns_alignment_of_mean_grad": 0.35084661841392517,
+        "grad_norm_mean": 0.24286514023939768,
+        "grad_norm_cv": 0.17794023609170714
+      },
+      "layer1.0.downsample.0": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.01833798691541666,
+        "grad_consistency_std": 0.12474550120786428,
+        "ns_alignment_mean": 0.35015243887901304,
+        "ns_alignment_std": 0.017388002006322078,
+        "ns_alignment_of_mean_grad": 0.3852122128009796,
+        "grad_norm_mean": 0.47880763610204063,
+        "grad_norm_cv": 0.1431436593627459
+      },
+      "layer1.1.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.01035146854285683,
+        "grad_consistency_std": 0.1828907661184065,
+        "ns_alignment_mean": 0.35340905785560606,
+        "ns_alignment_std": 0.014544232851450546,
+        "ns_alignment_of_mean_grad": 0.3716941177845001,
+        "grad_norm_mean": 0.11809063057104746,
+        "grad_norm_cv": 0.16561172722926423
+      },
+      "layer1.1.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": -0.002684913868350642,
+        "grad_consistency_std": 0.156589665362944,
+        "ns_alignment_mean": 0.43264144857724507,
+        "ns_alignment_std": 0.034003519324947225,
+        "ns_alignment_of_mean_grad": 0.5139216184616089,
+        "grad_norm_mean": 0.11282592962185542,
+        "grad_norm_cv": 0.1717902146431486
+      },
+      "layer1.1.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.009578092888529812,
+        "grad_consistency_std": 0.20205355198051286,
+        "ns_alignment_mean": 0.313591526945432,
+        "ns_alignment_std": 0.052257750318754126,
+        "ns_alignment_of_mean_grad": 0.34787020087242126,
+        "grad_norm_mean": 0.23083557585875195,
+        "grad_norm_cv": 0.22402749634078223
+      },
+      "layer1.2.conv1": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          256,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.09479253175446675,
+        "grad_consistency_std": 0.2636941572839046,
+        "ns_alignment_mean": 0.33936455845832825,
+        "ns_alignment_std": 0.024857023495514222,
+        "ns_alignment_of_mean_grad": 0.2955034077167511,
+        "grad_norm_mean": 0.11560668547948201,
+        "grad_norm_cv": 0.18041412931104073
+      },
+      "layer1.2.conv2": {
+        "depth": "layer1",
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "n_params": 36864,
+        "grad_consistency_mean": 0.08797286265485343,
+        "grad_consistency_std": 0.17886556270415468,
+        "ns_alignment_mean": 0.39388572573661806,
+        "ns_alignment_std": 0.029064198927181435,
+        "ns_alignment_of_mean_grad": 0.33754709362983704,
+        "grad_norm_mean": 0.0843668594956398,
+        "grad_norm_cv": 0.20616787322638638
+      },
+      "layer1.2.conv3": {
+        "depth": "layer1",
+        "shape": [
+          256,
+          64,
+          1,
+          1
+        ],
+        "n_params": 16384,
+        "grad_consistency_mean": 0.05546347624622285,
+        "grad_consistency_std": 0.21640008863252058,
+        "ns_alignment_mean": 0.26845170656840006,
+        "ns_alignment_std": 0.03405708020614169,
+        "ns_alignment_of_mean_grad": 0.2381962537765503,
+        "grad_norm_mean": 0.15298882474501926,
+        "grad_norm_cv": 0.25856348088743897
+      },
+      "layer2.0.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          256,
+          1,
+          1
+        ],
+        "n_params": 32768,
+        "grad_consistency_mean": 0.05352708197509249,
+        "grad_consistency_std": 0.22815116438384997,
+        "ns_alignment_mean": 0.30035876433054604,
+        "ns_alignment_std": 0.01687425047753016,
+        "ns_alignment_of_mean_grad": 0.2966310679912567,
+        "grad_norm_mean": 0.0829208937784036,
+        "grad_norm_cv": 0.2184758737163718
+      },
+      "layer2.0.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.07994953958051546,
+        "grad_consistency_std": 0.2310875265424888,
+        "ns_alignment_mean": 0.26850880980491637,
+        "ns_alignment_std": 0.014024380341658382,
+        "ns_alignment_of_mean_grad": 0.25286170840263367,
+        "grad_norm_mean": 0.03382450466354688,
+        "grad_norm_cv": 0.21544389504156952
+      },
+      "layer2.0.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.07592606075479472,
+        "grad_consistency_std": 0.21893711891894038,
+        "ns_alignment_mean": 0.2084097037712733,
+        "ns_alignment_std": 0.0069573328252369535,
+        "ns_alignment_of_mean_grad": 0.2015504091978073,
+        "grad_norm_mean": 0.12243286296725273,
+        "grad_norm_cv": 0.2909575813669318
+      },
+      "layer2.0.downsample.0": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          256,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.037261559894042354,
+        "grad_consistency_std": 0.16508386965423535,
+        "ns_alignment_mean": 0.26941687365372974,
+        "ns_alignment_std": 0.024901286521557278,
+        "ns_alignment_of_mean_grad": 0.26707249879837036,
+        "grad_norm_mean": 0.31864245335261027,
+        "grad_norm_cv": 0.20626780837858896
+      },
+      "layer2.1.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.07865075067217861,
+        "grad_consistency_std": 0.25916046200205606,
+        "ns_alignment_mean": 0.2908747454484304,
+        "ns_alignment_std": 0.019107497893976446,
+        "ns_alignment_of_mean_grad": 0.2543189227581024,
+        "grad_norm_mean": 0.048000171408057214,
+        "grad_norm_cv": 0.22632940586917222
+      },
+      "layer2.1.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.1860919923299835,
+        "grad_consistency_std": 0.3358359192762596,
+        "ns_alignment_mean": 0.2368759940067927,
+        "ns_alignment_std": 0.031206644085407652,
+        "ns_alignment_of_mean_grad": 0.19547221064567566,
+        "grad_norm_mean": 0.06972693875432015,
+        "grad_norm_cv": 0.3133580096814839
+      },
+      "layer2.1.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.16169974446640395,
+        "grad_consistency_std": 0.27121766360761473,
+        "ns_alignment_mean": 0.1992519199848175,
+        "ns_alignment_std": 0.012565284961694635,
+        "ns_alignment_of_mean_grad": 0.21471288800239563,
+        "grad_norm_mean": 0.1238444392879804,
+        "grad_norm_cv": 0.22643478079662663
+      },
+      "layer2.2.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.08824041225016117,
+        "grad_consistency_std": 0.23848153573737954,
+        "ns_alignment_mean": 0.29060024619102476,
+        "ns_alignment_std": 0.01600060045783453,
+        "ns_alignment_of_mean_grad": 0.2666224539279938,
+        "grad_norm_mean": 0.09147705336411795,
+        "grad_norm_cv": 0.1967367553020589
+      },
+      "layer2.2.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.29519581140152046,
+        "grad_consistency_std": 0.25216726282453017,
+        "ns_alignment_mean": 0.24322305421034496,
+        "ns_alignment_std": 0.04143569436950987,
+        "ns_alignment_of_mean_grad": 0.18744893372058868,
+        "grad_norm_mean": 0.13939938644568126,
+        "grad_norm_cv": 0.33316945369471196
+      },
+      "layer2.2.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.22071157327542704,
+        "grad_consistency_std": 0.2393501202408507,
+        "ns_alignment_mean": 0.21944760779539743,
+        "ns_alignment_std": 0.022713030216707127,
+        "ns_alignment_of_mean_grad": 0.23182883858680725,
+        "grad_norm_mean": 0.14362443685531617,
+        "grad_norm_cv": 0.22547079391150007
+      },
+      "layer2.3.conv1": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          512,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.16393913184292613,
+        "grad_consistency_std": 0.40852038246863237,
+        "ns_alignment_mean": 0.25898150404294334,
+        "ns_alignment_std": 0.03802876449237562,
+        "ns_alignment_of_mean_grad": 0.2063257396221161,
+        "grad_norm_mean": 0.12049342294534048,
+        "grad_norm_cv": 0.345715602787409
+      },
+      "layer2.3.conv2": {
+        "depth": "layer2",
+        "shape": [
+          128,
+          128,
+          3,
+          3
+        ],
+        "n_params": 147456,
+        "grad_consistency_mean": 0.28604302988609387,
+        "grad_consistency_std": 0.5298562491029115,
+        "ns_alignment_mean": 0.21443414688110352,
+        "ns_alignment_std": 0.03695672640454917,
+        "ns_alignment_of_mean_grad": 0.17717312276363373,
+        "grad_norm_mean": 0.1924648955464363,
+        "grad_norm_cv": 0.4342824320692896
+      },
+      "layer2.3.conv3": {
+        "depth": "layer2",
+        "shape": [
+          512,
+          128,
+          1,
+          1
+        ],
+        "n_params": 65536,
+        "grad_consistency_mean": 0.17631455598886878,
+        "grad_consistency_std": 0.3117401408037863,
+        "ns_alignment_mean": 0.20168552796045938,
+        "ns_alignment_std": 0.014038202295652152,
+        "ns_alignment_of_mean_grad": 0.196250781416893,
+        "grad_norm_mean": 0.1646568422516187,
+        "grad_norm_cv": 0.2218893918512741
+      },
+      "layer3.0.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          512,
+          1,
+          1
+        ],
+        "n_params": 131072,
+        "grad_consistency_mean": 0.10004896628892138,
+        "grad_consistency_std": 0.2234852045545151,
+        "ns_alignment_mean": 0.26755558053652445,
+        "ns_alignment_std": 0.025249486784097903,
+        "ns_alignment_of_mean_grad": 0.2764527201652527,
+        "grad_norm_mean": 0.11298143565654754,
+        "grad_norm_cv": 0.22826505736641242
+      },
+      "layer3.0.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.12274269029453752,
+        "grad_consistency_std": 0.23810697935270286,
+        "ns_alignment_mean": 0.23377329309781392,
+        "ns_alignment_std": 0.027327625443467642,
+        "ns_alignment_of_mean_grad": 0.19836853444576263,
+        "grad_norm_mean": 0.08766349330544472,
+        "grad_norm_cv": 0.2333919126778552
+      },
+      "layer3.0.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.1618721498265153,
+        "grad_consistency_std": 0.2048802003712054,
+        "ns_alignment_mean": 0.2011241763830185,
+        "ns_alignment_std": 0.013452277457835766,
+        "ns_alignment_of_mean_grad": 0.18531644344329834,
+        "grad_norm_mean": 0.18154035806655883,
+        "grad_norm_cv": 0.2016546407010805
+      },
+      "layer3.0.downsample.0": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          512,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.16954782135518534,
+        "grad_consistency_std": 0.17701717017269072,
+        "ns_alignment_mean": 0.24730683863162994,
+        "ns_alignment_std": 0.022005047681141834,
+        "ns_alignment_of_mean_grad": 0.1980925053358078,
+        "grad_norm_mean": 0.2817804048458735,
+        "grad_norm_cv": 0.16500970303181114
+      },
+      "layer3.1.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.06426637113271724,
+        "grad_consistency_std": 0.17656081897082385,
+        "ns_alignment_mean": 0.2696442246437073,
+        "ns_alignment_std": 0.01101190831864614,
+        "ns_alignment_of_mean_grad": 0.26477131247520447,
+        "grad_norm_mean": 0.06753372351328532,
+        "grad_norm_cv": 0.16055936200043852
+      },
+      "layer3.1.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.05762055016544071,
+        "grad_consistency_std": 0.1778729010664734,
+        "ns_alignment_mean": 0.2721440444389979,
+        "ns_alignment_std": 0.011805888545340502,
+        "ns_alignment_of_mean_grad": 0.2666838467121124,
+        "grad_norm_mean": 0.10085270901521047,
+        "grad_norm_cv": 0.11072161293324372
+      },
+      "layer3.1.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.14237606724047855,
+        "grad_consistency_std": 0.18378610815486673,
+        "ns_alignment_mean": 0.25425550937652586,
+        "ns_alignment_std": 0.018303861002268662,
+        "ns_alignment_of_mean_grad": 0.20713694393634796,
+        "grad_norm_mean": 0.1406701291600863,
+        "grad_norm_cv": 0.14744889179583712
+      },
+      "layer3.2.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.02163098778775228,
+        "grad_consistency_std": 0.19345702257966937,
+        "ns_alignment_mean": 0.27105983595053357,
+        "ns_alignment_std": 0.01716132728319457,
+        "ns_alignment_of_mean_grad": 0.27157196402549744,
+        "grad_norm_mean": 0.0580870861808459,
+        "grad_norm_cv": 0.18261028418569217
+      },
+      "layer3.2.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.0298450890618066,
+        "grad_consistency_std": 0.22277080611861969,
+        "ns_alignment_mean": 0.2604244977235794,
+        "ns_alignment_std": 0.017757789451602654,
+        "ns_alignment_of_mean_grad": 0.27141812443733215,
+        "grad_norm_mean": 0.09177174766858419,
+        "grad_norm_cv": 0.14516259598797504
+      },
+      "layer3.2.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.16720361988104526,
+        "grad_consistency_std": 0.19685841434018644,
+        "ns_alignment_mean": 0.1948390007019043,
+        "ns_alignment_std": 0.010292522244160494,
+        "ns_alignment_of_mean_grad": 0.17414963245391846,
+        "grad_norm_mean": 0.19336242775122325,
+        "grad_norm_cv": 0.17881552045054583
+      },
+      "layer3.3.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.09675182419429933,
+        "grad_consistency_std": 0.19741611051641472,
+        "ns_alignment_mean": 0.2816232164700826,
+        "ns_alignment_std": 0.007480175552040093,
+        "ns_alignment_of_mean_grad": 0.27256858348846436,
+        "grad_norm_mean": 0.09281978458166122,
+        "grad_norm_cv": 0.10701266046767936
+      },
+      "layer3.3.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.19799843414110088,
+        "grad_consistency_std": 0.4823217240102558,
+        "ns_alignment_mean": 0.20994650920232136,
+        "ns_alignment_std": 0.02442201596760794,
+        "ns_alignment_of_mean_grad": 0.17912554740905762,
+        "grad_norm_mean": 0.2117798258860906,
+        "grad_norm_cv": 0.16161193903039597
+      },
+      "layer3.3.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.16924359424128418,
+        "grad_consistency_std": 0.24081599833277162,
+        "ns_alignment_mean": 0.2013171285390854,
+        "ns_alignment_std": 0.015454895985787876,
+        "ns_alignment_of_mean_grad": 0.17954397201538086,
+        "grad_norm_mean": 0.15744709024826686,
+        "grad_norm_cv": 0.15213460116665817
+      },
+      "layer3.4.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.10393809395443115,
+        "grad_consistency_std": 0.2943213682346444,
+        "ns_alignment_mean": 0.26235333979129793,
+        "ns_alignment_std": 0.023758929328027152,
+        "ns_alignment_of_mean_grad": 0.22770416736602783,
+        "grad_norm_mean": 0.09374563048283259,
+        "grad_norm_cv": 0.16476160708031992
+      },
+      "layer3.4.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.07473644619541508,
+        "grad_consistency_std": 0.3501631715287754,
+        "ns_alignment_mean": 0.2557611068089803,
+        "ns_alignment_std": 0.02842673747958742,
+        "ns_alignment_of_mean_grad": 0.22165687382221222,
+        "grad_norm_mean": 0.12430033286412558,
+        "grad_norm_cv": 0.21339343029217175
+      },
+      "layer3.4.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.170903441340973,
+        "grad_consistency_std": 0.2419457353013244,
+        "ns_alignment_mean": 0.20318619310855865,
+        "ns_alignment_std": 0.010762577719147964,
+        "ns_alignment_of_mean_grad": 0.17381201684474945,
+        "grad_norm_mean": 0.15060401012500127,
+        "grad_norm_cv": 0.17193299513325563
+      },
+      "layer3.5.conv1": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.06446563395715896,
+        "grad_consistency_std": 0.2631160383576955,
+        "ns_alignment_mean": 0.26333397726217905,
+        "ns_alignment_std": 0.02828779466730237,
+        "ns_alignment_of_mean_grad": 0.2287835031747818,
+        "grad_norm_mean": 0.049574400981267294,
+        "grad_norm_cv": 0.23794065649437796
+      },
+      "layer3.5.conv2": {
+        "depth": "layer3",
+        "shape": [
+          256,
+          256,
+          3,
+          3
+        ],
+        "n_params": 589824,
+        "grad_consistency_mean": 0.064105388832589,
+        "grad_consistency_std": 0.23574448874011922,
+        "ns_alignment_mean": 0.2615698605775833,
+        "ns_alignment_std": 0.025943372980631187,
+        "ns_alignment_of_mean_grad": 0.22912436723709106,
+        "grad_norm_mean": 0.04631282339493434,
+        "grad_norm_cv": 0.14643391412989623
+      },
+      "layer3.5.conv3": {
+        "depth": "layer3",
+        "shape": [
+          1024,
+          256,
+          1,
+          1
+        ],
+        "n_params": 262144,
+        "grad_consistency_mean": 0.1592196944746233,
+        "grad_consistency_std": 0.26259240329684136,
+        "ns_alignment_mean": 0.18123529156049092,
+        "ns_alignment_std": 0.008733132588713433,
+        "ns_alignment_of_mean_grad": 0.17065227031707764,
+        "grad_norm_mean": 0.09562064210573833,
+        "grad_norm_cv": 0.17929025743447596
+      },
+      "layer4.0.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 524288,
+        "grad_consistency_mean": 0.1994135710299902,
+        "grad_consistency_std": 0.22435840298499135,
+        "ns_alignment_mean": 0.2399459550778071,
+        "ns_alignment_std": 0.0267477865524532,
+        "ns_alignment_of_mean_grad": 0.1918327808380127,
+        "grad_norm_mean": 0.21358770827452342,
+        "grad_norm_cv": 0.24252632091905085
+      },
+      "layer4.0.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.16622624480653378,
+        "grad_consistency_std": 0.3084357791322025,
+        "ns_alignment_mean": 0.2085333635409673,
+        "ns_alignment_std": 0.02702400398981974,
+        "ns_alignment_of_mean_grad": 0.16547401249408722,
+        "grad_norm_mean": 0.25890211860338846,
+        "grad_norm_cv": 0.26613221468151504
+      },
+      "layer4.0.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.10689062232905555,
+        "grad_consistency_std": 0.1430704854894036,
+        "ns_alignment_mean": 0.2622595975796382,
+        "ns_alignment_std": 0.014008664072957016,
+        "ns_alignment_of_mean_grad": 0.20190253853797913,
+        "grad_norm_mean": 0.2747998376687368,
+        "grad_norm_cv": 0.13043365780915453
+      },
+      "layer4.0.downsample.0": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          1024,
+          1,
+          1
+        ],
+        "n_params": 2097152,
+        "grad_consistency_mean": 0.10480627310684039,
+        "grad_consistency_std": 0.13215575018350406,
+        "ns_alignment_mean": 0.24084053138891856,
+        "ns_alignment_std": 0.011121975335408561,
+        "ns_alignment_of_mean_grad": 0.18797747790813446,
+        "grad_norm_mean": 0.3451723098754883,
+        "grad_norm_cv": 0.10109812414907986
+      },
+      "layer4.1.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.1330844238954818,
+        "grad_consistency_std": 0.1627748265544697,
+        "ns_alignment_mean": 0.27031505306561787,
+        "ns_alignment_std": 0.0173617296776167,
+        "ns_alignment_of_mean_grad": 0.21262018382549286,
+        "grad_norm_mean": 0.2648131201664607,
+        "grad_norm_cv": 0.12115788148828416
+      },
+      "layer4.1.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.09887913436673226,
+        "grad_consistency_std": 0.12889974173777777,
+        "ns_alignment_mean": 0.3105128069718679,
+        "ns_alignment_std": 0.020270603775581646,
+        "ns_alignment_of_mean_grad": 0.23644062876701355,
+        "grad_norm_mean": 0.31912124951680504,
+        "grad_norm_cv": 0.14536037631956436
+      },
+      "layer4.1.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.07928743245789692,
+        "grad_consistency_std": 0.10108774214790045,
+        "ns_alignment_mean": 0.2992091715335846,
+        "ns_alignment_std": 0.012075013550966568,
+        "ns_alignment_of_mean_grad": 0.2508186101913452,
+        "grad_norm_mean": 0.4075991412003835,
+        "grad_norm_cv": 0.11553129638697782
+      },
+      "layer4.2.conv1": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          2048,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.08275669967711327,
+        "grad_consistency_std": 0.17160447111235694,
+        "ns_alignment_mean": 0.27242894570032755,
+        "ns_alignment_std": 0.01864408421657651,
+        "ns_alignment_of_mean_grad": 0.2137337177991867,
+        "grad_norm_mean": 0.32299726009368895,
+        "grad_norm_cv": 0.18324696481520247
+      },
+      "layer4.2.conv2": {
+        "depth": "layer4",
+        "shape": [
+          512,
+          512,
+          3,
+          3
+        ],
+        "n_params": 2359296,
+        "grad_consistency_mean": 0.0732207367440597,
+        "grad_consistency_std": 0.15235515347082873,
+        "ns_alignment_mean": 0.3172050138314565,
+        "ns_alignment_std": 0.02386644350761534,
+        "ns_alignment_of_mean_grad": 0.25438106060028076,
+        "grad_norm_mean": 0.3072355677684148,
+        "grad_norm_cv": 0.15080252619256898
+      },
+      "layer4.2.conv3": {
+        "depth": "layer4",
+        "shape": [
+          2048,
+          512,
+          1,
+          1
+        ],
+        "n_params": 1048576,
+        "grad_consistency_mean": 0.07123735198706743,
+        "grad_consistency_std": 0.0971331335080377,
+        "ns_alignment_mean": 0.283982515335083,
+        "ns_alignment_std": 0.008704537650791176,
+        "ns_alignment_of_mean_grad": 0.2315797507762909,
+        "grad_norm_mean": 0.33194225629170737,
+        "grad_norm_cv": 0.10615923521924989
+      }
+    }
+  }
+}

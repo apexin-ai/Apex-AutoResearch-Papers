@@ -1,0 +1,2491 @@
+{
+  "experiment": "ack_injection",
+  "timestamp": "2026-05-03T18:35:00.021649+00:00",
+  "config": "ack_injection_qwen_stratqa.yaml",
+  "domain": "strategyqa",
+  "max_rounds": 6,
+  "num_tasks_requested": 250,
+  "num_completed": 203,
+  "num_skipped": 47,
+  "elapsed_seconds": 2239.0,
+  "ack_templates_count": 15,
+  "total_injected_acks": 808,
+  "avg_injected_per_task": 3.98,
+  "control": {
+    "correct": 133,
+    "total": 203,
+    "accuracy": 0.6552
+  },
+  "inject": {
+    "correct": 130,
+    "total": 203,
+    "accuracy": 0.6404
+  },
+  "delta_pp": -1.48,
+  "mcnemar_p": 0.643969,
+  "per_task": [
+    {
+      "task_id": "strategyqa_0000",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0001",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0002",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0003",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0004",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0005",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0006",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0007",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0008",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0009",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0010",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0011",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0012",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0013",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0014",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0015",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0016",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0017",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0018",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0019",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0020",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0021",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0022",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0023",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0024",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0025",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0026",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0027",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0028",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0029",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0030",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0031",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0032",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0033",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0034",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0035",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0036",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0037",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0038",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0039",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0040",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0041",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0042",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0043",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0044",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0045",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0046",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0047",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0048",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0049",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0050",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0051",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0052",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0053",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0054",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0055",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0056",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0057",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0058",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0059",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0060",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0061",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0062",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0063",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0064",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0065",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0066",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0067",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0068",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0069",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0070",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0071",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0072",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0073",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0074",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0075",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0076",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0077",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0078",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0079",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0080",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0081",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0082",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0083",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0084",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0085",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0086",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0087",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0088",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0089",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0090",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0091",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0092",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0093",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0094",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0095",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0096",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0097",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0098",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0099",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0100",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0101",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0102",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0103",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0104",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0105",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0106",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0107",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0108",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0109",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0110",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0111",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0112",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0113",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0114",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0115",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0116",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0117",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0118",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0119",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0120",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0121",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0122",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0123",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0124",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0125",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0126",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0127",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0128",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0129",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0130",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0131",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0132",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0133",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0134",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0135",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0136",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0137",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0138",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0139",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0140",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0141",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0142",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0143",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0144",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0145",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0146",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0147",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0148",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0149",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0150",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0151",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0152",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0153",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0154",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0155",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0156",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0157",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0158",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0159",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0160",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0161",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0162",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0163",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0164",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0165",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0166",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0167",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0168",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0169",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0170",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0171",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0172",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0173",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0174",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0175",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0176",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0177",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0178",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0179",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0180",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0181",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0182",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0183",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0184",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0185",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0186",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0187",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0188",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0189",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0190",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0191",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0192",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0193",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0194",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0195",
+      "control_correct": false,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0196",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "yes",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0197",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0198",
+      "control_correct": true,
+      "inject_correct": false,
+      "control_answer": "no",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0199",
+      "control_correct": false,
+      "inject_correct": false,
+      "control_answer": "yes",
+      "inject_answer": "yes",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0200",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0201",
+      "control_correct": true,
+      "inject_correct": true,
+      "control_answer": "no",
+      "inject_answer": "no",
+      "ground_truth": "no",
+      "injected_acks": 4,
+      "control_num_msgs": 5,
+      "inject_num_msgs": 9
+    },
+    {
+      "task_id": "strategyqa_0202",
+      "control_correct": true,
+      "inject_correct": false,
+      "injected_acks": 0
+    },
+    {
+      "task_id": "strategyqa_0203",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0204",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0205",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0206",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0207",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0208",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0209",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0210",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0211",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0212",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0213",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0214",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0215",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0216",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0217",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0218",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0219",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0220",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0221",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0222",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0223",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0224",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0225",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0226",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0227",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0228",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0229",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0230",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0231",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0232",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0233",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0234",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0235",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0236",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0237",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0238",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0239",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0240",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0241",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0242",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0243",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0244",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0245",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0246",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0247",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0248",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    },
+    {
+      "task_id": "strategyqa_0249",
+      "skipped": true,
+      "skip_reason": "APIConnectionError"
+    }
+  ]
+}
