@@ -7,7 +7,6 @@
   "bib_count": 1,
   "review_count": 28,
   "validation_count": 15,
-  "contribution_count": 3,
   "chat_count": 217,
   "worker_count": 980,
   "trace_count": 1242,
@@ -97,13 +96,6 @@
       "evidence": "The ROADMAP records that v35 is submission-ready and awaits user approval for ARR submission.",
       "gap": "Official submission, acceptance, and publication were not independently checked.",
       "path": "07-maintenance/"
-    },
-    {
-      "name": "AI / human contribution",
-      "status": "Partial",
-      "evidence": "3 task/role records",
-      "gap": "User and assistant roles do not identify people or establish author contributions.",
-      "path": "02-contributions/"
     },
     {
       "name": "Generation trace",

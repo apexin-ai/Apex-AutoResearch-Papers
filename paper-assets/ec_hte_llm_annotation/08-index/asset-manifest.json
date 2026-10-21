@@ -7,7 +7,6 @@
   "bib_count": 6,
   "review_count": 24,
   "validation_count": 19,
-  "contribution_count": 3,
   "chat_count": 72,
   "worker_count": 358,
   "trace_count": 434,
@@ -112,13 +111,6 @@
       "evidence": "The ROADMAP records that the paper and rebuttal materials are ready and await the user’s decision on whether to submit before the ARR deadline.",
       "gap": "Official submission, acceptance, and publication were not independently checked.",
       "path": "07-maintenance/"
-    },
-    {
-      "name": "AI / human contribution",
-      "status": "Partial",
-      "evidence": "3 task/role records",
-      "gap": "User and assistant roles do not identify people or establish author contributions.",
-      "path": "02-contributions/"
     },
     {
       "name": "Generation trace",

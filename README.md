@@ -1,6 +1,6 @@
 # Research results
 
-This branch presents 40 research projects. Each project contains a manuscript and the supporting materials in the same eight-part layout.
+This branch presents 40 research projects. Each project contains a manuscript and the supporting materials in the same seven-category layout.
 
 Browse the [searchable project catalogue](CONTENTS.md), or open a project directly:
 
@@ -47,6 +47,6 @@ Browse the [searchable project catalogue](CONTENTS.md), or open a project direct
 | [turn_residual_gating](paper-assets/turn_residual_gating/README.md) | [PDF](paper-assets/turn_residual_gating/01-manuscript/paper.pdf) |
 | [vla-ssd](paper-assets/vla-ssd/README.md) | [PDF](paper-assets/vla-ssd/01-manuscript/paper.pdf) |
 
-Each project README links its manuscript, contribution records, research code, experiments, generation trace, validation records, maintenance files, and provenance index. Source text retains its recorded language.
+Each project README links its manuscript, research code, experiments, generation trace, validation records, maintenance files, and provenance index. Source text retains its recorded language.
 
-These archived materials document the work available at release time. Code and experiments were not independently rerun for this collection; internal reviews and recorded role labels do not establish external peer review or human authorship.
+These archived materials document the work available at release time. Code and experiments were not independently rerun for this collection; internal reviews do not establish external peer review.

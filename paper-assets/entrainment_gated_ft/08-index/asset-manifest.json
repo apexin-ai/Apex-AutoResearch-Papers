@@ -7,7 +7,6 @@
   "bib_count": 2,
   "review_count": 20,
   "validation_count": 5,
-  "contribution_count": 3,
   "chat_count": 99,
   "worker_count": 489,
   "trace_count": 599,
@@ -96,13 +95,6 @@
       "evidence": "The ROADMAP records that the paper is locked and awaiting ARR / EMNLP 2026 submission; checklist fields are prepared.",
       "gap": "Official submission, acceptance, and publication were not independently checked.",
       "path": "07-maintenance/"
-    },
-    {
-      "name": "AI / human contribution",
-      "status": "Partial",
-      "evidence": "3 task/role records",
-      "gap": "User and assistant roles do not identify people or establish author contributions.",
-      "path": "02-contributions/"
     },
     {
       "name": "Generation trace",

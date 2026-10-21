@@ -1,6 +1,6 @@
 # Project catalogue
 
-The 40 original task projects are listed below. Search this page for a project name or title, then open its README for all eight material categories.
+The 40 original task projects are listed below. Search this page for a project name or title, then open its README for all seven material categories.
 
 | Project | Paper title | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---|---:|---:|---:|---:|

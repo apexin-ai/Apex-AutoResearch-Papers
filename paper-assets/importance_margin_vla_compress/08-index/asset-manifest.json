@@ -7,7 +7,6 @@
   "bib_count": 6,
   "review_count": 7,
   "validation_count": 13,
-  "contribution_count": 3,
   "chat_count": 1235,
   "worker_count": 4330,
   "trace_count": 5754,
@@ -102,13 +101,6 @@
       "evidence": "The ROADMAP records that CoRL 2026 submission preparation is complete; the summary records an abstract submission on May 26 and a paper deadline of May 29.",
       "gap": "Official submission, acceptance, and publication were not independently checked.",
       "path": "07-maintenance/"
-    },
-    {
-      "name": "AI / human contribution",
-      "status": "Partial",
-      "evidence": "3 task/role records",
-      "gap": "User and assistant roles do not identify people or establish author contributions.",
-      "path": "02-contributions/"
     },
     {
       "name": "Generation trace",

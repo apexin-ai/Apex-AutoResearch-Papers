@@ -7,7 +7,6 @@
   "bib_count": 5,
   "review_count": 28,
   "validation_count": 36,
-  "contribution_count": 3,
   "chat_count": 359,
   "worker_count": 1531,
   "trace_count": 2025,
@@ -76,13 +75,6 @@
       "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
       "gap": "Official submission, acceptance, and publication were not independently checked.",
       "path": "07-maintenance/"
-    },
-    {
-      "name": "AI / human contribution",
-      "status": "Partial",
-      "evidence": "3 task/role records",
-      "gap": "User and assistant roles do not identify people or establish author contributions.",
-      "path": "02-contributions/"
     },
     {
       "name": "Generation trace",
