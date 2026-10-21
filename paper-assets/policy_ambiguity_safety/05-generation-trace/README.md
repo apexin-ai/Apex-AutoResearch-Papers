@@ -2,9 +2,9 @@
 
 **Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety**
 
-[Open the visual browser](../../../traces/index.html?project=policy_ambiguity_safety) · [Offline preview](../../../traces/demo.html?project=policy_ambiguity_safety) · [Readable Markdown](readable/README.md) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
+[Readable Markdown](readable/README.md) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
 
-For a quick review on GitHub, start with the readable Markdown pages. Each page shows the recorded user instructions, assistant replies, tool calls, and tool results in order. The JSON links remain available for complete machine-readable inspection. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
+For a quick review on GitHub, start with the readable Markdown pages. Each page shows the recorded user instructions, assistant replies, tool calls, and tool results in order. The JSON links remain available for complete machine-readable inspection.
 
 ## What is included
 
@@ -30,4 +30,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Task result records** (141): [Page 1](browse/result-001.md)
 - **Context and loop notes** (10): [Page 1](browse/history-001.md)
 
-See [format and reference projects](../../../traces/FORMAT.md) for definitions and design references.

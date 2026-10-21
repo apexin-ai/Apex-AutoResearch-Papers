@@ -2,9 +2,9 @@
 
 **Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families**
 
-[Open the visual browser](../../../traces/index.html?project=contamcal-irt-calibration) · [Offline preview](../../../traces/demo.html?project=contamcal-irt-calibration) · [Readable Markdown](readable/README.md) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
+[Readable Markdown](readable/README.md) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
 
-For a quick review on GitHub, start with the readable Markdown pages. Each page shows the recorded user instructions, assistant replies, tool calls, and tool results in order. The JSON links remain available for complete machine-readable inspection. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
+For a quick review on GitHub, start with the readable Markdown pages. Each page shows the recorded user instructions, assistant replies, tool calls, and tool results in order. The JSON links remain available for complete machine-readable inspection.
 
 ## What is included
 
@@ -30,4 +30,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Task result records** (1,825): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md) · [Page 4](browse/result-004.md) · [Page 5](browse/result-005.md) · [Page 6](browse/result-006.md) · [Page 7](browse/result-007.md) · [Page 8](browse/result-008.md) · [Page 9](browse/result-009.md) · [Page 10](browse/result-010.md) · [Page 11](browse/result-011.md) · [Page 12](browse/result-012.md) · [Page 13](browse/result-013.md)
 - **Context and loop notes** (262): [Page 1](browse/history-001.md) · [Page 2](browse/history-002.md)
 
-See [format and reference projects](../../../traces/FORMAT.md) for definitions and design references.
