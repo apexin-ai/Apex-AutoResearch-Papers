@@ -8,7 +8,7 @@ Apex Research 由 Apex Intelligence 构建。本仓库展示 36 个研究项目�
 
 **36 个项目** · **06 个研究方向** · **分级编号目录**
 
-[搜索完整目录](CONTENTS.md) · [浏览全部编号方向](categories/README.md) · [打开项目资产](paper-assets/)
+[查看 5 篇精选论文](highlight/README.md) · [搜索完整目录](CONTENTS.md) · [浏览全部编号方向](categories/README.md) · [打开项目资产](paper-assets/)
 
 ## 01–06 · 研究方向
 

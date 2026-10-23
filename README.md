@@ -8,7 +8,7 @@ Apex Research, built by Apex Intelligence, is a public showcase of 36 research p
 
 **36 projects** · **06 research areas** · **numbered project lists**
 
-[Search the full catalogue](CONTENTS.md) · [Browse all numbered areas](categories/README.md) · [Open project assets](paper-assets/)
+[Browse 5 highlighted papers](highlight/README.md) · [Search the full catalogue](CONTENTS.md) · [Browse all numbered areas](categories/README.md) · [Open project assets](paper-assets/)
 
 ## 01–06 · Research areas
 
