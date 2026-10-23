@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models
 
 Project: `nlp_variance_gtheory`

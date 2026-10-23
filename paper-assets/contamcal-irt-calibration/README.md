@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families
 
 Project: `contamcal-irt-calibration`

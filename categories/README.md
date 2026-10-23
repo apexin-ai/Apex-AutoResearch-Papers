@@ -1,10 +1,10 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Browse all papers by research area
 
 [Home](../README.md) · [Highlighted papers](../highlight/README.md) · [Full catalogue](../CONTENTS.md) · [Project materials guide](../paper-assets/README.md)
 
 Browse all 36 papers across six research areas. Open an area to see its paper list, PDFs, and project guides. Paper numbering starts at `01` within each area.
-
-全部 36 篇论文按以下 6 个研究方向分类。进入某个方向，即可查看论文列表、PDF 和项目资料入口。
 
 | No. | Research area | Projects | Description |
 |---:|---|---:|---|

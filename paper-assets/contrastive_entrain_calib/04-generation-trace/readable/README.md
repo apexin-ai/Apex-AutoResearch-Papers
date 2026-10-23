@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Readable trace pages
 
 These pages are the easiest way to review **The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration** on GitHub. They preserve the recorded sequence and label each event as `User`, `Assistant`, `Tool call`, `Tool result`, or another recorded type.

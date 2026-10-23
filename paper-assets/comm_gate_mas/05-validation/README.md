@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Internal validation records
 
 Project review reports, audits, checks, and verification artifacts, when available.

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary
 
 Project: `gen-depth-contamination`

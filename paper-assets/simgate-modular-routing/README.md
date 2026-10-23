@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld
 
 Project: `simgate-modular-routing`

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (180): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md)
 - **Task result records** (172): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md)
 - **Context and loop notes** (4): [Page 1](browse/history-001.md)
-

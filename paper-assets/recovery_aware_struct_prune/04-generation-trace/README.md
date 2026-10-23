@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (1,451): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md) · [Page 4](browse/worker-004.md) · [Page 5](browse/worker-005.md) · [Page 6](browse/worker-006.md) · [Page 7](browse/worker-007.md) · [Page 8](browse/worker-008.md) · [Page 9](browse/worker-009.md) · [Page 10](browse/worker-010.md)
 - **Task result records** (1,406): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md) · [Page 4](browse/result-004.md) · [Page 5](browse/result-005.md) · [Page 6](browse/result-006.md) · [Page 7](browse/result-007.md) · [Page 8](browse/result-008.md) · [Page 9](browse/result-009.md) · [Page 10](browse/result-010.md)
 - **Context and loop notes** (122): [Page 1](browse/history-001.md)
-

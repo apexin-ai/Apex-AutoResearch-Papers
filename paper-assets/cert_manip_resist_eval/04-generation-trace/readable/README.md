@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Readable trace pages
 
 These pages are the easiest way to review **The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** on GitHub. They preserve the recorded sequence and label each event as `User`, `Assistant`, `Tool call`, `Tool result`, or another recorded type.

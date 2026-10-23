@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models
 
 Project: `entrainment_gated_ft`

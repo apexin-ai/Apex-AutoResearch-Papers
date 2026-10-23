@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (1,045): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md) · [Page 4](browse/worker-004.md) · [Page 5](browse/worker-005.md) · [Page 6](browse/worker-006.md) · [Page 7](browse/worker-007.md)
 - **Task result records** (922): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md) · [Page 4](browse/result-004.md) · [Page 5](browse/result-005.md) · [Page 6](browse/result-006.md) · [Page 7](browse/result-007.md)
 - **Context and loop notes** (107): [Page 1](browse/history-001.md)
-

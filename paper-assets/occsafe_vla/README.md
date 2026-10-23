@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis
 
 Project: `occsafe_vla`

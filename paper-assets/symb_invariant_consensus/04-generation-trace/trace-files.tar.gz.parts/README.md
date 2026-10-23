@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Split file: trace-files.tar.gz
 
 Reconstruct from the repository root:

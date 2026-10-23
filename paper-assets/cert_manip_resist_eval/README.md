@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation
 
 Project: `cert_manip_resist_eval`

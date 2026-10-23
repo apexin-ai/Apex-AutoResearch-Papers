@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (421): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md)
 - **Task result records** (398): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md) · [Page 3](browse/result-003.md)
 - **Context and loop notes** (10): [Page 1](browse/history-001.md)
-

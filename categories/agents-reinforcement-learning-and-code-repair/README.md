@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # 03 · Agents, Reinforcement Learning & Code Repair
 
 **4 projects** · [All areas](../README.md) · [Full catalogue](../../CONTENTS.md)

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM
 
 Project: `recovery_aware_struct_prune`

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects
 
 Project: `ec_hte_llm_annotation`

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text
 
 Project: `gen-depth-fingerprint`

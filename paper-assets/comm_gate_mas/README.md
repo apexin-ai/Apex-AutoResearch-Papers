@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # When the Most Disruptive Messages Are Safe to Prune in Aggregate: Functional Analysis of Communication Pruning in Two-Agent LLM Systems
 
 Project: `comm_gate_mas`

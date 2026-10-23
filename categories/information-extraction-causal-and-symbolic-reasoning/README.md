@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # 02 · Information Extraction, Causal Inference & Symbolic Reasoning
 
 **8 projects** · [All areas](../README.md) · [Full catalogue](../../CONTENTS.md)

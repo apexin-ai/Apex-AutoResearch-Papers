@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning
 
 Project: `solver-trace-ablation`

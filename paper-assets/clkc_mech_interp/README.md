@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries
 
 Project: `clkc_mech_interp`

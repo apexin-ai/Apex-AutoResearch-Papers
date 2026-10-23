@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction
 
 Project: `symb_invariant_consensus`

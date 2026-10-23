@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration
 
 Project: `contrastive_entrain_calib`

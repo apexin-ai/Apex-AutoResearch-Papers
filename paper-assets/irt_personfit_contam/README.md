@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?
 
 Project: `irt_personfit_contam`

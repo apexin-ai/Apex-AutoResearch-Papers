@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation
 
 Project: `diff_collision_sdf`

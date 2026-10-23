@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction
 
 Project: `faith-evidence-ie`

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints
 
 Project: `recursive_gen_depth_est`

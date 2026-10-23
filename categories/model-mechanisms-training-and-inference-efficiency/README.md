@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # 06 · Model Mechanisms, Training & Inference Efficiency
 
 **5 projects** · [All areas](../README.md) · [Full catalogue](../../CONTENTS.md)

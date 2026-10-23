@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models
 
 Project: `contrastive_trace_safety`

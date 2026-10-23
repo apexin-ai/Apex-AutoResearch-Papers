@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (165): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md)
 - **Task result records** (143): [Page 1](browse/result-001.md)
 - **Context and loop notes** (4): [Page 1](browse/history-001.md)
-

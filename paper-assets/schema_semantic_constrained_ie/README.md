@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints
 
 Project: `schema_semantic_constrained_ie`

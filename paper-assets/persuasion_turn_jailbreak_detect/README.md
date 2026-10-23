@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection
 
 Project: `persuasion_turn_jailbreak_detect`

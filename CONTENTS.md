@@ -1,3 +1,5 @@
+**English** | [简体中文](CONTENTS.zh-CN.md)
+
 # Full paper catalogue
 
 [Home](README.md) · [Highlighted papers](highlight/README.md) · [Browse by research area](categories/README.md) · [Project materials guide](paper-assets/README.md)

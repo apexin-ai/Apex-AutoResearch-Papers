@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff
 
 Project: `spectral_collapse_ews`

@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap
 
 Project: `struct_self_consist_ie`

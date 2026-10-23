@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (144): [Page 1](browse/worker-001.md)
 - **Task result records** (141): [Page 1](browse/result-001.md)
 - **Context and loop notes** (10): [Page 1](browse/history-001.md)
-

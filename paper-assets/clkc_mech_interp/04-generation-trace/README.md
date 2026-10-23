@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Generation traces
 
 **English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries**
@@ -29,4 +31,3 @@ The Markdown pages are grouped by source kind. Their filenames describe the reco
 - **Worker execution logs** (310): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md)
 - **Task result records** (282): [Page 1](browse/result-001.md) · [Page 2](browse/result-002.md)
 - **Context and loop notes** (5): [Page 1](browse/history-001.md)
-

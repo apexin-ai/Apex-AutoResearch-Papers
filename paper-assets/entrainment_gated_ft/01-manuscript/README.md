@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Manuscript assets
 
 Paper PDFs, LaTeX source, references, figures, and archived versions.

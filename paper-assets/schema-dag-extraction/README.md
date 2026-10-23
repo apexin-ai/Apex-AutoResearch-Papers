@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?
 
 Project: `schema-dag-extraction`

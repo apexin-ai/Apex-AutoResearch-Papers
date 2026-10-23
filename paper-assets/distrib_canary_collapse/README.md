@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Characterizing the Detectability Landscape of Iterative Model Collapse
 
 Project: `distrib_canary_collapse`

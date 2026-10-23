@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation
 
 Project: `gated_mfrm_judge_bias`

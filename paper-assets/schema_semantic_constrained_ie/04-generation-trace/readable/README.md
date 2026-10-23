@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Readable trace pages
 
 These pages are the easiest way to review **OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints** on GitHub. They preserve the recorded sequence and label each event as `User`, `Assistant`, `Tool call`, `Tool result`, or another recorded type.

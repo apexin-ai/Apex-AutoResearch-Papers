@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models
 
 Project: `irt_equated_bench_regen`

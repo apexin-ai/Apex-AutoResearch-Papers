@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation
 
 Project: `causal_style_decomp_judge`

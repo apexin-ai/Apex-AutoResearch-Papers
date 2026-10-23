@@ -1,3 +1,5 @@
+**English** | [简体中文](README.zh-CN.md)
+
 # Readable trace pages
 
 These pages are the easiest way to review **How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation** on GitHub. They preserve the recorded sequence and label each event as `User`, `Assistant`, `Tool call`, `Tool result`, or another recorded type.
