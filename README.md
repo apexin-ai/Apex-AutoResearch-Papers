@@ -8,6 +8,10 @@ Apex Research, built by Apex Intelligence, brings together research on evaluatio
 
 **5 highlighted papers** · **36 research projects** · **6 research areas**
 
+<p align="center">
+  <img src="assets/research-overview.jpg" alt="Six research areas across 36 Apex Research projects" width="560" />
+</p>
+
 [Highlighted papers](highlight/README.md) · [Browse all papers by area](categories/README.md) · [Full paper catalogue](CONTENTS.md)
 
 ## Highlighted papers
@@ -36,10 +40,6 @@ Browse all 36 papers through the area pages, or search the [full catalogue](CONT
 | **04** | [LLM Safety & Alignment](categories/llm-safety-and-alignment/README.md) | **5** |
 | **05** | [Embodied AI & VLA](categories/embodied-ai-and-vla/README.md) | **3** |
 | **06** | [Model Mechanisms, Training & Inference Efficiency](categories/model-mechanisms-training-and-inference-efficiency/README.md) | **5** |
-
-<p align="center">
-  <img src="assets/research-overview.jpg" alt="Six research areas across 36 Apex Research projects" width="560" />
-</p>
 
 ## Repository guide
 

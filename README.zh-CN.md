@@ -8,6 +8,10 @@ Apex Research 由 Apex Intelligence 构建，汇集模型评测、推理、智�
 
 **5 篇精选论文** · **36 个研究项目** · **6 个研究方向**
 
+<p align="center">
+  <img src="assets/research-overview.jpg" alt="36 个 Apex Research 项目的六个研究方向" width="560" />
+</p>
+
 [精选论文](highlight/README.zh-CN.md) · [按方向浏览全部论文](categories/README.zh-CN.md) · [完整论文目录](CONTENTS.zh-CN.md)
 
 ## 精选论文
@@ -36,10 +40,6 @@ Apex Research 由 Apex Intelligence 构建，汇集模型评测、推理、智�
 | **04** | [大语言模型安全与对齐](categories/llm-safety-and-alignment/README.zh-CN.md) | **5** |
 | **05** | [具身智能与视觉—语言—动作模型](categories/embodied-ai-and-vla/README.zh-CN.md) | **3** |
 | **06** | [模型机制、训练与推理效率](categories/model-mechanisms-training-and-inference-efficiency/README.zh-CN.md) | **5** |
-
-<p align="center">
-  <img src="assets/research-overview.jpg" alt="36 个 Apex Research 项目的六个研究方向" width="560" />
-</p>
 
 ## 仓库导航
 
