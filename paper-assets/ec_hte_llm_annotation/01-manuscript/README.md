@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](when-debiasing-hurts-an-exact-bias-identity-for-llm-annotated-treatment-effects.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

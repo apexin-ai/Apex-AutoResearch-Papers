@@ -2,7 +2,7 @@
 
 Project: `irt_personfit_contam`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/what-can-irt-person-fit-statistics-reveal-about-sft-stage-benchmark-contamination.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

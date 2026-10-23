@@ -2,7 +2,7 @@
 
 Project: `comm_gate_mas`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/when-the-most-disruptive-messages-are-safe-to-prune-in-aggregate-functional-analysis-of-communication-pruning-in-two-agent-llm-systems.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

@@ -2,7 +2,7 @@
 
 Project: `contrastive_entrain_calib`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/the-probe-reward-trap-behavioral-death-before-distributional-collapse-in-sycophancy-calibration.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

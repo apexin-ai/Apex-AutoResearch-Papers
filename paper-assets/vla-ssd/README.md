@@ -2,7 +2,7 @@
 
 Project: `vla-ssd`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/instruction-routing-in-fine-tuned-vision-language-action-models-a-cross-architecture-analysis.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

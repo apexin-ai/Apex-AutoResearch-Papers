@@ -2,7 +2,7 @@
 
 Project: `gated_mfrm_judge_bias`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/fair-scores-via-joint-calibration-a-gated-many-facet-rasch-model-for-disentangling-judge-bias-and-contamination-in-llm-evaluation.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](reproducibility-budgets-for-open-weight-llm-evaluation-a-generalizability-theory-study-of-7-9b-instruction-tuned-models.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

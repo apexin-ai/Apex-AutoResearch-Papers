@@ -2,7 +2,7 @@
 
 Project: `nlp_variance_gtheory`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/reproducibility-budgets-for-open-weight-llm-evaluation-a-generalizability-theory-study-of-7-9b-instruction-tuned-models.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

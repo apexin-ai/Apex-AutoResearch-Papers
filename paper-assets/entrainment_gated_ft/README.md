@@ -2,7 +2,7 @@
 
 Project: `entrainment_gated_ft`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/aggregate-equivalence-vs-behavioral-equivalence-per-example-multiplicity-in-hybrid-linear-recurrent-models.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

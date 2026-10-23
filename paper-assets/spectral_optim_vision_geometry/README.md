@@ -2,7 +2,7 @@
 
 Project: `spectral_optim_vision_geometry`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Trace availability](04-generation-trace/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/spectral-optimization-across-vision-architecture-families-a-controlled-empirical-study.pdf) | [Trace availability](04-generation-trace/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

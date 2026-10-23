@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](observe-but-don-t-optimize-structural-rewards-trigger-goodhart-effects-in-neurosymbolic-reasoning.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

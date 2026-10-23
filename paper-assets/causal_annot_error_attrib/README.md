@@ -2,7 +2,7 @@
 
 Project: `causal_annot_error_attrib`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/multi-class-annotation-errors-in-causal-inference-topology-dependent-bias-sensitivity-and-correction.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

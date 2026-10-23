@@ -2,7 +2,7 @@
 
 Project: `spectral_collapse_ews`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/spectral-early-warning-signals-for-model-collapse-and-their-prevention-detectability-tradeoff.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

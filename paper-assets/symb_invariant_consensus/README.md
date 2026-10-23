@@ -2,7 +2,7 @@
 
 Project: `symb_invariant_consensus`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/beyond-self-consistency-self-extracted-constraints-reduce-to-majority-voting-under-zero-shot-extraction.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

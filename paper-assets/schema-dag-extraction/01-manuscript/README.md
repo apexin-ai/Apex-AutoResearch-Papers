@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](how-does-schema-complexity-predict-performance-in-training-free-llm-information-extraction.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

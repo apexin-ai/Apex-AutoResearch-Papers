@@ -2,7 +2,7 @@
 
 Project: `cert_manip_resist_eval`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/the-weakest-link-across-panel-sizes-predictor-relevance-patterns-in-multi-judge-llm-evaluation-under-adversarial-manipulation.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

@@ -2,7 +2,7 @@
 
 Project: `diff_collision_sdf`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/how-action-collapse-creates-illusory-safety-in-diffusion-based-vla-collision-avoidance-evaluation.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

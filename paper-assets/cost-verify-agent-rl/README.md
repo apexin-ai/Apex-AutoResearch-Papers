@@ -2,7 +2,7 @@
 
 Project: `cost-verify-agent-rl`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/sign-misattribution-in-step-independent-agent-rl-dual-mechanism-diagnosis-and-episode-level-correction.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

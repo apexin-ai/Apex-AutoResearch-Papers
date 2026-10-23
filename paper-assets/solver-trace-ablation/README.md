@@ -2,7 +2,7 @@
 
 Project: `solver-trace-ablation`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/observe-but-don-t-optimize-structural-rewards-trigger-goodhart-effects-in-neurosymbolic-reasoning.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

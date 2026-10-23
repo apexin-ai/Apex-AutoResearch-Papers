@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](aggregate-equivalence-vs-behavioral-equivalence-per-example-multiplicity-in-hybrid-linear-recurrent-models.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

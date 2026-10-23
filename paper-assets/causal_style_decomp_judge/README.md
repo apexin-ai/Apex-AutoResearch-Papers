@@ -2,7 +2,7 @@
 
 Project: `causal_style_decomp_judge`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/the-likert-blindspot-measurement-mode-divergence-in-llm-judge-style-evaluation.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

@@ -2,7 +2,7 @@
 
 Project: `struct_self_consist_ie`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/when-self-consistency-fails-for-ner-degeneracy-signal-collapse-and-the-correlation-selection-gap.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

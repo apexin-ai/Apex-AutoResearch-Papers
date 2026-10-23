@@ -2,7 +2,7 @@
 
 Project: `persuasion_turn_jailbreak_detect`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/disped-a-controlled-study-of-encoder-adaptation-for-multi-turn-jailbreak-detection.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

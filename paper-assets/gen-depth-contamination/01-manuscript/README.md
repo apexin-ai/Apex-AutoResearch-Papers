@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](generational-depth-estimation-of-recursive-synthetic-text-measuring-the-discrimination-boundary.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

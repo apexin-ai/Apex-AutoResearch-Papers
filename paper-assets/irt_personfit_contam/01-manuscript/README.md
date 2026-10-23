@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](what-can-irt-person-fit-statistics-reveal-about-sft-stage-benchmark-contamination.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

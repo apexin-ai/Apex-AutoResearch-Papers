@@ -2,7 +2,7 @@
 
 Project: `ec_hte_llm_annotation`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/when-debiasing-hurts-an-exact-bias-identity-for-llm-annotated-treatment-effects.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

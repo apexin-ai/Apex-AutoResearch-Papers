@@ -2,7 +2,7 @@
 
 Project: `faith-evidence-ie`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/evidence-at-what-cost-decoupling-and-scaling-in-llm-based-document-relation-extraction.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

@@ -2,7 +2,7 @@
 
 Project: `policy_ambiguity_safety`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/policy-ambiguity-is-nocuous-clause-level-causal-effects-on-customer-service-agent-safety.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

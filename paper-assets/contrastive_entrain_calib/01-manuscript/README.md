@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](the-probe-reward-trap-behavioral-death-before-distributional-collapse-in-sycophancy-calibration.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

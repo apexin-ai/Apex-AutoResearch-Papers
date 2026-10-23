@@ -2,7 +2,7 @@
 
 Project: `clkc_mech_interp`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/english-chinese-knowledge-conflict-signals-are-consistent-with-general-cross-lingual-asymmetries.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

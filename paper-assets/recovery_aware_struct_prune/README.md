@@ -2,7 +2,7 @@
 
 Project: `recovery_aware_struct_prune`
 
-[Manuscript PDF](01-manuscript/paper.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
+[Manuscript PDF](01-manuscript/how-pruning-criteria-shape-post-rlvr-recovery-a-controlled-study-of-structured-mlp-pruning-in-a-reasoning-llm.pdf) | [Readable generation records](04-generation-trace/readable/README.md) | [File manifest](07-index/asset-manifest.csv)
 
 ## Materials
 

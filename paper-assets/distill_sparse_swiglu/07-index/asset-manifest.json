@@ -15,7 +15,7 @@
   "provenance_count": 0,
   "submission_count": 0,
   "license_count": 5,
-  "paper_pdf": "paper.pdf",
+  "paper_pdf": "output-distribution-distillation-for-contextual-sparsity-prediction-in-swiglu-llms.pdf",
   "paper_sha256": "28d0188a6df7dbdee3cd365cf3c054d15afa54f1c1e8143006e935c777252474",
   "title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs",
   "pages": 18,

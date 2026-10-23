@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](evidence-at-what-cost-decoupling-and-scaling-in-llm-based-document-relation-extraction.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 

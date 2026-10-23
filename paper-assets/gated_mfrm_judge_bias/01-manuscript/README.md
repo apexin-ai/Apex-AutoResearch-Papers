@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
+[Read the selected manuscript](fair-scores-via-joint-calibration-a-gated-many-facet-rasch-model-for-disentangling-judge-bias-and-contamination-in-llm-evaluation.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 
