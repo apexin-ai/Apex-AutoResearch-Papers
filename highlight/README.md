@@ -207,7 +207,6 @@ We believe that the value of AI-driven research lies not only in generating pape
 
 Discord: https://discord.gg/n4GcamcgFp
 
-（注：部分内容由豆包工作 AI 生成）
 
 <!-- END ORIGINAL ARTICLE -->
 
