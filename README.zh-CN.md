@@ -9,7 +9,7 @@ Apex Research 由 Apex Intelligence 构建，汇集模型评测、推理、智�
 **5 篇精选论文** · **36 个研究项目** · **6 个研究方向**
 
 <p align="center">
-  <img src="assets/research-overview.jpg" alt="36 个 Apex Research 项目的六个研究方向" width="560" />
+  <img src="highlight/assets/research-output-distribution.png" alt="36 个 Apex Research 项目的六个研究方向" width="560" />
 </p>
 
 [精选论文](highlight/README.zh-CN.md) · [按方向浏览全部论文](categories/README.zh-CN.md) · [完整论文目录](CONTENTS.zh-CN.md)

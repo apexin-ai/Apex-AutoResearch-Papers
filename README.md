@@ -9,7 +9,7 @@ Apex Research, built by Apex Intelligence, brings together research on evaluatio
 **5 highlighted papers** · **36 research projects** · **6 research areas**
 
 <p align="center">
-  <img src="assets/research-overview.jpg" alt="Six research areas across 36 Apex Research projects" width="560" />
+  <img src="highlight/assets/research-output-distribution.png" alt="Six research areas across 36 Apex Research projects" width="560" />
 </p>
 
 [Highlighted papers](highlight/README.md) · [Browse all papers by area](categories/README.md) · [Full paper catalogue](CONTENTS.md)
