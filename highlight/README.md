@@ -12,4 +12,4 @@ Five selected papers from the research catalogue. This folder contains copies of
 | 04 | Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models | [PDF](layer-selection-sensitivity-in-hidden-state-safety-probes-for-reasoning-models.pdf) | [contrastive_trace_safety](../paper-assets/contrastive_trace_safety/README.md) |
 | 05 | Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis | [PDF](instruction-routing-in-fine-tuned-vision-language-action-models-a-cross-architecture-analysis.pdf) | [vla-ssd](../paper-assets/vla-ssd/README.md) |
 
-[Full catalogue / 完整目录](../CONTENTS.md) · [English](../README.md) · [简体中文](../README.zh-CN.md)
+[Browse all papers by area / 按方向浏览全部论文](../categories/README.md) · [Full catalogue / 完整目录](../CONTENTS.md) · [Project materials guide / 项目资料指南](../paper-assets/README.md) · [English](../README.md) · [简体中文](../README.zh-CN.md)

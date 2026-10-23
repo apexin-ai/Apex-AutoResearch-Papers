@@ -1,6 +1,8 @@
-# Numbered project catalogue
+# Full paper catalogue
 
-The 36 selected research projects are grouped into six numbered areas. Within each area, papers are numbered from `01` onward. Search this page by project name or paper title, then open the project guide for its complete material map.
+[Home](README.md) · [Highlighted papers](highlight/README.md) · [Browse by research area](categories/README.md) · [Project materials guide](paper-assets/README.md)
+
+All 36 research projects are listed below with paper titles, manuscript links, and material counts. Search this page by project name or paper title, then open the project guide for its complete material map. Area and paper numbers match the category pages.
 
 | Area | Paper No. | Project | Paper title | Manuscript | Code/config | Data/results | Trace sources | Recorded events |
 |---:|---:|---|---|---:|---:|---:|---:|---:|

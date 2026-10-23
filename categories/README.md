@@ -1,6 +1,10 @@
-# Numbered research areas
+# Browse all papers by research area
 
-Six numbered areas organize all 36 projects. Each area page starts its papers at `01`.
+[Home](../README.md) · [Highlighted papers](../highlight/README.md) · [Full catalogue](../CONTENTS.md) · [Project materials guide](../paper-assets/README.md)
+
+Browse all 36 papers across six research areas. Open an area to see its paper list, PDFs, and project guides. Paper numbering starts at `01` within each area.
+
+全部 36 篇论文按以下 6 个研究方向分类。进入某个方向，即可查看论文列表、PDF 和项目资料入口。
 
 | No. | Research area | Projects | Description |
 |---:|---|---:|---|
@@ -11,4 +15,4 @@ Six numbered areas organize all 36 projects. Each area page starts its papers at
 | **05** | [Embodied AI & VLA](embodied-ai-and-vla/README.md) | **3** | Collision avoidance, spatial supervision, and representation changes in vision-language-action models. |
 | **06** | [Model Mechanisms, Training & Inference Efficiency](model-mechanisms-training-and-inference-efficiency/README.md) | **5** | Cross-lingual mechanisms, contextual sparsity, pruning recovery, hybrid architectures, and spectral optimization. |
 
-Project assets remain in `paper-assets/<project-name>/`; numbering is applied to the catalogue and browsing pages so existing asset links remain stable.
+This directory contains browsing pages. Complete project materials are stored in `paper-assets/<project-name>/`; see the [project materials guide](../paper-assets/README.md) for their layout.
