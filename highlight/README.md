@@ -11,8 +11,8 @@
 Today, Apex Intelligence is officially releasing 36 research results produced by our AI system, spanning two directions: AI research and robotics & embodied intelligence. Papers, code, and related research materials will be open-sourced through GitHub repositories, available for researchers in relevant fields to read, review, reproduce, and discuss.
 
 <p align="center">
-  <a href="assets/apex-36-research-outputs.jpeg"><img src="assets/apex-36-research-outputs.jpeg" alt="36 AI-Driven Research Outputs" width="48%" /></a>
-  <a href="assets/research-output-distribution.jpeg"><img src="assets/research-output-distribution.jpeg" alt="Distribution of Research Outputs" width="48%" /></a>
+  <a href="assets/apex-36-research-outputs.png"><img src="assets/apex-36-research-outputs.png" alt="36 AI-Driven Research Outputs" width="48%" /></a>
+  <a href="assets/research-output-distribution.png"><img src="assets/research-output-distribution.png" alt="Distribution of Research Outputs" width="48%" /></a>
 </p>
 
 ---
